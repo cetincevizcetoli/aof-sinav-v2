@@ -1,5 +1,6 @@
 import { Gamification } from '../core/gamification.js';
 import { ExamManager } from '../core/examManager.js';
+import { UpdateManager } from '../core/updateManager.js';
 
 export class Dashboard {
     constructor(dataLoader, db) {
@@ -311,13 +312,24 @@ export class Dashboard {
                             <p style="color:#64748b; font-size:0.85rem;">En yeni sürüm en üstte listelenir.</p>
                             <button class="nav-btn" style="margin-top:10px;">Görüntüle</button>
                         </div>
-                        <div class="lesson-card" style="border:1px solid #fecaca;">
+                        <div class="lesson-card" style="border:1px sol id #fecaca;">
                             <div class="card-header">
                                 <span class="course-code" style="color:#ef4444;">Verileri Sıfırla</span>
                             </div>
                             <h3>İlerlemeyi Temizle</h3>
                             <p style="color:#64748b; font-size:0.85rem;">Tüm istatistik ve sınav geçmişi silinir. Bu işlem geri alınamaz.</p>
                             <button class="primary-btn" style="background-color:#ef4444; margin-top:10px;" onclick="window.confirmReset()">⚠️ Sıfırla</button>
+                        </div>
+                        <div class="lesson-card">
+                            <div class="card-header">
+                                <span class="course-code">Güncellemeler</span>
+                            </div>
+                            <h3>Güncelleme Kontrolü</h3>
+                            <p style="color:#64748b; font-size:0.85rem;">Yeni sürüm varsa otomatik temizleyip yeniler.</p>
+                            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
+                                <button class="nav-btn" onclick="window.checkUpdatesNow()">Kontrol Et</button>
+                                <button class="nav-btn warning" onclick="window.forceRefreshNow()">Zorla Yenile</button>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-actions" style="margin-top:16px;">
@@ -388,6 +400,23 @@ export class Dashboard {
                 </div>`;
                 document.body.insertAdjacentHTML('beforeend', html2);
             };
+        };
+
+        window.checkUpdatesNow = async () => {
+            const updater = new UpdateManager();
+            const overlayId = 'update-check-overlay';
+            const overlayHtml = `<div class="modal-overlay" id="${overlayId}"><div class="modal-box"><div class="modal-header"><h2 class="modal-title">Güncelleme Kontrolü</h2><button class="icon-btn" onclick="document.getElementById('${overlayId}').remove()"><i class="fa-solid fa-xmark"></i></button></div><div class="loading-state"><div class="spinner"></div><p>Sunucu sürümü kontrol ediliyor...</p></div></div></div>`;
+            document.body.insertAdjacentHTML('beforeend', overlayHtml);
+            try { await updater.checkUpdates(); } catch {} finally { const el = document.getElementById(overlayId); if (el) el.remove(); }
+        };
+
+        window.forceRefreshNow = async () => {
+            const updater = new UpdateManager();
+            const id = 'force-refresh-overlay';
+            const html = `<div class="modal-overlay" id="${id}"><div class="modal-box"><div class="modal-header"><h2 class="modal-title">Zorla Yenile</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div><div class="loading-state"><div class="spinner"></div><p>Önbellek temizleniyor ve sayfa yenileniyor...</p></div></div></div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+            await updater.performCleanup();
+            location.reload();
         };
     }
 }
