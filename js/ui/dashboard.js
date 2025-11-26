@@ -292,11 +292,67 @@ export class Dashboard {
     }
 
     openSettings() {
-        const html = `<div class="modal-overlay" id="settings-modal"><div class="modal-box"><h2 class="modal-title">Ayarlar</h2><div class="form-group"><p>Tüm ilerlemeni silmek istiyor musun?</p></div><div class="modal-actions"><button class="nav-btn secondary" onclick="document.getElementById('settings-modal').remove()">İptal</button><button class="primary-btn" style="background-color:#ef4444;" onclick="window.resetApp()">⚠️ Sıfırla</button><button class="nav-btn" onclick="window.openChangelog()">Sürüm Notları</button></div></div></div>`;
+        const html = `
+            <div class="modal-overlay" id="settings-modal">
+                <div class="modal-box large">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Ayarlar</h2>
+                        <button class="icon-btn" onclick="document.getElementById('settings-modal').remove()"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div class="form-group">
+                        <p style="color:#64748b;">Uygulama seçeneklerini aşağıdan yönetebilirsin.</p>
+                    </div>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
+                        <div class="lesson-card" style="cursor:pointer;" onclick="window.openChangelog()">
+                            <div class="card-header">
+                                <span class="course-code">Sürüm Notları</span>
+                            </div>
+                            <h3>Son Değişiklikler</h3>
+                            <p style="color:#64748b; font-size:0.85rem;">En yeni sürüm en üstte listelenir.</p>
+                            <button class="nav-btn" style="margin-top:10px;">Görüntüle</button>
+                        </div>
+                        <div class="lesson-card" style="border:1px solid #fecaca;">
+                            <div class="card-header">
+                                <span class="course-code" style="color:#ef4444;">Verileri Sıfırla</span>
+                            </div>
+                            <h3>İlerlemeyi Temizle</h3>
+                            <p style="color:#64748b; font-size:0.85rem;">Tüm istatistik ve sınav geçmişi silinir. Bu işlem geri alınamaz.</p>
+                            <button class="primary-btn" style="background-color:#ef4444; margin-top:10px;" onclick="window.confirmReset()">⚠️ Sıfırla</button>
+                        </div>
+                    </div>
+                    <div class="modal-actions" style="margin-top:16px;">
+                        <button class="nav-btn secondary" onclick="document.getElementById('settings-modal').remove()">Kapat</button>
+                    </div>
+                </div>
+            </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
-        window.resetApp = async () => {
-            if(confirm("Emin misin?")) { await this.db.resetAllData(); location.reload(); }
+
+        // Dış alan tıklaması ve ESC ile kapat
+        const overlay = document.getElementById('settings-modal');
+        overlay.addEventListener('click', (e) => { if (e.target.id === 'settings-modal') overlay.remove(); });
+        const escHandler = (e) => { if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', escHandler); } };
+        document.addEventListener('keydown', escHandler);
+
+        window.confirmReset = () => {
+            const html = `
+            <div class="modal-overlay" id="confirm-reset-modal">
+                <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Onay</h2><button class="icon-btn" onclick="document.getElementById('confirm-reset-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <p style="color:#64748b;">Tüm ilerlemeni silmek istediğine emin misin?</p>
+                    <div class="modal-actions">
+                        <button class="nav-btn secondary" onclick="document.getElementById('confirm-reset-modal').remove()">İptal</button>
+                        <button class="primary-btn" style="background-color:#ef4444;" onclick="window.resetApp()">Evet, Sıfırla</button>
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
         };
+
+        window.resetApp = async () => {
+            await this.db.resetAllData();
+            location.reload();
+        };
+
         window.openChangelog = async () => {
             const res = await fetch('data/changelog.json?t=' + Date.now()).then(r => r.json()).catch(() => []);
             const list = Array.isArray(res) ? res : [];
