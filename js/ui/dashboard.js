@@ -113,7 +113,7 @@ export class Dashboard {
             </div>
         `;
 
-        html += `<div class="app-footer">Sürüm: v4.1</div>`;
+        html += `<div class="app-footer">Sürüm: v1.0.3</div>`;
         this.container.innerHTML = html;
         
         // Global Eventler
