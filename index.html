@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AÖF Sınav Asistanı</title>
+    
+    <meta name="description" content="AÖF dersleri için akıllı sınav hazırlık asistanı. Çıkmış sorular, ünite özetleri ve performans takibi ile sınavlara hazırlanın.">
+    
+    <meta name="theme-color" content="#2563eb">
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SınavAsistanı">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo-area">
+                <img src="assets/logo.png" alt="Logo" class="app-logo" onerror="this.style.display='none'">
+                <h1>Sınav<span class="highlight">Asistanı</span></h1>
+            </div>
+            <div class="user-actions">
+                <button id="btn-settings" class="icon-btn" title="Ayarlar"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main id="app-container">
+        <div class="loading-state">
+            <div class="spinner"></div>
+            <p>Sistem Hazırlanıyor...</p>
+        </div>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .catch(err => console.log('SW Hata:', err));
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1717 @@
+[
+  {
+    "unit": 1,
+    "topic": "İşletim Sistemi Tarihçesi",
+    "question": "1969 yılında Bell Labs'de geliştirilen ve birçok modern işletim sisteminin (Linux, MacOS vb.) temelini oluşturan işletim sistemi hangisidir?",
+    "correct_option": "UNIX",
+    "options": [
+      "UNIX",
+      "Minix",
+      "Windows NT",
+      "DOS"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 3",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Linux Çekirdeği",
+    "question": "Linux işletim sisteminin çekirdeği (kernel) ağırlıklı olarak hangi programlama dili ile yazılmıştır?",
+    "correct_option": "C",
+    "options": [
+      "C",
+      "Python",
+      "Java",
+      "Perl"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 5",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Linux Dağıtımları",
+    "question": "Aşağıdakilerden hangisi en çok bilinen Debian tabanlı Linux dağıtımlarından biridir?",
+    "correct_option": "Ubuntu",
+    "options": [
+      "Ubuntu",
+      "Fedora",
+      "Rocky",
+      "Arch"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Sürüm Kontrolü",
+    "question": "Debian tabanlı Linux işletim sistemlerinde işletim sistemi versiyonunu ve detaylarını öğrenmek için kullanılan komut hangisidir?",
+    "correct_option": "lsb_release -a",
+    "options": [
+      "lsb_release -a",
+      "cat /etc/redhat-release",
+      "uname -r",
+      "show_version"
+    ],
+    "source_type": "Teknik Detay / Sayfa 12",
+    "code_example": "lsb_release -a"
+  },
+  {
+    "unit": 1,
+    "topic": "Linux Dağıtımları - RedHat",
+    "question": "Red Hat Enterprise Linux (RHEL) tabanlı olan ve CentOS'un geliştirilmesinin durdurulması üzerine ortaya çıkan, RHEL ile %100 uyumlu olmayı hedefleyen dağıtım hangisidir?",
+    "correct_option": "Rocky Linux",
+    "options": [
+      "Rocky Linux",
+      "Ubuntu",
+      "Debian",
+      "Arch Linux"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 11",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Paket Yönetimi - Arch Linux",
+    "question": "Arch Linux dağıtımında kullanılan varsayılan paket yönetim aracı aşağıdakilerden hangisidir?",
+    "correct_option": "pacman",
+    "options": [
+      "pacman",
+      "apt",
+      "dnf",
+      "zypper"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 12",
+    "code_example": "sudo pacman -S paket_adi"
+  },
+  {
+    "unit": 1,
+    "topic": "Linux Dağıtımları - Yerli",
+    "question": "TÜBİTAK ULAKBİM tarafından geliştirilen, Debian tabanlı milli Linux dağıtımı aşağıdakilerden hangisidir?",
+    "correct_option": "Pardus",
+    "options": [
+      "Pardus",
+      "Turkuaz",
+      "Mint",
+      "Kali"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 12",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Masaüstü Ortamları",
+    "question": "Pardus işletim sisteminin, hız, kararlılık ve performans özelliği ile ön plana çıkan masaüstü ortamı sürümü hangisidir?",
+    "correct_option": "XFCE",
+    "options": [
+      "XFCE",
+      "GNOME",
+      "KDE",
+      "Unity"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 13",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Siber Güvenlik",
+    "question": "Siber güvenlik, dijital adli bilişim ve penetrasyon testleri (sızma testleri) için özel olarak geliştirilmiş Debian tabanlı Linux dağıtımı hangisidir?",
+    "correct_option": "Kali Linux",
+    "options": [
+      "Kali Linux",
+      "Ubuntu Server",
+      "Fedora Workstation",
+      "Linux Mint"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 11",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Linux Tarihçesi",
+    "question": "Linux işletim sisteminin ilk versiyonu olarak kabul edilen, Linus Torvalds'ın geliştirmeye başladığı sistemin temel aldığı yapı hangisidir?",
+    "correct_option": "Minix",
+    "options": [
+      "Minix",
+      "Ubuntu",
+      "Fedora",
+      "Solaris"
+    ],
+    "source_type": "Ünite Sonu Soruları / Soru 1",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Kritik Uyarılar - RedHat Sürüm Kontrolü",
+    "question": "RedHat tabanlı sistemlerde (CentOS, Fedora vb.) işletim sistemi versiyonunu öğrenmek için genellikle hangi dosya okunur?",
+    "correct_option": "cat /etc/redhat-release",
+    "options": [
+      "cat /etc/redhat-release",
+      "lsb_release -a",
+      "cat /proc/version",
+      "uname -a"
+    ],
+    "source_type": "Teknik Detay / Sayfa 12",
+    "code_example": "cat /etc/redhat-release"
+  },
+  {
+    "unit": 1,
+    "topic": "Linux Bileşenleri",
+    "question": "Linux işletim sisteminde dosyalar, diskler, ağ ve diğer donanım bileşenlerinin yönetildiği, 'düşük seviye işletim sistemi' olarak da adlandırılan katman hangisidir?",
+    "correct_option": "Çekirdek (Kernel)",
+    "options": [
+      "Çekirdek (Kernel)",
+      "Kabuk (Shell)",
+      "X Grafik Sistemi",
+      "Uygulama Katmanı"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 5",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Paket Yöneticileri - Eşleştirme",
+    "question": "Aşağıdaki Linux dağıtımı ve paket yöneticisi eşleştirmelerinden hangisi yanlıştır?",
+    "correct_option": "Debian - rpm",
+    "options": [
+      "Debian - rpm",
+      "RedHat - dnf",
+      "Ubuntu - apt",
+      "OpenSUSE - zypper"
+    ],
+    "source_type": "Kritik Karşılaştırma / Sayfa 17",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Linux Dağıtımları - Fedora",
+    "question": "Red Hat Enterprise Linux (RHEL) için bir test ortamı ve araştırma sahası (upstream) olarak kullanılan, dnf paket yöneticisine sahip dağıtım hangisidir?",
+    "correct_option": "Fedora",
+    "options": [
+      "Fedora",
+      "Debian",
+      "Ubuntu",
+      "Kali"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 10",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Linux Özellikleri",
+    "question": "Linux işletim sisteminin aynı anda birden fazla kullanıcının sisteme bağlanıp çalışabilmesine olanak tanıyan özelliği ne olarak adlandırılır?",
+    "correct_option": "Çoklu Kullanıcı (Multi-User)",
+    "options": [
+      "Çoklu Kullanıcı (Multi-User)",
+      "Çoklu İşlemci (Multi-Processor)",
+      "Çoklu Platform (Multi-Platform)",
+      "Ölçeklenebilirlik"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 5",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Paket Yönetimi - Gentoo",
+    "question": "Kaynak koddan derleme yaparak çalışan ve profesyonel kullanıcılar için tasarlanmış Gentoo Linux'un paket yöneticisi hangisidir?",
+    "correct_option": "emerge",
+    "options": [
+      "emerge",
+      "pacman",
+      "yum",
+      "apt"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 9",
+    "code_example": "emerge --ask paket_adi"
+  },
+  
+  {
+    "unit": 2,
+    "topic": "Sanallaştırma Kavramı",
+    "question": "Mevcut bir işletim sistemi üzerinde, donanım kaynaklarını paylaşarak başka bir işletim sistemini çalıştırmaya yarayan (VirtualBox, VMware gibi) yazılımlara genel olarak ne ad verilir?",
+    "correct_option": "Sanallaştırma Yazılımı (Hypervisor)",
+    "options": [
+      "Sanallaştırma Yazılımı (Hypervisor)",
+      "Derleyici (Compiler)",
+      "Önyükleyici (Bootloader)",
+      "Konteyner (Container)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 23",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "VirtualBox Kurulumu",
+    "question": "Ubuntu gibi Debian tabanlı bir Linux dağıtımına VirtualBox sanallaştırma yazılımını terminal üzerinden kurmak için kullanılan komut hangisidir?",
+    "correct_option": "sudo apt install virtualbox",
+    "options": [
+      "sudo apt install virtualbox",
+      "sudo dnf install virtualbox",
+      "sudo yum install virtualbox",
+      "sudo pacman -S virtualbox"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav",
+    "code_example": "sudo apt install virtualbox"
+  },
+  {
+    "unit": 2,
+    "topic": "Disk Dosya Türleri",
+    "question": "VirtualBox'ın varsayılan disk kalıbı formatı hangisidir?",
+    "correct_option": "VDI (VirtualBox Disk Image)",
+    "options": [
+      "VDI (VirtualBox Disk Image)",
+      "VMDK (Virtual Machine Disk)",
+      "VHD (Virtual Hard Disk)",
+      "HDD (Parallels Hard Disk)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 32",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Ağ Ayarları - NAT",
+    "question": "Sanal makinenin internete çıkabildiği ancak dış ağdan veya ana makineden (port yönlendirme hariç) doğrudan erişilemediği, VirtualBox'ta varsayılan olarak gelen ağ modu hangisidir?",
+    "correct_option": "NAT (Network Address Translation)",
+    "options": [
+      "NAT (Network Address Translation)",
+      "Köprü Bağdaştırıcısı (Bridged)",
+      "Yalnızca-Ana Makine (Host-Only)",
+      "Dahili Ağ (Internal Network)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 40",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Ağ Ayarları - Köprü Modu",
+    "question": "Sanal makinenin, fiziksel ağdaki bir cihaz gibi davranarak ana makine ile aynı IP bloğundan (örneğin modemden) IP adresi almasını sağlayan ağ modu hangisidir?",
+    "correct_option": "Köprü Bağdaştırıcısı (Bridged Adapter)",
+    "options": [
+      "Köprü Bağdaştırıcısı (Bridged Adapter)",
+      "NAT",
+      "NAT Ağı",
+      "Genel Sürücü"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Ara Sınav",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Anlık Görüntü (Snapshot)",
+    "question": "Sanal makinede belirli bir ana kadar yapılan işlemlerin ve sistem durumunun kaydedilerek, istendiğinde o ana geri dönülmesini sağlayan özelliğe ne ad verilir?",
+    "correct_option": "Anlık Görüntü (Snapshot)",
+    "options": [
+      "Anlık Görüntü (Snapshot)",
+      "Klonlama (Clone)",
+      "Dışa Aktarma (Export)",
+      "Yedekleme (Backup)"
+    ],
+    "source_type": "Çıkmış Soru / 2022-2023 Ara Sınav",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Sanal Makine Ayarları - CPU",
+    "question": "VirtualBox yazılımında, sanal makine tarafından kullanılması planlanan İşlemci (CPU) çekirdek sayısı hangi ayar menüsü altından belirlenir?",
+    "correct_option": "Sistem -> İşlemci",
+    "options": [
+      "Sistem -> İşlemci",
+      "Genel -> Gelişmiş",
+      "Ekran -> Grafik Denetleyicisi",
+      "Sistem -> Anakart"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Ara Sınav",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Disk Yapılandırma - Dinamik vs Sabit",
+    "question": "Sanal disk oluşturulurken, diskin başlangıçta az yer kaplayıp veri yazıldıkça belirlenen limite kadar büyümesini sağlayan seçenek hangisidir?",
+    "correct_option": "Değişken olarak ayrılan (Dynamically allocated)",
+    "options": [
+      "Değişken olarak ayrılan (Dynamically allocated)",
+      "Sabitlenmiş boyut (Fixed size)",
+      "Bölünmüş disk (Split disk)",
+      "Değişken boyutlu (Variable size)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 33",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Misafir Eklentileri",
+    "question": "VirtualBox'ta ana makine ile sanal makine arasında dosya paylaşımı, panoya kopyalama/yapıştırma ve daha iyi grafik performansı sağlayan eklenti paketinin adı nedir?",
+    "correct_option": "Misafir Eklentileri (Guest Additions)",
+    "options": [
+      "Misafir Eklentileri (Guest Additions)",
+      "Extension Pack",
+      "Host Extensions",
+      "VM Tools"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 42",
+    "code_example": "sudo ./VBoxLinuxAdditions.run"
+  },
+  {
+    "unit": 2,
+    "topic": "VirtualBox Uzantıları",
+    "question": "VirtualBox sanal makinelerini başka bir ortama taşımak veya yedeğini almak için dışa aktarırken (Export) kullanılan açık standart dosya formatı uzantısı nedir?",
+    "correct_option": ".ova / .ovf",
+    "options": [
+      ".ova / .ovf",
+      ".vbox",
+      ".vdi",
+      ".iso"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 48",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Donanım Ayarları - RAM",
+    "question": "VirtualBox'ta sanal makinenin Bellek (RAM) miktarı Sistem menüsü altındaki hangi sekmeden ayarlanır?",
+    "correct_option": "Anakart",
+    "options": [
+      "Anakart",
+      "İşlemci",
+      "Hızlandırma",
+      "Ekran"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "USB Aygıt Yönetimi",
+    "question": "Sanal makineye eklenmiş bir USB aygıtının bağlantısını Linux komut satırından kaldırmak (bağlantı noktasını silmek) için hangi komut kullanılır?",
+    "correct_option": "umount",
+    "options": [
+      "umount",
+      "mount",
+      "eject",
+      "rm"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav",
+    "code_example": "sudo umount /mnt/usb"
+  },
+  {
+    "unit": 2,
+    "topic": "Yetersiz Bellek (RAM) Durumu",
+    "question": "Linux sistemlerde fiziksel bellek (RAM) yetersiz kaldığında, sistemin çalışmaya devam edebilmesi için disk üzerinde kullanılan alana ne ad verilir?",
+    "correct_option": "Swap (Takas Alanı)",
+    "options": [
+      "Swap (Takas Alanı)",
+      "Cache (Önbellek)",
+      "Buffer",
+      "Heap"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Ağ Ayarları - Host-Only",
+    "question": "Sanal makinelerin internete çıkmadan sadece kendi aralarında ve ana makine ile haberleşmesini sağlayan, dış dünyadan izole ağ modu hangisidir?",
+    "correct_option": "Yalnızca-Ana Makine (Host-Only)",
+    "options": [
+      "Yalnızca-Ana Makine (Host-Only)",
+      "NAT",
+      "Köprü Bağdaştırıcısı",
+      "Genel Sürücü"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 28",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Eklenti Paketi (Extension Pack)",
+    "question": "VirtualBox'ta USB 2.0/3.0 desteği, Disk Şifreleme ve RDP gibi özellikleri kullanabilmek için ana uygulamaya ek olarak ne yüklenmelidir?",
+    "correct_option": "VirtualBox Extension Pack",
+    "options": [
+      "VirtualBox Extension Pack",
+      "Guest Additions",
+      "VirtualBox SDK",
+      "VBoxManage"
+    ],
+    "source_type": "Teknik Detay / Sayfa 24",
+    "code_example": null
+  },
+  
+  {
+    "unit": 3,
+    "topic": "Kurulum Yöntemleri",
+    "question": "Linux işletim sistemini, mevcut bir işletim sisteminin yanına kurarak bilgisayar açılışında hangi sistemin başlatılacağını seçme imkanı sunan kuruluma ne ad verilir?",
+    "correct_option": "Çift Önyükleme (Dual Boot)",
+    "options": [
+      "Çift Önyükleme (Dual Boot)",
+      "Sanallaştırma",
+      "Canlı (Live) CD",
+      "Konteynerleştirme"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 55",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Disk Bölümlendirme - Swap",
+    "question": "Linux sistemlerde fiziksel belleğin (RAM) yetersiz kaldığı durumlarda, disk üzerinde sanal bellek olarak kullanılan bölüme ne ad verilir?",
+    "correct_option": "Takas Alanı (Swap)",
+    "options": [
+      "Takas Alanı (Swap)",
+      "Önyükleme (Boot)",
+      "Kök (Root)",
+      "Ev (Home)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 71",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Disk Bölümlendirme - /boot",
+    "question": "Sistemin açılışında kullanılan Linux çekirdeğinin (kernel) ve önyükleyici dosyalarının bulunduğu disk bölümü aşağıdakilerden hangisidir?",
+    "correct_option": "/boot",
+    "options": [
+      "/boot",
+      "/root",
+      "/home",
+      "/mnt"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Disk Komutları - lsblk",
+    "question": "Linux işletim sisteminde disk bloklarını, bölümlerini ve bağlama noktalarını ağaç yapısında listelemek için kullanılan komut hangisidir?",
+    "correct_option": "lsblk",
+    "options": [
+      "lsblk",
+      "df -h",
+      "du -sh",
+      "fdisk -l"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav",
+    "code_example": "lsblk"
+  },
+  {
+    "unit": 3,
+    "topic": "Disk Komutları - df",
+    "question": "Linux işletim sisteminde disk bölümlerinin boyutlarını, doluluk oranlarını ve bağlandıkları dizinleri insan tarafından okunabilir (GB, MB) formatta görmek için hangi komut kullanılır?",
+    "correct_option": "df -h",
+    "options": [
+      "df -h",
+      "ls -la",
+      "mount",
+      "cat /proc/partitions"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 73",
+    "code_example": "df -h"
+  },
+  {
+    "unit": 3,
+    "topic": "LVM Yönetimi - Fiziksel Hacim",
+    "question": "LVM (Logical Volume Manager) yapısında, bir disk bölümünü (örneğin /dev/sda3) fiziksel hacim (Physical Volume) olarak yeniden boyutlandırmak için kullanılan komut hangisidir?",
+    "correct_option": "pvresize",
+    "options": [
+      "pvresize",
+      "lvresize",
+      "vgextend",
+      "resize2fs"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Ara Sınav",
+    "code_example": "pvresize /dev/sda3"
+  },
+  {
+    "unit": 3,
+    "topic": "LVM Yönetimi - Mantıksal Hacim",
+    "question": "Bir mantıksal bölümü (Logical Volume) diskteki tüm boş alanı kullanacak şekilde genişletmek için kullanılan komut parametresi aşağıdakilerden hangisidir?",
+    "correct_option": "lvextend -l +100%FREE",
+    "options": [
+      "lvextend -l +100%FREE",
+      "vgextend +100%FREE",
+      "resize2fs +100%FREE",
+      "fdisk +100%"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Ara Sınav",
+    "code_example": "lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv"
+  },
+  {
+    "unit": 3,
+    "topic": "Dosya Sistemi Genişletme",
+    "question": "LVM ile genişletilmiş bir disk bölümünün dosya sistemini (filesystem) yeni boyuta uyarlamak için kullanılan komut hangisidir?",
+    "correct_option": "resize2fs",
+    "options": [
+      "resize2fs",
+      "mkfs.ext4",
+      "fsck",
+      "mount -a"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 74",
+    "code_example": "resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv"
+  },
+  {
+    "unit": 3,
+    "topic": "Ağ Yapılandırması - Localhost",
+    "question": "Aşağıdaki IP adreslerinden hangisi 'localhost' olarak da bilinen, makinenin kendisine karşılık gelen geri döngü (loopback) adresidir?",
+    "correct_option": "127.0.0.1",
+    "options": [
+      "127.0.0.1",
+      "192.168.1.1",
+      "10.0.0.1",
+      "0.0.0.0"
+    ],
+    "source_type": "Çıkmış Soru / 2022-2023 Final",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Ağ Sınıfları - C Sınıfı",
+    "question": "Aşağıdaki IP aralıklarından hangisi C sınıfı IP adreslerinin ilk oktet aralığını göstermektedir?",
+    "correct_option": "192-223",
+    "options": [
+      "192-223",
+      "1-126",
+      "128-191",
+      "224-239"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Ara Sınav",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Ağ Maskesi",
+    "question": "Aşağıdakilerden hangisi A sınıfı bir ağın varsayılan alt ağ maskesidir?",
+    "correct_option": "255.0.0.0",
+    "options": [
+      "255.0.0.0",
+      "255.255.0.0",
+      "255.255.255.0",
+      "255.255.255.255"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Ağ Protokolleri - DHCP",
+    "question": "Bir ağdaki cihazlara otomatik olarak IP adresi, alt ağ maskesi ve ağ geçidi bilgilerini dağıtan protokol hangisidir?",
+    "correct_option": "DHCP (Dynamic Host Configuration Protocol)",
+    "options": [
+      "DHCP (Dynamic Host Configuration Protocol)",
+      "DNS (Domain Name System)",
+      "FTP (File Transfer Protocol)",
+      "SSH (Secure Shell)"
+    ],
+    "source_type": "Ünite Sonu Soruları / Soru 2",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Disk Yönetim Aracı - cfdisk",
+    "question": "Linux işletim sisteminde terminal üzerinden grafiksel bir arayüzle disk bölümlendirme işlemi yapmak için kullanılan araç hangisidir?",
+    "correct_option": "cfdisk",
+    "options": [
+      "cfdisk",
+      "mkfs",
+      "mount",
+      "umount"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Final",
+    "code_example": "cfdisk /dev/sdb"
+  },
+  {
+    "unit": 3,
+    "topic": "Ağ Arayüzleri",
+    "question": "Linux işletim sisteminde ağ arayüzleri (ethernet kartları) genellikle hangi isimlendirme formatıyla başlar (modern sistemlerde)?",
+    "correct_option": "enp... (örneğin enp0s3)",
+    "options": [
+      "enp... (örneğin enp0s3)",
+      "wlan...",
+      "usb...",
+      "disk..."
+    ],
+    "source_type": "Çıkmış Soru / 2022-2023 Final",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Vekil Sunucu (Proxy)",
+    "question": "Kurumsal ağlarda, kullanıcıların internete erişimini denetlemek, filtrelemek veya hızlandırmak (önbellekleme) amacıyla kullanılan aracı sunucuya ne ad verilir?",
+    "correct_option": "Vekil Sunucu (Proxy Server)",
+    "options": [
+      "Vekil Sunucu (Proxy Server)",
+      "DNS Sunucusu",
+      "DHCP Sunucusu",
+      "Web Sunucusu"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 69",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Disk Bölümlendirme - Tablo Türü",
+    "question": "Disk ekleme ve bölümlendirme işleminde, 2TB üzeri diskleri destekleyen ve modern sistemlerde standart haline gelen disk bölümleme tablosu türü hangisidir?",
+    "correct_option": "GPT (GUID Partition Table)",
+    "options": [
+      "GPT (GUID Partition Table)",
+      "MBR (Master Boot Record)",
+      "DOS",
+      "SGI"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 76",
+    "code_example": null
+  },
+  
+  {
+    "unit": 4,
+    "topic": "SSH Anahtarı Kopyalama",
+    "question": "Aşağıdaki komutlardan hangisiyle oluşturulan SSH anahtarı, '192.168.56.111' IP nolu yönetilen makineye 'ansible' kullanıcısı ile kopyalanır?",
+    "correct_option": "ssh-copy-id ansible@192.168.56.111",
+    "options": [
+      "ssh-copy-id ansible@192.168.56.111",
+      "ssh-keygen ansible@192.168.56.111",
+      "ssh-publickey ansible@192.168.56.111",
+      "ssh-passphrase ansible@192.168.56.111"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final ",
+    "code_example": "ssh-copy-id user@host"
+  },
+  {
+    "unit": 4,
+    "topic": "LVM - Mantıksal Bölüm Genişletme",
+    "question": "Aşağıdaki komutlardan hangisi ile bir mantıksal bölüm (logical volume), diskteki tüm boş alan kullanılacak şekilde genişletilir?",
+    "correct_option": "lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv",
+    "options": [
+      "lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv",
+      "vgextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv",
+      "pvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv",
+      "resize2fs -l +100%FREE /dev/ubuntu-vg/ubuntu-lv"
+    ],
+    "source_type": "Çıkmış Soru / 2022-2023 Ara Sınav ",
+    "code_example": "lvextend -l +100%FREE /dev/mapper/..."
+  },
+  {
+    "unit": 4,
+    "topic": "LVM - Grup Genişletme",
+    "question": "'vgextend ubuntu-vg /dev/sda4' komutunda 'ubuntu-vg' ifadesi neyi temsil etmektedir?",
+    "correct_option": "Disk Grubu Adı (Volume Group Name)",
+    "options": [
+      "Disk Grubu Adı (Volume Group Name)",
+      "Mantıksal Bölüm Adı (Logical Volume)",
+      "Fiziksel Disk Adı",
+      "Dosya Sistemi Türü"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav ",
+    "code_example": "vgextend [grup_adı] [fiziksel_disk]"
+  },
+  {
+    "unit": 4,
+    "topic": "Disk Bilgisi Sorgulama",
+    "question": "Aşağıdaki komutlardan hangisi ile diskin ekleneceği bölüm grubu (Volume Group) adı ve özellikleri öğrenilir?",
+    "correct_option": "vgdisplay",
+    "options": [
+      "vgdisplay",
+      "pvcreate",
+      "resize2fs",
+      "pvextend"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav ",
+    "code_example": "vgdisplay"
+  },
+  {
+    "unit": 4,
+    "topic": "Fiziksel Bölüm Oluşturma",
+    "question": "Aşağıdaki komutlardan hangisiyle '/dev/sda4' isimli disk bölümü LVM yapısında kullanılmak üzere fiziksel bir bölüm (Physical Volume) olarak oluşturulur?",
+    "correct_option": "pvcreate /dev/sda4",
+    "options": [
+      "pvcreate /dev/sda4",
+      "cfdisk /dev/sda4",
+      "lvcreate /dev/sda4",
+      "vgcreate /dev/sda4"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final ",
+    "code_example": "pvcreate /dev/sdb1"
+  },
+  {
+    "unit": 4,
+    "topic": "SSH Anahtarı Oluşturma",
+    "question": "Linux ve MacOS sistemlerde, uzak sunuculara parola girmeden bağlanabilmek amacıyla SSH anahtarı oluşturmak için kullanılan komut hangisidir?",
+    "correct_option": "ssh-keygen",
+    "options": [
+      "ssh-keygen",
+      "ssh-add",
+      "ssh-agent",
+      "ssh-copy"
+    ],
+    "source_type": "Çıkmış Soru / 2022-2023 Final ",
+    "code_example": "ssh-keygen -t ed25519"
+  },
+  {
+    "unit": 4,
+    "topic": "Windows SSH",
+    "question": "Windows 10 ve üzeri işletim sistemlerinde, komut satırından (PowerShell/CMD) SSH anahtarı oluşturabilmek için hangi özelliğin yüklü olması gerekir?",
+    "correct_option": "OpenSSH İstemcisi (Client)",
+    "options": [
+      "OpenSSH İstemcisi (Client)",
+      "OpenSSH Sunucusu (Server)",
+      "GPG Anahtarları",
+      "PuttyGen"
+    ],
+    "source_type": "Çıkmış Soru / 2022-2023 Ara Sınav ",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Dosya Sistemi Yeniden Boyutlandırma",
+    "question": "LVM ile genişletilen bir mantıksal bölümün dosya sistemini (ext4), işletim sistemi çalışırken (on-line) yeni boyuta uyarlamak için kullanılan komut hangisidir?",
+    "correct_option": "resize2fs",
+    "options": [
+      "resize2fs",
+      "partprobe",
+      "fdisk",
+      "mkfs"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 108 ",
+    "code_example": "resize2fs /dev/ubuntu-vg/ubuntu-lv"
+  },
+  {
+    "unit": 4,
+    "topic": "Bölüm Tablosu Güncelleme",
+    "question": "Disk bölümlendirme işlemi yapıldıktan sonra, işletim sistemini yeniden başlatmaya gerek kalmadan çekirdeğin (kernel) yeni bölüm tablosunu okumasını sağlayan komut hangisidir?",
+    "correct_option": "partprobe",
+    "options": [
+      "partprobe",
+      "reboot",
+      "shutdown",
+      "mount -a"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 106 ",
+    "code_example": "partprobe /dev/sda"
+  },
+  {
+    "unit": 4,
+    "topic": "SSH Bağlantı Güvenliği",
+    "question": "Aşağıdakilerden hangisi ile kullanılan ana makineden, kurulumu yapılan Linux işletim sistemine parola girmeden güvenli bağlantı sağlanır?",
+    "correct_option": "SSH anahtarı",
+    "options": [
+      "SSH anahtarı",
+      "Telnet",
+      "FTP",
+      "DHCP"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav ",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "SSH Kopyalama (Mac/Linux)",
+    "question": "Mac OS veya Linux işletim sisteminde, oluşturulan SSH genel anahtarını (public key) panoya kopyalamak için kullanılan komut aşağıdakilerden hangisidir?",
+    "correct_option": "pbcopy < ~/.ssh/id_rsa.pub",
+    "options": [
+      "pbcopy < ~/.ssh/id_rsa.pub",
+      "cp ~/.ssh/id_rsa.pub",
+      "mv ~/.ssh/id_rsa.pub",
+      "nano ~/.ssh/id_rsa.pub"
+    ],
+    "source_type": "Çıkmış Soru / 2022-2023 Ara Sınav ",
+    "code_example": "pbcopy < ~/.ssh/id_ed25519.pub"
+  },
+  {
+    "unit": 4,
+    "topic": "Sistem Kapatma",
+    "question": "Linux işletim sisteminde sistemi hemen durdurarak kapatmak için kullanılan komut hangisidir?",
+    "correct_option": "shutdown -h now",
+    "options": [
+      "shutdown -h now",
+      "reboot",
+      "logout",
+      "exit"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 102 ",
+    "code_example": "sudo shutdown -h now"
+  },
+  {
+    "unit": 4,
+    "topic": "Disk Bölümleme Aracı",
+    "question": "Disk ekleme yöntemi sonrasında komut satırı arayüzünde disk boyutu artırılırken '/dev/sdb' gibi diskleri bölümlendirmek için hangi arayüz aracı kullanılır?",
+    "correct_option": "cfdisk",
+    "options": [
+      "cfdisk",
+      "mkfs",
+      "mount",
+      "df"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav ",
+    "code_example": "cfdisk /dev/sdb"
+  },
+  {
+    "unit": 4,
+    "topic": "SSH Anahtar Dosyaları",
+    "question": "SSH anahtarı üretildikten sonra, herkese açık olan (public) ve karşı sunucuya kopyalanması gereken anahtar dosyasının varsayılan uzantısı nedir?",
+    "correct_option": ".pub (örneğin id_rsa.pub)",
+    "options": [
+      ".pub",
+      ".key",
+      ".ssh",
+      ".pem"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Ara Sınav ",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Hazır Paketler",
+    "question": "Linux işletim sistemi kurulumu sırasında veya sonrasında, sunucu ortamları için popüler olan ve 'container' mantığına benzer şekilde çalışan hazır paket sisteminin adı nedir?",
+    "correct_option": "Snaps",
+    "options": [
+      "Snaps",
+      "Flatpak",
+      "AppImage",
+      "Docker"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 98 ",
+    "code_example": "sudo snap install ..."
+  },
+  
+  {
+    "unit": 5,
+    "topic": "Debian Tabanlı - Bağımlılık Yönetimi",
+    "question": "Debian tabanlı sistemlerde, bir yazılım paketi kurulurken onun bağımlı olduğu diğer paketleri otomatik olarak DİKKATE ALMAYAN, düşük seviyeli paket yönetim aracı hangisidir?",
+    "correct_option": "dpkg",
+    "options": [
+      "dpkg",
+      "apt",
+      "apt-get",
+      "synaptic"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "sudo dpkg -i paket_adi.deb"
+  },
+  {
+    "unit": 5,
+    "topic": "RedHat Tabanlı - Paket Kaldırma",
+    "question": "RedHat tabanlı sistemlerde (RHEL, Fedora vb.), yüklü programlar tarafından artık gereksinim duyulmayan bağımlılıkları (unused dependencies) kaldırmak için hangi komut kullanılır?",
+    "correct_option": "dnf autoremove",
+    "options": [
+      "dnf autoremove",
+      "dnf remove",
+      "dnf erase",
+      "dnf clean all"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "sudo dnf autoremove"
+  },
+  {
+    "unit": 5,
+    "topic": "Arch Linux - Paket Kurulumu",
+    "question": "Arch Linux işletim sisteminde 'postgresql' ve 'vim' yazılımlarını kurmak için kullanılan doğru komut aşağıdakilerden hangisidir?",
+    "correct_option": "sudo pacman -S postgresql vim",
+    "options": [
+      "sudo pacman -S postgresql vim",
+      "sudo pacman -I postgresql vim",
+      "sudo pacman install postgresql vim",
+      "sudo pacman -Get postgresql vim"
+    ],
+    "source_type": "Çıkmış Soru / 2022-2023 Final",
+    "code_example": "sudo pacman -S [paket_adi]"
+  },
+  {
+    "unit": 5,
+    "topic": "OpenSUSE - Güncelleme",
+    "question": "OpenSUSE Linux işletim sisteminde en son paket güncellemelerini yüklemek için hangi komut kullanılır?",
+    "correct_option": "sudo zypper update",
+    "options": [
+      "sudo zypper update",
+      "sudo yast2 update",
+      "sudo zypper refresh",
+      "sudo zypper upgrade"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "sudo zypper update"
+  },
+  {
+    "unit": 5,
+    "topic": "Debian Tabanlı - Paket Listeleme",
+    "question": "Debian tabanlı sistemlerde yüklü yazılım paketlerinin listesini 'paket.txt' adında bir dosyaya yazdırmak için hangi komut kullanılır?",
+    "correct_option": "apt list --installed > paket.txt",
+    "options": [
+      "apt list --installed > paket.txt",
+      "dpkg --list-all > paket.txt",
+      "apt show installed > paket.txt",
+      "cat /etc/apt/installed > paket.txt"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "apt list --installed"
+  },
+  {
+    "unit": 5,
+    "topic": "Gentoo - Paket Yöneticisi",
+    "question": "Kaynak kod tabanlı bir dağıtım olan Gentoo Linux'ta kullanılan paket yönetim aracı aşağıdakilerden hangisidir?",
+    "correct_option": "emerge",
+    "options": [
+      "emerge",
+      "pacman",
+      "yum",
+      "zypper"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav",
+    "code_example": "sudo emerge --ask paket_adi"
+  },
+  {
+    "unit": 5,
+    "topic": "RedHat Tabanlı - Paket Yükleme",
+    "question": "RedHat tabanlı sistemlere (CentOS, Rocky vb.) 'lsb_release' paketini (redhat-lsb-core) yüklemek için kullanılan komut hangisidir?",
+    "correct_option": "sudo dnf install redhat-lsb-core",
+    "options": [
+      "sudo dnf install redhat-lsb-core",
+      "sudo rpm install redhat-lsb-core",
+      "sudo yum setup redhat-lsb-core",
+      "sudo dnf get redhat-lsb-core"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "sudo dnf install redhat-lsb-core"
+  },
+  {
+    "unit": 5,
+    "topic": "RPM - Paket Silme",
+    "question": "RedHat tabanlı sistemlerde kullanılan düşük seviyeli RPM paket yöneticisinde, bir paketi silmek için hangi parametre kullanılır?",
+    "correct_option": "-e (erase)",
+    "options": [
+      "-e (erase)",
+      "-r (remove)",
+      "-d (delete)",
+      "-u (uninstall)"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "sudo rpm -e paket_adi"
+  },
+  {
+    "unit": 5,
+    "topic": "Pardus - Paket Yöneticisi",
+    "question": "Debian tabanlı yerli Linux dağıtımı olan Pardus'ta, komut satırında kullanılan temel paket yöneticisi aşağıdakilerden hangisidir?",
+    "correct_option": "dpkg",
+    "options": [
+      "dpkg",
+      "pisi",
+      "dnf",
+      "zypper"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Arch Linux - Paket Yöneticisi",
+    "question": "Arch Linux işletim sisteminde komut satırı arayüzünde kullanılan varsayılan paket yönetim aracı hangisidir?",
+    "correct_option": "pacman",
+    "options": [
+      "pacman",
+      "yaourt",
+      "apt",
+      "dnf"
+    ],
+    "source_type": "Çıkmış Soru / 2022-2023 Final",
+    "code_example": "sudo pacman -Syu"
+  },
+  {
+    "unit": 5,
+    "topic": "Debian - Depo Güncelleme",
+    "question": "Debian tabanlı sistemlerde, '/etc/apt/sources.list' dosyasındaki kaynaklardan paket listelerini güncellemek (senkronize etmek) için hangi komut kullanılır?",
+    "correct_option": "sudo apt update",
+    "options": [
+      "sudo apt update",
+      "sudo apt upgrade",
+      "sudo apt install",
+      "sudo apt dist-upgrade"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 126",
+    "code_example": "sudo apt update"
+  },
+  {
+    "unit": 5,
+    "topic": "RedHat - Depo Güncelleme",
+    "question": "RedHat tabanlı sistemlerde (Fedora, AlmaLinux vb.) yazılım deposunu (repository) güncellemek/kontrol etmek için hangi komut kullanılır?",
+    "correct_option": "dnf check-update",
+    "options": [
+      "dnf check-update",
+      "dnf refresh",
+      "dnf reload",
+      "dnf repo-sync"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 138",
+    "code_example": "sudo dnf check-update"
+  },
+  {
+    "unit": 5,
+    "topic": "RPM vs DNF",
+    "question": "RedHat tabanlı sistemlerde, paket bağımlılıklarını (dependencies) otomatik olarak çözebilen yüksek seviyeli paket yöneticisi hangisidir?",
+    "correct_option": "dnf (veya yum)",
+    "options": [
+      "dnf (veya yum)",
+      "rpm",
+      "tar",
+      "make"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 137",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Dağıtım Ailesi - Debian",
+    "question": "Aşağıdakilerden hangisi 'apt' ve 'dpkg' paket yöneticilerini kullanan Debian tabanlı dağıtımlardan biridir?",
+    "correct_option": "Ubuntu",
+    "options": [
+      "Ubuntu",
+      "Fedora",
+      "CentOS",
+      "OpenSUSE"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 123",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "OpenSUSE - Depo Yenileme",
+    "question": "OpenSUSE işletim sisteminde yerel paket veritabanını paket sunucusuyla senkronize etmek (refresh) için hangi komut kullanılır?",
+    "correct_option": "sudo zypper refresh",
+    "options": [
+      "sudo zypper refresh",
+      "sudo zypper update",
+      "sudo zypper sync",
+      "sudo zypper reload"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 151",
+    "code_example": "sudo zypper refresh"
+  },
+  
+  {
+    "unit": 6,
+    "topic": "Dosya İzinleri - Harf Gösterimi",
+    "question": "Linux'ta bir dosya için 'rw-' şeklinde gösterilen izinlerin ikili (binary) mod karşılığı aşağıdakilerden hangisidir?",
+    "correct_option": "110",
+    "options": [
+      "110",
+      "101",
+      "011",
+      "111"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "chmod 600 dosya"
+  },
+  {
+    "unit": 6,
+    "topic": "Klasör Oluşturma - İç İçe",
+    "question": "Linux işletim sisteminde yeni bir klasör oluştururken, iç içe (alt klasörleriyle birlikte) klasörler oluşturmak için 'mkdir' komutu hangi parametre ile kullanılır?",
+    "correct_option": "-p",
+    "options": [
+      "-p",
+      "-r",
+      "-f",
+      "-s"
+    ],
+    "source_type": "Ünite Sonu Soruları / Soru 6",
+    "code_example": "mkdir -p klasor/altklasor"
+  },
+  {
+    "unit": 6,
+    "topic": "Dosya Silme - Klasör",
+    "question": "İçinde alt dizinler veya dosyalar bulunan bir klasörü silmek için kullanılan komut aşağıdakilerden hangisidir?",
+    "correct_option": "rm -r",
+    "options": [
+      "rm -r",
+      "rmdir",
+      "del",
+      "erase"
+    ],
+    "source_type": "Ünite Sonu Soruları / Soru 5",
+    "code_example": "rm -rf klasor_adi"
+  },
+  {
+    "unit": 6,
+    "topic": "Çalıştırma İzni Verme",
+    "question": "Linux işletim sistemlerinde bir dosyaya çalıştırma (execute) izni vermek için hangi komut kullanılır?",
+    "correct_option": "chmod +x",
+    "options": [
+      "chmod +x",
+      "chown +x",
+      "run +x",
+      "exec +x"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "chmod +x script.sh"
+  },
+  {
+    "unit": 6,
+    "topic": "İzin Kaldırma",
+    "question": "Aşağıdaki komutlardan hangisiyle 'hosts' dosyasında tüm kullanıcıların yazma (write) yetkisi kaldırılır?",
+    "correct_option": "chmod a-w hosts",
+    "options": [
+      "chmod a-w hosts",
+      "chmod a+w hosts",
+      "chmod a-r hosts",
+      "chmod u-w hosts"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "chmod a-w hosts"
+  },
+  {
+    "unit": 6,
+    "topic": "Sembolik Link",
+    "question": "Linux işletim sisteminde bir dosya veya dizine sembolik link (kısayol) oluşturmak için kullanılan komut hangisidir?",
+    "correct_option": "ln -s",
+    "options": [
+      "ln -s",
+      "cp -s",
+      "mv -s",
+      "ls -s"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "ln -s hedef_dosya link_adi"
+  },
+  {
+    "unit": 6,
+    "topic": "Dizin Boyutu Görüntüleme",
+    "question": "Linux işletim sisteminde bir klasörün içindeki dosyalarla birlikte toplam boyutunu (insan tarafından okunabilir formatta) görmek için hangi komut kullanılır?",
+    "correct_option": "du -alh",
+    "options": [
+      "du -alh",
+      "ls -alh",
+      "df -h",
+      "fdisk -l"
+    ],
+    "source_type": "Ünite Sonu Soruları / Soru 4",
+    "code_example": "du -sh klasor"
+  },
+  {
+    "unit": 6,
+    "topic": "Süreç Listeleme",
+    "question": "Geçerli kullanıcı için Linux işletim sisteminde çalışan süreçleri listelemek amacıyla kullanılan 'ps' komutu parametresi hangisidir?",
+    "correct_option": "ps ux",
+    "options": [
+      "ps ux",
+      "ps ax",
+      "top",
+      "jobs"
+    ],
+    "source_type": "Ünite Sonu Soruları / Soru 8",
+    "code_example": "ps ux"
+  },
+  {
+    "unit": 6,
+    "topic": "Süreç İzleme - htop",
+    "question": "Linux işletim sisteminde çalışan 'htop' komutunda, sürecin durumunun gösterildiği 'S' sütunundaki 'Z' değeri neyi ifade eder?",
+    "correct_option": "Zombi (Zombie) süreç",
+    "options": [
+      "Zombi (Zombie) süreç",
+      "Uyuyan (Sleep) süreç",
+      "Çalışan (Running) süreç",
+      "Durdurulmuş (Stopped) süreç"
+    ],
+    "source_type": "Ünite Sonu Soruları / Soru 10",
+    "code_example": null
+  },
+  {
+    "unit": 6,
+    "topic": "Dosya Sahipliği Değiştirme",
+    "question": "Bir dosyanın veya dizinin sahibini (owner) değiştirmek için kullanılan komut hangisidir?",
+    "correct_option": "chown",
+    "options": [
+      "chown",
+      "chmod",
+      "chgrp",
+      "passwd"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 178",
+    "code_example": "sudo chown user:group dosya"
+  },
+  {
+    "unit": 6,
+    "topic": "Süper Kullanıcı (Root) Geçişi",
+    "question": "Mevcut kullanıcının oturumunu kapatmadan, root (süper kullanıcı) haklarıyla komut çalıştırmak veya root oturumuna geçiş yapmak için kullanılan en güvenli komutlardan biri hangisidir?",
+    "correct_option": "sudo -i",
+    "options": [
+      "sudo -i",
+      "su -",
+      "admin",
+      "login root"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 179",
+    "code_example": "sudo -i"
+  },
+  {
+    "unit": 6,
+    "topic": "Dizin Listeleme - Tarih Sıralı",
+    "question": "Linux işletim sisteminde, dizindeki dosya ve klasörleri değiştirilme tarihine göre geçmişten günümüze doğru sıralayarak listelemek için kullanılan komut hangisidir?",
+    "correct_option": "ls -ltr",
+    "options": [
+      "ls -ltr",
+      "ls -alh",
+      "ls -R",
+      "ls -S"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Final",
+    "code_example": "ls -ltr"
+  },
+  {
+    "unit": 6,
+    "topic": "Süreç Önceliği - htop",
+    "question": "htop komutu ile görüntülenen ekranda 'PRI' sütunu neyi ifade eder?",
+    "correct_option": "Süreç önceliğini (Priority)",
+    "options": [
+      "Süreç önceliğini (Priority)",
+      "Sürecin sahibini",
+      "Sürecin bellek kullanımını",
+      "Sürecin durumunu"
+    ],
+    "source_type": "Ünite Sonu Soruları / Soru 9",
+    "code_example": null
+  },
+  {
+    "unit": 6,
+    "topic": "Konum Öğrenme",
+    "question": "Komut satırı arayüzünde o an bulunulan dizinin tam yolunu (path) öğrenmek için kullanılan komut hangisidir?",
+    "correct_option": "pwd",
+    "options": [
+      "pwd",
+      "cd",
+      "ls",
+      "whoami"
+    ],
+    "source_type": "Ünite Sonu Soruları / Soru 2",
+    "code_example": "pwd"
+  },
+  {
+    "unit": 6,
+    "topic": "Dosya Kopyalama - İzinleri Koruyarak",
+    "question": "Linux işletim sisteminde bir dosyayı kopyalarken, dosyanın mevcut izinlerini ve sahiplik bilgilerini korumak için 'cp' komutu hangi parametre ile kullanılır?",
+    "correct_option": "-a (veya -p)",
+    "options": [
+      "-a",
+      "-r",
+      "-f",
+      "-v"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Final",
+    "code_example": "cp -a kaynak hedef"
+  },
+  
+  {
+    "unit": 7,
+    "topic": "Kullanıcı Kaldırma",
+    "question": "Linux sistemlerde bir kullanıcı hesabını silerken, kullanıcıya ait ev dizinini (home directory) ve posta havuzunu da silmek için 'userdel' komutu hangi parametre ile kullanılır?",
+    "correct_option": "-r (remove)",
+    "options": [
+      "-r (remove)",
+      "-f (force)",
+      "-d (delete)",
+      "-a (all)"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Final",
+    "code_example": "sudo userdel -r lmsuser"
+  },
+  {
+    "unit": 7,
+    "topic": "Güvenlik Duvarı - Ayarları Uygulama",
+    "question": "RedHat tabanlı sistemlerde 'firewalld' kullanırken, yapılan kalıcı (permanent) değişikliklerin (port açma vb.) aktif olması için kullanılan komut hangisidir?",
+    "correct_option": "firewall-cmd --reload",
+    "options": [
+      "firewall-cmd --reload",
+      "firewall-cmd --restart",
+      "firewall-cmd --apply",
+      "systemctl start firewalld"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Final",
+    "code_example": "sudo firewall-cmd --reload"
+  },
+  {
+    "unit": 7,
+    "topic": "Kullanıcı Oluşturma - Hesap Süresi",
+    "question": "'useradd' komutu ile yeni bir kullanıcı oluştururken, hesabın belirli bir tarihte otomatik olarak devre dışı kalması (expire date) için hangi parametre kullanılır?",
+    "correct_option": "-e (YYYY-MM-DD)",
+    "options": [
+      "-e (YYYY-MM-DD)",
+      "-d (directory)",
+      "-f (inactive)",
+      "-s (shell)"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "sudo useradd -e 2025-12-31 yeni_kullanici"
+  },
+  {
+    "unit": 7,
+    "topic": "Log Yönetimi - Disk Alanı",
+    "question": "Systemd tabanlı sistemlerde, 'journalctl' ile tutulan log kayıtlarının disk üzerinde kapladığı toplam alanı öğrenmek için hangi komut kullanılır?",
+    "correct_option": "journalctl --disk-usage",
+    "options": [
+      "journalctl --disk-usage",
+      "du -sh /var/log",
+      "journalctl -s",
+      "df -h /var/log"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 221",
+    "code_example": "journalctl --disk-usage"
+  },
+  {
+    "unit": 7,
+    "topic": "Grup Yönetimi - Kullanıcı Ekleme",
+    "question": "Mevcut bir kullanıcıyı, ikincil bir gruba (örneğin sudo grubuna) eklemek için 'usermod' komutu hangi parametrelerle kullanılmalıdır?",
+    "correct_option": "-aG (append groups)",
+    "options": [
+      "-aG (append groups)",
+      "-g (gid)",
+      "-G (groups - overwrites)",
+      "-s (shell)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 215",
+    "code_example": "sudo usermod -aG sudo lmsuser"
+  },
+  {
+    "unit": 7,
+    "topic": "Güvenlik Duvarı - Servis Listesi",
+    "question": "Firewalld hizmetinde tanımlı ve kullanılabilir olan TÜM servislerin listesini görüntülemek için hangi komut kullanılır?",
+    "correct_option": "firewall-cmd --get-services",
+    "options": [
+      "firewall-cmd --get-services",
+      "firewall-cmd --list-services",
+      "firewall-cmd --list-all",
+      "firewall-cmd --get-zones"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final",
+    "code_example": "sudo firewall-cmd --get-services"
+  },
+  {
+    "unit": 7,
+    "topic": "NFS Yapılandırması",
+    "question": "Linux'ta bir dizini ağ üzerinden paylaşmak (NFS Server) için gerekli olan paylaşım tanımları hangi dosyada yapılır?",
+    "correct_option": "/etc/exports",
+    "options": [
+      "/etc/exports",
+      "/etc/fstab",
+      "/etc/nfs.conf",
+      "/etc/hosts"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 225",
+    "code_example": "/mnt/paylasim 192.168.1.0/24(rw,sync,no_root_squash)"
+  },
+  {
+    "unit": 7,
+    "topic": "Log Döndürme (Rotation)",
+    "question": "Log dosyalarının aşırı büyümesini engellemek için onları belirli aralıklarla arşivleyen, sıkıştıran ve eski kayıtları silen araç hangisidir?",
+    "correct_option": "logrotate",
+    "options": [
+      "logrotate",
+      "rsyslog",
+      "journald",
+      "cron"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 222",
+    "code_example": "sudo logrotate -f /etc/logrotate.conf"
+  },
+  {
+    "unit": 7,
+    "topic": "Debian - Kullanıcı Grubu",
+    "question": "Debian sistemlerde, bir kullanıcıyı yönetici yetkilerine sahip 'sudo' grubuna eklemek için kullanılan alternatif komut hangisidir?",
+    "correct_option": "/sbin/adduser [kullanıcı] sudo",
+    "options": [
+      "/sbin/adduser [kullanıcı] sudo",
+      "useradd -G admin [kullanıcı]",
+      "groupmod -a sudo [kullanıcı]",
+      "visudo [kullanıcı]"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Final",
+    "code_example": "sudo adduser debian sudo"
+  },
+  {
+    "unit": 7,
+    "topic": "Kullanıcı Kilitleme",
+    "question": "Bir kullanıcının sisteme giriş yapmasını geçici olarak engellemek (hesabı kilitlemek) için 'usermod' komutu hangi parametre ile kullanılır?",
+    "correct_option": "-L (Lock)",
+    "options": [
+      "-L (Lock)",
+      "-U (Unlock)",
+      "-l (login name)",
+      "-d (disable)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 240",
+    "code_example": "sudo usermod -L lmsuser"
+  },
+  {
+    "unit": 7,
+    "topic": "NFS - Dışa Aktarma",
+    "question": "/etc/exports dosyasında yapılan değişikliklerin NFS sunucusunu yeniden başlatmadan hemen geçerli olması için hangi komut kullanılır?",
+    "correct_option": "exportfs -a",
+    "options": [
+      "exportfs -a",
+      "mount -a",
+      "systemctl reload nfs",
+      "nfsstat"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 226",
+    "code_example": "sudo exportfs -a"
+  },
+  {
+    "unit": 7,
+    "topic": "Yazılım Deposu - Kaynak Listesi",
+    "question": "Debian/Ubuntu sistemlerde paketlerin indirileceği depo adreslerinin (repositories) tutulduğu ana yapılandırma dosyası hangisidir?",
+    "correct_option": "/etc/apt/sources.list",
+    "options": [
+      "/etc/apt/sources.list",
+      "/etc/apt/apt.conf",
+      "/etc/repository.conf",
+      "/etc/dpkg/sources"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 200",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "NFS - Yetki Ayarı",
+    "question": "NFS paylaşımlarında, istemci tarafındaki 'root' kullanıcısının, sunucu tarafında da 'root' yetkileriyle işlem yapabilmesine izin veren (güvenlik riski oluşturabilen) seçenek hangisidir?",
+    "correct_option": "no_root_squash",
+    "options": [
+      "no_root_squash",
+      "root_squash",
+      "all_squash",
+      "no_subtree_check"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 226",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "UFW - Kural Ekleme",
+    "question": "Ubuntu'da kullanılan UFW (Uncomplicated Firewall) ile SSH servisine (22. port) izin vermek için kullanılan komut hangisidir?",
+    "correct_option": "sudo ufw allow ssh",
+    "options": [
+      "sudo ufw allow ssh",
+      "sudo ufw enable ssh",
+      "sudo ufw open 22",
+      "sudo ufw permit 22/tcp"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 211",
+    "code_example": "sudo ufw allow 22/tcp"
+  },
+  {
+    "unit": 7,
+    "topic": "Log İzleme - Canlı",
+    "question": "Bir log dosyasının (örneğin /var/log/syslog) son satırlarını görüntülemek ve dosyaya yeni kayıt eklendikçe canlı olarak izlemek için hangi komut kullanılır?",
+    "correct_option": "tail -f",
+    "options": [
+      "tail -f",
+      "cat",
+      "less",
+      "head"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 170",
+    "code_example": "tail -f /var/log/syslog"
+  },
+  
+  {
+    "unit": 8,
+    "topic": "Ansible - Envanter Listeleme",
+    "question": "Ansible'da, sunucu alt yapısını envanter dosyasında (inventory) tanımlandığı şekliyle ve hiyerarşik yapıda görüntülemek için kullanılan komut aşağıdakilerden hangisidir?",
+    "correct_option": "ansible-inventory --list -y",
+    "options": [
+      "ansible-inventory --list -y",
+      "ansible-list-inventory -y",
+      "ansible-inventory -servers -y",
+      "ansible-list-servers -y"
+    ],
+    "source_type": "Çıkmış Soru / 2024-2025 Final [cite: 2839]",
+    "code_example": "ansible-inventory --list -y"
+  },
+  {
+    "unit": 8,
+    "topic": "Kubernetes - Kernel Ayarları",
+    "question": "'/etc/sysctl.d/kubernetes.conf' dosyasında yapılan çekirdek (kernel) parametre değişikliklerinin, sistemi yeniden başlatmadan hemen etkin olabilmesi için hangi komut kullanılır?",
+    "correct_option": "sudo sysctl --system",
+    "options": [
+      "sudo sysctl --system",
+      "sudo sysctl --reload",
+      "sudo sysctl --restart",
+      "sudo sysctl --reboot"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final [cite: 2334]",
+    "code_example": "sudo sysctl --system"
+  },
+  {
+    "unit": 8,
+    "topic": "Kubernetes - Deployment Kontrolü",
+    "question": "Kubernetes ortamında oluşturulan bir 'Nginx' uygulamasının yayınlama durumunu (hazır olup olmadığını) kontrol etmek için kullanılan komut hangisidir?",
+    "correct_option": "kubectl get deployment nginx-app",
+    "options": [
+      "kubectl get deployment nginx-app",
+      "kubectl expose deployment nginx-app",
+      "kubectl describe svc nginx-app",
+      "kubectl create deployment nginx-app"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final [cite: 2318]",
+    "code_example": "kubectl get deployment nginx-app"
+  },
+  {
+    "unit": 8,
+    "topic": "Ansible - SSH Anahtarı Kopyalama",
+    "question": "Kontrol makinesinde oluşturulan SSH anahtarını, yönetilen makineye (örneğin 192.168.56.111) 'ansible' kullanıcısı ile kopyalamak için hangi komut kullanılır?",
+    "correct_option": "ssh-copy-id ansible@192.168.56.111",
+    "options": [
+      "ssh-copy-id ansible@192.168.56.111",
+      "ssh-keygen ansible@192.168.56.111",
+      "ssh-publickey ansible@192.168.56.111",
+      "ssh-passphrase ansible@192.168.56.111"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Final [cite: 2306]",
+    "code_example": "ssh-copy-id user@host"
+  },
+  {
+    "unit": 8,
+    "topic": "Kubernetes - Swap (Takas) Ayarı",
+    "question": "Kubernetes kurulumunda, sistemin düzgün çalışabilmesi için takas alanının (swap) devre dışı bırakılması gerekir. Geçici olarak swap'ı kapatan komut hangisidir?",
+    "correct_option": "sudo swapoff -a",
+    "options": [
+      "sudo swapoff -a",
+      "sudo swapon -a",
+      "sudo disable swap",
+      "sudo systemctl stop swap"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 251 [cite: 1629]",
+    "code_example": "sudo swapoff -a"
+  },
+  {
+    "unit": 8,
+    "topic": "Ansible - Playbook Çalıştırma",
+    "question": "Hazırlanan bir Ansible çalışma kitabını (playbook.yml) belirli bir envanter dosyası (-i inventory) kullanarak çalıştırmak için gereken komut hangisidir?",
+    "correct_option": "ansible-playbook -i inventory playbook.yml",
+    "options": [
+      "ansible-playbook -i inventory playbook.yml",
+      "ansible-run playbook.yml",
+      "ansible-exec -i inventory playbook.yml",
+      "ansible-config playbook.yml"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 246 [cite: 1622]",
+    "code_example": "ansible-playbook -i inventory playbook.yml -u ansible -K"
+  },
+  {
+    "unit": 8,
+    "topic": "Kubernetes - Servis Dışa Açma (Expose)",
+    "question": "Çalışan bir 'deployment'ı (örneğin nginx-app), dış dünyadan erişilebilir hale getirmek (servis oluşturmak) için NodePort tipinde yapılandıran komut hangisidir?",
+    "correct_option": "kubectl expose deployment nginx-app --type=NodePort --port=80",
+    "options": [
+      "kubectl expose deployment nginx-app --type=NodePort --port=80",
+      "kubectl create service nginx-app",
+      "kubectl run nginx-app --port=80",
+      "kubectl get service nginx-app"
+    ],
+    "source_type": "Çıkmış Soru / 2023-2024 Ara Sınav [cite: 2486]",
+    "code_example": "kubectl expose deployment nginx-app --type=NodePort --port=80"
+  },
+  {
+    "unit": 8,
+    "topic": "Ansible - İletişim Protokolü",
+    "question": "Ansible, yönetilen nodlara (uzak makineler) herhangi bir ajan (agent) yüklemeye gerek kalmadan bağlanmak için varsayılan olarak hangi protokolü kullanır?",
+    "correct_option": "SSH (Secure Shell)",
+    "options": [
+      "SSH (Secure Shell)",
+      "Telnet",
+      "FTP",
+      "HTTP"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 235 [cite: 1611]",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Kubernetes - Küme Başlatma",
+    "question": "Kubernetes kontrol düzlemini (control-plane) başlatmak ve master node'u oluşturmak için kullanılan temel komut hangisidir?",
+    "correct_option": "sudo kubeadm init",
+    "options": [
+      "sudo kubeadm init",
+      "sudo kubeadm join",
+      "sudo kubectl init",
+      "sudo kubernetes start"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 254 [cite: 1632]",
+    "code_example": "sudo kubeadm init --control-plane-endpoint=..."
+  },
+  {
+    "unit": 8,
+    "topic": "Kubernetes - Servis Detayları",
+    "question": "Bir servisin (örneğin nginx-app) hangi portta çalıştığı, NodePort değeri ve uç noktaları (endpoints) gibi detaylı bilgilerini görmek için hangi komut kullanılır?",
+    "correct_option": "kubectl describe svc nginx-app",
+    "options": [
+      "kubectl describe svc nginx-app",
+      "kubectl get svc nginx-app",
+      "kubectl show svc nginx-app",
+      "kubectl list svc nginx-app"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 258 [cite: 1636]",
+    "code_example": "kubectl describe svc nginx-app"
+  },
+  {
+    "unit": 8,
+    "topic": "Ansible - Dosya Formatı",
+    "question": "Ansible çalışma kitapları (playbooks) ve birçok yapılandırma dosyası, insanlar tarafından okunabilir hangi veri formatında yazılır?",
+    "correct_option": "YAML (.yml)",
+    "options": [
+      "YAML (.yml)",
+      "JSON (.json)",
+      "XML (.xml)",
+      "HTML (.html)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 236 [cite: 1611]",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Kubernetes - Kümeye Katılma",
+    "question": "Çalışan nodları (worker nodes) oluşturulan Kubernetes kümesine dahil etmek için master node tarafından üretilen token ile kullanılan komut hangisidir?",
+    "correct_option": "kubeadm join",
+    "options": [
+      "kubeadm join",
+      "kubeadm connect",
+      "kubectl join",
+      "kubelet connect"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 254 [cite: 1632]",
+    "code_example": "sudo kubeadm join <master-ip>:6443 --token ..."
+  },
+  {
+    "unit": 8,
+    "topic": "Kubernetes - Ağ Eklentisi (CNI)",
+    "question": "Kubernetes kümesindeki podların ve nodların birbirleriyle iletişim kurabilmesi için gerekli olan ağ eklentisini (örneğin Calico) yüklemek için kullanılan komut yapısı nasıldır?",
+    "correct_option": "kubectl apply -f [dosya_adi.yaml]",
+    "options": [
+      "kubectl apply -f [dosya_adi.yaml]",
+      "kubectl install -f [dosya_adi.yaml]",
+      "kubeadm apply -f [dosya_adi.yaml]",
+      "kubectl create -f [dosya_adi.yaml]"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 256 [cite: 1634]",
+    "code_example": "kubectl apply -f calico.yaml"
+  },
+  {
+    "unit": 8,
+    "topic": "Containerd Yapılandırması",
+    "question": "Kubernetes kurulumunda containerd kullanırken, 'SystemdCgroup' parametresinin değeri config.toml dosyasında ne olarak ayarlanmalıdır?",
+    "correct_option": "true",
+    "options": [
+      "true",
+      "false",
+      "enabled",
+      "1"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 253 [cite: 1631]",
+    "code_example": "SystemdCgroup = true"
+  },
+  {
+    "unit": 8,
+    "topic": "Ansible - Handler (İşleyici)",
+    "question": "Ansible'da bir görev (task) tamamlandığında (örneğin yapılandırma değiştiğinde) servisi yeniden başlatmak gibi tetiklenen özel görevlere ne ad verilir?",
+    "correct_option": "Handlers (İşleyiciler)",
+    "options": [
+      "Handlers (İşleyiciler)",
+      "Modules (Modüller)",
+      "Variables (Değişkenler)",
+      "Roles (Roller)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 244 [cite: 1620]",
+    "code_example": "notify: Restart Nginx"
+  }
+]

@@ -1,0 +1,934 @@
+[
+  {
+    "unit": 1,
+    "topic": "Algoritma Analizi (Temel Tanım)",
+    "question": "Belirli bir işlev için 'büyüme tavanı' olarak tanımlanan ve bir algoritmanın çalışma zamanının büyüme hızı için asimptotik bir 'üst sınır' sağlayan durum hangisidir?",
+    "correct_option": "En kötü durum (Big O - O)",
+    "options": [
+      "En kötü durum (Big O - O)",
+      "En iyi durum (Big Omega - Ω)",
+      "Ortalama durum (Big Theta - Θ)",
+      "Sabit durum",
+      "Faktöriyel durum"
+    ],
+    "source_type": "2024-2025 Güz Dönem Sonu / Soru 1",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Yapıları Sınıflandırması",
+    "question": "Veri yapısı sınıfları 'Doğrusal (Linear)' ve 'Doğrusal Olmayan (Non-Linear)' olarak ikiye ayrılır. Aşağıdakilerden hangisi 'Doğrusal Olmayan' veri yapısı sınıfına girer?",
+    "correct_option": "Graf",
+    "options": [
+      "Graf",
+      "Kuyruk",
+      "Yığın",
+      "Dizi",
+      "Linkli Liste"
+    ],
+    "source_type": "2023 Güz Ara / Soru 1",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Akış Şemaları",
+    "question": "Sistemdeki bir akışı veya dinamik ilişkiler kümesini temsil eden, karmaşık bir sistemi yapılandırmak için kullanılan diyagrama ne ad verilir?",
+    "correct_option": "Akış şeması",
+    "options": [
+      "Akış şeması",
+      "Büyük O notasyonu",
+      "Asimptotik analiz",
+      "Alan karmaşıklığı",
+      "Algoritma"
+    ],
+    "source_type": "2023-2024 Güz Dönem Sonu / Soru 1",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Akış Şeması Sembolleri",
+    "question": "Akış şemalarında 'Karşılaştırma ve Karar' (Evet/Hayır gibi koşullu işlemler) işlemlerini temsil eden geometrik şekil hangisidir?",
+    "correct_option": "Eşkenar Dörtgen (Elmas)",
+    "options": [
+      "Eşkenar Dörtgen (Elmas)",
+      "Dikdörtgen (İşlem/Atama)",
+      "Oval (Başla/Bitir)",
+      "Paralelkenar (Girdi/Çıktı)",
+      "Daire (Bağlantı)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 11 - Tablo 1.3",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Algoritma Karmaşıklığı Hesaplama",
+    "question": "Bir algoritmanın çalışma süresi, N kez 'logaritmik' bir işlem gerçekleştirmenin sonucu olarak hesaplanıyorsa (Örn: Quick Sort, Merge Sort), bu algoritmanın karmaşıklığı nedir?",
+    "correct_option": "O(n log n) - Doğrusal Aritmik",
+    "options": [
+      "O(n log n) - Doğrusal Aritmik",
+      "O(log n) - Logaritmik",
+      "O(n^2) - Kuadratik",
+      "O(n) - Doğrusal",
+      "O(2^n) - Üstel"
+    ],
+    "source_type": "2022-2023 Güz Ara / Soru 2",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Tipleri ve Özellikleri",
+    "question": "Veri tipleri ile ilgili aşağıdakilerden hangisi yanlıştır?",
+    "correct_option": "Değer tutabilir ama veri tutamaz.",
+    "options": [
+      "Değer tutabilir ama veri tutamaz.",
+      "Belirli bir değişkene yalnızca verilen veri türünün değerleri atanabilir.",
+      "Yığın, kuyruk ve ağaç veri tiplerine örnektir. (Yanlış: Bunlar veri yapısıdır)",
+      "Veri tiplerinin zaman karmaşıklığı yoktur.",
+      "Veri tipleri verilerin değerini saklamaz, türünü temsil eder."
+    ],
+    "source_type": "2024-2025 Güz Ara / Soru 1 ve Tablo 1.2",
+    "code_example": "int sayi = 5; // Veri Tipi\nList<int> sayilar = new List<int>(); // Veri Yapısı"
+  },
+  {
+    "unit": 1,
+    "topic": "Algoritma Özellikleri",
+    "question": "Bir algoritmanın sahip olması gereken temel özelliklerden biri olan 'Sonluluk' ne anlama gelir?",
+    "correct_option": "Sınırlı sayıda komut yürütüldükten sonra algoritmanın durması.",
+    "options": [
+      "Sınırlı sayıda komut yürütüldükten sonra algoritmanın durması.",
+      "Her adımın benzersiz ve kesin olması.",
+      "Belirli bir programlama diline bağlı olması.",
+      "Sadece sayısal girdi kabul etmesi.",
+      "Her zaman aynı çıktıyı üretmesi."
+    ],
+    "source_type": "2024-2025 Güz Ara / Soru 4 ve Ders Kitabı",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Yapılarının Amaçları",
+    "question": "Veri yapıları ile ilgili verilen şu önermelerden hangileri doğrudur? \nI. Bilgisayardaki dijital verileri depolamayı sağlar. \nII. Veriler üzerinde farklı eylemlerin gerçekleştirilmesini sağlar. \nIII. Farklı görevlerin uzay ve zaman karmaşıklığının azalmasını sağlar.",
+    "correct_option": "I, II ve III",
+    "options": [
+      "I, II ve III",
+      "Yalnız I",
+      "Yalnız II",
+      "I ve II",
+      "II ve III"
+    ],
+    "source_type": "2024-2025 Güz Ara / Soru 5",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Zaman Karmaşıklığı Türleri",
+    "question": "Girdi boyutu ne olursa olsun algoritmanın çalışma süresinin değişmediği (sabit kaldığı) karmaşıklık türü hangisidir?",
+    "correct_option": "O(1) - Sabit Zaman",
+    "options": [
+      "O(1) - Sabit Zaman",
+      "O(n) - Doğrusal Zaman",
+      "O(log n) - Logaritmik Zaman",
+      "O(n^2) - Kuadratik Zaman",
+      "O(n!) - Faktöriyel Zaman"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 15",
+    "code_example": "int orta = (son + basla) / 2; // Tek işlem, O(1)"
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Tipleri - C#",
+    "question": "Aşağıdaki C# veri tiplerinden hangisi 'Gerçek Sayı' (kayan noktalı/ondalıklı) türlerinden biridir?",
+    "correct_option": "float",
+    "options": [
+      "float",
+      "int",
+      "long",
+      "short",
+      "byte"
+    ],
+    "source_type": "2022-2023 Güz Ara / Soru 4 ve Tablo 1.1",
+    "code_example": "float pi = 3.14f; double e = 2.718;"
+  },
+  {
+    "unit": 1,
+    "topic": "Akış Diyagramı Hesaplama",
+    "question": "Bir akış diyagramında x=5 ve y=20 iken; eğer x>y ise 'Sonuç=(x^2)+(y*0.7)', değilse 'Sonuç=(x*0.7)+(y^2)' işlemi yapılıyor. Çıktı kaç olur?",
+    "correct_option": "403.5",
+    "options": [
+      "403.5",
+      "39",
+      "36",
+      "25",
+      "100"
+    ],
+    "source_type": "2022-2023 Güz Ara / Soru 3 (Uyarlanmış)",
+    "code_example": "if (x > y) \n  // 5 > 20 False\n  sonuc = (x*x) + (y*0.7); \nelse \n  // Burası çalışır: 5*0.7 + 20*20 = 3.5 + 400 = 403.5\n  sonuc = (x*0.7) + (y*y);"
+  },
+  {
+    "unit": 1,
+    "topic": "Uzay Karmaşıklığı",
+    "question": "Algoritma tarafından tüketilen bellek miktarını (yardımcı alan + girdi alanı) ifade eden kavram hangisidir?",
+    "correct_option": "Uzay/Alan Karmaşıklığı (Space Complexity)",
+    "options": [
+      "Uzay/Alan Karmaşıklığı (Space Complexity)",
+      "Zaman Karmaşıklığı (Time Complexity)",
+      "Asimptotik Analiz",
+      "Büyük O Notasyonu",
+      "İşlemci Yükü"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 3",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Yapıları Sınıflandırması - Statik/Dinamik",
+    "question": "Bellek boyutu sabit olan ve çalışma zamanında değiştirilemeyen 'Statik' veri yapısı örneği hangisidir?",
+    "correct_option": "Dizi (Array)",
+    "options": [
+      "Dizi (Array)",
+      "Bağlantılı Liste (Linked List)",
+      "Yığın (Stack) - Dinamik olabilir",
+      "Kuyruk (Queue) - Dinamik olabilir",
+      "Ağaç (Tree)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 6 - Şekil 1.1",
+    "code_example": "int[] dizi = new int[10]; // Boyut sabit"
+  },
+  {
+    "unit": 1,
+    "topic": "Big O Karşılaştırması",
+    "question": "Aşağıdaki zaman karmaşıklıklarından hangisi, girdi boyutu (n) arttıkça en hızlı büyüyen (en yavaş/verimsiz çalışan) karmaşıklıktır?",
+    "correct_option": "O(n!) - Faktöriyel",
+    "options": [
+      "O(n!) - Faktöriyel",
+      "O(2^n) - Üstel",
+      "O(n^2) - Kuadratik",
+      "O(n log n)",
+      "O(n)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 14 - Tablo 1.4",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Kod Karmaşıklığı Analizi",
+    "question": "İç içe üç döngü (for i, for j, for k) içeren bir algoritmanın zaman karmaşıklığı Big O notasyonuna göre nedir?",
+    "correct_option": "O(n^3) - Kübik",
+    "options": [
+      "O(n^3) - Kübik",
+      "O(n^2) - Kuadratik",
+      "O(n log n)",
+      "O(2^n)",
+      "O(n)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 16 - Kod 1.9",
+    "code_example": "for(i=0;i<n;i++) for(j=0;j<n;j++) for(k=0;k<n;k++) { ... }"
+  },
+  {
+    "unit": 1,
+    "topic": "Algoritma Tasarımı",
+    "question": "Algoritma tasarlarken aşağıdakilerden hangisi bir ön koşul olarak belirlenmesi gerekenlerden biri değildir?",
+    "correct_option": "Programlama dili seçimi",
+    "options": [
+      "Programlama dili seçimi",
+      "Problemin net tanımı",
+      "Problemin kısıtları",
+      "Girdi ve beklenen çıktı",
+      "Çözümün kısıtlamalar dahilinde olması"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 9",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Tanımı",
+    "question": "Tek başına anlam ifade etmeyen, bilginin ham maddesi olarak görülen ve işlenerek bilgiye dönüştürülen kavram nedir?",
+    "correct_option": "Veri (Data)",
+    "options": [
+      "Veri (Data)",
+      "Enformasyon",
+      "Bilgi",
+      "Algoritma",
+      "Değişken"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 3",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Big O - En İyi Durum",
+    "question": "Bir algoritmanın çalışma zamanının büyüme hızı için 'asimptotik alt sınırı' (en iyi durumu) ifade eden notasyon hangisidir?",
+    "correct_option": "Omega (Ω)",
+    "options": [
+      "Omega (Ω)",
+      "Big O (O)",
+      "Theta (Θ)",
+      "Beta (β)",
+      "Alpha (α)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 18",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Doğrusal Veri Yapıları",
+    "question": "Veri ögelerinin sıralı olarak düzenlendiği, her ögenin bir öncekine ve sonrakine bağlı olduğu yapı türü hangisidir?",
+    "correct_option": "Doğrusal (Linear) Veri Yapısı",
+    "options": [
+      "Doğrusal (Linear) Veri Yapısı",
+      "Hiyerarşik Veri Yapısı",
+      "Graf Veri Yapısı",
+      "Ağaç Veri Yapısı",
+      "Karmaşık Veri Yapısı"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 6",
+    "code_example": null
+  },
+  {
+    "unit": 1,
+    "topic": "Big O - O(log N)",
+    "question": "Girdiyi her adımda ikiye bölerek ilerleyen (örneğin İkili Arama / Binary Search) bir algoritmanın zaman karmaşıklığı nedir?",
+    "correct_option": "O(log n) - Logaritmik",
+    "options": [
+      "O(log n) - Logaritmik",
+      "O(n) - Doğrusal",
+      "O(n^2) - Kuadratik",
+      "O(1) - Sabit",
+      "O(n log n)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 15",
+    "code_example": "while (n > 0) { n /= 2; }"
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Tipleri - Referans",
+    "question": "C# dilinde 'string' (karakter katarı) ve 'object' gibi veri tipleri hangi kategoriye girer?",
+    "correct_option": "Referans Tipleri",
+    "options": [
+      "Referans Tipleri",
+      "Değer Tipleri",
+      "Tamsayı Tipleri",
+      "Gerçek Sayı Tipleri",
+      "Mantıksal Tipler"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 4 - Tablo 1.1",
+    "code_example": "string isim = \"Ali\"; // Referans tipi"
+  },
+  
+  {
+    "unit": 2,
+    "topic": "Dizi Boyutları",
+    "question": "C# dilinde 'int[,,] sayilar = new int[3, 4, 5];' şeklinde tanımlanan bir dizi kaç boyutludur?",
+    "correct_option": "3 Boyutlu",
+    "options": [
+      "3 Boyutlu",
+      "2 Boyutlu",
+      "4 Boyutlu",
+      "12 Boyutlu",
+      "60 Boyutlu"
+    ],
+    "source_type": "2022-2023 Final / Soru 2",
+    "code_example": "int[,,] kup = new int[3,4,5]; // 3 virgül arası = 3 boyut"
+  },
+  {
+    "unit": 2,
+    "topic": "Sözlük (Dictionary) Metotları",
+    "question": "Sözlük (Dictionary) veya Hashtable sınıfında, koleksiyondaki 'tüm öğeleri kaldırmak' (temizlemek) için kullanılan yöntem hangisidir?",
+    "correct_option": "Clear",
+    "options": [
+      "Clear",
+      "Remove",
+      "Delete",
+      "Empty",
+      "Discard"
+    ],
+    "source_type": "2023 Güz Ara / Soru 8",
+    "code_example": "sozluk.Clear(); // Tüm veriyi siler"
+  },
+  {
+    "unit": 2,
+    "topic": "Generic Listeler (List<T>)",
+    "question": "List<T> sınıfı ile ilgili aşağıdakilerden hangisi DOĞRUDUR?",
+    "correct_option": "List<T>, ArrayList'ten daha performanslıdır ve tür güvenliği (type-safety) sağlar.",
+    "options": [
+      "List<T>, ArrayList'ten daha performanslıdır ve tür güvenliği (type-safety) sağlar.",
+      "List<T>, ArrayList'ten daha yavaş çalışır.",
+      "List<T> boyutunu değiştiremezsiniz (Statiktir).",
+      "List<T> System.Collections ad alanı altındadır (Yanlış: System.Collections.Generic).",
+      "List<T> içine farklı türlerde veriler aynı anda eklenebilir."
+    ],
+    "source_type": "2024-2025 Güz Ara / Soru 7 ve Ders Kitabı Sayfa 45",
+    "code_example": "List<int> sayilar = new List<int>(); // Sadece int alır, hızlıdır."
+  },
+  {
+    "unit": 2,
+    "topic": "Dizi Türleri - Pürüzlü Dizi",
+    "question": "Her bir elemanı başka bir dizi olan ve bu iç dizilerin uzunluklarının farklı olabildiği dizi türü hangisidir?",
+    "correct_option": "Pürüzlü Dizi (Jagged Array)",
+    "options": [
+      "Pürüzlü Dizi (Jagged Array)",
+      "Çok Boyutlu Dizi (Multidimensional Array)",
+      "Matris Dizi",
+      "Dinamik Dizi",
+      "Sıralı Dizi"
+    ],
+    "source_type": "2023 Güz Ara / Soru 10 ve Ders Kitabı Sayfa 30",
+    "code_example": "int[][] jagged = new int[3][];\njagged[0] = new int[5];\njagged[1] = new int[2];"
+  },
+  {
+    "unit": 2,
+    "topic": "ArrayList Özellikleri",
+    "question": "C# dilinde 'arrayList.Count' özelliği neyi döndürür?",
+    "correct_option": "Dizi listesinde o an depolanan elemanların sayısını",
+    "options": [
+      "Dizi listesinde o an depolanan elemanların sayısını",
+      "Dizi listesinin toplam kapasitesini (Capacity)",
+      "Dizi listesinin son elemanının indeksini",
+      "Dizi listesinin byte cinsinden boyutunu",
+      "Dizi listesinin maksimum alabileceği eleman sınırını"
+    ],
+    "source_type": "2023-2024 Güz Ara / Soru 10",
+    "code_example": "int adet = myArrayList.Count;"
+  },
+  {
+    "unit": 2,
+    "topic": "Küme İşlemleri (Set Theory)",
+    "question": "İki kümenin farkını (A \\ B: A'da olup B'de olmayanlar) ifade eden işlem veya gösterim hangisidir?",
+    "correct_option": "A \\ B (Fark Kümesi)",
+    "options": [
+      "A \\ B (Fark Kümesi)",
+      "A ∩ B (Kesişim)",
+      "A ∪ B (Birleşim)",
+      "A Δ B (Simetrik Fark)",
+      "A + B"
+    ],
+    "source_type": "2023 Güz Ara / Soru 9 ve Ders Kitabı Sayfa 39",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Dizi İndeksleme",
+    "question": "C# dilinde 7 elemanlı bir dizinin son elemanına erişmek için kullanılan indeks değeri kaçtır?",
+    "correct_option": "6",
+    "options": [
+      "6",
+      "7",
+      "5",
+      "0",
+      "length"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 28",
+    "code_example": "int[] dizi = new int[7];\nint son = dizi[6]; // 0'dan başlar, n-1'de biter"
+  },
+  {
+    "unit": 2,
+    "topic": "HashTable Kısıtlamaları",
+    "question": "Hashtable ve Dictionary yapılarında 'Anahtar' (Key) ve 'Değer' (Value) ile ilgili kısıtlamalardan hangisi doğrudur?",
+    "correct_option": "Anahtar (Key) null (boş) olamaz, ancak Değer (Value) null olabilir.",
+    "options": [
+      "Anahtar (Key) null (boş) olamaz, ancak Değer (Value) null olabilir.",
+      "Anahtar null olabilir, Değer null olamaz.",
+      "Hem Anahtar hem Değer null olabilir.",
+      "Hiçbiri null olamaz.",
+      "Aynı Anahtar (Key) birden fazla kez eklenebilir."
+    ],
+    "source_type": "Ders Kitabı / Sayfa 33",
+    "code_example": "dict.Add(null, \"Değer\"); // Hata verir!\ndict.Add(\"Key\", null); // Geçerli"
+  },
+  {
+    "unit": 2,
+    "topic": "Sıralı Sözlük (SortedDictionary)",
+    "question": "Elemanları anahtarlarına (Key) göre otomatik olarak sıralı tutan ve işlem karmaşıklığı O(log n) olan veri yapısı hangisidir?",
+    "correct_option": "SortedDictionary",
+    "options": [
+      "SortedDictionary",
+      "Dictionary",
+      "Hashtable",
+      "HashSet",
+      "ArrayList"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 36",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Dizi Tanımlama Kısıtı",
+    "question": "Diziler (Arrays) ile ilgili en temel kısıtlama nedir?",
+    "correct_option": "Eleman sayısı (boyutu) ilk tanımlama anında belirlenir ve sonradan değiştirilemez.",
+    "options": [
+      "Eleman sayısı (boyutu) ilk tanımlama anında belirlenir ve sonradan değiştirilemez.",
+      "İçine sadece sayısal veri eklenebilir.",
+      "Sadece tek boyutlu olabilirler.",
+      "Elemanlarına rastgele erişim yapılamaz.",
+      "Sıralı olmak zorundadırlar."
+    ],
+    "source_type": "Ders Kitabı / Sayfa 28",
+    "code_example": "int[] dizi = new int[5]; // Boyut sabit 5"
+  },
+  {
+    "unit": 2,
+    "topic": "Dictionary Döngü Yapısı",
+    "question": "Bir Dictionary<string, int> koleksiyonu üzerinde 'foreach' döngüsü ile gezinirken, elemanların veri tipi ne olur?",
+    "correct_option": "KeyValuePair<string, int>",
+    "options": [
+      "KeyValuePair<string, int>",
+      "DictionaryEntry",
+      "Tuple<string, int>",
+      "Object",
+      "String"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 35",
+    "code_example": "foreach (KeyValuePair<string, int> veri in sozluk) { ... }"
+  },
+  {
+    "unit": 2,
+    "topic": "Küme (Set) Özelliği",
+    "question": "HashSet<T> veri yapısının en belirgin özelliği nedir?",
+    "correct_option": "Tekrar eden elemanları barındırmaz (Her eleman benzersizdir).",
+    "options": [
+      "Tekrar eden elemanları barındırmaz (Her eleman benzersizdir).",
+      "Elemanları her zaman sıralı tutar.",
+      "Anahtar-Değer (Key-Value) çifti olarak veri saklar.",
+      "İndeks numarası ile elemanlara erişim sağlar.",
+      "Sabit boyutludur."
+    ],
+    "source_type": "Ders Kitabı / Sayfa 38",
+    "code_example": "set.Add(5);\nset.Add(5); // Eklemez, hata vermez."
+  },
+  {
+    "unit": 2,
+    "topic": "Çok Boyutlu Dizi Erişimi",
+    "question": "İki boyutlu 'int[,] matris' dizisinin 3. satır 2. sütunundaki elemana erişmek için hangi kod kullanılır?",
+    "correct_option": "matris[2, 1]",
+    "options": [
+      "matris[2, 1]",
+      "matris[3, 2]",
+      "matris[2][1]",
+      "matris(2, 1)",
+      "matris.Get(3, 2)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 30",
+    "code_example": "int x = matris[2, 1]; // İndeksler 0'dan başlar"
+  },
+  {
+    "unit": 2,
+    "topic": "ArrayList Dezavantajı",
+    "question": "ArrayList kullanmanın Generic List<T>'ye göre en büyük dezavantajı nedir?",
+    "correct_option": "Verileri 'object' olarak tuttuğu için Boxing/Unboxing (Kutulama) maliyeti oluşturur ve tür güvenli değildir.",
+    "options": [
+      "Verileri 'object' olarak tuttuğu için Boxing/Unboxing (Kutulama) maliyeti oluşturur ve tür güvenli değildir.",
+      "Boyutu dinamik olarak artırılamaz.",
+      "Sadece sayısal veri tutabilir.",
+      "Eleman silme işlemi yapılamaz.",
+      "Daha fazla bellek tüketmez."
+    ],
+    "source_type": "Ders Kitabı / Sayfa 45",
+    "code_example": "list.Add(1); // 1 -> object (Boxing)"
+  },
+  {
+    "unit": 2,
+    "topic": "Dizi Başlatma (Initialization)",
+    "question": "Hem tanımlama hem de değer atamayı aynı anda yapan doğru dizi sözdizimi hangisidir?",
+    "correct_option": "int[] sayilar = { 1, 2, 3 };",
+    "options": [
+      "int[] sayilar = { 1, 2, 3 };",
+      "int sayilar[] = [1, 2, 3];",
+      "int[] sayilar = new int(3) { 1, 2, 3 };",
+      "array sayilar = { 1, 2, 3 };",
+      "List<int> sayilar = { 1, 2, 3 };"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 29",
+    "code_example": "string[] gunler = { \"Pzt\", \"Sal\" };"
+  },
+  {
+    "unit": 2,
+    "topic": "Sözlük Hata Yönetimi",
+    "question": "Bir Dictionary koleksiyonunda, olmayan bir anahtara (Key) indeksleyici [] ile erişmeye çalışırsanız ne olur?",
+    "correct_option": "KeyNotFoundException hatası fırlatır.",
+    "options": [
+      "KeyNotFoundException hatası fırlatır.",
+      "null döner.",
+      "0 döner.",
+      "Yeni bir eleman oluşturur.",
+      "Derleme hatası verir."
+    ],
+    "source_type": "Ders Kitabı / Sayfa 35",
+    "code_example": "var v = dict[\"olmayan_key\"]; // Hata!"
+  },
+  {
+    "unit": 2,
+    "topic": "SortedSet Özelliği",
+    "question": "SortedSet<T> sınıfı, HashSet<T>'den farklı olarak ne sağlar?",
+    "correct_option": "Elemanları ekleme anında sıralar ve sıralı tutar.",
+    "options": [
+      "Elemanları ekleme anında sıralar ve sıralı tutar.",
+      "Daha hızlı ekleme işlemi yapar.",
+      "Tekrar eden elemanlara izin verir.",
+      "Anahtar-Değer çifti tutar.",
+      "Sabit boyutludur."
+    ],
+    "source_type": "Ders Kitabı / Sayfa 42",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Koleksiyon Varlık Kontrolü",
+    "question": "Bir ArrayList veya List<T> içinde belirli bir elemanın olup olmadığını kontrol eden metot hangisidir?",
+    "correct_option": "Contains",
+    "options": [
+      "Contains",
+      "Exists",
+      "HasValue",
+      "Check",
+      "Find"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 44",
+    "code_example": "if (liste.Contains(\"Ali\")) { ... }"
+  },
+  {
+    "unit": 2,
+    "topic": "Hash Tablosu (Hashtable) Yapısı",
+    "question": "Hashtable veri yapısında, anahtardan (Key) yola çıkarak değerin (Value) saklandığı 'kova' (bucket) dizinini bulmayı sağlayan mekanizma nedir?",
+    "correct_option": "Hash Fonksiyonu (Hash Function)",
+    "options": [
+      "Hash Fonksiyonu (Hash Function)",
+      "İndeksleyici (Indexer)",
+      "Sıralama Algoritması",
+      "Arama Ağacı",
+      "Doğrusal Arama"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 32",
+    "code_example": null
+  },
+  {
+    "unit": 2,
+    "topic": "Dizi/Liste İndeks Bulma",
+    "question": "Bir listede aranan elemanın 'ilk' bulunduğu indeks numarasını döndüren metot hangisidir?",
+    "correct_option": "IndexOf",
+    "options": [
+      "IndexOf",
+      "LastIndexOf",
+      "FindIndex",
+      "Search",
+      "GetIndex"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 44",
+    "code_example": "int index = liste.IndexOf(\"Aranan\");"
+  },
+  
+  {
+    "unit": 3,
+    "topic": "Yığın (Stack) Temel Prensibi",
+    "question": "Tek taraflı veri giriş ve çıkışına izin veren, 'Son Giren İlk Çıkar' (LIFO - Last In First Out) mantığıyla çalışan veri yapısı hangisidir?",
+    "correct_option": "Yığın (Stack)",
+    "options": [
+      "Yığın (Stack)",
+      "Kuyruk (Queue)",
+      "Bağlantılı Liste",
+      "Ağaç (Tree)",
+      "Dizi (Array)"
+    ],
+    "source_type": "2023-2024 Güz Ara / Soru 11 ve Ders Kitabı Sayfa 55",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Kuyruk (Queue) Temel Prensibi",
+    "question": "Verilerin bir ucundan eklendiği (Enqueue) ve diğer ucundan çıkarıldığı (Dequeue), 'İlk Giren İlk Çıkar' (FIFO - First In First Out) mantığıyla çalışan veri yapısı hangisidir?",
+    "correct_option": "Kuyruk (Queue)",
+    "options": [
+      "Kuyruk (Queue)",
+      "Yığın (Stack)",
+      "Hash Tablosu",
+      "Graf",
+      "Ağaç"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 64",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Yığın - Eleman Çıkarma",
+    "question": "Stack (Yığın) yapısında, en üstteki elemanı geriye döndüren ve aynı zamanda listeden kalıcı olarak silen (çıkaran) metot hangisidir?",
+    "correct_option": "Pop",
+    "options": [
+      "Pop",
+      "Peek",
+      "Push",
+      "Delete",
+      "RemoveAt"
+    ],
+    "source_type": "2024-2025 Güz Ara / Soru 12 ve Ders Kitabı Sayfa 56",
+    "code_example": "var item = myStack.Pop(); // Hem getirir hem siler"
+  },
+  {
+    "unit": 3,
+    "topic": "Yığın - Görüntüleme (Silmeden)",
+    "question": "Yığın yapısında, en üstteki elemanın değerini öğrenmek isteyen ancak elemanı yığından çıkarmak (silmek) istemeyen bir geliştirici hangi metodu kullanmalıdır?",
+    "correct_option": "Peek",
+    "options": [
+      "Peek",
+      "Pop",
+      "Push",
+      "Contains",
+      "Top"
+    ],
+    "source_type": "2023 Güz Ara / Soru 15 ve Ders Kitabı Sayfa 60",
+    "code_example": "var item = myStack.Peek(); // Sadece okur, silmez"
+  },
+  {
+    "unit": 3,
+    "topic": "Kuyruk - Eleman Ekleme",
+    "question": "Kuyruk (Queue) yapısının sonuna yeni bir eleman eklemek için kullanılan işlem veya metot hangisidir?",
+    "correct_option": "Enqueue",
+    "options": [
+      "Enqueue",
+      "Dequeue",
+      "Push",
+      "Add",
+      "Insert"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 64",
+    "code_example": "kuyruk.Enqueue(\"Yeni Veri\");"
+  },
+  {
+    "unit": 3,
+    "topic": "Stack Kod Takibi",
+    "question": "Bir Stack'e sırasıyla 'İngiltere', 'Türkiye', 'İtalya', 'Almanya' verileri Push edilmiştir. Bu yığın bir diziye kopyalanıp (CopyTo) sırayla yazdırılırsa ilk çıktı (en üstteki) ne olur?",
+    "correct_option": "Almanya",
+    "options": [
+      "Almanya",
+      "İngiltere",
+      "Türkiye",
+      "İtalya",
+      "Hata Verir"
+    ],
+    "source_type": "2024-2025 Güz Ara / Soru 12 (Kod Analizi)",
+    "code_example": "myStack.Push(\"Almanya\"); // En son eklenen en üsttedir"
+  },
+  {
+    "unit": 3,
+    "topic": "Kuyruk Kod Takibi",
+    "question": "Bir Queue yapısına sırasıyla 'Anadolu', 'Üniversitesi', 'Açıköğretim' eklenmiştir. Sırasıyla: Dequeue(), Peek(), Dequeue() işlemleri yapılırsa ekrana ne yazılır?",
+    "correct_option": "Anadolu - Üniversitesi - Üniversitesi",
+    "options": [
+      "Anadolu - Üniversitesi - Üniversitesi",
+      "Anadolu - Üniversitesi - Açıköğretim",
+      "Açıköğretim - Üniversitesi - Anadolu",
+      "Anadolu - Anadolu - Üniversitesi",
+      "Üniversitesi - Açıköğretim - Açıköğretim"
+    ],
+    "source_type": "2023-2024 Güz Ara / Soru 15 (Kod Analizi)",
+    "code_example": "q.Dequeue(); // Anadolu (Siler)\nq.Peek(); // Üniversitesi (Silmez)\nq.Dequeue(); // Üniversitesi (Siler)"
+  },
+  {
+    "unit": 3,
+    "topic": "Yığın Temizleme",
+    "question": "Bir yığının (Stack) içerisindeki tüm elemanları tek tek 'Pop' yapmak yerine, tek seferde tamamen boşaltmak için kullanılan metot hangisidir?",
+    "correct_option": "Clear",
+    "options": [
+      "Clear",
+      "Empty",
+      "Flush",
+      "DeleteAll",
+      "Reset"
+    ],
+    "source_type": "2024-2025 Güz Dönem Sonu / Soru 4",
+    "code_example": "myStack.Clear(); // Count = 0 olur"
+  },
+  {
+    "unit": 3,
+    "topic": "Kuyruk Kapasite Yönetimi",
+    "question": "C# dilinde, başlangıç kapasitesi 50 olan ve dolduğunda kapasitesini 3 katına (büyüme faktörü: 3) çıkaran bir Kuyruk (Queue) tanımlamak için hangi yapıcı metot (constructor) kullanılır?",
+    "correct_option": "new Queue(50, 3.0f)",
+    "options": [
+      "new Queue(50, 3.0f)",
+      "new Queue(50)",
+      "new Queue(3, 50)",
+      "new Queue(150)",
+      "new Stack(50, 3)"
+    ],
+    "source_type": "2024-2025 Güz Ara / Soru 14 ve Ders Kitabı Sayfa 65",
+    "code_example": "Queue k = new Queue(int capacity, float growFactor);"
+  },
+  {
+    "unit": 3,
+    "topic": "Varlık Kontrolü",
+    "question": "Bir Stack veya Queue içerisinde belirli bir elemanın (Örn: 'Ankara') olup olmadığını 'True/False' olarak döndüren metot hangisidir?",
+    "correct_option": "Contains",
+    "options": [
+      "Contains",
+      "Exists",
+      "Find",
+      "Search",
+      "HasItem"
+    ],
+    "source_type": "2023 Güz Ara / Soru 13",
+    "code_example": "bool varMi = myStack.Contains(\"Ankara\");"
+  },
+  {
+    "unit": 3,
+    "topic": "Diziye Dönüştürme",
+    "question": "Bir Stack veya Queue koleksiyonunu, mevcut sırasını koruyarak yeni bir diziye (Array) dönüştüren metot hangisidir?",
+    "correct_option": "ToArray",
+    "options": [
+      "ToArray",
+      "CopyTo",
+      "ToList",
+      "Serialize",
+      "Convert"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 61",
+    "code_example": "object[] dizi = myStack.ToArray();"
+  },
+  {
+    "unit": 3,
+    "topic": "Öncelikli Kuyruk (Priority Queue)",
+    "question": "Standart FIFO mantığı yerine, elemanların önem derecesine göre sıralandığı ve en yüksek öncelikli elemanın ilk çıkarıldığı kuyruk yapısı hangisidir?",
+    "correct_option": "Öncelikli Kuyruk (Priority Queue)",
+    "options": [
+      "Öncelikli Kuyruk (Priority Queue)",
+      "Dairesel Kuyruk",
+      "Çift Yönlü Kuyruk (Deque)",
+      "Yığın (Stack)",
+      "Sıralı Liste"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 68",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Stack Başlangıç Kapasitesi",
+    "question": "C# Stack sınıfının varsayılan (parametre almayan) kurucu metodu, başlangıç kapasitesini kaç eleman olarak ayarlar?",
+    "correct_option": "10",
+    "options": [
+      "10",
+      "32",
+      "100",
+      "0",
+      "16"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 58",
+    "code_example": "Stack s = new Stack(); // Kapasite = 10"
+  },
+  {
+    "unit": 3,
+    "topic": "Queue Başlangıç Kapasitesi",
+    "question": "C# Queue sınıfının varsayılan (parametre almayan) kurucu metodu, başlangıç kapasitesini kaç eleman olarak ayarlar?",
+    "correct_option": "32",
+    "options": [
+      "32",
+      "10",
+      "100",
+      "50",
+      "16"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 65",
+    "code_example": "Queue q = new Queue(); // Kapasite = 32"
+  },
+  {
+    "unit": 3,
+    "topic": "Yığın Kullanım Alanları",
+    "question": "Fonksiyon çağrılarının yönetimi (Call Stack), 'Geri Al' (Undo) işlemleri ve parantez eşleştirme algoritmalarında hangi veri yapısı kullanılır?",
+    "correct_option": "Yığın (Stack)",
+    "options": [
+      "Yığın (Stack)",
+      "Kuyruk (Queue)",
+      "Ağaç",
+      "Graf",
+      "Hash Tablosu"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 74 (Araştır Yanıt)",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Kuyruk Kullanım Alanları",
+    "question": "Yazıcıdan çıktı alma sırası (Spooling), İşletim sistemlerinde işlem zamanlaması ve E-posta gönderim kuyruklarında hangi veri yapısı kullanılır?",
+    "correct_option": "Kuyruk (Queue)",
+    "options": [
+      "Kuyruk (Queue)",
+      "Yığın (Stack)",
+      "Dizi",
+      "Yığınlama (Heap)",
+      "Sözlük"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 74 (Araştır Yanıt)",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Dinamik Kapasite Artışı",
+    "question": "Stack veya Queue yapıları dolduğunda, varsayılan davranış olarak kapasitelerini nasıl artırırlar?",
+    "correct_option": "Mevcut kapasitenin 2 katına (varsayılan büyüme faktörü 2) çıkararak.",
+    "options": [
+      "Mevcut kapasitenin 2 katına (varsayılan büyüme faktörü 2) çıkararak.",
+      "Sabit 10 eleman ekleyerek.",
+      "Kapasite artırılmaz, hata verir.",
+      "Sadece 1 elemanlık yer açarak.",
+      "Mevcut kapasitenin %50'si kadar artırarak."
+    ],
+    "source_type": "Ders Kitabı / Sayfa 58",
+    "code_example": "10 -> 20 -> 40..."
+  },
+  {
+    "unit": 3,
+    "topic": "Peek vs Pop Farkı",
+    "question": "Stack yapısındaki 'Peek' ve 'Pop' metotları arasındaki temel fark nedir?",
+    "correct_option": "Pop elemanı okur ve siler; Peek sadece okur, silmez.",
+    "options": [
+      "Pop elemanı okur ve siler; Peek sadece okur, silmez.",
+      "Peek elemanı okur ve siler; Pop sadece okur, silmez.",
+      "Pop listenin sonuna ekler; Peek başından okur.",
+      "İkisi de aynı işlemi yapar, sadece isimleri farklıdır.",
+      "Peek sadece boş olup olmadığını kontrol eder."
+    ],
+    "source_type": "Ders Kitabı / Sayfa 60",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Generic Stack Tanımlama",
+    "question": "Sadece 'Tamsayı' (int) değerleri saklayacak, tür güvenli (generic) bir Yığın tanımlamak için hangi kod kullanılır?",
+    "correct_option": "Stack<int> yigin = new Stack<int>();",
+    "options": [
+      "Stack<int> yigin = new Stack<int>();",
+      "Stack yigin = new Stack();",
+      "ArrayList<int> yigin = new ArrayList<int>();",
+      "List<int> yigin = new List<int>();",
+      "IntStack yigin = new IntStack();"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 58",
+    "code_example": "Stack<string> isimler = new Stack<string>();"
+  },
+  {
+    "unit": 3,
+    "topic": "Kuyruk Eleman Silme Yönü",
+    "question": "Kuyruk (Queue) yapısında 'Dequeue' işlemi listenin hangi ucundan eleman çıkarır?",
+    "correct_option": "Listenin Başından (Front)",
+    "options": [
+      "Listenin Başından (Front)",
+      "Listenin Sonundan (Rear)",
+      "Listenin Ortasından",
+      "Rastgele bir konumdan",
+      "En son eklenen elemanı çıkarır"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 64",
+    "code_example": null
+  },
+  {
+    "unit": 3,
+    "topic": "Döngüsel Kullanım",
+    "question": "Dairesel (Circular) kuyruk yapısı, özellikle hangi durumlarda avantaj sağlar?",
+    "correct_option": "Bellek alanının (Buffer) sabit olduğu ve sürekli tekrar kullanılması gereken durumlarda (Örn: İşlemci zamanlaması).",
+    "options": [
+      "Bellek alanının (Buffer) sabit olduğu ve sürekli tekrar kullanılması gereken durumlarda (Örn: İşlemci zamanlaması).",
+      "Verilerin kalıcı olarak saklanması gerektiğinde.",
+      "Veri boyutunun sürekli büyüdüğü durumlarda.",
+      "Sadece tek bir eleman saklanacağı zaman.",
+      "Verilerin sıralı olması gerekmediğinde."
+    ],
+    "source_type": "Ders Kitabı / Sayfa 123",
+    "code_example": null
+  }
+]

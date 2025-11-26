@@ -1,0 +1,4084 @@
+[
+  {
+    "unit": 1,
+    "topic": "Tanım ve Kapsam",
+    "question": "Telefon/akıllı telefon, tablet, akıllı saat veya akıllı gözlük gibi bir taşınabilir aygıtta çalışacak şekilde geliştirilen yazılım türü nedir?",
+    "correct_option": "Mobil uygulamadır.",
+    "options": [
+      "Mobil uygulamadır.",
+      "Yerel Uygulamadır.",
+      "İleri Web Uygulamasıdır.",
+      "Android SDK'dır."
+    ],
+    "source_type": "Tanım/Sınav Sorusu (Sayfa 11)"
+  },
+  {
+    "unit": 1,
+    "topic": "Tanım ve Kapsam",
+    "question": "Mobil uygulamalar masaüstü bilgisayarlardaki uygulamaların tersine, hangi aygıtlara uyumlu olacak biçimde geliştirilmektedir?",
+    "correct_option": "Mobil aygıtlara uyumlu olacak biçimde geliştirilmektedir.",
+    "options": [
+      "Tablet veya akıllı saat gibi dokunmatik yüzeylere uyumlu aygıtlara.",
+      "Yüksek performanslı masaüstü bilgisayarlara.",
+      "Linux tabanlı sunuculara.",
+      "Mobil aygıtlara uyumlu olacak biçimde geliştirilmektedir."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 12)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Türleri",
+    "question": "Çoğu insanın 'uygulama' kelimesini duyduğunda aklına gelen ilk uygulama türü hangisidir?",
+    "correct_option": "Yerel (Native) uygulamalardır.",
+    "options": [
+      "Hibrit (Hybrid) uygulamalardır.",
+      "Web Tabanlı (Web-Based) uygulamalardır.",
+      "Yerel (Native) uygulamalardır.",
+      "Çapraz Platform (Cross-Platform) uygulamalardır."
+    ],
+    "source_type": "Tanım/Sınav Sorusu (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Türleri",
+    "question": "Genellikle belirli bir işletim sistemi (iOS, Android, Windows vb.) üzerinde çalışacak şekilde özel olarak geliştirilen uygulama türü nedir?",
+    "correct_option": "Yerel uygulamalar (Native).",
+    "options": [
+      "Yerel uygulamalar (Native).",
+      "Hibrit uygulamalar (Hybrid).",
+      "Web Tabanlı uygulamalar.",
+      "İleri Web uygulamaları (PWA)."
+    ],
+    "source_type": "Tanım/Sınav Sorusu (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Türleri (Yerel)",
+    "question": "Yerel uygulamaların dezavantajları arasında gösterilen, yüksek geliştirme maliyetleri ve daha uzun bir pazara inme süresi getirdiği iddiası doğru mudur?",
+    "correct_option": "Evet, bu bir dezavantajdır.",
+    "options": [
+      "Hayır, geliştirme maliyetleri düşüktür.",
+      "Hayır, pazara inme süresi kısadır.",
+      "Evet, bu bir dezavantajdır.",
+      "Hayır, yalnızca güncellemeler maliyetlidir."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 1)/Dezavantaj (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Türleri (Yerel)",
+    "question": "Yerel uygulamalar, cihaz kullanıcısının izniyle cep telefonunun donanımına erişebilirler mi?",
+    "correct_option": "Evet, erişmelerine izin verilmektedir.",
+    "options": [
+      "Hayır, sadece temel sensörlere erişebilirler.",
+      "Hayır, güvenlik nedeniyle donanıma erişmeleri kesinlikle yasaktır.",
+      "Evet, erişmelerine izin verilmektedir.",
+      "Sadece Root/Jailbreak yapılmış cihazlarda mümkündür."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Yerel Uygulama Avantajları",
+    "question": "Yerel uygulamalar hızlı ve sezgisel bir performans gösterirler mi?",
+    "correct_option": "Evet, basit kod yapısı sayesinde hızlı ve sezgisel performans gösterirler.",
+    "options": [
+      "Hayır, her işletim sistemi için ayrı kodlama gerektiğinden yavaştır.",
+      "Sadece karmaşık işlemlerde hızlıdırlar, sezgisel değillerdir.",
+      "Hayır, performansları Web tabanlı uygulamalardan daha düşüktür.",
+      "Evet, basit kod yapısı sayesinde hızlı ve sezgisel performans gösterirler."
+    ],
+    "source_type": "Avantaj (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Yerel Uygulama Avantajları",
+    "question": "Yerel uygulamaların pil gücü ve bellek kullanımı nasıldır?",
+    "correct_option": "Daha az bellek kaplarlar ve daha az pil gücü kullanırlar.",
+    "options": [
+      "Daha fazla bellek kaplarlar ve daha az pil gücü kullanırlar.",
+      "Daha az bellek kaplarlar ancak daha fazla pil gücü kullanırlar.",
+      "Daha az bellek kaplarlar ve daha az pil gücü kullanırlar.",
+      "Web uygulamalarıyla kıyaslandığında bellek kullanımları çok yüksektir."
+    ],
+    "source_type": "Avantaj (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Yerel Uygulama Dezavantajları",
+    "question": "Yerel uygulamalar hangi kısıtlamaları nedeniyle hedef kitleyi de sınırlandırmaktadır?",
+    "correct_option": "Belirli bir işletim sistemi ile sınırlı olmasından dolayı (iOS, Android vb.).",
+    "options": [
+      "Yüksek güvenlik standartlarına sahip olmalarından dolayı.",
+      "Tek bir kod tabanı kullanmalarından dolayı.",
+      "Aktif bir internet bağlantısı gerektirmelerinden dolayı.",
+      "Belirli bir işletim sistemi ile sınırlı olmasından dolayı (iOS, Android vb.)."
+    ],
+    "source_type": "Dezavantaj (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Yerel Uygulama Dezavantajları",
+    "question": "Farklı platformlar için farklı uygulamalar oluşturulması gerektiği için, uygulamanın bakımı ve güncellenmesi nasıl bir süreç gerektirir?",
+    "correct_option": "Yoğun bir maliyet ve emek gerektirir.",
+    "options": [
+      "Tek bir merkezi ekip tarafından kolayca yönetilir.",
+      "Sadece güncellemeler sırasında küçük bir emek gerektirir.",
+      "Çapraz platform araçları sayesinde maliyetleri düşüktür.",
+      "Yoğun bir maliyet ve emek gerektirir."
+    ],
+    "source_type": "Dezavantaj (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Yerel Uygulama",
+    "question": "Yüksek güvenlikli ve tek bir kod tabanına sahip uygulamalar için en uygun seçim hangi uygulama türüdür?",
+    "correct_option": "Yerel uygulamalardır.",
+    "options": [
+      "Hibrit uygulamalardır.",
+      "İleri Web uygulamalarıdır.",
+      "Web Tabanlı uygulamalardır.",
+      "Yerel uygulamalardır."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Yerel Uygulama",
+    "question": "Yerel uygulamalara örnek olarak verilebilecek popüler uygulamalar hangileridir?",
+    "correct_option": "WhatsApp, Spotify, SoundCloud.",
+    "options": [
+      "Anadolu Mobil, Telegram, TikTok.",
+      "WhatsApp, Spotify, SoundCloud.",
+      "Facebook Web Sitesi, Instagram Web, YouTube.",
+      "Netflix Web, Google Haritalar, Opera Mobil."
+    ],
+    "source_type": "Kritik Bilgi/Örnek (Sayfa 13)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Türleri",
+    "question": "Web tabanlı uygulamalara benzer özellikler taşımasına rağmen, mobil cihazdaki web tarayıcıları aracılığıyla ulaşılan uygulama türü nedir?",
+    "correct_option": "Web Tabanlı (Web-Based) Uygulamalar.",
+    "options": [
+      "Web Tabanlı (Web-Based) Uygulamalar.",
+      "Hibrit Uygulamalar.",
+      "İleri Web Uygulamaları (PWA).",
+      "Çapraz Platform Uygulamalar."
+    ],
+    "source_type": "Tanım (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Türleri (Web Tabanlı)",
+    "question": "Web tabanlı uygulamalar, yerel uygulamalardan farklı olarak cihazın donanımına erişebilirler mi?",
+    "correct_option": "Hayır, erişememektedirler.",
+    "options": [
+      "Evet, sınırlı izinlerle erişebilirler.",
+      "Hayır, erişememektedirler.",
+      "Sadece GPS ve kamera sensörlerine erişebilirler.",
+      "Erişim için ek API'ler gereklidir."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Web Tabanlı Uygulamalar",
+    "question": "Web tabanlı uygulamaların çalışması için ne gereklidir?",
+    "correct_option": "Aktif bir internet bağlantısı gerekmektedir.",
+    "options": [
+      "Sadece ilk kurulumda internet bağlantısı.",
+      "Aktif bir internet bağlantısı gerekmektedir.",
+      "HTML5 tarayıcısı ve web sunucusu.",
+      "Web sitelerine kıyasla daha az bant genişliği."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Web Tabanlı Uygulamalar",
+    "question": "Web tabanlı uygulamalar herhangi bir uygulama mağazasında satılabilirler mi?",
+    "correct_option": "Hayır, satılamazlar.",
+    "options": [
+      "Evet, Microsoft Store'da satılabilirler.",
+      "Hayır, satılamazlar.",
+      "Sadece Google Play Store'da satılabilirler.",
+      "Sadece ileri web uygulamaları (PWA) olarak satılabilirler."
+    ],
+    "source_type": "Dikkat Edilmesi Gereken Bilgi (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Türleri",
+    "question": "Web uygulamaları ile yerel uygulamaların bir karışımı olarak bu iki tür uygulamanın en iyi yönlerini sunan uygulama türü nedir?",
+    "correct_option": "Hibrit (Hybrid) Uygulamalar.",
+    "options": [
+      "Çapraz Platform (Cross-Platform) Uygulamalar.",
+      "Yerel (Native) Uygulamalar.",
+      "Hibrit (Hybrid) Uygulamalar.",
+      "İstemci Tabanlı Uygulamalar."
+    ],
+    "source_type": "Tanım/Kritik Bilgi (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Hibrit Uygulama Dezavantajları",
+    "question": "Performans odaklı uygulamalar için uygun olmayan uygulama türü nedir ve neden?",
+    "correct_option": "Hibrit uygulamalardır, çünkü performans olarak yerel uygulamalardan daha yavaştır.",
+    "options": [
+      "Yerel uygulamalardır, çünkü cihaz donanımına tam erişim performansı düşürür.",
+      "Web Tabanlı uygulamalardır, çünkü sürekli internet gerektirir.",
+      "Hibrit uygulamalardır, çünkü performans olarak yerel uygulamalardan daha yavaştır.",
+      "Çapraz Platformdur, çünkü tek bir kod tabanı karmaşıklığa yol açar."
+    ],
+    "source_type": "Kritik Bilgi/Dezavantaj (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Hibrit Uygulama Dezavantajları",
+    "question": "Hibrit uygulamaların yerel uygulamalara kıyasla sahip olduğu bir diğer önemli dezavantaj nedir?",
+    "correct_option": "Daha sınırlı yeteneklerinin olması ve daha düşük düzeyde kullanıcı deneyimi sunmasıdır.",
+    "options": [
+      "Yüksek geliştirme maliyetlerine yol açması.",
+      "Yalnızca tek bir işletim sisteminde çalışabilmesi.",
+      "Daha sınırlı yeteneklerinin olması ve daha düşük düzeyde kullanıcı deneyimi sunmasıdır.",
+      "Çevrimdışı (offline) modda çalışamaması."
+    ],
+    "source_type": "Karşılaştırma/Dezavantaj (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Hibrit Uygulama Avantajları",
+    "question": "Hibrit uygulamalar, geliştiricilerin yalnızca tek bir kod tabanını yönetmesi gerektiği için hangi avantajı sunar?",
+    "correct_option": "Daha az maliyet gerektirmesi ve hızlı bir şekilde geliştirilmesi.",
+    "options": [
+      "Cihaz donanımına tam erişim sağlaması.",
+      "Daha az maliyet gerektirmesi ve hızlı bir şekilde geliştirilmesi.",
+      "Geliştirme süresinin yerel uygulamalardan uzun olması.",
+      "Tüm uygulama mağazalarında otomatik olarak yayınlanabilmesi."
+    ],
+    "source_type": "Karşılaştırma/Avantaj (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Türleri (Hibrit/Yerel)",
+    "question": "Anadolu Üniversitesi Web Sitesi aracılığıyla hizmet veren 'Anadolu Mobil' uygulaması hangi tür uygulamaya örnektir?",
+    "correct_option": "Hibrit uygulama.",
+    "options": [
+      "Yerel uygulama.",
+      "Web Tabanlı uygulama.",
+      "Hibrit uygulama.",
+      "Çapraz Platform uygulaması."
+    ],
+    "source_type": "Yaşamla İlişkilendir (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Türleri",
+    "question": "'Bir kez yaz, her yerde çalıştır' ilkesiyle çalışan, birden fazla platformda sorunsuz bir şekilde çalışacak şekilde çoklu uyarlanabilir yazılım özelliklerine sahip uygulama türü nedir?",
+    "correct_option": "Çapraz Platform (Cross-Platform) Uygulamalar.",
+    "options": [
+      "Yerel (Native) Uygulamalar.",
+      "Hibrit (Hybrid) Uygulamalar.",
+      "İleri Web Uygulamaları (PWA).",
+      "Çapraz Platform (Cross-Platform) Uygulamalar."
+    ],
+    "source_type": "Tanım (Sayfa 16)"
+  },
+  {
+    "unit": 1,
+    "topic": "Mobil Uygulama Kullanım Alanları",
+    "question": "Alışveriş, moda, egzersiz ve diyet gibi uygulamaları kapsayan mobil uygulama kullanım alanı nedir?",
+    "correct_option": "Yaşam tarzı uygulamalarıdır.",
+    "options": [
+      "M-ticaret uygulamalarıdır.",
+      "Eğitim uygulamalarıdır.",
+      "Yaşam tarzı uygulamalarıdır.",
+      "Yardımcı (utility) uygulamalardır."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 3) (Sayfa 12)"
+  },
+  {
+    "unit": 1,
+    "topic": "Mobil Uygulama Kullanım Alanları",
+    "question": "Belirli ihtiyaçları hızlı bir şekilde karşılamak için yararlanılan uygulamalara (örnek: hesap makinesi, çalar saat) ne ad verilir?",
+    "correct_option": "Yardımcı (utility) uygulamalar.",
+    "options": [
+      "Yaşam tarzı uygulamaları.",
+      "Sosyal ağ uygulamaları.",
+      "Yardımcı (utility) uygulamalar.",
+      "Eğlence uygulamaları."
+    ],
+    "source_type": "Tanım (Sayfa 12)"
+  },
+  {
+    "unit": 1,
+    "topic": "API Tanımı",
+    "question": "Diğer uygulamaların, hizmetlerin, yazılımların veya işletim sistemlerinin verilerine ve özelliklerine erişen uygulamaların oluşturulmasına izin veren bir dizi işlev ve prosedüre ne ad verilir?",
+    "correct_option": "Uygulama Programlama Arayüzü (API).",
+    "options": [
+      "Entegre Geliştirme Ortamı (IDE).",
+      "Uygulama Programlama Arayüzü (API).",
+      "Yazılım Geliştirme Kiti (SDK).",
+      "Çapraz Platform Çerçevesi."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 2)/Tanım (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri",
+    "question": "Mobil uygulama geliştirmek için kullanılan programlama dilleri arasında hangileri yer alır?",
+    "correct_option": "Java, Scala, Kotlin.",
+    "options": [
+      "Dart, Python, C#.",
+      "Lua, Rust, Ruby.",
+      "Java, Scala, Kotlin.",
+      "Access, SQL, HTML5."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 4) (Sayfa 16)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Java)",
+    "question": "Java programlama dili ile ilgili olarak, 'JavaScript ile eş anlamlıdır' ifadesi doğru mudur?",
+    "correct_option": "Hayır, yanlıştır. (Tasarım açısından önemli ölçüde farklı özellikler gösterirler).",
+    "options": [
+      "Evet, bu iki dil aynı anda geliştirilmiştir.",
+      "Hayır, yanlıştır. (Tasarım açısından önemli ölçüde farklı özellikler gösterirler).",
+      "Evet, sadece söz dizimleri farklıdır.",
+      "Hayır, Java sadece Android için, JavaScript ise sadece Web için kullanılır."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 4)/Kritik Bilgi (Sayfa 17)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Swift)",
+    "question": "iOS uygulama geliştirmeyle ilgilenen geliştiriciler için kullanılabilecek Apple ekosistemine yeni giren açık kaynak kodlu, ücretsiz, nesne tabanlı bir programlama dili nedir?",
+    "correct_option": "Swift (MCQ 5).",
+    "options": [
+      "Objective C.",
+      "Kotlin.",
+      "Swift (MCQ 5).",
+      "Java."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 5)/Tanım (Sayfa 17-18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Objective C)",
+    "question": "C programlama dilinin bir türevi olan ve Swift geliştirilmeden önce Apple tarafından iOS uygulamalarının geliştirilmesinde temel programlama dili olarak kullanılan dil nedir?",
+    "correct_option": "Objective C.",
+    "options": [
+      "Swift.",
+      "Objective C.",
+      "C++.",
+      "Lua."
+    ],
+    "source_type": "Sınav Sorusu/Tanım (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Kotlin)",
+    "question": "Google'ın 2019 yılında Android uygulama geliştirme için artık tercih ettiği dil hangisidir?",
+    "correct_option": "Kotlin.",
+    "options": [
+      "Java.",
+      "Scala.",
+      "Dart.",
+      "Kotlin."
+    ],
+    "source_type": "Dikkat Edilmesi Gereken Bilgi (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Lua)",
+    "question": "Portekizce’de 'Ay' anlamına gelen, Brezilya'daki bir ekip tarafından tasarlanan açık kaynak kodlu çok paradigmalı dil nedir?",
+    "correct_option": "Lua (MCQ 6).",
+    "options": [
+      "Rust.",
+      "Ruby.",
+      "Lua (MCQ 6).",
+      "PHP."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 6)/Tanım (Sayfa 21)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Dart)",
+    "question": "Flutter platformunun temelini oluşturan, ücretsiz ve açık kaynak kodlu, Google tarafından desteklenen dil hangisidir?",
+    "correct_option": "Dart.",
+    "options": [
+      "Java.",
+      "Kotlin.",
+      "Dart.",
+      "Swift."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 19-20)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Dart)",
+    "question": "Dart programlama dili, mobil ve masaüstü uygulamalar için ARM ve x64 makine koduna derlenebileceği gibi web tabanlı sayfalar için neye derlenebilmektedir?",
+    "correct_option": "JavaScript'e derlenebilmektedir.",
+    "options": [
+      "HTML5'e derlenebilmektedir.",
+      "Python'a derlenebilmektedir.",
+      "JavaScript'e derlenebilmektedir.",
+      "Objective C'ye derlenebilmektedir."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 20)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Rust)",
+    "question": "2010 yılında geliştirilen, Mozilla vakfı tarafından desteklenen, güvenliği ön plana alan işlevsel, genel amaçlı bir sistem programlama dili nedir?",
+    "correct_option": "Rust.",
+    "options": [
+      "Scala.",
+      "Rust.",
+      "Ruby.",
+      "Go."
+    ],
+    "source_type": "Tanım (Sayfa 20)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Rust)",
+    "question": "Rust dilinin temel avantajı nedir?",
+    "correct_option": "Kodların derlenmesi sırasında hataların tespit edilmesi ve geliştiricilerin uygun kodu yazmasına olanak tanımasıdır.",
+    "options": [
+      "Python ile tam uyumlu çalışmasıdır.",
+      "En temiz ve basit söz dizimine sahip olmasıdır.",
+      "Kodların derlenmesi sırasında hataların tespit edilmesi ve geliştiricilerin uygun kodu yazmasına olanak tanımasıdır.",
+      "Sadece Windows işletim sistemini desteklemesidir."
+    ],
+    "source_type": "Avantaj (Sayfa 20)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Ruby)",
+    "question": "Çok paradigmalı, işlevsel, nesne yönelimli, dinamik bir dil olarak verimlilik ve sadelik üzerine odaklanmış açık kaynak kodlu dil nedir?",
+    "correct_option": "Ruby.",
+    "options": [
+      "Lua.",
+      "Rust.",
+      "PHP.",
+      "Ruby."
+    ],
+    "source_type": "Tanım (Sayfa 20)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (PHP)",
+    "question": "1995 yılında dinamik web siteleri için geliştirilmiş, açık kaynak kodlu sunucu taraflı bir betik dilidir ve mobil uygulama geliştirmek için de tercih edilen dil nedir?",
+    "correct_option": "PHP (Hypertext Preprocessor).",
+    "options": [
+      "Java.",
+      "Python.",
+      "PHP (Hypertext Preprocessor).",
+      "JavaScript."
+    ],
+    "source_type": "Tanım (Sayfa 21)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (C#)",
+    "question": "Hangi programlama dili, Java diline söz dizimi bağlamında benzese de ondan daha temiz ve basit bir kullanıma sahiptir?",
+    "correct_option": "C#.",
+    "options": [
+      "C++.",
+      "C#.",
+      "Kotlin.",
+      "Swift."
+    ],
+    "source_type": "Dikkat Edilmesi Gereken Bilgi (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Python)",
+    "question": "PYPL endeksine göre (Eylül 2021 itibariyle) en popüler programlama dilleri arasında ilk sırada yer alan dil hangisidir?",
+    "correct_option": "Python.",
+    "options": [
+      "Java.",
+      "Python.",
+      "JavaScript.",
+      "C#."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları",
+    "question": "Google tarafından piyasaya sürülen, açık kaynak kodlu bir çerçeve (framework) olarak web, masaüstü ve gömülü uygulamalar geliştirmek için kullanılabilen platform nedir?",
+    "correct_option": "Flutter.",
+    "options": [
+      "Xamarin.",
+      "Appery.io.",
+      "Qt.",
+      "Flutter."
+    ],
+    "source_type": "Tanım/Sınav Sorusu (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Flutter Kritik Bilgileri",
+    "question": "Mobil uygulama geliştirmek için kullanılan Flutter platformu ile ilgili olarak 'Lisanslı bir platformdur' ifadesi doğru mudur?",
+    "correct_option": "Hayır, yanlıştır. Flutter, açık kaynak kodlu bir çerçevedir.",
+    "options": [
+      "Evet, Google tarafından lisanslanmıştır.",
+      "Hayır, yanlıştır. Flutter, açık kaynak kodlu bir çerçevedir.",
+      "Sadece ticari projeler için lisanslıdır.",
+      "Sadece Dart programlama dili lisanslıdır."
+    ],
+    "source_type": "Sınav Sorusu/Kritik Bilgi (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Flutter Kritik Bilgileri",
+    "question": "Flutter'ın temel özelliklerinden biri, yerel ve çok platformlu uygulamalar için 'Birden fazla kod tabanı kullanması' mıdır?",
+    "correct_option": "Hayır, yanlıştır. Flutter, tek bir kod tabanı kullanır.",
+    "options": [
+      "Evet, performansı artırmak için birden fazla kod tabanı kullanır.",
+      "Hayır, yanlıştır. Flutter, tek bir kod tabanı kullanır.",
+      "Sadece iOS için ayrı bir kod tabanı gereklidir.",
+      "Sadece web ve masaüstü uygulamaları için tek bir kod tabanı kullanır."
+    ],
+    "source_type": "Sınav Sorusu/Kritik Bilgi (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Flutter)",
+    "question": "Flutter hangi programlama dilini temel almaktadır?",
+    "correct_option": "Dart dilini temel almaktadır.",
+    "options": [
+      "JavaScript dilini temel almaktadır.",
+      "Java dilini temel almaktadır.",
+      "Dart dilini temel almaktadır.",
+      "Kotlin dilini temel almaktadır."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Flutter)",
+    "question": "Flutter, render motoru olarak neyi, framework olarak neyi kullanmaktadır?",
+    "correct_option": "Render motoru olarak Mobile-first 2D render motorunu, framework olarak react-style framework'ü kullanmaktadır.",
+    "options": [
+      "Render motoru olarak Native-first 3D render motorunu, framework olarak Angular'ı kullanmaktadır.",
+      "Render motoru olarak Mobile-first 2D render motorunu, framework olarak react-style framework'ü kullanmaktadır.",
+      "Render motoru olarak Skia'yı, framework olarak VUE'yu kullanmaktadır.",
+      "Render motoru olarak Flutter Engine'i, framework olarak Java'yı kullanmaktadır."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları",
+    "question": "Mobil uygulama geliştirmek için kullanılan platformlar arasında **yer almayan** hangisidir?",
+    "correct_option": "Lua. (Lua bir programlama dilidir, platform değildir).",
+    "options": [
+      "Apache Cordova.",
+      "React Native.",
+      "Xamarin.",
+      "Lua. (Lua bir programlama dilidir, platform değildir)."
+    ],
+    "source_type": "Sınav Sorusu (Sayfa 16)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Solar 2D)",
+    "question": "Solar 2D (eski adıyla Corona SDK), hangi programlama dilini temel alan bir oyun motoru ve yazılım geliştirme kitidir?",
+    "correct_option": "Lua tabanlıdır.",
+    "options": [
+      "Dart tabanlıdır.",
+      "Lua tabanlıdır.",
+      "C# tabanlıdır.",
+      "Python tabanlıdır."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Solar 2D)",
+    "question": "Solar 2D ile geliştirme sürecinde kod güncellendikçe en son sonuçlar nerede anında görünmektedir?",
+    "correct_option": "Simülatöründe anında görünmektedir. (Bu özellik geliştirme sürecini hızlandırır).",
+    "options": [
+      "Web tarayıcısında anında görünmektedir.",
+      "Mobil cihazda ancak yeniden derleme ile görünmektedir.",
+      "Simülatöründe anında görünmektedir. (Bu özellik geliştirme sürecini hızlandırır).",
+      "Sadece hata ayıklama (debug) modunda görünmektedir."
+    ],
+    "source_type": "Avantaj (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Appery.io)",
+    "question": "Düşük kodlu ve çok amaçlı bir platform sunan bulut tabanlı bir uygulama geliştiricisi kimdir?",
+    "correct_option": "Appery.io.",
+    "options": [
+      "Xamarin.",
+      "Qt.",
+      "Appery.io.",
+      "Codename One."
+    ],
+    "source_type": "Tanım (Sayfa 17)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Appery.io)",
+    "question": "Appery.io'nun piyasaya sürülme yılı ve geliştirici firması hangisidir?",
+    "correct_option": "Exadel tarafından ilk olarak 2012 yılında piyasaya sürülmüştür.",
+    "options": [
+      "Google tarafından 2017 yılında piyasaya sürülmüştür.",
+      "Facebook tarafından 2015 yılında piyasaya sürülmüştür.",
+      "Exadel tarafından ilk olarak 2012 yılında piyasaya sürülmüştür.",
+      "Microsoft tarafından 2011 yılında piyasaya sürülmüştür."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 7)/Piyasaya Sürülme (Sayfa 17)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Appery.io)",
+    "question": "Appery.io hangi tür uygulamalar geliştirmek için kullanılabilir?",
+    "correct_option": "Hibrit uygulamalar, web tabanlı uygulamalar ve ileri (progressive) web uygulamaları (PWA).",
+    "options": [
+      "Sadece yerel (native) Android uygulamaları.",
+      "Sadece çapraz platform oyunları.",
+      "Sadece masaüstü uygulamaları ve API hizmetleri.",
+      "Hibrit uygulamalar, web tabanlı uygulamalar ve ileri (progressive) web uygulamaları (PWA)."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 17)"
+  },
+  {
+    "unit": 1,
+    "topic": "Düşük Kod",
+    "question": "Gartner'a göre, 2024'e kadar, düşük kodlu uygulama geliştirmenin, uygulama geliştirme etkinliğinin yüzde kaçından fazlasından sorumlu olacağı öngörülmektedir?",
+    "correct_option": "%65'inden fazlasından.",
+    "options": [
+      "%40'ından fazlasından.",
+      "%65'inden fazlasından.",
+      "%75'inden fazlasından.",
+      "%90'ından fazlasından."
+    ],
+    "source_type": "İstatistik (Sayfa 17)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (React Native)",
+    "question": "Facebook (Meta) tarafından desteklenen ve Javascript kütüphaneleri etkin şekilde entegre edilebilen açık kaynaklı uygulama çerçevesi nedir?",
+    "correct_option": "React Native.",
+    "options": [
+      "Flutter.",
+      "Xamarin.",
+      "React Native.",
+      "Apache Cordova."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 16)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Xamarin)",
+    "question": "Xamarin hangi programlama diliyle mobil uygulamalar geliştirmek için kullanılabilen bir platformdur?",
+    "correct_option": ".NET ve C# programlama dilleriyle.",
+    "options": [
+      "Dart ve Kotlin programlama dilleriyle.",
+      "Python ve Ruby programlama dilleriyle.",
+      ".NET ve C# programlama dilleriyle.",
+      "JavaScript ve HTML5 ile."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Xamarin)",
+    "question": "Aşağıdakilerden hangisi bir mobil uygulama mağazası değildir?",
+    "correct_option": "Xamarin, bir uygulama mağazası değil, çapraz platform uygulama geliştirme platformudur.",
+    "options": [
+      "Amazon Appstore.",
+      "Microsoft Store.",
+      "BlackBerry World.",
+      "Xamarin, bir uygulama mağazası değil, çapraz platform uygulama geliştirme platformudur."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 5/5) (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Apache Cordova)",
+    "question": "Açık kaynaklı, ücretsiz bir mobil geliştirme çerçevesi olan Apache Cordova (eski adıyla PhoneGap) platformlar arası geliştirme için hangi standart web teknolojilerini kullanmaya olanak tanır?",
+    "correct_option": "HTML5, CSS3 ve JavaScript'i.",
+    "options": [
+      "Python ve C++.",
+      "Dart ve Kotlin.",
+      "HTML5, CSS3 ve JavaScript'i.",
+      "XML ve Java'yı."
+    ],
+    "source_type": "Tanım (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Qt)",
+    "question": "Qt, bir uygulama çerçevesi ve hangi araçtır?",
+    "correct_option": "Widget aracıdır.",
+    "options": [
+      "Veritabanı yönetim aracıdır.",
+      "Yapay zeka motorudur.",
+      "Widget aracıdır.",
+      "Emülatör motorudur."
+    ],
+    "source_type": "Tanım (Sayfa 17)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Sencha Ext JS)",
+    "question": "Sencha Ext JS, herhangi bir modern cihaz için veri yoğun, platformlar arası web ve mobil uygulamalar oluşturmaya yönelik en kapsamlı hangi çerçevelerden biridir?",
+    "correct_option": "JavaScript çerçevelerinden biridir.",
+    "options": [
+      "Python çerçevelerinden biridir.",
+      "C# çerçevelerinden biridir.",
+      "JavaScript çerçevelerinden biridir.",
+      "Dart çerçevelerinden biridir."
+    ],
+    "source_type": "Tanım (Sayfa 17)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları",
+    "question": "Mobil uygulamaların sunulduğu dijital dağıtım platformlarına ne ad verilir?",
+    "correct_option": "Mobil uygulama mağazaları (App store veya App marketplace).",
+    "options": [
+      "Mobil uygulama marketleri.",
+      "Mobil uygulama depoları.",
+      "Mobil uygulama mağazaları (App store veya App marketplace).",
+      "Mobil Uygulama Arayüzleri (API)."
+    ],
+    "source_type": "Tanım (Sayfa 19)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (Google Play Store)",
+    "question": "Statista verilerine göre (Şubat 2022 itibariyle) en yüksek uygulama sayısına sahip mobil uygulama mağazası hangisidir?",
+    "correct_option": "Google Play Store (2,6 milyon uygulama).",
+    "options": [
+      "App Store.",
+      "Huawei AppGallery.",
+      "Google Play Store (2,6 milyon uygulama).",
+      "Microsoft Store."
+    ],
+    "source_type": "İstatistik/Kritik Bilgi (Sayfa 19)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (Google Play Store)",
+    "question": "Google Play Store ile ilgili olarak, 'HarmonyOS adlı mobil işletim sistemi için özel geliştirilmiştir' ifadesi doğru mudur?",
+    "correct_option": "Hayır, yanlıştır. HarmonyOS için geliştirilen Huawei AppGallery'dir.",
+    "options": [
+      "Evet, doğrudur.",
+      "Hayır, yanlıştır. HarmonyOS için geliştirilen Huawei AppGallery'dir.",
+      "Sadece Android işletim sistemi için geliştirilmiştir.",
+      "Sadece Chrome OS uygulamaları için geliştirilmiştir."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 9)/Kritik Bilgi (Sayfa 19)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (Google Play Store)",
+    "question": "Google Play Store'da Mart 2022 istatistiklerine göre en çok indirilen 5 uygulamadan biri hangisidir?",
+    "correct_option": "Google Haritalar.",
+    "options": [
+      "WhatsApp.",
+      "Google Haritalar.",
+      "Instagram.",
+      "TikTok."
+    ],
+    "source_type": "İstatistik (Sayfa 19)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (Google Play Store)",
+    "question": "Google Play Store'da oyun uygulamalarının 2024'te toplam gelirlerin yüzde kaçından fazlasını oluşturacağı tahmin edilmektedir?",
+    "correct_option": "Yüzde 70'inden fazlasını.",
+    "options": [
+      "Yüzde 40'ından fazlasını.",
+      "Yüzde 50'sinden fazlasını.",
+      "Yüzde 60'ından fazlasını.",
+      "Yüzde 70'inden fazlasını."
+    ],
+    "source_type": "İstatistik (Sayfa 19)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (App Store)",
+    "question": "App Store, hangi işletim sistemlerindeki mobil uygulamalar için geliştirilen bir dijital dağıtım platformudur?",
+    "correct_option": "iOS ve iPadOS işletim sistemlerindeki mobil uygulamalar.",
+    "options": [
+      "Android işletim sistemindeki mobil uygulamalar.",
+      "iOS ve iPadOS işletim sistemlerindeki mobil uygulamalar.",
+      "Windows işletim sistemindeki mobil uygulamalar.",
+      "HarmonyOS işletim sistemindeki mobil uygulamalar."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 10) (Sayfa 20)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (App Store)",
+    "question": "App Store'da Mart 2022 verilerine göre kaç farklı dilde uygulama sunulmaktadır?",
+    "correct_option": "40'tan fazla dilde, 175 farklı tasarımla.",
+    "options": [
+      "10 dilde, 50 farklı tasarımla.",
+      "40'tan fazla dilde, 175 farklı tasarımla.",
+      "80 dilde, 100 farklı tasarımla.",
+      "175 dilde, 40 farklı tasarımla."
+    ],
+    "source_type": "İstatistik (Sayfa 20)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (Amazon AppStore)",
+    "question": "Amazon AppStore şu anda yalnızca hangi cihazları desteklediği için masaüstü bilgisayarlarda açıldığında çalışmamaktadır?",
+    "correct_option": "Android mobil cihazları.",
+    "options": [
+      "iOS cihazları.",
+      "Fire OS cihazları.",
+      "Android mobil cihazları.",
+      "Windows 10 tabletleri."
+    ],
+    "source_type": "Dikkat Edilmesi Gereken Bilgi (Sayfa 22)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (Huawei AppGallery)",
+    "question": "Huawei AppGallery, hangi mobil işletim sistemi ve Android için Huawei Technologies şirketi tarafından geliştirilen bir uygulama mağazasıdır?",
+    "correct_option": "HarmonyOS adlı mobil işletim sistemi.",
+    "options": [
+      "Windows Mobile işletim sistemi.",
+      "Tizen işletim sistemi.",
+      "HarmonyOS adlı mobil işletim sistemi.",
+      "Ubuntu Touch işletim sistemi."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 21)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (Microsoft Store)",
+    "question": "Microsoft Store'da yalnızca mobil uygulamalar mı yer almaktadır?",
+    "correct_option": "Hayır, Hololens karma gerçeklik gözlüğü uygulamaları ve Xbox oyun konsolu uygulamaları da yer almaktadır.",
+    "options": [
+      "Evet, sadece Windows Mobile için mobil uygulamalar yer almaktadır.",
+      "Hayır, sadece masaüstü ve Xbox uygulamaları yer almaktadır.",
+      "Hayır, Hololens karma gerçeklik gözlüğü uygulamaları ve Xbox oyun konsolu uygulamaları da yer almaktadır.",
+      "Evet, sadece Windows işletim sistemi için mobil uygulamalar yer almaktadır."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 22)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (Microsoft Store)",
+    "question": "Microsoft Store'un eski adı nedir?",
+    "correct_option": "Windows Store.",
+    "options": [
+      "Microsoft AppMarket.",
+      "Windows Market.",
+      "Windows Store.",
+      "Microsoft Mobile."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 22)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları",
+    "question": "Aktif olarak kullanılan mobil uygulama mağazaları arasında sayılanlar nelerdir?",
+    "correct_option": "Google Play Store, App Store, Huawei AppGallery, Amazon Appstore, Microsoft Store, Opera Mobil Store, Samsung Galaxy Store, BlackBerry World, OpenStore for Ubuntu Touch.",
+    "options": [
+      "Google Play Store, App Store, Windows Phone Store, Nokia Store.",
+      "Google Play Store, App Store, Huawei AppGallery, Amazon Appstore, Microsoft Store, Opera Mobil Store, Samsung Galaxy Store, BlackBerry World, OpenStore for Ubuntu Touch.",
+      "Sadece Google Play Store, App Store ve Huawei AppGallery.",
+      "App Store, Amazon Appstore, Firefox Marketplace, HP App Catalog."
+    ],
+    "source_type": "Kritik Liste (Sayfa 19)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (PEGI)",
+    "question": "Oyunlar için kategorilendirme yapan PEGI etiketlerinden, tüm yaş grupları için uygun oyunların etiketlendiği kategori hangisidir?",
+    "correct_option": "PEGI 3.",
+    "options": [
+      "PEGI 7.",
+      "PEGI 12.",
+      "PEGI 3.",
+      "PEGI 16."
+    ],
+    "source_type": "Dikkat Edilmesi Gereken Bilgi (Sayfa 19)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Geliştirme Süreçleri",
+    "question": "Mobil uygulamalar ile mobil web siteleri karşılaştırıldığında, mobil uygulamalar ile ilgili doğru olan temel özellikler nelerdir?",
+    "correct_option": "İnternet bağlantısı gerektirmeden çalışabilen uygulamalar mevcuttur (offline) ve mobil web sitelerine oranla daha zengin bir kullanıcı deneyimi sunar.",
+    "options": [
+      "Maliyeti mobil web sitelere oranla daha uygundur.",
+      "Mobil web sitelerine oranla cihaz fonksiyonlarına erişimi sınırlıdır.",
+      "Sadece aktif internet bağlantısı gerektirir.",
+      "İnternet bağlantısı gerektirmeden çalışabilen uygulamalar mevcuttur (offline) ve mobil web sitelerine oranla daha zengin bir kullanıcı deneyimi sunar."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 10/8)/Kritik Bilgi (Sayfa 14, 24)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Geliştirme Süreçleri",
+    "question": "Mobil uygulamaların mobil web sitelerine oranla cihaz fonksiyonlarına erişimi sınırlıdır ifadesi doğru mudur?",
+    "correct_option": "Hayır, yanlıştır. Mobil uygulamalar cihaz fonksiyonlarına daha fazla erişime sahiptir.",
+    "options": [
+      "Evet, doğrudur. Sadece temel fonksiyonlara erişebilirler.",
+      "Hayır, yanlıştır. Mobil uygulamalar cihaz fonksiyonlarına daha fazla erişime sahiptir.",
+      "Sadece hibrit uygulamalar daha fazla erişime sahiptir.",
+      "Mobil web siteleri donanıma daha fazla erişim sağlar."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 10/8)/Kritik Bilgi (Sayfa 24)"
+  },
+  {
+    "unit": 1,
+    "topic": "Mobil Uygulama (Doğruluk Kontrolü)",
+    "question": "Mobil uygulamalar, fare ve klavye içeren bilgisayarlar için mi geliştirilmiştir?",
+    "correct_option": "Hayır, fare ve klavye içeren bilgisayarlar için masaüstü uygulamaları geliştirilirken, mobil uygulamalar dokunmatik ekranlar için tasarlanmıştır.",
+    "options": [
+      "Evet, temel olarak masaüstü uygulamalarının mobil versiyonlarıdır.",
+      "Hayır, sadece Android cihazlar için geliştirilmiştir.",
+      "Hayır, fare ve klavye içeren bilgisayarlar için masaüstü uygulamaları geliştirilirken, mobil uygulamalar dokunmatik ekranlar için tasarlanmıştır.",
+      "Evet, mobil uygulamalar hem dokunmatik hem de klavye/fare ile kullanılabilir."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 1)/Kritik Bilgi (Sayfa 11)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Geliştirme İstatistikleri",
+    "question": "We Are Social 2022 Ocak raporuna göre dünya nüfusunun yaklaşık yüzde kaçı mobil telefon kullanıcısıdır?",
+    "correct_option": "%67.1'i (5.31 milyar).",
+    "options": [
+      "%50'si.",
+      "%67.1'i (5.31 milyar).",
+      "%75'i.",
+      "%90'ı."
+    ],
+    "source_type": "İstatistik (Sayfa 11)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Geliştirme İstatistikleri",
+    "question": "Sıradan bir akıllı telefon kullanıcısının, akıllı telefonunu günde ortalama kaç kez kontrol ettiği belirtilmiştir?",
+    "correct_option": "63 kez.",
+    "options": [
+      "15 kez.",
+      "30 kez.",
+      "63 kez.",
+      "90 kez."
+    ],
+    "source_type": "İstatistik (Sayfa 11)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Geliştirme İstatistikleri",
+    "question": "İnternete erişim sağlayan bireylerin %90.7'sinin internete akıllı telefonlardan girdiği bilgisinin doğruluğu nedir?",
+    "correct_option": "Doğrudur, bu oran laptop ve masaüstü bilgisayarlardan internete girenlerden (%71.2) daha yüksektir.",
+    "options": [
+      "Yanlıştır, masaüstü bilgisayarlar hala baskın cihazlardır.",
+      "Doğrudur, bu oran laptop ve masaüstü bilgisayarlardan internete girenlerden (%71.2) daha yüksektir.",
+      "Doğrudur, ancak oran %50'nin altındadır.",
+      "Yanlıştır, tabletler en çok kullanılan mobil cihazlardır."
+    ],
+    "source_type": "İstatistik (Sayfa 11)"
+  },
+  {
+    "unit": 1,
+    "topic": "Mobil Uygulama Kullanım Alanları",
+    "question": "Oyun uygulamaları, mobil uygulama indirmelerinin yaklaşık yüzde kaçını ve uygulama harcamalarının yaklaşık yüzde kaçını oluşturmaktadır?",
+    "correct_option": "İndirmelerin %33'ünü ve harcamaların %74'ünü.",
+    "options": [
+      "İndirmelerin %10'unu ve harcamaların %20'sini.",
+      "İndirmelerin %50'sini ve harcamaların %50'sini.",
+      "İndirmelerin %33'ünü ve harcamaların %74'ünü.",
+      "İndirmelerin %74'ünü ve harcamaların %33'ünü."
+    ],
+    "source_type": "İstatistik (Sayfa 12)"
+  },
+  {
+    "unit": 1,
+    "topic": "İleri Web Uygulamaları (PWA)",
+    "question": "İleri Web Uygulamalarının (PWA) temel özelliği nedir?",
+    "correct_option": "Normal web uygulamalarına benzer web teknolojilerini kullanmasına rağmen, yerel uygulama benzeri bir deneyim sunmasıdır.",
+    "options": [
+      "Sadece iOS cihazlarında çevrimdışı çalışabilmesi.",
+      "Sadece HTML5 ve CSS kullanarak geliştirilmesi.",
+      "Normal web uygulamalarına benzer web teknolojilerini kullanmasına rağmen, yerel uygulama benzeri bir deneyim sunmasıdır.",
+      "Yüksek geliştirme maliyeti nedeniyle nadiren tercih edilmesi."
+    ],
+    "source_type": "Tanım (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Çapraz Platform Uygulamaları",
+    "question": "Çapraz platform uygulamalarının dezavantajları nelerdir?",
+    "correct_option": "İşletim sistemlerine erişimi düşüktür, uygulama performansı yavaş kalabilir ve yerel uygulamalarla etkileşimi sınırlıdır.",
+    "options": [
+      "Geliştirme maliyetleri yerel uygulamalardan yüksektir.",
+      "Yalnızca tek bir kod tabanını destekler.",
+      "İşletim sistemlerine erişimi düşüktür, uygulama performansı yavaş kalabilir ve yerel uygulamalarla etkileşimi sınırlıdır.",
+      "Hot Reload özelliği bulunmamaktadır."
+    ],
+    "source_type": "Dezavantaj (Sayfa 16)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (JavaScript)",
+    "question": "JavaScript motorları başlangıçta yalnızca nerede kullanılmaktaydı, ancak Node.js ile birlikte nereye yayılmıştır?",
+    "correct_option": "Başlangıçta yalnızca web tarayıcılarında kullanılmaktaydı, şimdi bazı sunucuların ve çeşitli uygulamaların temel bileşenleridir.",
+    "options": [
+      "Başlangıçta masaüstü uygulamalarında, şimdi mobil uygulamalarda.",
+      "Başlangıçta Web sunucularında, şimdi sadece tarayıcılarda.",
+      "Başlangıçta yalnızca web tarayıcılarında kullanılmaktaydı, şimdi bazı sunucuların ve çeşitli uygulamaların temel bileşenleridir.",
+      "Başlangıçta sadece React Native'de, şimdi Flutter'da."
+    ],
+    "source_type": "Kritik Bilgi/Dikkat (Sayfa 17)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Swift)",
+    "question": "Swift ile mobil uygulama geliştirmek için Apple ekosisteminde hangi uygulama kullanılabilmektedir?",
+    "correct_option": "Xcode adlı uygulama kullanılabilmektedir.",
+    "options": [
+      "Android Studio kullanılabilmektedir.",
+      "VSCode kullanılabilmektedir.",
+      "Xcode adlı uygulama kullanılabilmektedir.",
+      "IntelliJ IDEA kullanılabilmektedir."
+    ],
+    "source_type": "Dikkat Edilmesi Gereken Bilgi (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (C++)",
+    "question": "C++ mobil uygulama geliştirmenin ötesinde, hangi tür uygulamaları geliştirmek için de kullanılabilir?",
+    "correct_option": "Güçlü masaüstü uygulamalarını ve video oyunları geliştirmek için.",
+    "options": [
+      "Sadece Android işletim sistemi çekirdeğini geliştirmek için.",
+      "Sadece iOS için widget kütüphaneleri oluşturmak için.",
+      "Sadece web tabanlı PWA'lar geliştirmek için.",
+      "Güçlü masaüstü uygulamalarını ve video oyunları geliştirmek için."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Python)",
+    "question": "Python dilinde yazılmış popüler uygulamalara örnekler nelerdir?",
+    "correct_option": "Youtube, Instagram, Spotify, Dropbox, Calibre, Reddit, BitTorrent, Quora.",
+    "options": [
+      "Gmail, Google Haritalar, Chrome.",
+      "WhatsApp, SoundCloud, Spotify.",
+      "Youtube, Instagram, Spotify, Dropbox, Calibre, Reddit, BitTorrent, Quora.",
+      "Xcode, Android Studio, Visual Studio."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (Scala)",
+    "question": "Scala'nın temeli hangi dile dayanır ve hangi programlama dilinin problemlerini gidermek için tasarlanmıştır?",
+    "correct_option": "Temeli Java diline dayanır ve Java'da yaşanan problemlerin giderilmesi için tasarlanmıştır.",
+    "options": [
+      "Temeli C++ diline dayanır ve C++'taki bellek yönetimini iyileştirmek için tasarlanmıştır.",
+      "Temeli Java diline dayanır ve Java'da yaşanan problemlerin giderilmesi için tasarlanmıştır.",
+      "Temeli Python diline dayanır ve Python'daki hız problemlerini gidermek için tasarlanmıştır.",
+      "Temeli Ruby diline dayanır ve Ruby'deki dokümantasyon eksikliğini gidermek için tasarlanmıştır."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 19)"
+  },
+  {
+    "unit": 1,
+    "topic": "Web Tabanlı Uygulamalar",
+    "question": "Duyarlı (responsive) web uygulamaları ile uyarlanabilir (adaptive) web uygulamaları arasındaki temel fark nedir?",
+    "correct_option": "Duyarlı web uygulamaları kendisini ekran özelliklerine göre ayarlarken, uyarlanabilir web uygulamaları ekran boyutuna uyacak şekilde sadece ölçeklenir (tasarım değişmez).",
+    "options": [
+      "Duyarlı web uygulamaları sadece mobil cihazlarda çalışırken, uyarlanabilir olanlar tüm cihazlarda çalışır.",
+      "Duyarlı web uygulamaları kendisini ekran özelliklerine göre ayarlarken, uyarlanabilir web uygulamaları ekran boyutuna uyacak şekilde sadece ölçeklenir (tasarım değişmez).",
+      "Uyarlanabilir web uygulamaları çevrimdışı çalışabilirken, duyarlı web uygulamaları çalışamaz.",
+      "Duyarlı uygulamalar web tarayıcısı API'lerini kullanırken, uyarlanabilir olanlar kullanmaz."
+    ],
+    "source_type": "Karşılaştırma (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Web Tabanlı Uygulamalar",
+    "question": "Web uygulamalarının dezavantajları nelerdir?",
+    "correct_option": "Çevrimdışı olarak çalışmaması, sınırlı işlevsellik, geliştirilmesinin uzun zaman alması ve güvenlik riskleri.",
+    "options": [
+      "Yüksek geliştirme maliyeti ve uzun pazara inme süresi.",
+      "Düşük işletme maliyeti ve her yerden erişilebilirlik.",
+      "Sadece belirli bir işletim sistemi ile sınırlı olması.",
+      "Çevrimdışı olarak çalışmaması, sınırlı işlevsellik, geliştirilmesinin uzun zaman alması ve güvenlik riskleri."
+    ],
+    "source_type": "Dezavantaj (Sayfa 14)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Geliştirme Süreçleri",
+    "question": "Mobil web sitelerinin günlük ortalama kullanım süresinin düşüp, mobil uygulama kullanımının artmasındaki en büyük etken nedir?",
+    "correct_option": "Mobil uygulamaların daha az problem yaşatması ve daha fazla dolaşım sağlaması.",
+    "options": [
+      "Web sitelerinin arama motorları tarafından kolay bulunamaması.",
+      "Mobil web sitelerinin daha az problem yaşatması ve daha fazla dolaşım sağlaması.",
+      "Mobil uygulamaların daha az problem yaşatması ve daha fazla dolaşım sağlaması.",
+      "Uygulama mağazalarının komisyon oranlarının düşmesi."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 11)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (JavaScript)",
+    "question": "Web sitelerinin yüzde kaçından fazlası Javascript kullanılarak tasarlanmıştır?",
+    "correct_option": "Yüzde 97'sinden fazlası.",
+    "options": [
+      "Yüzde 50'sinden fazlası.",
+      "Yüzde 70'inden fazlası.",
+      "Yüzde 85'inden fazlası.",
+      "Yüzde 97'sinden fazlası."
+    ],
+    "source_type": "İstatistik (Sayfa 17)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (C#)",
+    "question": "C# programlama dili özellikle hangi firma için uygulama ürünleri oluşturmak için kullanılır?",
+    "correct_option": "Microsoft firması.",
+    "options": [
+      "Apple firması.",
+      "Google firması.",
+      "Microsoft firması.",
+      "Exadel firması."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 18)"
+  },
+  {
+    "unit": 1,
+    "topic": "Programlama Dilleri (PHP)",
+    "question": "W3Techs'e göre (Mart 2022 itibarıyla) sunucu taraflı tüm web sitelerinin yaklaşık yüzde kaçında PHP kullanılmaktadır?",
+    "correct_option": "Yüzde 77,9'unda.",
+    "options": [
+      "Yüzde 40'ında.",
+      "Yüzde 65'inde.",
+      "Yüzde 77,9'unda.",
+      "Yüzde 90'ında."
+    ],
+    "source_type": "İstatistik (Sayfa 21)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Codename One)",
+    "question": "Codename One'ın temel mottosu nedir?",
+    "correct_option": "WORA (Write Once Run Anywhere/ Bir Kez Kodla, Her Yerde Çalıştır).",
+    "options": [
+      "WORA (Write Once Run Anywhere/ Bir Kez Kodla, Her Yerde Çalıştır).",
+      "PWA (Progressive Web App).",
+      "SDK (Software Development Kit).",
+      "API (Application Programming Interface)."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 15)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (Google Play Store)",
+    "question": "Android mobil işletim sistemi ve Chrome OS uygulamalarının sunulduğu resmi uygulama mağazası nedir?",
+    "correct_option": "Google Play Store.",
+    "options": [
+      "Huawei AppGallery.",
+      "Amazon Appstore.",
+      "Microsoft Store.",
+      "Google Play Store."
+    ],
+    "source_type": "Tanım (Sayfa 19)"
+  },
+  {
+    "unit": 1,
+    "topic": "Uygulama Mağazaları (App Store)",
+    "question": "App Store'da uygulamaların kötü amaçlı yazılım testlerinden geçerek otomatik olarak taranmasını sağlayan hangi kurumdur?",
+    "correct_option": "Apple Inc.",
+    "options": [
+      "Google.",
+      "CERN.",
+      "W3C.",
+      "Apple Inc."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 20)"
+  },
+  {
+    "unit": 1,
+    "topic": "Geliştirme Platformları (Apache Cordova)",
+    "question": "Apache Cordova (eski adıyla PhoneGap) hangi web teknolojilerini kullanmaya olanak tanır?",
+    "correct_option": "HTML5, CSS3 ve JavaScript'i.",
+    "options": [
+      "HTML5, CSS3 ve JavaScript'i.",
+      "Dart, C# ve Swift'i.",
+      "Python, Ruby ve Lua'yı.",
+      "XML ve Java'yı."
+    ],
+    "source_type": "Tanım (Sayfa 15)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Tanımı",
+    "question": "Bir bilgisayar programı, mobil uygulama veya web arayüzü ile etkileşimin nasıl tasarlandığını, görselliğini ve fonksiyonel anlaşılabilirliğini inceleyen kavram nedir?",
+    "correct_option": "Kullanılabilirlik.",
+    "options": [
+      "Kullanıcı Deneyimi (UX).",
+      "Kullanılabilirlik.",
+      "Sezgiseller (Heuristics).",
+      "Evrensel Tasarım."
+    ],
+    "source_type": "Tanım/Sınav Sorusu (Sayfa 34)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Tarihçesi",
+    "question": "Günümüzde kullanıldığı anlamda kullanılabilirlik kavramının öncüsü nedir?",
+    "correct_option": "Ergonomi (MCQ 1).",
+    "options": [
+      "Kullanıcı Deneyimi (UX).",
+      "Birinci Dünya Savaşı.",
+      "Ergonomi (MCQ 1).",
+      "İnsan Bilgisayar Etkileşimi (İBE)."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 1) (Sayfa 33)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Bileşenleri",
+    "question": "Kullanılabilirliğin temel çerçevesini oluşturan dört ana bileşen nedir?",
+    "correct_option": "Kullanıcı (user), araç/arayüz (tool), görev (task) ve bağlam (context).",
+    "options": [
+      "Etkililik, verimlilik, memnuniyet ve öğrenilebilirlik.",
+      "Kullanıcı (user), araç/arayüz (tool), görev (task) ve bağlam (context).",
+      "Yazılımcı, donanım, yazılım ve görev.",
+      "Donanım, yazılım, işletim sistemi ve kullanıcı."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 2/10)/Kritik Liste (Sayfa 34)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Bileşenleri",
+    "question": "Belirli bir ürünü, sistemi kullanması beklenen hedef kitle olarak tanımlanan kullanılabilirlik bileşeni hangisidir?",
+    "correct_option": "Kullanıcı (MCQ 10).",
+    "options": [
+      "Görev (Task).",
+      "Araç/Arayüz (Tool).",
+      "Bağlam (Context).",
+      "Kullanıcı (MCQ 10)."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 10) (Sayfa 34)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Tanımı (ISO)",
+    "question": "Uluslararası Standartlar Enstitüsü (ISO 9241 Bölüm 11) tarafından yapılan kullanılabilirlik tanımının temel ölçütleri nelerdir?",
+    "correct_option": "Etkililik, Verimlilik ve Memnuniyet.",
+    "options": [
+      "Hız, doğruluk, sadelik.",
+      "Esneklik, öğrenilebilirlik, akılda kalıcılık.",
+      "Etkililik, Verimlilik ve Memnuniyet.",
+      "Kullanıcı, görev, bağlam."
+    ],
+    "source_type": "Standart/Sınav Sorusu/Temel Tanım (Sayfa 35)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Tanımı (ISO)",
+    "question": "ISO 9241-11 standardına göre kullanım bağlamı arasında yer alan bileşenler nelerdir?",
+    "correct_option": "Araç ve Çevre (MCQ 9).",
+    "options": [
+      "Görev ve Kullanıcı.",
+      "Etkililik ve Memnuniyet.",
+      "Araç ve Çevre (MCQ 9).",
+      "Sistem ve Süreç."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 9) (Sayfa 44)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Ölçütleri",
+    "question": "Kullanıcıların uygulamayı kullanarak yapması beklenen işleri ne ölçüde başarabildiğini ifade eden ölçüt nedir?",
+    "correct_option": "Etkililik (MCQ 8).",
+    "options": [
+      "Verimlilik.",
+      "Memnuniyet.",
+      "Etkililik (MCQ 8).",
+      "Öğrenilebilirlik."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 8)/Tanım (Sayfa 36)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Ölçütleri",
+    "question": "Belirlenen işi yapmak için kullanılan zaman, çaba ve maliyet gibi unsurların değerlendirildiği ölçüt nedir?",
+    "correct_option": "Verimlilik.",
+    "options": [
+      "Etkililik.",
+      "Verimlilik.",
+      "Memnuniyet.",
+      "Kalite."
+    ],
+    "source_type": "Tanım (Sayfa 36)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Ölçütleri",
+    "question": "Kullanıcının bir uygulamayı kullanırken oluşan duygularını ifade eden ölçüt nedir?",
+    "correct_option": "Memnuniyet (genellikle anketler veya sözlü geri bildirimlerin analizi ile belirlenir).",
+    "options": [
+      "Etkililik.",
+      "Verimlilik.",
+      "Memnuniyet (genellikle anketler veya sözlü geri bildirimlerin analizi ile belirlenir).",
+      "Performans."
+    ],
+    "source_type": "Tanım (Sayfa 36)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Tanımı (Nielsen)",
+    "question": "Nielsen’in 5 bileşenden oluşan kullanılabilirlik tanımının bileşenleri nelerdir?",
+    "correct_option": "Verimlilik, Öğrenilebilirlik, Akılda kalıcılık, Hatalar/Güvenlik ve Memnuniyet.",
+    "options": [
+      "Etkililik, Verimlilik, Memnuniyet, Tutarlılık, Esneklik.",
+      "Kullanıcı, Görev, Araç, Bağlam, Çevre.",
+      "Verimlilik, Öğrenilebilirlik, Akılda kalıcılık, Hatalar/Güvenlik ve Memnuniyet.",
+      "Tasarım Rehberleri, Testler, Sezgiseller, Modeller, Ergonomi."
+    ],
+    "source_type": "Kritik Liste (Sayfa 36)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Ölçülmesi",
+    "question": "Kullanılabilirliğin ölçülmesi için yararlanılan yöntemler nelerdir?",
+    "correct_option": "Tasarım rehberleri, Kullanılabilirlik testleri, Sezgiseller (Heuristics) ve Model temelli yaklaşım.",
+    "options": [
+      "A/B Testi, Odak Grup Çalışmaları, Pazar Araştırması.",
+      "Göz-İzleme, Sesli Düşünme, Anketler.",
+      "Tasarım rehberleri, Kullanılabilirlik testleri, Sezgiseller (Heuristics) ve Model temelli yaklaşım.",
+      "Ergonomi, Psikoloji, Bilişsel Modelleme."
+    ],
+    "source_type": "Liste/Sınav Sorusu (Sayfa 37)"
+  },
+  {
+    "unit": 2,
+    "topic": "Tasarım Rehberleri",
+    "question": "Hazırlanan tasarımlarda tutarlılığı ve uyumluluğu sağlamayı temel amaç edinen yaklaşım nedir?",
+    "correct_option": "Tasarım Rehberleri.",
+    "options": [
+      "Kullanılabilirlik Testleri.",
+      "Tasarım Rehberleri.",
+      "Sezgiseller (Heuristics).",
+      "Model Temelli Yaklaşım."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 6)/Tanım (Sayfa 38)"
+  },
+  {
+    "unit": 2,
+    "topic": "Tasarım Rehberleri",
+    "question": "Türkiye'de hazırlanan ve kullanılabilirlik ile ilgili tüm konuları ele alan tasarım dokümanı nedir?",
+    "correct_option": "Kamu Kurumları İnternet Siteleri Rehberi (KAMİS).",
+    "options": [
+      "W3C WCAG.",
+      "Apple Human Interface Guidelines.",
+      "Kamu Kurumları İnternet Siteleri Rehberi (KAMİS).",
+      "Android Design Guidelines."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 38)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Testleri",
+    "question": "Gerçek kullanıcıları, gerçek bir arayüzü kullanırken, gerçek görevler ile test etmeyi amaçlayan yaklaşım nedir?",
+    "correct_option": "Deneysel yaklaşım (Kullanılabilirlik Testleri).",
+    "options": [
+      "Uzman Değerlendirmesi.",
+      "Model Temelli Yaklaşım.",
+      "Tasarım Rehberi.",
+      "Deneysel yaklaşım (Kullanılabilirlik Testleri)."
+    ],
+    "source_type": "Tanım (Sayfa 38)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Testleri",
+    "question": "Kullanıcıların uygulamayı kullanırken izlediği yolu sesli düşünme ile aktarmasının istendiği test yöntemine ne ad verilir?",
+    "correct_option": "Sesli düşünme (think aloud).",
+    "options": [
+      "Göz-izleme (eye-tracking).",
+      "A/B testi.",
+      "Sesli düşünme (think aloud).",
+      "Bilgilendirilmiş onam."
+    ],
+    "source_type": "Yöntem (Sayfa 38)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Testleri (Nielsen)",
+    "question": "Nielsen’e göre, iyi tasarlanmış testlerle kullanılabilirlik problemlerinin %75’ini ortaya çıkarmak için çalışmaya katılması gereken minimum denek sayısı kaçtır?",
+    "correct_option": "Beş (5) (MCQ 5).",
+    "options": [
+      "Bir (1).",
+      "Üç (3).",
+      "Beş (5) (MCQ 5).",
+      "On beş (15)."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 5)/Kritik Bilgi (Sayfa 39)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Süreç Adımları",
+    "question": "Kullanılabilirlik çalışmaları sürecinde izlenmesi gereken adımlar nelerdir?",
+    "correct_option": "Uygulamadan Beklenen Hedeflerin Belirlenmesi, Hedef Kitlenin Beklentilerinin Analizi, Kullanıcı Profillerinin Çıkarılması.",
+    "options": [
+      "Kodlama, Hata Ayıklama, Yayına Alma.",
+      "Fiyatlandırma, Pazarlama, Dağıtım.",
+      "Uygulamadan Beklenen Hedeflerin Belirlenmesi, Hedef Kitlenin Beklentilerinin Analizi, Kullanıcı Profillerinin Çıkarılması.",
+      "Tasarım Rehberi Seçimi, Test Ortamı Kurulumu, Metrik Belirleme."
+    ],
+    "source_type": "Kritik Liste (Sayfa 39)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Süreç Adımları",
+    "question": "Aşağıdakilerden hangisi kullanılabilirlik çalışmaları sürecinde izlenmesi gereken adımlar içinde yer almaz?",
+    "correct_option": "Uygulama geliştirilirken hangi programlama dilinin kullanılacağına karar verilmesi (MCQ 9).",
+    "options": [
+      "Hedef kitlenin siteden beklentilerinin analizi.",
+      "Uygulamadan beklenen hedeflerin belirlenmesi.",
+      "Kullanıcı profillerinin çıkarılması.",
+      "Uygulama geliştirilirken hangi programlama dilinin kullanılacağına karar verilmesi (MCQ 9)."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 9) (Sayfa 39)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Süreçleri",
+    "question": "Test esnasında denekler ile imzalanan ve deney süreçlerini açıklayan protokole ne ad verilir?",
+    "correct_option": "Bilgilendirilmiş onam (MCQ 6).",
+    "options": [
+      "Gizlilik Sözleşmesi (NDA).",
+      "Kullanıcı Sözleşmesi (EULA).",
+      "Bilgilendirilmiş onam (MCQ 6).",
+      "A/B Test Protokolü."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 6) (Sayfa 40)"
+  },
+  {
+    "unit": 2,
+    "topic": "Sezgiseller (Nielsen)",
+    "question": "Arayüzün uzmanlarca değerlendirilmesi yaklaşımında en yaygın kullanılan değerlendirme ilke dizisi nedir?",
+    "correct_option": "Jacob Nielsen’in 10 Kullanılabilirlik Sezgiseli (Heuristics).",
+    "options": [
+      "Uluslararası Standartlar Enstitüsü (ISO) Rehberi.",
+      "Jacob Nielsen’in 10 Kullanılabilirlik Sezgiseli (Heuristics).",
+      "Web İçeriği Erişilebilirlik Rehberi (WCAG).",
+      "Shneiderman'ın 8 Altın Kuralı."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 40)"
+  },
+  {
+    "unit": 2,
+    "topic": "Nielsen Sezgiselleri",
+    "question": "Geri alma (undo) ve yeniden yapma (redo) seçeneklerinin sunulması Nielsen'in hangi ilkesi kapsamındadır?",
+    "correct_option": "Kullanıcı kontrolü ve özgürlük (MCQ 6).",
+    "options": [
+      "Hataları önleme.",
+      "Tutarlılık ve standartlar.",
+      "Kullanıcı kontrolü ve özgürlük (MCQ 6).",
+      "Sistem ile gerçek dünyanın eşleşmesi."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 6)/Kritik Bilgi (Sayfa 41)"
+  },
+  {
+    "unit": 2,
+    "topic": "Nielsen Sezgiselleri",
+    "question": "Sistemin, kullanıcıları o anki durumla ilgili olarak, sürekli ve uygun dönütlerle bilgilendirmesi gerektiğini belirten ilke nedir?",
+    "correct_option": "Sistem durumunun görünürlüğü.",
+    "options": [
+      "Sistem ile gerçek dünyanın eşleşmesi.",
+      "Sistem durumunun görünürlüğü.",
+      "Hataları önleme.",
+      "Esneklik ve kullanım verimliliği."
+    ],
+    "source_type": "Nielsen İlkesi (Sayfa 40)"
+  },
+  {
+    "unit": 2,
+    "topic": "Nielsen Sezgiselleri",
+    "question": "Kullanıcıların farklı kelime ve eylemlerin aynı anlama gelip gelmediğini düşünmemesi gerektiğini, uygulamanın tutarlı olması gerektiğini belirten ilke nedir?",
+    "correct_option": "Tutarlılık ve standartlar.",
+    "options": [
+      "Hataları önleme.",
+      "Tutarlılık ve standartlar.",
+      "Estetik ve sade tasarım.",
+      "Hatırlamak yerine tanıma."
+    ],
+    "source_type": "Nielsen İlkesi (Sayfa 41)"
+  },
+  {
+    "unit": 2,
+    "topic": "Nielsen Sezgiselleri",
+    "question": "İyi bir hata mesajı yerine, dikkatli bir tasarım ile, hatanın oluşmasının önlenmesi gerektiğini savunan ilke nedir?",
+    "correct_option": "Hataları önleme.",
+    "options": [
+      "Kullanıcı kontrolü ve özgürlük.",
+      "Hataları önleme.",
+      "Yardım ve dokümantasyon.",
+      "Estetik ve sade tasarım."
+    ],
+    "source_type": "Nielsen İlkesi (Sayfa 41)"
+  },
+  {
+    "unit": 2,
+    "topic": "Nielsen Sezgiselleri",
+    "question": "Acemi kullanıcılar tarafından görülmeyen hızlandırıcıların kullanılması gerektiğini savunan ilke nedir?",
+    "correct_option": "Esneklik ve kullanım verimliliği.",
+    "options": [
+      "Estetik ve sade tasarım.",
+      "Hatırlamak yerine tanıma.",
+      "Esneklik ve kullanım verimliliği.",
+      "Kullanıcı kontrolü ve özgürlük."
+    ],
+    "source_type": "Nielsen İlkesi (Sayfa 41)"
+  },
+  {
+    "unit": 2,
+    "topic": "Nielsen Sezgiselleri",
+    "question": "Hata geri dönütlerinin sade dilde (kodsuz) olmalı, sorunu açıklamalı ve yapıcı bir çözüm önermesi gerektiğini belirten ilke nedir?",
+    "correct_option": "Kullanıcılara hata ile karşılaşmaları durumunda hatayı teşhis etmeleri, onarmaları ve kurtulmaları olanağı tanınmalıdır.",
+    "options": [
+      "Yardım ve dokümantasyon.",
+      "Sistem durumunun görünürlüğü.",
+      "Kullanıcılara hata ile karşılaşmaları durumunda hatayı teşhis etmeleri, onarmaları ve kurtulmaları olanağı tanınmalıdır.",
+      "Hataları önleme."
+    ],
+    "source_type": "Nielsen İlkesi (Sayfa 41)"
+  },
+  {
+    "unit": 2,
+    "topic": "Model Temelli Yaklaşım",
+    "question": "Hangi kullanılabilirlik test yaklaşımında hedef, kullanıcıların biliş ve davranışlarının modellenmesidir?",
+    "correct_option": "Model Temelli Yaklaşım.",
+    "options": [
+      "Deneysel Yaklaşım.",
+      "Sezgisel Yaklaşım.",
+      "Model Temelli Yaklaşım.",
+      "Tasarım Rehberleri."
+    ],
+    "source_type": "Tanım (Sayfa 41)"
+  },
+  {
+    "unit": 2,
+    "topic": "Tasarım Kavramları",
+    "question": "Görüntülendiği platformu tanıyarak kendisini o ekranın özelliklerine göre ayarlayabilen web tasarımına ne ad verilir?",
+    "correct_option": "Responsive (Mobil Uyumlu) Tasarım (MCQ 7).",
+    "options": [
+      "Evrensel Tasarım.",
+      "Adaptive (Uyarlanabilir) Tasarım.",
+      "Responsive (Mobil Uyumlu) Tasarım (MCQ 7).",
+      "Minimalist Tasarım."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 7)/Tanım (Sayfa 44)"
+  },
+  {
+    "unit": 2,
+    "topic": "Mobil Tasarım",
+    "question": "Akıllı telefonlarda tek el kullanımında ekran ile etkileşim hangi parmak ile yapılır?",
+    "correct_option": "Başparmak (MCQ 8). (Navigasyon/işlem menüleri bu bölgelerde olmalıdır).",
+    "options": [
+      "İşaret Parmağı.",
+      "Başparmak (MCQ 8). (Navigasyon/işlem menüleri bu bölgelerde olmalıdır).",
+      "Orta Parmak.",
+      "Tüm parmaklar eşit kullanılır."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 8)/Kritik Bilgi (Sayfa 46)"
+  },
+  {
+    "unit": 2,
+    "topic": "Menü Tasarımı (Nielsen)",
+    "question": "Nielsen’in menü tasarımı için önerdiği rehber listeye göre doğru olan ilke nedir?",
+    "correct_option": "Uzun sayfalar için yapışkan menüler kullanılabilmelidir (MCQ 6/9).",
+    "options": [
+      "Menü bağlantıları etkileşimli görünmemelidir.",
+      "Uzun sayfalar için yapışkan menüler kullanılabilmelidir (MCQ 6/9).",
+      "Büyük ekranlarda küçük menü veya simge kullanılmalıdır.",
+      "Menüleri her zaman ekranın üst kısmında olmalıdır."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 6/9)/Kritik Bilgi (Sayfa 47)"
+  },
+  {
+    "unit": 2,
+    "topic": "Menü Tasarımı (Nielsen)",
+    "question": "Nielsen'in menü tasarımı için önerdiği rehberde, menü bağlantıları etkileşimli görünmeli midir?",
+    "correct_option": "Evet, görünmelidir.",
+    "options": [
+      "Hayır, görünmemelidir.",
+      "Sadece açılır menüler görünmelidir.",
+      "Evet, görünmelidir.",
+      "Sadece simgeler etkileşimli görünmelidir."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 6/9) (Sayfa 47)"
+  },
+  {
+    "unit": 2,
+    "topic": "Navigasyon",
+    "question": "Kullanıcının yapmasını istediği en önemli eylemi ekranda az bir yer kaplayarak önceliklendirmek isteyen bir tasarımcı hangi menü biçimini seçmelidir?",
+    "correct_option": "Yüzen düğme (FloatingActionButton) (MCQ 10).",
+    "options": [
+      "Hamburger Menü.",
+      "Sekme Satırı (Tabs).",
+      "Yüzen düğme (FloatingActionButton) (MCQ 10).",
+      "Öncelik+ (Priority+) Yaklaşımı."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 10)/Teknik Detay (Sayfa 48)"
+  },
+  {
+    "unit": 2,
+    "topic": "Navigasyon",
+    "question": "Uygulama arayüzünde bazı kullanımlar öncelendirilmek istenirse, içeriğini gizleyen hamburger menüler yerine ne tercih edilebilir?",
+    "correct_option": "Her zaman ana ekranda yer alacak sekmeler (tabs) tercih edilebilir.",
+    "options": [
+      "Tam ekran gezinme yaklaşımı.",
+      "Her zaman ana ekranda yer alacak sekmeler (tabs) tercih edilebilir.",
+      "Yüzen düğme (FloatingActionButton) kullanılmalıdır.",
+      "Hamburger menü tercih edilmelidir."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 48)"
+  },
+  {
+    "unit": 2,
+    "topic": "Erişilebilirlik",
+    "question": "Dünya Çapında Ağ Konsorsiyumu Web Erişilebilirlik Girişiminin yayınladığı rehber hangi isimle adlandırılır?",
+    "correct_option": "WCAG (Web Content Accessibility Guidelines).",
+    "options": [
+      "WAI (Web Accessibility Initiative).",
+      "W3C (World Wide Web Consortium).",
+      "WCAG (Web Content Accessibility Guidelines).",
+      "ISO 9241-11."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 8/6/10)/Temel Tanım (Sayfa 52)"
+  },
+  {
+    "unit": 2,
+    "topic": "Erişilebilirlik",
+    "question": "Evrensel tasarım ilkeleri ile erişilebilir tasarım arasındaki temel fark nedir?",
+    "correct_option": "Evrensel tasarım herkese olanak verirken, erişilebilir tasarım kullanıcılara kendi ihtiyaçlarına göre kişiselleştirme yapmalarına izin verir.",
+    "options": [
+      "Evrensel tasarım sadece engelli bireyleri hedefler.",
+      "Erişilebilir tasarım ISO standartlarına uyumu zorunlu kılar.",
+      "Evrensel tasarım herkese olanak verirken, erişilebilir tasarım kullanıcılara kendi ihtiyaçlarına göre kişiselleştirme yapmalarına izin verir.",
+      "Bu iki kavram tamamen aynı anlama gelir."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 52)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanıcı Deneyimi (UX)",
+    "question": "Kullanılabilirlikten daha kapsayıcı bir terim olan ve kullanıcının ürün ile olan etkileşiminin tamamını içeren kavram nedir?",
+    "correct_option": "Kullanıcı Deneyimi (User eXperience - UX).",
+    "options": [
+      "Kullanıcı Arayüzü (UI).",
+      "Kullanıcı Deneyimi (User eXperience - UX).",
+      "Ergonomi.",
+      "Bilişsel Modelleme."
+    ],
+    "source_type": "Tanım (Sayfa 45)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanıcı Psikolojisi",
+    "question": "Tasarımcıların bir ürünü geliştirme aşamasında kullanıcıların sahip olduğu temel özellikler nelerdir?",
+    "correct_option": "Belirli bir hedefe yöneliktirler, uzun süre dikkatlerini toplayamazlar, yaparak öğrenirler, hatalar yaparlar, zaman içinde değişirler, sosyaldirler ve bireydirler.",
+    "options": [
+      "Rutin işlemleri tercih ederler ve nadiren hata yaparlar.",
+      "Belirli bir hedefe yöneliktirler, uzun süre dikkatlerini toplayamazlar, yaparak öğrenirler, hatalar yaparlar, zaman içinde değişirler, sosyaldirler ve bireydirler.",
+      "Sadece görsel arayüze odaklanırlar ve sosyal dinamiklerden bağımsızdırlar.",
+      "Uzun süre odaklanabilirler ve geri bildirimleri her zaman objektiftir."
+    ],
+    "source_type": "Kritik Liste (Sayfa 52)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Tanımı (ISO)",
+    "question": "Kullanılabilirlik (ISO 9241 Bölüm 11), belirli bir kullanıcı grubunun, belirli görevleri, belirli bir bağlamda hangi üç temel ölçütle yerine getirmesidir?",
+    "correct_option": "Etkili, verimli ve memnuniyet ile.",
+    "options": [
+      "Hızlı, kolay ve hatasızlıkla.",
+      "Etkili, sezgisel ve mantıksal olarak.",
+      "Etkili, verimli ve memnuniyet ile.",
+      "Kullanıcı dostu, basit ve erişilebilir olarak."
+    ],
+    "source_type": "Tanım/Standart (Sayfa 35)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Ölçütleri",
+    "question": "Kullanıcının, uygulamayı kullanırken oluşan duygularını ifade eden ve genellikle anketlerle belirlenen ölçüt nedir?",
+    "correct_option": "Memnuniyet.",
+    "options": [
+      "Etkililik.",
+      "Verimlilik.",
+      "Memnuniyet.",
+      "Doğruluk."
+    ],
+    "source_type": "Tanım (Sayfa 36)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Ölçütleri",
+    "question": "Kullanıcının belirlenen işi ne kadar doğru yaptığı ve/veya tamamlayabildiğini ölçen kriter nedir?",
+    "correct_option": "Etkililik.",
+    "options": [
+      "Verimlilik.",
+      "Memnuniyet.",
+      "Etkililik.",
+      "Öğrenilebilirlik."
+    ],
+    "source_type": "Tanım (Sayfa 36)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Bileşenleri",
+    "question": "Kullanıcının bir görevi bir araç ile gerçekleştirirken içinde bulunduğu ortam nedir?",
+    "correct_option": "Bağlam (Context).",
+    "options": [
+      "Görev (Task).",
+      "Araç/Arayüz (Tool).",
+      "Kullanıcı (User).",
+      "Bağlam (Context)."
+    ],
+    "source_type": "Tanım (Sayfa 43)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanıcı Deneyimi (UX)",
+    "question": "Kullanıcı Deneyimi (UX) ile Kullanılabilirlik arasındaki temel fark nedir?",
+    "correct_option": "UX daha kapsayıcı ve özneldir, kullanılabilirlik ise daha nesnel ölçütlere sahiptir.",
+    "options": [
+      "UX sadece arayüzün kalitesine bakar.",
+      "Kullanılabilirlik, UX'ten daha kapsayıcı bir terimdir.",
+      "UX daha kapsayıcı ve özneldir, kullanılabilirlik ise daha nesnel ölçütlere sahiptir.",
+      "Kullanılabilirlik sadece mobil cihazlar için geçerlidir."
+    ],
+    "source_type": "Karşılaştırma (Sayfa 45)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Testleri",
+    "question": "Türkiye'de, mobil uygulama kaldırma oranı 30 gün sonra ortalama yüzde kaçtır?",
+    "correct_option": "%62.",
+    "options": [
+      "%40.",
+      "%62.",
+      "%75.",
+      "%90."
+    ],
+    "source_type": "İstatistik/Kritik Bilgi (Sayfa 45)"
+  },
+  {
+    "unit": 2,
+    "topic": "Kullanılabilirlik Testleri",
+    "question": "Kullanılabilirlik testlerinden elde edilen verilere göre, denek sayısını 5 yerine 10 yapmak, bulunan sorunların sadece yaklaşık yüzde kaçını ortaya çıkarır?",
+    "correct_option": "%15'ini. (Nielsen'e göre 5 denek ile %75'i ortaya çıkar.)",
+    "options": [
+      "%5'ini.",
+      "%15'ini. (Nielsen'e göre 5 denek ile %75'i ortaya çıkar.)",
+      "%25'ini.",
+      "%40'ını."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 39)"
+  },
+  {
+    "unit": 2,
+    "topic": "Tasarım Kavramları",
+    "question": "Mobil web sitelerinde hedeflenen, kullanıcıların sunulan bilgiyi hemen almaları ve bu bilgiden yararlanmaları için ne yapılmalıdır?",
+    "correct_option": "Web sitesinde kolaylıkla hedeflerine yönelik yönlendirme seçeneklerini bulabilmeleri sağlanmalıdır.",
+    "options": [
+      "Web sitesinde az sayıda simge kullanılmalıdır.",
+      "Web sitesi zorunlu olarak karanlık (dark) tema ile tasarlanmalıdır.",
+      "Web sitesinde kolaylıkla hedeflerine yönelik yönlendirme seçeneklerini bulabilmeleri sağlanmalıdır.",
+      "Kullanıcının her zaman ana sayfada kalması teşvik edilmelidir."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 45)"
+  },
+  {
+    "unit": 2,
+    "topic": "Tasarım Karşılaştırması",
+    "question": "Mobil uygulamaların aksine, mobil web siteleri için doğru olan temel fark nedir?",
+    "correct_option": "Maliyet-uygun olması ve yükleme gerektirmemesidir.",
+    "options": [
+      "Offline (çevrimdışı) çalışabilmesidir.",
+      "Cihaz özelliklerine tam ulaşım sağlamasıdır.",
+      "Daha zengin bir kullanıcı deneyimi sunmasıdır.",
+      "Maliyet-uygun olması ve yükleme gerektirmemesidir."
+    ],
+    "source_type": "Karşılaştırma Tablosu (Sayfa 45, Şekil 2.4)"
+  },
+  {
+    "unit": 2,
+    "topic": "Mobil Tasarım",
+    "question": "Göz izleme araştırmalarına göre kullanıcıların web sayfalarını genellikle hangi harf şeklinde okudukları gösterilmiştir?",
+    "correct_option": "F harfi şeklinde.",
+    "options": [
+      "Z harfi şeklinde.",
+      "L harfi şeklinde.",
+      "F harfi şeklinde.",
+      "E harfi şeklinde."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 46, Şekil 2.5)"
+  },
+  {
+    "unit": 2,
+    "topic": "Mobil Tasarım",
+    "question": "Akıllı telefonlarda ekran büyüklüğü arttıkça, başparmak ile rahat işlem yapılabilecek bölgelerin ekran üzerindeki payı nasıl değişmektedir?",
+    "correct_option": "Başparmak ile ulaşılabilir bölgelerin payı azalmaktadır.",
+    "options": [
+      "Başparmak ile ulaşılabilir bölgelerin payı artmaktadır.",
+      "Başparmak ile ulaşılabilir bölgelerin payı azalmaktadır.",
+      "Ulaşılabilirlik alanı değişmez.",
+      "Başparmak yerine işaret parmağı kullanımı daha verimli hale gelir."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 46, Şekil 2.6)"
+  },
+  {
+    "unit": 2,
+    "topic": "Navigasyon",
+    "question": "İçeriğini gizleyen hamburger menülerin dezavantajı nedir?",
+    "correct_option": "Ekranda kapladığı yer ve konum açısından keşfedilmeleri problem olabilir.",
+    "options": [
+      "Kod tabanını artırarak performansı düşürmesi.",
+      "Sadece iOS cihazlarda düzgün çalışması.",
+      "Ekranda kapladığı yer ve konum açısından keşfedilmeleri problem olabilir.",
+      "Sadece tek bir el ile kullanıma izin vermesi."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 48)"
+  },
+  {
+    "unit": 2,
+    "topic": "Navigasyon",
+    "question": "Sekme (tabs) kullanımının sınırlılıkları nelerdir?",
+    "correct_option": "Sayı olarak limitli olması (en fazla beş sekme) ve başparmak erişim bölgesi dışında olması.",
+    "options": [
+      "Çevrimdışı (offline) çalışmaması.",
+      "Animasyon ve görsel efektlere izin vermemesi.",
+      "Sayı olarak limitli olması (en fazla beş sekme) ve başparmak erişim bölgesi dışında olması.",
+      "Sadece yerel (native) uygulamalarda kullanılabilmesi."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 48)"
+  },
+  {
+    "unit": 2,
+    "topic": "Navigasyon",
+    "question": "Yüzen düğmeler (FloatingActionButton) kullanılırken dikkat edilmesi gereken en önemli kural nedir?",
+    "correct_option": "Sınırlı ve ekran başına sadece bir adet kullanılması.",
+    "options": [
+      "Tasarım gereği her sayfada birden fazla kullanılmalıdır.",
+      "Sadece masaüstü ekranlarda kullanılmalıdır.",
+      "Sınırlı ve ekran başına sadece bir adet kullanılması.",
+      "Ekranın sol üst köşesine yerleştirilmesi zorunludur."
+    ],
+    "source_type": "Dikkat Edilmesi Gereken Bilgi (Sayfa 48)"
+  },
+  {
+    "unit": 2,
+    "topic": "Tasarım",
+    "question": "Tasarımcılar arayüzü iyileştirmek için kullanıcıların hangi temel özelliklerini dikkate almalıdır?",
+    "correct_option": "Belirli bir hedefe yöneliktirler ve yaparak öğrenirler.",
+    "options": [
+      "Sadece duygusal tepkilerine odaklanmak.",
+      "Belirli bir hedefe yöneliktirler ve yaparak öğrenirler.",
+      "Uzun süre dikkatlerini toplayamazlar ve her zaman doğru kararlar verirler.",
+      "Her zaman teknik dokümantasyona uyarlar."
+    ],
+    "source_type": "Kritik Liste (Sayfa 52)"
+  },
+  {
+    "unit": 2,
+    "topic": "Deneysel Yaklaşım",
+    "question": "Kullanılabilirlik testlerinde potansiyel kullanıcı profilinin çıkarılmasına ne ad verilir?",
+    "correct_option": "Persona (Kullanıcı profili).",
+    "options": [
+      "A/B Test.",
+      "Sesli Düşünme.",
+      "Persona (Kullanıcı profili).",
+      "Kullanım Bağlamı."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 40)"
+  },
+  {
+    "unit": 2,
+    "topic": "Tasarım Kavramları",
+    "question": "Kullanıcı Deneyimi (UX) ile Kullanıcı Arayüzü (UI) arasındaki farkı açıklayınız.",
+    "correct_option": "UX ürünle olan etkileşimin tamamı, UI ise etkileşimin gerçekleştiği yerdir (arayüz).",
+    "options": [
+      "İkisi de aynı anlamdadır, sadece kısaltmaları farklıdır.",
+      "UX sadece duygusal tepkileri, UI sadece mantıksal tepkileri kapsar.",
+      "UX ürünle olan etkileşimin tamamı, UI ise etkileşimin gerçekleştiği yerdir (arayüz).",
+      "UI nesneldir, UX ise nesnel değildir."
+    ],
+    "source_type": "Tanım (Sayfa 45)"
+  },
+  {
+    "unit": 2,
+    "topic": "Erişilebilirlik",
+    "question": "Dünya Çapında Ağ Konsorsiyumu'nun (W3C) web sitelerinin erişilebilirliği konusunda yayınladığı rehberin kısaltması nedir?",
+    "correct_option": "WCAG.",
+    "options": [
+      "KAMİS.",
+      "ISO 9241.",
+      "WAI.",
+      "WCAG."
+    ],
+    "source_type": "Temel Tanım (Sayfa 52)"
+  },
+  {
+    "unit": 2,
+    "topic": "Tasarım",
+    "question": "Arayüz tasarımının temel grafik arka plan kavramları nelerdir?",
+    "correct_option": "Mizanpaj, hiyerarşi, beyaz alan, hareket, renk ve kontrast.",
+    "options": [
+      "Kullanıcı, görev, araç ve bağlam.",
+      "Etkililik, verimlilik, memnuniyet.",
+      "Mizanpaj, hiyerarşi, beyaz alan, hareket, renk ve kontrast.",
+      "HTML, CSS, JavaScript, Dart."
+    ],
+    "source_type": "Kritik Liste (Sayfa 43)"
+  },
+  {
+    "unit": 3,
+    "topic": "Emülatör Tanımı",
+    "question": "Geliştirilen bir mobil uygulamada, anlık olarak uygulamanın mobil cihazlarda nasıl görüneceğinin kontrol edilebilmesi için kullanılan araç nedir?",
+    "correct_option": "Emülatör (Sanal Cihaz).",
+    "options": [
+      "AVD Manager.",
+      "SDK Manager.",
+      "Emülatör (Sanal Cihaz).",
+      "Attach Debugger to Android Process."
+    ],
+    "source_type": "Tanım/Sınav Sorusu (Sayfa 61)"
+  },
+  {
+    "unit": 3,
+    "topic": "Emülatör Kullanımı",
+    "question": "Android Studio’ya eklenen emülatör ile yapılabilen işlemler nelerdir?",
+    "correct_option": "Mobil cihazı yan-dikey döndürme, ekran görüntüsü alma, açık uygulamaları görme.",
+    "options": [
+      "Mobil cihazı yan-dikey döndürme, ekran görüntüsü alma, açık uygulamaları görme.",
+      "Yazılım geliştirme kitini (SDK) güncelleme.",
+      "Yeni bir Android Studio projesi oluşturma.",
+      "Kotlin kodlarını Java'ya çevirme."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 10) (Sayfa 88)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio",
+    "question": "Android Studio, Google tarafından uygulama geliştiricilere kolaylık sunması amacıyla hangi platforma dayalı olarak tasarlanmış ücretsiz bir platformdur?",
+    "correct_option": "IntelliJ IDEA’ya.",
+    "options": [
+      "Eclipse IDE'ye.",
+      "Visual Studio'ya.",
+      "IntelliJ IDEA’ya.",
+      "NetBeans'e."
+    ],
+    "source_type": "Kritik Bilgi/Tanım (Sayfa 61)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Desteği",
+    "question": "Android Studio hangi programlama dillerini desteklemektedir?",
+    "correct_option": "Java, C, C++, Kotlin ve XML.",
+    "options": [
+      "Dart, Ruby ve Python.",
+      "JavaScript, PHP ve HTML5.",
+      "Java, C, C++, Kotlin ve XML.",
+      "Swift, Objective C ve C#."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 61)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Lisans",
+    "question": "Android Studio'nun lisans durumu nedir?",
+    "correct_option": "Ücretsiz lisansa sahiptir.",
+    "options": [
+      "Ücretli yıllık lisansa sahiptir.",
+      "Ücretsiz lisansa sahiptir.",
+      "Sadece ticari olmayan projeler için ücretsizdir.",
+      "Aylık abonelik gerektirir."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 61)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Avantajları",
+    "question": "Android Studio’nun avantajları arasında neler yer alır?",
+    "correct_option": "Vektör imajlar sağlaması ve tüm Android platformlarını emülatörle desteklemesi.",
+    "options": [
+      "Düşük RAM kullanımı ve Dart dilini desteklemesi.",
+      "Tüm iOS platformları için emülatör desteği sunması.",
+      "Vektör imajlar sağlaması ve tüm Android platformlarını emülatörle desteklemesi.",
+      "Sadece Java ve XML dil desteği sunması."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 1/13/11)/Avantaj (Sayfa 61)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Avantajları",
+    "question": "Android Studio'nun görsel materyaller ve kodlama desteği ile ilgili sağladığı avantajlar nelerdir?",
+    "correct_option": "Vektör imajlar sağlaması ve Github entegrasyonu sunmasıdır.",
+    "options": [
+      "Vektör imajlar sağlaması ve Github entegrasyonu sunmasıdır.",
+      "Çoklu kod tabanını desteklemesi.",
+      "Mobile-first 2D render motorunu kullanması.",
+      "C# ve .NET framework desteği sunması."
+    ],
+    "source_type": "Sınav Sorusu/Avantaj (Sayfa 61)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Avantajları",
+    "question": "Android Studio’nun Google Cloud hizmetleri için sağladığı destek nedir?",
+    "correct_option": "Google Cloud Platform, Google Cloud Messaging ve Google App Engine için yerleşik destek sunmasıdır.",
+    "options": [
+      "Sadece Google Cloud Platform için yerleşik destek sunmasıdır.",
+      "Sadece Firebase Cloud Firestore entegrasyonu sunmasıdır.",
+      "Google Cloud Platform, Google Cloud Messaging ve Google App Engine için yerleşik destek sunmasıdır.",
+      "Google API'lerini manuel olarak eklemeyi gerektirmesi."
+    ],
+    "source_type": "Avantaj (Sayfa 61)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Dezavantajları",
+    "question": "Android Studio’nun sınırlılıkları arasında neler yer alır?",
+    "correct_option": "RAM kullanımı diğer IDE’lere kıyasla yüksektir ve dil destekleri kısıtlanmıştır.",
+    "options": [
+      "Yalnızca Java dilini desteklemesi.",
+      "Sadece Windows işletim sisteminde çalışabilmesi.",
+      "RAM kullanımı diğer IDE’lere kıyasla yüksektir ve dil destekleri kısıtlanmıştır.",
+      "Emülatör desteği sunmaması."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 13/11)/Dezavantaj (Sayfa 62)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Kurulum Gereksinimleri",
+    "question": "Android Studio kurulumu için gerekli olan minimum ekran çözünürlüğü (Windows, MacOS, Linux) nedir?",
+    "correct_option": "Minimum 1280 x 800 ekran çözünürlüğü (MCQ 2).",
+    "options": [
+      "Minimum 1024 x 768 ekran çözünürlüğü.",
+      "Minimum 1920 x 1080 ekran çözünürlüğü.",
+      "Minimum 1280 x 800 ekran çözünürlüğü (MCQ 2).",
+      "Minimum 800 x 600 ekran çözünürlüğü."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 2)/Kurulum (Sayfa 62)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Kurulum Gereksinimleri",
+    "question": "Android Studio kurulumu için minimum boş disk alanı ne kadardır (IDE + Android SDK + Android Emülatör dahil)?",
+    "correct_option": "Minimum 8 GB boş disk (MCQ 14/12).",
+    "options": [
+      "Minimum 2 GB boş disk.",
+      "Minimum 4 GB boş disk.",
+      "Minimum 8 GB boş disk (MCQ 14/12).",
+      "Minimum 16 GB boş disk."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 14/12)/Kurulum (Sayfa 62)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Kurulum Gereksinimleri",
+    "question": "Android Studio kurulumu için Windows/MacOS/Linux işletim sistemlerinde minimum RAM gereksinimi nedir?",
+    "correct_option": "8 GB RAM veya daha fazlası.",
+    "options": [
+      "2 GB RAM.",
+      "4 GB RAM.",
+      "8 GB RAM veya daha fazlası.",
+      "16 GB RAM veya daha fazlası."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 62)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Arayüz",
+    "question": "Android Studio kullanıcı ara yüz renk seçeneklerinde hangileri bulunur?",
+    "correct_option": "Dracula (koyu-siyah) ve Light (açık-beyaz) (MCQ 3).",
+    "options": [
+      "Blue ve Grey.",
+      "Dracula (koyu-siyah) ve Light (açık-beyaz) (MCQ 3).",
+      "Dark ve White.",
+      "Green ve Red."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 3) (Sayfa 68)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Proje Türleri",
+    "question": "Android Studio’da hangi platformlar için uygulama geliştirilemez?",
+    "correct_option": "Analog Saat.",
+    "options": [
+      "Telefon/Tablet.",
+      "Wear OS/Giyilebilir Teknoloji.",
+      "Android TV.",
+      "Analog Saat."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 4) (Sayfa 71)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Menü İşlemleri",
+    "question": "Aşağıdakilerden hangisi Android Studio’da bulunan menüler aracılığıyla yapılabilecek işlemlerle ilgili yanlıştır?",
+    "correct_option": "Yazı puntosu değiştirilebilir. (Bu işlem ayarlar menüsünde yapılabilir, ancak menüler aracılığıyla yapılabilecek 'temel' işlemler arasında listelenmez.)",
+    "options": [
+      "APK analiz edilebilir.",
+      "Kodun yer değiştirmesi sağlanabilir.",
+      "Proje dışa aktarılabilir.",
+      "Yazı puntosu değiştirilebilir. (Bu işlem ayarlar menüsünde yapılabilir, ancak menüler aracılığıyla yapılabilecek 'temel' işlemler arasında listelenmez.)"
+    ],
+    "source_type": "Sınav Sorusu (MCQ 11/14/12)/Kritik Bilgi (Sayfa 73-74)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Menü İşlemleri",
+    "question": "Android Studio'daki menüler aracılığıyla yapılabilecek işlemler nelerdir?",
+    "correct_option": "APK analiz edilebilir, dipnotlardan anlam çıkarılabilir, kodun yer değiştirmesi sağlanabilir ve proje dışa aktarılabilir.",
+    "options": [
+      "Temel ayarların (font büyüklüğü gibi) değiştirilmesi.",
+      "APK analiz edilebilir, dipnotlardan anlam çıkarılabilir, kodun yer değiştirmesi sağlanabilir ve proje dışa aktarılabilir.",
+      "Flutter SDK yolunun tanıtılması.",
+      "Firebase entegrasyonu."
+    ],
+    "source_type": "Kritik Liste (Sayfa 73-74)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Araç Çubuğu",
+    "question": "Android Studio ara yüzünde araç çubuğunda yer alan 'Debug App' ile ne yapılır?",
+    "correct_option": "Üzerinde çalışılan projedeki hatalar ayıklanır (Debugger eklenir).",
+    "options": [
+      "Projeyi çalıştırır.",
+      "Projeyi durdurur.",
+      "Üzerinde çalışılan projedeki hatalar ayıklanır (Debugger eklenir).",
+      "Projenin Gradle dosyalarını senkronize eder."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 6)/Teknik Detay (Sayfa 74)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Araç Çubuğu",
+    "question": "Projeye hata ayıklama aracı olarak tanımlanan debuggerların eklenmesi araç çubuğunda hangi menü aracılığıyla yapılmaktadır?",
+    "correct_option": "Attach Debugger to Android Process (MCQ 15).",
+    "options": [
+      "Run App with Coverage.",
+      "Profile app.",
+      "Attach Debugger to Android Process (MCQ 15).",
+      "Run Anything."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 15)/Teknik Detay (Sayfa 74)"
+  },
+  {
+    "unit": 3,
+    "topic": "Android Studio Araç Çubuğu",
+    "question": "Projelerin test edilebildiği sanal aygıtlara ne ad verilir?",
+    "correct_option": "AVD Manager.",
+    "options": [
+      "SDK Manager.",
+      "AVD Manager.",
+      "Flutter Doctor.",
+      "Attach Debugger."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 74)"
+  },
+  {
+    "unit": 3,
+    "topic": "Flutter Özellikleri",
+    "question": "Flutter’ın temel özelliklerinden hangisi, yapılan değişikliklerin uygulamaya hızlı bir şekilde yansımasını sağlar?",
+    "correct_option": "Hot Reload özelliği.",
+    "options": [
+      "Mobile-first 2D render motoru.",
+      "React-style framework.",
+      "Hot Reload özelliği.",
+      "Dart SDK."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 13/14)/Kritik Bilgi (Sayfa 76)"
+  },
+  {
+    "unit": 3,
+    "topic": "Flutter Özellikleri",
+    "question": "Flutter ile ilgili 'IOS işletim sistemli cihazlar için widget desteği yoktur' ifadesi doğru mudur?",
+    "correct_option": "Hayır, yanlıştır. Flutter hem Android hem de iOS için widget desteğine sahiptir.",
+    "options": [
+      "Evet, doğrudur.",
+      "Hayır, yanlıştır. Flutter hem Android hem de iOS için widget desteğine sahiptir.",
+      "Sadece Android Material Design widget'ları desteklenir.",
+      "Widget desteği için ek lisans gereklidir."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 12/13)/Kritik Bilgi (Sayfa 76)"
+  },
+  {
+    "unit": 3,
+    "topic": "Flutter Özellikleri",
+    "question": "Flutter, uygulama geliştirme süresinin uzun sürdüğüne dair ifadeler doğru mudur?",
+    "correct_option": "Hayır, yanlıştır. Hot Reload sayesinde geliştirme süresi uzamaz.",
+    "options": [
+      "Evet, doğrudur.",
+      "Hayır, yanlıştır. Hot Reload sayesinde geliştirme süresi uzamaz.",
+      "Sadece ilk derleme süresi uzundur.",
+      "Geliştirme süresi diğer çapraz platform araçlarından daha uzundur."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 12/13)/Kritik Bilgi (Sayfa 76)"
+  },
+  {
+    "unit": 3,
+    "topic": "Flutter Özellikleri",
+    "question": "Flutter'ın render motoru nedir?",
+    "correct_option": "Mobile-first 2D render motorudur.",
+    "options": [
+      "React-style render motorudur.",
+      "Mobile-first 2D render motorudur.",
+      "Native 3D render motorudur.",
+      "Skia Graphics Engine'dir."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 12/13)/Kritik Bilgi (Sayfa 76)"
+  },
+  {
+    "unit": 3,
+    "topic": "Flutter Kurulum",
+    "question": "Flutter projesi oluşturulduktan sonra proje yazımı hangi dosyanın içerisinde gerçekleşir?",
+    "correct_option": "Lib klasörü içerisinde bulunan main.dart dosyası.",
+    "options": [
+      "Android klasörü içerisinde bulunan MainActivity.java.",
+      "pubspec.yaml dosyası.",
+      "Lib klasörü içerisinde bulunan main.dart dosyası.",
+      "Test klasörü içerisinde bulunan widget_test.dart."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 14/11)/Teknik Detay (Sayfa 84)"
+  },
+  {
+    "unit": 3,
+    "topic": "Flutter Kurulum",
+    "question": "Flutter eklentisinin Android Studio’ya eklenebilmesi için izlenmesi gereken adımlar nelerdir?",
+    "correct_option": "File → Settings → Plugins → Marketplace → 'Flutter' araması yapma → Install.",
+    "options": [
+      "File → Settings → Plugins → Marketplace → 'Flutter' araması yapma → Install.",
+      "Tools → SDK Manager → Plugins → Install.",
+      "File → New → New Flutter Project → Install Plugins.",
+      "Help → Check for Updates → Install Flutter SDK."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 8) (Sayfa 77)"
+  },
+  {
+    "unit": 3,
+    "topic": "Flutter Kurulum",
+    "question": "Flutter eklentisinin Android Studio’ya eklenebilmesi için gerekli olan eklenti aşağıdakilerden hangisidir?",
+    "correct_option": "Dart eklentisi.",
+    "options": [
+      "Java eklentisi.",
+      "CodeGlance eklentisi.",
+      "Dart eklentisi.",
+      "ADB Idea eklentisi."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 9)/Teknik Detay (Sayfa 78)"
+  },
+  {
+    "unit": 3,
+    "topic": "Flutter Kritik Bilgi",
+    "question": "Flutter SDK ve Dart SDK'ları bilgisayara indirildikten sonra, sisteme tanıtılmaları için hangi işlem yapılmalıdır?",
+    "correct_option": "C klasörüne kopyalanan dosyaların bin klasörlerinin adresleri Ortam Değişkeni olarak tanımlanmalıdır.",
+    "options": [
+      "SDK Manager üzerinden yol tanıtılmalıdır.",
+      "Windows Registry (Kayıt Defteri) düzenlenmelidir.",
+      "C klasörüne kopyalanan dosyaların bin klasörlerinin adresleri Ortam Değişkeni olarak tanımlanmalıdır.",
+      "Android Studio'nun yeniden başlatılması yeterlidir."
+    ],
+    "source_type": "Kurulum/Kritik Bilgi (Sayfa 80, 82)"
+  },
+  {
+    "unit": 3,
+    "topic": "Flutter Kritik Bilgi",
+    "question": "Flutter eklentisinin doğru kurulup kurulmadığını kontrol etmek için CMD ekranında hangi komut çalıştırılır?",
+    "correct_option": "```bash\nflutter doctor\n```",
+    "options": [
+      "```bash\nflutter check\n```",
+      "```bash\ndart check\n```",
+      "```bash\nflutter doctor\n```",
+      "```bash\navd check\n```"
+    ],
+    "source_type": "Kurulum/Kritik Bilgi (Sayfa 82)"
+  },
+  {
+    "unit": 3,
+    "topic": "Sanal Cihaz Kurulumu",
+    "question": "Projelerin test edilebildiği sanal aygıt yöneticisi (AVD Manager) Android Studio'da hangi menü adımında bulunur?",
+    "correct_option": "Tools → AVD Manager.",
+    "options": [
+      "File → Settings → AVD Manager.",
+      "Help → AVD Manager.",
+      "Tools → AVD Manager.",
+      "View → Tool Windows → AVD Manager."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 86)"
+  },
+  {
+    "unit": 4,
+    "topic": "Arayüz Bileşenleri Amacı",
+    "question": "Flutter’da arayüz bileşenlerinin temel amacı nedir?",
+    "correct_option": "Kullanıcı etkileşimini artırmaktır (MCQ 18/20).",
+    "options": [
+      "Uygulama boyutunu küçültmek.",
+      "Kullanıcı etkileşimini artırmaktır (MCQ 18/20).",
+      "Veri tabanı bağlantılarını yönetmek.",
+      "Cihazın pil ömrünü uzatmak."
+    ],
+    "source_type": "Tanım/Sınav Sorusu (Sayfa 99)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Yatay)",
+    "question": "Widget’ları yatayda sıralamak için kullanılan Layout Widget’ı nedir?",
+    "correct_option": "Row Widget’ı (MCQ 18).",
+    "options": [
+      "Column Widget’ı.",
+      "Container Widget’ı.",
+      "Row Widget’ı (MCQ 18).",
+      "Stack Widget’ı."
+    ],
+    "source_type": "Sınav Sorusu/Teknik Detay (Sayfa 115)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Yatay)",
+    "question": "Row Widget’ının en önemli özelliklerinden ikisi nedir?",
+    "correct_option": "Main axis ve cross axis alignment.",
+    "options": [
+      "Width ve Height.",
+      "Padding ve Margin.",
+      "Main axis ve cross axis alignment.",
+      "Children ve ItemCount."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 115)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Yatay)",
+    "question": "Row Widget'ı ile ilgili olarak, bir satırda mevcut alana sığacak olandan daha fazla children Widget olması hata olarak kabul edilir mi?",
+    "correct_option": "Evet, kabul edilir (Satır widget’ı varsayılan olarak kaydırma yapmaz).",
+    "options": [
+      "Hayır, fazlalık otomatik olarak gizlenir.",
+      "Hayır, fazlalık otomatik olarak alt satıra geçer.",
+      "Evet, kabul edilir (Satır widget’ı varsayılan olarak kaydırma yapmaz).",
+      "Sadece Spacer Widget'ı kullanıldığında hata verir."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 115)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Dikey)",
+    "question": "Widget’ları dikey olarak sıralamak için kullanılan Layout Widget’ı nedir?",
+    "correct_option": "Column Widget’ı (MCQ 18).",
+    "options": [
+      "Row Widget’ı.",
+      "Container Widget’ı.",
+      "ListView Widget’ı.",
+      "Column Widget’ı (MCQ 18)."
+    ],
+    "source_type": "Sınav Sorusu/Teknik Detay (Sayfa 116)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Dikey)",
+    "question": "Column Widget’ının en önemli özelliklerinden ikisi nedir?",
+    "correct_option": "Main axis ve cross axis alignment.",
+    "options": [
+      "Width ve Height.",
+      "Children ve ItemCount.",
+      "Main axis ve cross axis alignment.",
+      "ClipBehavior ve Reverse."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 116)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Aralayıcı)",
+    "question": "Column veya Row Widget’ının içine child olarak eklendiğinde diğer child Widget’ları öteleyen (aralığı ayarlayan) ve herhangi bir kullanılabilir alanı kaplayan Widget nedir?",
+    "correct_option": "Spacer Widget’ı (MCQ 17/18).",
+    "options": [
+      "Padding Widget’ı.",
+      "Margin Widget’ı.",
+      "Expanded Widget’ı.",
+      "Spacer Widget’ı (MCQ 17/18)."
+    ],
+    "source_type": "Sınav Sorusu/Teknik Detay (Sayfa 116)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Ortalama)",
+    "question": "İçerisine 'child' olarak aldığı Widget'ı yatayda ve dikeyde ortalayan Widget nedir?",
+    "correct_option": "Center() Widget'ı.",
+    "options": [
+      "Align() Widget'ı.",
+      "Center() Widget'ı.",
+      "Container() Widget'ı.",
+      "Row() Widget'ı."
+    ],
+    "source_type": "Kritik Kavram/Teknik Detay (Sayfa 114)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Kullanım)",
+    "question": "Çok sayıda widget kullanılacak ve yetersiz yer varsa üstelik bunların kaydırılabilmesi isteniyorsa hangi Widget kullanılmalıdır?",
+    "correct_option": "ListView.",
+    "options": [
+      "Container.",
+      "Column.",
+      "GridView.",
+      "ListView."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 115)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Container)",
+    "question": "Container Widget'ın temel özelliklerinden hangileri doğrudur?",
+    "correct_option": "alignment, child, color, constraints, margin, padding.",
+    "options": [
+      "alignment, child, color, constraints, margin, padding.",
+      "onPressed, itemCount, itemBuilder, physics.",
+      "isFlipped, widthFactor, heightFactor, perspective.",
+      "title, actions, content, shape."
+    ],
+    "source_type": "Sınav Sorusu/Liste (Sayfa 125)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Container)",
+    "question": "Container Widget'ta Color parametresi hangi tipte bir değer alır?",
+    "correct_option": "Colors tipinde bir değer alır.",
+    "options": [
+      "String tipinde bir değer alır.",
+      "Int tipinde bir değer alır.",
+      "Colors tipinde bir değer alır.",
+      "ThemeData tipinde bir değer alır."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 126)"
+  },
+  {
+    "unit": 4,
+    "topic": "İkonlar",
+    "question": "Flutter'da ikonlara ulaşmayı sağlayan notasyon nedir?",
+    "correct_option": "Icons. notasyonudur. (Örn: `Icon(Icons.star)`).",
+    "options": [
+      "Icon.get().",
+      "Icons.get().",
+      "Icon().",
+      "Icons. notasyonudur. (Örn: `Icon(Icons.star)`)."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 8)/Teknik Detay (Sayfa 112)"
+  },
+  {
+    "unit": 4,
+    "topic": "İkonlar",
+    "question": "Flutter'da ikonları ortalamak için kullanılan widget aşağıdakilerden hangisidir?",
+    "correct_option": "Center Widget'ı.",
+    "options": [
+      "Spacer Widget’ı.",
+      "Align Widget’ı.",
+      "Center Widget'ı.",
+      "Column Widget’ı."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 19/18)/Kritik Bilgi (Sayfa 114)"
+  },
+  {
+    "unit": 4,
+    "topic": "Temalar",
+    "question": "Flutter’da tema ayarlarını aydınlık (açık) moda geçirmek için kullanılması gereken fonksiyon nedir?",
+    "correct_option": "ThemeData.light().",
+    "options": [
+      "ThemeData.dark().",
+      "Theme.light().",
+      "ThemeData.light().",
+      "ThemeData.primary()."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 16/19/16)/Teknik Detay (Sayfa 110)"
+  },
+  {
+    "unit": 4,
+    "topic": "Temalar",
+    "question": "Flutter’da tema ayarlarını karanlık (koyu) moda geçirmek için kullanılması gereken fonksiyon nedir?",
+    "correct_option": "ThemeData.dark().",
+    "options": [
+      "ThemeData.light().",
+      "ThemeData.dark().",
+      "Theme.dark().",
+      "ThemeData.primary()."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 7)/Teknik Detay (Sayfa 110)"
+  },
+  {
+    "unit": 4,
+    "topic": "Diyalog Ekranları",
+    "question": "Flutter’da diyalog ekranlarını ekrana bastırmak için hangi fonksiyonun çağrılması zorunludur?",
+    "correct_option": "**showDialog** fonksiyonu.",
+    "options": [
+      "AlertDialog Widget'ı.",
+      "SimpleDialog Widget'ı.",
+      "**showDialog** fonksiyonu.",
+      "Navigator.push()."
+    ],
+    "source_type": "Kritik Fonksiyon/Dikkat/Teknik Detay (Sayfa 103)"
+  },
+  {
+    "unit": 4,
+    "topic": "Diyalog Ekranları (AlertDialog)",
+    "question": "Uyarı diyalog ekranı olan AlertDialog’un alabildiği temel özellikler (parametreler) nelerdir?",
+    "correct_option": "Title, Action, Content ve Shape.",
+    "options": [
+      "Width, Height, Color, Child.",
+      "MainAxis, CrossAxis, Children.",
+      "Title, Action, Content ve Shape.",
+      "Padding, Margin, Constrainsts."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 19)/Liste (Sayfa 108)"
+  },
+  {
+    "unit": 4,
+    "topic": "Diyalog Ekranları (SimpleDialog)",
+    "question": "Kullanıcıya çoklu seçim işlemi sunulması gerektiğinde kullanılan basit diyalog ekranı Widget'ı nedir?",
+    "correct_option": "SimpleDialog.",
+    "options": [
+      "AlertDialog.",
+      "SimpleDialog.",
+      "ShowDialog.",
+      "ActionDialog."
+    ],
+    "source_type": "Tanım (Sayfa 102)"
+  },
+  {
+    "unit": 4,
+    "topic": "Diyalog Ekranları (SimpleDialog)",
+    "question": "Flutter'da SimpleDialog'un şeklini değiştirmek için kullanılması gereken özellik nedir?",
+    "correct_option": "Shape parametresi (MCQ 17/20).",
+    "options": [
+      "Content parametresi.",
+      "Title parametresi.",
+      "Shape parametresi (MCQ 17/20).",
+      "Actions parametresi."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 17/20)/Teknik Detay (Sayfa 102)"
+  },
+  {
+    "unit": 4,
+    "topic": "Diyalog Ekranları",
+    "question": "Diyalog ekranlarının tasarımı hangi iki farklı biçimde kullanılabilir?",
+    "correct_option": "Material Design (Android) ve Cupertino Design (iOS).",
+    "options": [
+      "Native ve Hybrid.",
+      "Material Design (Android) ve Cupertino Design (iOS).",
+      "Web-Based ve Cross-Platform.",
+      "Low-Code ve High-Code."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 108)"
+  },
+  {
+    "unit": 4,
+    "topic": "Buton Kontrolleri",
+    "question": "Flutter tarafından sağlanan standart buton çeşitleri nelerdir?",
+    "correct_option": "TextButton, ElevatedButton, OutlinedButton, IconButton, FloatingActionButton.",
+    "options": [
+      "TextButton, FlatButton, RaisedButton, FloatingButton.",
+      "TextButton, ElevatedButton, OutlinedButton, IconButton, FloatingActionButton.",
+      "PressedButton, ActiveButton, LinkButton.",
+      "SimpleButton, MaterialButton, CupertinoButton, SubmitButton."
+    ],
+    "source_type": "Liste/Sınav Sorusu (MCQ 16) (Sayfa 111)"
+  },
+  {
+    "unit": 4,
+    "topic": "Buton Kontrolleri",
+    "question": "Butonlarda Click Event’i tanımlamak için hangi parametre kullanılır ve bu zorunlu mudur?",
+    "correct_option": "onPressed parametresi kullanılır ve bu zorunludur, aksi halde hata verir.",
+    "options": [
+      "onTap parametresi kullanılır ve zorunlu değildir.",
+      "onClick parametresi kullanılır ve zorunludur.",
+      "onPressed parametresi kullanılır ve bu zorunludur, aksi halde hata verir.",
+      "ClickEvent() metodu kullanılır ve isteğe bağlıdır."
+    ],
+    "source_type": "Dikkat Edilmesi Gereken Bilgi (Sayfa 111)"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste Kontrolleri",
+    "question": "Flutter’da çoklu verileri görüntülemeye yarayan temel kaydırılabilir liste Widget'ı nedir?",
+    "correct_option": "ListView (MCQ 3).",
+    "options": [
+      "ListTile Widget'ı.",
+      "SingleChildScrollView.",
+      "ListView (MCQ 3).",
+      "Container Widget'ı."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 3)/Temel Tanım (Sayfa 113)"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste Kontrolleri",
+    "question": "ListView.builder'ın ListView’den daha kullanışlı olma sebebi nedir?",
+    "correct_option": "İçerisine index verilerek o index’e göre içerisinde işlem yaptırılabilir (dinamik yapıya sahiptir).",
+    "options": [
+      "Daha az bellek kullanmasıdır.",
+      "Sadece tek tip veri tutmasıdır.",
+      "Sadece yatay (horizontal) kaydırma yapmasıdır.",
+      "İçerisine index verilerek o index’e göre içerisinde işlem yaptırılabilir (dinamik yapıya sahiptir)."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 4)/Karşılaştırma (Sayfa 115)"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste Kontrolleri",
+    "question": "ListView.builder Widget'ı kullanılırken hangi özelliğin yanlış girilmemesi gerekir, aksi halde index hatası alınır?",
+    "correct_option": "**itemCount** özelliği (Listenin eleman sayısını doğru belirtmek gerekir).",
+    "options": [
+      "itemBuilder özelliği.",
+      "physics özelliği.",
+      "**itemCount** özelliği (Listenin eleman sayısını doğru belirtmek gerekir).",
+      "children özelliği."
+    ],
+    "source_type": "Dikkat Edilmesi Gereken Bilgi (Sayfa 115)"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste Kontrolleri",
+    "question": "ListView.builder’ın özelliklerinden hangileri doğrudur?",
+    "correct_option": "itemCount ve itemBuilder.",
+    "options": [
+      "scrollDirection ve clipBehavior.",
+      "itemCount ve itemBuilder.",
+      "primary ve prototypeItem.",
+      "itemExtent ve dragStartBehavior."
+    ],
+    "source_type": "Sınav Sorusu (MCQ 5) (Sayfa 115)"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste Kontrolleri (Physics Parametresi)",
+    "question": "ListView'da, liste elemanlarının ekranın içinde akışkan bir şekilde gelmesini sağlayan parametre nedir?",
+    "correct_option": "Physics parametresi. (Örn: `BouncingScrollPhysics()`).",
+    "options": [
+      "ItemBuilder parametresi.",
+      "ScrollDirection parametresi.",
+      "Physics parametresi. (Örn: `BouncingScrollPhysics()`).",
+      "ShrinkWrap parametresi."
+    ],
+    "source_type": "Kritik Bilgi / Kod Örneği (Sayfa 114)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Expanded Widget)",
+    "question": "Column veya Row Widget’ının içine child olarak eklendiğinde, çocuk widget'ın ana eksen boyunca kullanılabilir alanı dolduracak şekilde genişlemesini sağlayan Widget nedir?",
+    "correct_option": "Expanded Widget’ı.",
+    "options": [
+      "Flexible Widget’ı.",
+      "Spacer Widget’ı.",
+      "Expanded Widget’ı.",
+      "Align Widget’ı."
+    ],
+    "source_type": "Tanım (Sayfa 117)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Expanded Widget)",
+    "question": "Birden fazla child widget'a Expanded uygulandığında, kullanılabilir alan aralarında neye göre bölünür?",
+    "correct_option": "Flex parametresinde aldığı değere göre oransal olarak genişler.",
+    "options": [
+      "Genişlik (width) parametresine göre bölünür.",
+      "Sadece ilk Expanded widget'ı tüm alanı kaplar.",
+      "Flex parametresinde aldığı değere göre oransal olarak genişler.",
+      "Rastgele bir algoritma ile bölünür."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 117)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Container)",
+    "question": "Container Widget'ı parametre girilmediğinde ne olarak düşünülebilir?",
+    "correct_option": "Boş bir kutu (Widget'a genişlik, yükseklik, renk gibi özellikler Container ile kazandırılabilir).",
+    "options": [
+      "Genişliği ve yüksekliği sonsuz olan bir alan.",
+      "Otomatik olarak tüm ekranı kaplayan bir alan.",
+      "Boş bir kutu (Widget'a genişlik, yükseklik, renk gibi özellikler Container ile kazandırılabilir).",
+      "Ekranın ortasında yer alan bir Center Widget'ı."
+    ],
+    "source_type": "Tanım (Sayfa 117)"
+  },
+  {
+    "unit": 4,
+    "topic": "Diyalog Ekranları",
+    "question": "Flutter'da Diyalog ekranları türleri nelerdir?",
+    "correct_option": "AlertDialog, SimpleDialog ve ShowDialog.",
+    "options": [
+      "AlertDialog, SnackBar ve Toast.",
+      "AlertDialog, SimpleDialog ve ShowDialog.",
+      "MaterialDialog, CupertinoDialog ve CustomDialog.",
+      "AlertBox, MessageBox ve ConfirmDialog."
+    ],
+    "source_type": "Kritik Liste (Sayfa 108)"
+  },
+  {
+    "unit": 4,
+    "topic": "Temalar",
+    "question": "Tema ayarlarını ortak merkezden yönetmek için hangi Widget'ın `theme` parametresi kullanılır?",
+    "correct_option": "MaterialApp Widget’ının `theme` parametresi.",
+    "options": [
+      "Scaffold Widget’ının `theme` parametresi.",
+      "MaterialApp Widget’ının `theme` parametresi.",
+      "Container Widget’ının `color` parametresi.",
+      "Column Widget’ının `style` parametresi."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 110)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout",
+    "question": "Row Widget’ının kaydırma (scroll) yapmasını sağlamak için hangi Widget kullanılır?",
+    "correct_option": "SingleChildScrollView kullanılır (Row widget'ı varsayılan olarak kaydırma yapmaz).",
+    "options": [
+      "SingleChildScrollView kullanılır (Row widget'ı varsayılan olarak kaydırma yapmaz).",
+      "ListView kullanılır.",
+      "CustomScrollView kullanılır.",
+      "Expanded Widget’ı kullanılır."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 115)"
+  },
+  {
+    "unit": 4,
+    "topic": "ListView",
+    "question": "ListView Widget’ı içinde hazır bir liste öğesi olarak kullanılabilen Widget nedir?",
+    "correct_option": "ListTile Widget'ı.",
+    "options": [
+      "ListElement Widget'ı.",
+      "ListTile Widget'ı.",
+      "ListContent Widget'ı.",
+      "ListItem Widget'ı."
+    ],
+    "source_type": "Teknik Detay (Sayfa 114)"
+  },
+  {
+    "unit": 4,
+    "topic": "Grafikler",
+    "question": "Flutter'da verileri görselleştirmek (grafikler, çizelgeler) için bu kitapta hangi paket kullanılması önerilmiştir?",
+    "correct_option": "charts_flutter paketi.",
+    "options": [
+      "http paketi.",
+      "sensors_plus paketi.",
+      "charts_flutter paketi.",
+      "font_awesome_flutter paketi."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 116)"
+  },
+  {
+    "unit": 4,
+    "topic": "Grafikler",
+    "question": "charts_flutter paketi projeye dahil edildikten sonra Dart dosyasının en üstüne hangi komut eklenir?",
+    "correct_option": "```dart\nimport 'package:charts_flutter/flutter.dart' as charts;\n```",
+    "options": [
+      "```dart\nimport 'package:charts_flutter/flutter.dart' as charts;\n```",
+      "```dart\nimport 'package:charts_flutter/charts.dart';\n```",
+      "```dart\nflutter pub add charts_flutter;\n```",
+      "```dart\nimport 'package:charts_flutter/dart.dart';\n```"
+    ],
+    "source_type": "Teknik Detay (Sayfa 116)"
+  },
+  {
+    "unit": 4,
+    "topic": "Grafikler",
+    "question": "Grafiğe veri çekilmesi için charts_flutter paketiyle birlikte hangi komut kullanılır?",
+    "correct_option": "charts.BarChart(_getSeriesData()) komutuyla veriler grafiğe dökülür.",
+    "options": [
+      "charts.PieChart(_getData()) komutuyla veriler grafiğe dökülür.",
+      "charts.ScatterPlot(_getData()) komutuyla veriler grafiğe dökülür.",
+      "charts.LineChart(_getSeriesData()) komutuyla veriler grafiğe dökülür.",
+      "charts.BarChart(_getSeriesData()) komutuyla veriler grafiğe dökülür."
+    ],
+    "source_type": "Teknik Detay (Sayfa 117)"
+  },
+  {
+    "unit": 4,
+    "topic": "Stiller ve Temalar",
+    "question": "Sistem temasını koyu moda geçirmek için `MaterialApp`'ın `theme` parametresine hangi fonksiyon girilir?",
+    "correct_option": "```dart\ntheme: ThemeData.dark(),\n```",
+    "options": [
+      "```dart\ntheme: Theme.DARK,\n```",
+      "```dart\ntheme: ThemeData.dark(),\n```",
+      "```dart\ntheme: Color.black,\n```",
+      "```dart\ntheme: Theme.of(context).dark,\n```"
+    ],
+    "source_type": "Kod Örneği (Sayfa 110)"
+  },
+  {
+    "unit": 4,
+    "topic": "Stiller ve Temalar",
+    "question": "Sistem temasını açık moda geçirmek için `MaterialApp`'ın `theme` parametresine hangi fonksiyon girilir?",
+    "correct_option": "```dart\ntheme: ThemeData.light(),\n```",
+    "options": [
+      "```dart\ntheme: ThemeData.default(),\n```",
+      "```dart\ntheme: Theme.WHITE,\n```",
+      "```dart\ntheme: Theme.of(context).light,\n```",
+      "```dart\ntheme: ThemeData.light(),\n```"
+    ],
+    "source_type": "Kod Örneği (Sayfa 110)"
+  },
+  {
+    "unit": 4,
+    "topic": "Diyalog Ekranları",
+    "question": "Flutter'da diyalog ekranı Widget'larının (AlertDialog, SimpleDialog) ekrana basılması için hangi fonksiyonun çağrılması zorunludur?",
+    "correct_option": "**showDialog** fonksiyonu.",
+    "options": [
+      "AlertDialog Widget'ı.",
+      "SimpleDialog Widget'ı.",
+      "**showDialog** fonksiyonu.",
+      "Container.show()."
+    ],
+    "source_type": "Kritik Fonksiyon/Dikkat (Sayfa 103)"
+  },
+  {
+    "unit": 4,
+    "topic": "Buton Kontrolleri",
+    "question": "Butona tıklandığında konsola çıktı veren `ElevatedButton`'un temel yapısı nasıldır?",
+    "correct_option": "```dart\nElevatedButton(\n  onPressed: () { print(\"Hello World\"); },\n  child: Text('Buton'),\n)\n```",
+    "options": [
+      "```dart\nElevatedButton(child: Text('Buton'));\n```",
+      "```dart\nElevatedButton(onTap: () {});\n```",
+      "```dart\nButton(onClick: () {});\n```",
+      "```dart\nElevatedButton(\n  onPressed: () { print(\"Hello World\"); },\n  child: Text('Buton'),\n)\n```"
+    ],
+    "source_type": "Kod Örneği (Sayfa 112)"
+  },
+  {
+    "unit": 4,
+    "topic": "Buton Kontrolleri",
+    "question": "Butonların şeklini ve ana renk tonunu belirlemek için `ElevatedButton`'da hangi metot kullanılır?",
+    "correct_option": "`.styleFrom()` metodu kullanılır. (Örn: `ElevatedButton.styleFrom(primary: Colors.teal)`).",
+    "options": [
+      "`.colorSet()` metodu kullanılır.",
+      "`.styleFrom()` metodu kullanılır. (Örn: `ElevatedButton.styleFrom(primary: Colors.teal)`).",
+      "`.themeData()` metodu kullanılır.",
+      "`.decorate()` metodu kullanılır."
+    ],
+    "source_type": "Teknik Detay/Kod (Sayfa 122 - Araştır Yanıt)"
+  },
+  {
+    "unit": 4,
+    "topic": "Buton Kontrolleri",
+    "question": "`FloatingActionButton`'un temel kullanım amacı nedir?",
+    "correct_option": "Kullanıcının yapmasını istediği en önemli eylemi ekranda az yer kaplayarak önceliklendirmektir.",
+    "options": [
+      "Sadece navigasyon (gezinme) işlemlerini yönetmek.",
+      "Kullanıcının yapmasını istediği en önemli eylemi ekranda az yer kaplayarak önceliklendirmektir.",
+      "Mobil web siteleri için özelleştirilmiş bir buton sunmak.",
+      "Tüm buton tiplerini kapsamak."
+    ],
+    "source_type": "Kritik Bilgi/Örnek (Sayfa 48)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Container)",
+    "question": "Container Widget'a genişlik (width) ve yükseklik (height) değerleri hangi parametrelerle girilir?",
+    "correct_option": "`width` ve `height` parametreleriyle.",
+    "options": [
+      "`size` ve `dimension` parametreleriyle.",
+      "`width` ve `height` parametreleriyle.",
+      "`x` ve `y` parametreleriyle.",
+      "`constraint` ve `size` parametreleriyle."
+    ],
+    "source_type": "Teknik Detay (Sayfa 117)"
+  },
+  {
+    "unit": 4,
+    "topic": "Layout (Expanded Widget)",
+    "question": "Expanded Widget'ı, çocuk widget'ların kullanılabilir alanı bölüşürken hangi kritere göre genişlemesini sağlar?",
+    "correct_option": "Flex parametresinde aldığı değere göre oransal olarak genişler.",
+    "options": [
+      "Flex parametresinde aldığı değere göre oransal olarak genişler.",
+      "Widget'ın boyutuna göre piksel cinsinden genişler.",
+      "Widget'ın yüksekliğine (height) göre önceliklendirilir.",
+      "Varsayılan olarak tüm alanı kaplar."
+    ],
+    "source_type": "Kritik Bilgi (Sayfa 117)"
+  },
+
+  {
+    "unit": 5,
+    "topic": "Dart Kavramı ve Özellikleri",
+    "question": "Dart dilini, C# gibi yinelemeli (imperative) dillerden ayıran ve arayüzlerin değişen veri yapılarına göre otomatik davranmasını sağlayan temel özellik nedir?",
+    "correct_option": "Tanımlama temelli (declarative) bir dildir.",
+    "options": [
+      "Nesne yönelimli bir dildir.",
+      "Tanımlama temelli (declarative) bir dildir.",
+      "Null güvenliği (null-safety) mekanizmasını destekler.",
+      "Sıkı veri tipi kontrolü (strongly typed) altındadır."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 133",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Kavramı ve Özellikleri",
+    "question": "Dart programlama dilinde, kodlama esnasında yazılan kodların derlenen uygulamalara anında enjekte edilmesini sağlayarak zaman kaybını önleyen mekanizma nedir?",
+    "correct_option": "Sıcak yükleme (hot reload)",
+    "options": [
+      "Yürütme öncesi derleme (Ahead of Time)",
+      "Anında derleme (Just In Time)",
+      "Tip çıkarımı (Type Inference)",
+      "Sıcak yükleme (hot reload)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 133",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Uygulamaları ve Fonksiyonlar",
+    "question": "Dart uygulamalarının yürütülmeye başlandığı temel fonksiyon hangisidir ve bu fonksiyonun veri tipi ne olmalıdır?",
+    "correct_option": "main fonksiyonu, geriye değer döndürmediği için void tipinde olmalıdır.",
+    "options": [
+      "runApp metodu, her zaman Widget tipinde olmalıdır.",
+      "main fonksiyonu, geriye değer döndürmediği için void tipinde olmalıdır.",
+      "cevresiniBul fonksiyonu, hesaplama yaptığı için num tipinde olmalıdır.",
+      "MaterialApp sınıfı, uygulamanın kökünü oluşturur ve geriye bir şey döndürmez."
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 127",
+    "code_example": "void main() { ... }"
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Dili - İşleçler",
+    "question": "Dart dilinde aritmetik işlemlerin öncelik sırasına göre, aşağıdaki ifadelerden hangisinin sonucu **13** olarak hesaplanır?",
+    "correct_option": "5 + 4 * 2",
+    "options": [
+      "(5 + 4) * 2",
+      "5 + 4 * 2",
+      "10 - 4 / 2",
+      "5 * 3 - 2"
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 129",
+    "code_example": "5+4*2 ifadesinin sonucu 13 olur."
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Dili - İşleçler",
+    "question": "Dart dilinde kullanılan '&&' işleci hangi işleç ailesine aittir?",
+    "correct_option": "Mantıksal VE",
+    "options": [
+      "İlişki kontrolü",
+      "Mantıksal VEYA",
+      "Mantıksal VE",
+      "Son ek işleçler"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 7",
+    "code_example": "sayi > 10 && sayi < 30"
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Dili - Değişkenler",
+    "question": "Aşağıdaki Dart değişken tanımlamalarından hangisi, değişkenin tutulacak veri tipiyle ilgili sıkı kontrol kuralını ihlal ettiği için derleme hatasına neden olacaktır?",
+    "correct_option": "int sayi = 3.6;",
+    "options": [
+      "var sayi = 3;",
+      "String isim = 'Ali';",
+      "final int sayi = 3;",
+      "int sayi = 3.6;"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2024-2025.pdf Soru 5",
+    "code_example": "int sayi = 3.6; // Hata: The value of type 'double' can't be assigned to a variable of type 'int'."
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Dili - Null Güvenliği",
+    "question": "Dart'ta bir değişkenin null değerini alabilmesi için (nullable olarak tanımlanması) tip belirtecinin arkasına hangi karakter eklenir?",
+    "correct_option": "? karakteri",
+    "options": [
+      "! karakteri",
+      "@ karakteri",
+      "? karakteri",
+      "# karakteri"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 132",
+    "code_example": "String? mesaj = null;"
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Dili - Listeler",
+    "question": "Aşağıdaki Dart kodu çalıştırıldığında, listedeki '3.14' elemanını silmek için hangi metot doğru indis numarası ile kullanılmalıdır?\n\n`var sayilar=[1, 20, 3.14, 60];`",
+    "correct_option": "sayilar.removeAt(2);",
+    "options": [
+      "sayilar.remove(3.14);",
+      "sayilar.removeAt(3);",
+      "sayilar.removeAt(2);",
+      "sayilar.remove(2);"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 5",
+    "code_example": "sayilar.removeAt(2);"
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Dili - Listeler",
+    "question": "Dart dilinde tanımlanan iki listeyi (örneğin list1 ve list2) birleştirerek yeni bir liste oluşturmak için kullanılan işleç (operator) hangisidir?",
+    "correct_option": "... (Yayılım işleci)",
+    "options": [
+      "+ (Toplama işleci)",
+      ".add() metodu",
+      "| (Mantıksal VEYA)",
+      "... (Yayılım işleci)"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 142",
+    "code_example": "var gunler = [...haftaIci, 'Cumartesi', 'Pazar'];"
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Dili - Listeler",
+    "question": "Bir Dart listesinde, belirli bir koşulu sağlayan elementin **indeks numarasını** bulmak için hangi metot kullanılır? (Bulunamaması durumunda -1 döner)",
+    "correct_option": "indexWhere",
+    "options": [
+      "forEach",
+      "contains",
+      "indexWhere",
+      "elementAt"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 142",
+    "code_example": "sayilar.indexWhere((element) => element == 30)"
+  },
+  {
+    "unit": 5,
+    "topic": "Dart Dili - Haritalar (Map)",
+    "question": "Dart'taki Haritalar (Map) veri yapısı ile ilgili aşağıdaki ifadelerden hangisi yanlıştır?",
+    "correct_option": "Haritalarda değerler eşsiz (unique) olmak zorundadır.",
+    "options": [
+      "Haritalar anahtar/değer çiftlerinden oluşan kümelerdir.",
+      "Anahtarlar eşsiz olmak zorundadır.",
+      "Haritalardaki değerlere ulaşmak için köşeli parantezler içinde anahtar değeri kullanılır.",
+      "Haritalarda değerler eşsiz (unique) olmak zorundadır."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 142, 143",
+    "code_example": "var sehirler = {34: 'İstanbul', 35: 'İzmir'};"
+  },
+  {
+    "unit": 5,
+    "topic": "Akış Yöneticiler",
+    "question": "Dart'ta küme parantezleri ve atama satırları gerektirmeden, basit bir if-else bloğuna benzer şekilde tek satırda koşullu atama yapmayı sağlayan yapı nedir?",
+    "correct_option": "Durumsal Atama İşleci (Ternary Operator)",
+    "options": [
+      "Switch-case yapısı",
+      "While döngüsü",
+      "Durumsal Atama İşleci (Ternary Operator)",
+      "Zincir if-else yapısı"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 138",
+    "code_example": "var sonuc = (sayi % 2 == 0) ? 'Çift Sayıdır' : 'Tek Sayıdır';"
+  },
+  {
+    "unit": 5,
+    "topic": "Akış Yöneticiler - switch-case",
+    "question": "Dart'ta bir `switch-case` yapısında, kontrol edilen değişkenin hiçbir `case` bloğuna uymaması durumunda otomatik olarak çalıştırılan opsiyonel blok hangisidir?",
+    "correct_option": "default",
+    "options": [
+      "catch",
+      "else",
+      "default",
+      "break"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 138",
+    "code_example": "switch (kalan) { ... default: print('Kalansız Bölünür'); break; }"
+  },
+  {
+    "unit": 5,
+    "topic": "Akış Yöneticiler - Döngüler",
+    "question": "Dart'ta bir döngüyü koşul sağlanmadan önce (döngü bloğu tamamlanmadan) kırmak ve program akışını döngüden sonraki satıra taşımak için hangi ifade kullanılır?",
+    "correct_option": "break",
+    "options": [
+      "continue",
+      "return",
+      "await",
+      "break"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 138",
+    "code_example": "if (sayi % i == 0) { asalmi = false; break; }"
+  },
+  {
+    "unit": 5,
+    "topic": "Fonksiyonlar ve Parametreler",
+    "question": "Dart'ta birden fazla ifade içeren bir fonksiyonun gövdesini kısaltmak için, tek işlemlik fonksiyonlarda kullanılan ok sentaksı (=>) ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+    "correct_option": "Ok sentaksı fonksiyon gövdesinde return ifadesi kullanımını gerektirmez.",
+    "options": [
+      "Ok sentaksı ile tanımlanan fonksiyonlar geriye değer döndüremez.",
+      "Ok sentaksı fonksiyon gövdesinde ikinci bir ifade kullanılmasına izin verir.",
+      "Ok sentaksı fonksiyon gövdesinde return ifadesi kullanımını gerektirmez.",
+      "Ok sentaksı sadece void tipindeki fonksiyonlar için kullanılabilir."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 140",
+    "code_example": "double cevre(double yaricap) => 2 * yaricap * pi;"
+  },
+  {
+    "unit": 5,
+    "topic": "Fonksiyonlar ve Etki Alanı",
+    "question": "Dart'ta, bir fonksiyona gönderilen pozisyonel parametreler, fonksiyon gövdesindeki işlemlerden neden etkilenmez?",
+    "correct_option": "Dart referans yoluyla parametre gönderme işlemini desteklemez; sadece değerleri gönderilir.",
+    "options": [
+      "Pozisyonel parametreler daima 'final' olarak tanımlanır.",
+      "Dart referans yoluyla parametre gönderme işlemini desteklemez; sadece değerleri gönderilir.",
+      "Fonksiyonların etki alanı (lexical scope) bu değişikliği engeller.",
+      "Sadece isimli parametreler fonksiyon gövdesi içinde değiştirilebilir."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 141",
+    "code_example": "void degistir(int sayi) { sayi = 100; } // Orijinal 'sayi' değişmez."
+  },
+  {
+    "unit": 5,
+    "topic": "Nesneye Yönelik Programlama",
+    "question": "Dart'ta bir sınıfın kodlarını miras almak (inheritance) için hangi anahtar kelime kullanılır?",
+    "correct_option": "extends",
+    "options": [
+      "implements",
+      "super",
+      "with",
+      "extends"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 9",
+    "code_example": "class EskenarUcgen extends Ucgen { ... }"
+  },
+  {
+    "unit": 5,
+    "topic": "Nesneye Yönelik Programlama",
+    "question": "Bir Dart sınıfında, nesne üretilirken özelliklere değer ataması yapmak için kullanılan metot türü nedir?",
+    "correct_option": "Yapıcı metot (Constructor)",
+    "options": [
+      "Statik metot",
+      "Erişim metodu (Getter)",
+      "Yapıcı metot (Constructor)",
+      "Alan metodu (Method)"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 143",
+    "code_example": "class Ucgen { ... Ucgen(this.tur, this.taban, this.yukseklik); }"
+  },
+  {
+    "unit": 5,
+    "topic": "Çok Sayfalı Uygulamalar",
+    "question": "Flutter uygulamalarında, sayfa içeriği ve dikey menülerin yerleştirilmesi için gerekli slotları sağlayan ve çoğu uygulamanın yerleşimini düzenleyen temel bileşen (Widget) hangisidir?",
+    "correct_option": "Scaffold",
+    "options": [
+      "MaterialApp",
+      "Container",
+      "Scaffold",
+      "Column"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 145",
+    "code_example": "Scaffold(appBar: ..., body: ..., drawer: ...)"
+  },
+  {
+    "unit": 5,
+    "topic": "Çok Sayfalı Uygulamalar",
+    "question": "Flutter uygulamasının kökünü oluşturan ve rotalar, temalar gibi genel ayarların tanımlandığı temel bileşen hangisidir?",
+    "correct_option": "MaterialApp",
+    "options": [
+      "WidgetsFlutterBinding",
+      "Scaffold",
+      "MaterialApp",
+      "main.dart"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 146",
+    "code_example": "return MaterialApp(title: ..., routes: ..., initialRoute: ...);"
+  },
+  {
+    "unit": 5,
+    "topic": "Çok Sayfalı Uygulamalar",
+    "question": "Flutter'da genellikle gizli duran ve üst bardaki bir kontrol ile gösterilen, kullanıcı hesabı bilgileri ve bağlantılar için özel alanlar sağlayan dikey menü bileşeni hangisidir?",
+    "correct_option": "UserAccountsDrawerHeader",
+    "options": [
+      "ListTile",
+      "Drawer",
+      "UserAccountsDrawerHeader",
+      "Navigator"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 6",
+    "code_example": "UserAccountsDrawerHeader(accountName: ..., currentAccountPicture: ...)"
+  },
+  {
+    "unit": 5,
+    "topic": "pubspec.yaml Dosyası",
+    "question": "Flutter projelerine görseller, fontlar ya da ek kütüphaneler gibi dışarıdan eklenecek içeriklerin tanıtılması için kullanılan yapılandırma dosyası hangisidir?",
+    "correct_option": "pubspec.yaml",
+    "options": [
+      "main.dart",
+      "AndroidManifest.xml",
+      "build.gradle",
+      "pubspec.yaml"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 150",
+    "code_example": "assets: \n  - img/logo.png"
+  },
+  
+  {
+    "unit": 6,
+    "topic": "Asenkron İşlemler",
+    "question": "Dart'ta asenkron (async) olarak işaretlenmiş bir metot içinde, internetten veri çekme gibi uzun süren bir işlemin tamamlanmasını beklemek için hangi anahtar kelime kullanılır?",
+    "correct_option": "await",
+    "options": [
+      "Future",
+      "await",
+      "then",
+      "async"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 157",
+    "code_example": "var response = await http.get(url);"
+  },
+  {
+    "unit": 6,
+    "topic": "Asenkron İşlemler",
+    "question": "Dart'ta bir metot içinde 'await' anahtar kelimesi kullanılması durumunda, o metodun tanımında zorunlu olarak bulunması gereken iki ifade hangisidir?",
+    "correct_option": "Future<T> dönüş tipi ve async anahtar kelimesi",
+    "options": [
+      "Future<T> dönüş tipi ve async anahtar kelimesi",
+      "void dönüş tipi ve try-catch bloğu",
+      "Stream<T> dönüş tipi ve then metodu",
+      "async anahtar kelimesi ve onError metodu"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 158",
+    "code_example": "Future<void> siraAl() async { ... await Future.delayed(...); ... }"
+  },
+  {
+    "unit": 6,
+    "topic": "Asenkron İşlemler",
+    "question": "Asenkron bir işlemin başarılı bir şekilde tamamlanmasının ardından çalıştırılacak metodu belirlemek için Future nesnesinde hangi metot kullanılır?",
+    "correct_option": "then",
+    "options": [
+      "whenComplete",
+      "onError",
+      "timeout",
+      "then"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 158",
+    "code_example": "siraAl().then((_) => kaydet());"
+  },
+  {
+    "unit": 6,
+    "topic": "SQLite Temelleri",
+    "question": "Aşağıdakilerden hangisi SQLite veritabanının bir özelliği değildir?",
+    "correct_option": "Özel bir konfigürasyon gerektirmez ve sunucuya ihtiyaç duyar.",
+    "options": [
+      "C tabanlıdır ve platformdan bağımsız çalışır.",
+      "SQL dilini destekler.",
+      "Özel bir konfigürasyon gerektirmez ve sunucuya ihtiyaç duyar.",
+      "Bireysel veya ticari her türlü geliştirmeler için ücretsizdir."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 159",
+    "code_example": null
+  },
+  {
+    "unit": 6,
+    "topic": "SQLite Kurulumu ve İşlemleri",
+    "question": "Flutter uygulamasında SQLite kullanmak için projenin `pubspec.yaml` dosyasına eklenmesi gereken kütüphane hangisidir?",
+    "correct_option": "sqlite",
+    "options": [
+      "http",
+      "firebase_core",
+      "sqlite",
+      "path_provider"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 159",
+    "code_example": "dependencies:\n  sqlite: ^2.0.1"
+  },
+  {
+    "unit": 6,
+    "topic": "SQLite Veri Tipleri",
+    "question": "SQLite'ta Boolean (True/False) değerleri, özel bir veri tipi olmadığından, hangi veri tipi kullanılarak saklanır?",
+    "correct_option": "INTEGER",
+    "options": [
+      "BOOLEAN",
+      "BLOB",
+      "REAL",
+      "INTEGER"
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 161",
+    "code_example": null
+  },
+  {
+    "unit": 6,
+    "topic": "SQLite - Ekleme (Insert) Metotları",
+    "question": "SQLite kütüphanesi kullanılarak bir tabloya yeni kayıt eklendiğinde, eklenen kaydın **birincil anahtar (Primary Key) değerini** geri döndüren metot hangisidir?",
+    "correct_option": "rawInsert",
+    "options": [
+      "rawQuery",
+      "execute",
+      "rawInsert",
+      "insert"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 162, 177",
+    "code_example": "var kullaniciId = await db.rawInsert(sql);"
+  },
+  {
+    "unit": 6,
+    "topic": "SQLite - Güncelleme (Update) ve Silme (Delete) Metotları",
+    "question": "SQLite'ta UPDATE sorgusu çalıştırıldıktan sonra, **kaç satırın güncellendiği** bilgisini geri döndüren metot hangisidir?",
+    "correct_option": "rawUpdate",
+    "options": [
+      "rawQuery",
+      "rawUpdate",
+      "rawDelete",
+      "execute"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 173, 177",
+    "code_example": "var guncellenenSatirSayisi = await db.rawUpdate(sql);"
+  },
+  {
+    "unit": 6,
+    "topic": "SQLite - Kayıt Getirme (Select)",
+    "question": "SQLite'ta SELECT sorgusu çalıştırılarak alınan veriyi, SQL komutu yazmadan, tablonun adı ve koşul parametreleri (where, orderBy, limit vb.) ile getirmek için kullanılan metot hangisidir?",
+    "correct_option": "query",
+    "options": [
+      "execute",
+      "query",
+      "rawQuery",
+      "select"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 171, 177",
+    "code_example": "db.query('Kullanici', columns: ['Adi', 'Soyadi'], where: 'KullaniciId = ?', whereArgs: [3]);"
+  },
+  {
+    "unit": 6,
+    "topic": "SQLite - Model Kullanımı",
+    "question": "SQLite işlemlerinde, veriyi kolay bir şekilde JSON'a veya JSON formatındaki bir veriyi modele dönüştürmek için kullanılan model oluşturma araçlarından biri hangisidir?",
+    "correct_option": "quicktype.io",
+    "options": [
+      "FirebaseVisionLabelDetector",
+      "quicktype.io",
+      "SharedPreferences",
+      "url_launcher"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 175",
+    "code_example": null
+  },
+  {
+    "unit": 6,
+    "topic": "ListView ve Veri Görselleştirme",
+    "question": "SQLite sorgusu ile List türünde alınan çoklu kayıtları mobil uygulamada kaydırılabilir bir liste şeklinde görüntülemek için hangi Flutter Widget'ı kullanılır?",
+    "correct_option": "ListView.builder",
+    "options": [
+      "Column",
+      "Container",
+      "ListView.builder",
+      "Center"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 172",
+    "code_example": "ListView.builder(itemCount: iKullanici.length, itemBuilder: ...)"
+  },
+  {
+    "unit": 6,
+    "topic": "API İşlemleri",
+    "question": "Flutter'da internet üzerinden API ile veri alışverişi yapmak için öncelikle hangi kütüphanenin projeye dahil edilmesi gerekir?",
+    "correct_option": "http",
+    "options": [
+      "sqflite",
+      "path_provider",
+      "http",
+      "flutter_web_plugins"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 172",
+    "code_example": "flutter pub add http"
+  },
+  {
+    "unit": 6,
+    "topic": "API İşlemleri",
+    "question": "Internet üzerinden veri çekme ve gönderme işlemlerinin yapılması için geliştirilen API teknolojisi hangi iki temel işlemi yaparak karşı taraftan veri alma ve gönderme imkanı verir?",
+    "correct_option": "GET / POST",
+    "options": [
+      "SQL / SQLite",
+      "Future / Await",
+      "In / Out",
+      "GET / POST"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 12",
+    "code_example": "http.get(url) / http.post(url, body: data)"
+  },
+  {
+    "unit": 6,
+    "topic": "API İşlemleri",
+    "question": "Flutter'da API'den veri almak (okumak) için kullanılan metot aşağıdakilerden hangisidir?",
+    "correct_option": "http.get()",
+    "options": [
+      "http.post()",
+      "http.put()",
+      "http.get()",
+      "uri.parse()"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 9",
+    "code_example": "http.get(Uri.parse(url))"
+  },
+  {
+    "unit": 6,
+    "topic": "API İşlemleri",
+    "question": "API'lerde yeni kayıt eklerken (oluştururken) ve mevcut kaydı güncellerken kullanılan metotlar sırasıyla hangileridir?",
+    "correct_option": "http.post() / http.put()",
+    "options": [
+      "http.get() / http.delete()",
+      "http.post() / http.put()",
+      "http.create() / http.update()",
+      "http.post() / http.delete()"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 174, 175",
+    "code_example": "http.post(url, headers: headers, body: json) // http.put(url, headers: headers, body: json)"
+  },
+  
+  {
+    "unit": 6,
+    "topic": "SQLite - Kayıt Getirme (Select)",
+    "question": "Flutter'da bir SQLite tablosundan `db.rawQuery` ile veri çekildiğinde, dönen verinin Flutter/Dart ortamındaki temel veri yapısı ve formatı nedir?",
+    "correct_option": "List<Map<String, dynamic>> şeklinde JSON formatıdır.",
+    "options": [
+      "List<Map<String, dynamic>> şeklinde JSON formatıdır.",
+      "String listesi (List<String>) olarak döner.",
+      "Tek bir String olarak döner ve JSON'a dönüştürülmelidir.",
+      "Bir QuerySnapshot nesnesi olarak döner."
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 162",
+    "code_example": "List<Map<String, dynamic>> lKullanici = await db.rawQuery(sql);"
+  },
+  
+  {
+    "unit": 7,
+    "topic": "Temel Sensörler",
+    "question": "Üzerinde bulunduğu cihazın X-Y-Z eksenlerindeki açısal konumunu ölçerek, açısal hızı tespit edebilen sensör aşağıdakilerden hangisidir?",
+    "correct_option": "Jiroskop (Gyroscope)",
+    "options": [
+      "İvmeölçer (Accelerometer)",
+      "Manyetometre (Magnetometer)",
+      "Yönlendirme Sensörü (Orientation Sensor)",
+      "Jiroskop (Gyroscope)"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 11 (Tanım)",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "Temel Sensörler",
+    "question": "Mobil cihazın yatay-dikey kullanım değişikliklerinin tespitini sağlayan sensör türü nedir?",
+    "correct_option": "Yönlendirme Sensörü (Orientation Sensor)",
+    "options": [
+      "Jiroskop",
+      "İvmeölçer",
+      "Manyetometre",
+      "Yönlendirme Sensörü (Orientation Sensor)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 187",
+    "code_example": "motionSensors.screenOrientation.listen((ScreenOrientationEvent event) { ... });"
+  },
+  {
+    "unit": 7,
+    "topic": "Sensör Kullanımı",
+    "question": "Flutter'da İvmeölçer, Jiroskop, Manyetometre ve Yönlendirme Sensörü'nün dördünü de destekleyen temel eklenti hangisidir?",
+    "correct_option": "motion_sensors",
+    "options": [
+      "sensor_plus",
+      "motion_sensors",
+      "shake_detector",
+      "flutter_sensors"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 187, 195",
+    "code_example": "dependencies:\n  motion_sensors:"
+  },
+  {
+    "unit": 7,
+    "topic": "Kritik Sensör Event'leri",
+    "question": "İvmeölçer (Accelerometer) sensöründen gelen değerlerin yerçekimini (gravity) dikkate almadan, sadece kullanıcının cihaz üzerindeki etkilerini okumak için hangi `listen` fonksiyonu kullanılır?",
+    "correct_option": "UserAccelerometer.Listen",
+    "options": [
+      "Accelerometer.Listen",
+      "UserAccelerometer.Listen",
+      "Gyroscope.Listen",
+      "Magnetometer.Listen"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 188",
+    "code_example": "motionSensors.userAccelerometer.listen((UserAccelerometerEvent event) { ... });"
+  },
+  {
+    "unit": 7,
+    "topic": "Kamera Kullanım İzinleri",
+    "question": "Flutter ortamında kamera kullanım izinlerinin denetlenmesi için hangi eklenti kullanılmaktadır?",
+    "correct_option": "permission_handler",
+    "options": [
+      "camera",
+      "path_provider",
+      "permission_handler",
+      "image_picker"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 16",
+    "code_example": "import 'package:permission_handler/permission_handler.dart';"
+  },
+  {
+    "unit": 7,
+    "topic": "Kamera Kullanım İzinleri",
+    "question": "Kamera kullanım izni sürecinde, kullanıcının izni kalıcı olarak reddetmesi durumunu belirten dönüt değeri nedir?",
+    "correct_option": "permanentlyDenied",
+    "options": [
+      "denied",
+      "restricted",
+      "granted",
+      "permanentlyDenied"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 195",
+    "code_example": "var status = await Permission.camera.status;"
+  },
+  {
+    "unit": 7,
+    "topic": "Kamera Kullanımı",
+    "question": "Kamera eklentisi kullanılarak o anki görüntünün fotoğrafını çekmek için hangi metot kullanılır?",
+    "correct_option": "takePicture",
+    "options": [
+      "recordVideo",
+      "startCamera",
+      "takePicture",
+      "captureImage"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 199",
+    "code_example": "XFile file = await controller.takePicture();"
+  },
+  {
+    "unit": 7,
+    "topic": "Artırılmış Gerçeklik (AR)",
+    "question": "Gerçek dünyadaki görüntüye sanal unsurların dahil edildiği Karma Gerçeklik türü nedir?",
+    "correct_option": "Artırılmış Gerçeklik (AR: Augmented Reality)",
+    "options": [
+      "Sanal Gerçeklik (VR: Virtual Reality)",
+      "Artırılmış Sanallık (AV: Augmented Virtuality)",
+      "Karma Gerçeklik (MR: Mixed Reality)",
+      "Artırılmış Gerçeklik (AR: Augmented Reality)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 200",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "Artırılmış Gerçeklik (AR)",
+    "question": "Flutter ortamına Artırılmış Gerçeklik entegre edebilmek için kullanılan Google'ın ARCore teknolojisini temel alan eklenti hangisidir?",
+    "correct_option": "arcore_flutter_plugin",
+    "options": [
+      "flutter_ar",
+      "arcore_flutter_plugin",
+      "ar_kit",
+      "firebase_ml_kit"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 13",
+    "code_example": "flutter pub add arcore_flutter_plugin"
+  },
+  {
+    "unit": 7,
+    "topic": "Artırılmış Gerçeklik (AR) Bileşenleri",
+    "question": "ARCore eklentisinde, kamera ile görüntülemede sanal nesnelerin **yerleştirileceği konumları** işaret eden ve sanal nesnenin nihai şeklini ve konum değerlerini tanımlayan bileşen hangisidir?",
+    "correct_option": "ArCoreNode",
+    "options": [
+      "ArCoreView",
+      "ArCoreMaterial",
+      "ArCoreController",
+      "ArCoreNode"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2023-2024.pdf Soru 7",
+    "code_example": "ArCoreNode(shape: ArCoreSphere(...), position: vector.Vector3(0.0, 0.0, -1.5))"
+  },
+  {
+    "unit": 7,
+    "topic": "Artırılmış Gerçeklik (AR) Bileşenleri",
+    "question": "Artırılmış Gerçeklik (AR) uygulamalarında, ARCore desteği olmayan cihazlarda dahi AR süreçlerinin **seçimlik** bir şekilde işletilebilmesini mümkün kılan AndroidManifest.xml etiketi hangisidir?",
+    "correct_option": "<meta-data android:name=”com.google.ar.core” android:value=”optional” />",
+    "options": [
+      "<uses-feature android:name=”android.hardware.camera.ar” android:required=”true”/>",
+      "<meta-data android:name=”com.google.ar.core” android:value=”required” />",
+      "<meta-data android:name=”com.google.ar.core” android:value=”optional” />",
+      "<uses-permission android:name=”android.permission.AR”/>"
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 203",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "Yapay Zeka (YZ)",
+    "question": "Yapay Zekanın, çeşitli örnekler ve senaryolar üzerinden problem kapsamını öğrendikten sonra yeni durumlara cevap üretme çabasını içeren alt-alanı nedir?",
+    "correct_option": "Makine Öğrenmesi",
+    "options": [
+      "Derin Öğrenme",
+      "Kural Tabanlı Sistemler",
+      "Zeki Optimizasyon",
+      "Makine Öğrenmesi"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 207",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "Yapay Zeka (YZ) Bileşenleri",
+    "question": "Firebase ML Kit eklentisiyle mobil cihaz ortamındaki görsellerde nesne tespiti (object detection) yapmak için kullanılan ön tanımlama bileşeni (detector) aşağıdakilerden hangisidir?",
+    "correct_option": "FirebaseVisionLabelDetector",
+    "options": [
+      "FirebaseObjectDetector",
+      "FirebaseImageProcessor",
+      "FirebaseVisionLabelDetector",
+      "FirebaseClassifier"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 14",
+    "code_example": "FirebaseVisionLabelDetector labelDetector = FirebaseVisionLabelDetector.instance;"
+  },
+  {
+    "unit": 7,
+    "topic": "Yapay Zeka (YZ)",
+    "question": "Firebase ML Kit eklentisi, Yapay Zeka çözümlerini başka yazılımlar tarafından kullanılmak üzere ne tür bir altyapı üzerinden sunmaktadır?",
+    "correct_option": "API (Application Programming Interface)",
+    "options": [
+      "XML",
+      "HTML",
+      "MDB",
+      "API (Application Programming Interface)"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2023-2024.pdf Soru 10",
+    "code_example": "mlkit: ibaresi, eklentinin API olarak kullanıldığını belirtir."
+  },
+  {
+    "unit": 7,
+    "topic": "Kamera Kullanımı",
+    "question": "Kamera üzerinden fotoğraf çekimi sonrasında çekilen fotoğrafın mobil cihaz galerisine kaydedilebilmesi için hangi eklentilerin kullanılması gerekmektedir?",
+    "correct_option": "path_provider ve path",
+    "options": [
+      "image_picker ve path",
+      "gallery_saver ve camera",
+      "path_provider ve path",
+      "permission_handler ve file_picker"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 197",
+    "code_example": "dependencies:\n  path_provider: ^2.0.1\n  path: ^1.8.1"
+  },
+  {
+    "unit": 7,
+    "topic": "Temel Sensörler",
+    "question": "Mobil uygulamalardaki kullanım tecrübesini etkileşim boyutunda artırmak için dikkate alınması gereken hususlardan hangisi yanlıştır?",
+    "correct_option": "İnsanların aynı cihazları kullanmasını sağlamak",
+    "options": [
+      "Kolay kullanım sağlamak",
+      "Donanım-yazılım etkileşiminden faydalanmak",
+      "İnsanların aynı cihazları kullanmasını sağlamak",
+      "Gerçek dünyayı mobil ortama taşımak"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2024-2025.pdf Soru 1",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "Artırılmış Gerçeklik",
+    "question": "Artırılmış Sanallık (AV) nedir?",
+    "correct_option": "Sanal görüntülenen ortama gerçek dünyadan unsurların dahil edildiği Karma Gerçeklik türüdür.",
+    "options": [
+      "Gerçek dünyadaki görüntüye sanal unsurların dahil edildiği Karma Gerçeklik türüdür.",
+      "Tamamen sanal bir ortam oluşturulan, kullanıcının gerçek dünyadan izole olduğu teknolojidir.",
+      "Sanal görüntülenen ortama gerçek dünyadan unsurların dahil edildiği Karma Gerçeklik türüdür.",
+      "Sadece mobil cihazlarda kullanılabilen, basit 2D katmanlama tekniğidir."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 200",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "YZ - Firebase ML Kit",
+    "question": "Firebase ML Kit eklentisinin Dart ortamında kullanımı için Firebase Web platformunda hangi işlem yapılmalıdır?",
+    "correct_option": "Proje platformunda Android uygulama seçeneği seçilip, uygulama isminin kayıt altına alınması (register).",
+    "options": [
+      "JSON dosyasının pubspec.yaml içerisine eklenmesi.",
+      "Firebase Cloud Firestore'da koleksiyon ve belge oluşturulması.",
+      "Proje platformunda Android uygulama seçeneği seçilip, uygulama isminin kayıt altına alınması (register).",
+      "Firebase ML Kit eklentisi yalnızca Dart dilinde kodlanabilir."
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 208",
+    "code_example": ""
+  },
+  {
+    "unit": 7,
+    "topic": "Sensörler",
+    "question": "Aşağıdakilerden hangisi mobil cihazlardaki Jiroskop (Gyroscope) sensörünün ölçüm şeklini doğru bir biçimde tanımlamaktadır?",
+    "correct_option": "Cihazın X-Y-Z eksenlerindeki açısal konumunu ölçerek, açısal hızı tespit etmektedir.",
+    "options": [
+      "Çevredeki manyetik alan yoğunluğunu ve yönünü ölçmektedir.",
+      "İvmeyi algılayarak, yerçekimi düzeyini ya da hızlanma, durma gibi olayları ölçmektedir.",
+      "Cihazın X-Y-Z eksenlerindeki açısal konumunu ölçerek, açısal hızı tespit etmektedir.",
+      "Cihazın yatay-dikey kullanım değişikliklerini tespit etmektedir."
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2024-2025.pdf Soru 3",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "Kamera İzni Kontrolü",
+    "question": "Kamera kullanım izni alındıktan sonra, `Camera Controller` nesnesinin bellekten silinmesi (bırakılması) için hangi metot çağrılmalıdır?",
+    "correct_option": "dispose",
+    "options": [
+      "release",
+      "close",
+      "dispose",
+      "stop"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 200",
+    "code_example": "controller.dispose();"
+  },
+  
+  {
+    "unit": 8,
+    "topic": "Firebase Eklentileri ve Kurulumu",
+    "question": "FlutterFire CLI kullanılarak oluşturulan Firebase projesi ile Flutter projesini ilişkilendirmek için çalıştırılması gereken iki temel komut sırasıyla nedir?",
+    "correct_option": "dart pub global activate flutterfire_cli ve flutterfire configure",
+    "options": [
+      "flutter pub add firebase_core ve flutter pub get",
+      "dart pub global activate flutterfire_cli ve flutterfire configure",
+      "firebase login ve firebase init",
+      "flutter clean ve flutter run"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 236",
+    "code_example": "dart pub global activate flutterfire_cli\nflutterfire configure"
+  },
+  {
+    "unit": 8,
+    "topic": "Cloud Firestore İşlemleri",
+    "question": "Cloud Firestore'da **yeni bir belge eklerken** (document), koleksiyon referansının üzerine hangi metot çağrılır?",
+    "correct_option": "add()",
+    "options": [
+      "set()",
+      "update()",
+      "add()",
+      "doc().create()"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 244",
+    "code_example": "defter.add({'isim': _cIsim.text})"
+  },
+  {
+    "unit": 8,
+    "topic": "Firebase Temelleri",
+    "question": "Firebase, uygulama geliştiricilerine 'uygulamanızı oluşturmak, geliştirmek ve büyütmek' için Google tarafından sunulan ve analitik, veritabanları, kimlik doğrulama gibi hizmetleri içeren araç seti nedir?",
+    "correct_option": "Firebase",
+    "options": [
+      "NoSQL",
+      "RDBMS",
+      "FlutterFire",
+      "Firebase"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 221",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Firebase Kimlik Doğrulama",
+    "question": "Firebase kullanılarak geliştirilen uygulamada kullanıcı girişlerini yönetmek için kullanılan modül aşağıdakilerden hangisidir?",
+    "correct_option": "Authentication",
+    "options": [
+      "Firestore Database",
+      "Cloud Firestore",
+      "Authentication",
+      "Firebase Core"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 18",
+    "code_example": "FirebaseAuth.instance.signInWithEmailAndPassword"
+  },
+  {
+    "unit": 8,
+    "topic": "Cloud Firestore Temelleri",
+    "question": "Cloud Firestore'da veriler, ilişkisel veritabanlarındaki tablonun yerine geçen, anahtar/değer çiftlerini içeren kayıtların saklandığı temel birim nedir?",
+    "correct_option": "Belge (Document)",
+    "options": [
+      "Koleksiyon (Collection)",
+      "Tablo (Table)",
+      "Belge (Document)",
+      "Alan (Field)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 225, 242",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Cloud Firestore Temelleri",
+    "question": "Cloud Firestore'da bir belgenin (document) içinde başka belgeleri değil, sadece belgeler için kapsayıcı olan yapıyı belirten terim nedir?",
+    "correct_option": "Koleksiyon (Collection)",
+    "options": [
+      "Belge",
+      "Alt Koleksiyon",
+      "Kayıt",
+      "Koleksiyon (Collection)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 225, 234",
+    "code_example": "FirebaseFirestore.instance.collection(‘defter’)"
+  },
+  {
+    "unit": 8,
+    "topic": "Cloud Firestore İşlemleri",
+    "question": "Firebase veritabanında her kullanıcının sadece kendi kaydettiği kişileri görebilmesi için sorguya eklenmesi gereken koşul (condition) aşağıdakilerden hangisidir?",
+    "correct_option": "where('uid', isEqualTo: user?.uid)",
+    "options": [
+      "FirebaseAuth.instance.currentUser",
+      "where('uid', isEqualTo: user?.uid)",
+      "WidgetsBinding.instance.addPostFrame",
+      "CollectionReference.only(user?.uid)"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2022-2023.pdf Soru 17",
+    "code_example": "collection(‘defter’).where(‘uid’, isEqualTo: user?.uid).get()"
+  },
+  {
+    "unit": 8,
+    "topic": "Firebase Eklentileri ve Kurulumu",
+    "question": "Flutter projesi ile Firebase projesini (Google konsolunda oluşturulan) ilişkilendirmek için kullanılan yardımcı yazılımın adı aşağıdakilerden hangisidir?",
+    "correct_option": "FlutterFire",
+    "options": [
+      "Firebase Core",
+      "FlutterFire",
+      "Cloud Firestore",
+      "Firebase Auth"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2023-2024.pdf Soru 7",
+    "code_example": "flutter pub global activate flutterfire_cli\nflutterfire configure"
+  },
+  {
+    "unit": 8,
+    "topic": "Widget'lar ve Tekrarlı Kullanım",
+    "question": "Bir mobil uygulamada, form alanları gibi sık kullanılan ve benzer görünümlü yapıları, her seferinde 60 satır kod yazmak yerine daha az kodla tekrar tekrar kullanabilmek için ne tür bir yapı oluşturulur?",
+    "correct_option": "Özel Widget (Custom Widget, örn: CustomFormField)",
+    "options": [
+      "StatelessWidget (Durağan Bileşen)",
+      "Özel Widget (Custom Widget, örn: CustomFormField)",
+      "FutureBuilder",
+      "BuildContext"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 230",
+    "code_example": "const CustomFormField({required this.hintText, ...})"
+  },
+  {
+    "unit": 8,
+    "topic": "Widget'lar ve Yaşam Döngüsü",
+    "question": "Flutter'da bir StatefulWidget nesnesi Widget ağacına eklendiğinde **bir kez** çağrılan fonksiyon aşağıdakilerden hangisidir?",
+    "correct_option": "initState",
+    "options": [
+      "build",
+      "dispose",
+      "initState",
+      "addPostFrameCallback"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2023-2024.pdf Soru 9",
+    "code_example": "@override\nvoid initState() { super.initState(); ... }"
+  },
+  {
+    "unit": 8,
+    "topic": "Kritik Hata Yönetimi",
+    "question": "Flutter'da çalışma zamanında hata üretme potansiyeli bulunan (`signInWithEmailAndPassword` gibi) kodların olası hatalarını yakalamak ve uygulamanın kapanmasını önlemek için hangi mekanizma kullanılır?",
+    "correct_option": "try on catch",
+    "options": [
+      "if-else",
+      "switch-case",
+      "try on catch",
+      "Future.onError"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 240",
+    "code_example": "try { await ... } on FirebaseAuthException catch (e) { ... }"
+  },
+  {
+    "unit": 8,
+    "topic": "Sensör Entegrasyonu",
+    "question": "Telefonun sallanma durumunun kolaylıkla tespit edilebilmesi ve bu olaya bağlı bir fonksiyonun (`_ara()`) çağrılabilmesi için hangi eklentiden yararlanılmıştır?",
+    "correct_option": "shake",
+    "options": [
+      "sensor_plus",
+      "gyroscope_detector",
+      "shake",
+      "motion_sensors"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 239",
+    "code_example": "detector = ShakeDetector.autoStart(onPhoneShake: () { _ara(); });"
+  },
+  {
+    "unit": 8,
+    "topic": "Telefon İşlemleri",
+    "question": "Flutter uygulamasından doğrudan telefon etme yerine, cep telefonunun 'Telefon' uygulamasını açıp aranacak numaranın gelmesini sağlamak için hangi eklenti kullanılır?",
+    "correct_option": "url_launcher",
+    "options": [
+      "permission_handler",
+      "shake",
+      "url_launcher",
+      "telephony_manager"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 238",
+    "code_example": "await launch('tel:’ + telefonNumarasi);"
+  },
+  {
+    "unit": 8,
+    "topic": "Cloud Firestore İşlemleri",
+    "question": "Cloud Firestore'da mevcut bir kaydı (document) güncellemek için, belgenin (document) eşsiz ID değeri kullanılarak çağrılan fonksiyon hangisidir?",
+    "correct_option": "doc().update()",
+    "options": [
+      "collection().set()",
+      "doc().update()",
+      "document().edit()",
+      "doc().save()"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 240",
+    "code_example": "defter.doc(widget.kisi.kod).update({'isim': _cIsim.text})"
+  },
+  {
+    "unit": 8,
+    "topic": "Cloud Firestore Avantaj/Dezavantaj",
+    "question": "Firebase Cloud Firestore'un İlişkisel Veritabanı Yönetim Sistemleri'nden (RDBMS) farklı olarak sunduğu avantajlardan biri aşağıdakilerden hangisidir?",
+    "correct_option": "Esnek şemalar sunması ve yüksek kullanıcı yükleriyle kolayca ölçeklenmesi.",
+    "options": [
+      "Verileri katı tablolar halinde depolaması.",
+      "Esnek şemalar sunması ve yüksek kullanıcı yükleriyle kolayca ölçeklenmesi.",
+      "Verilere erişmek için Yapılandırılmış Sorgu Dili (SQL) kullanması.",
+      "Yabancı anahtar (Foreign Key) ilişkilerini zorunlu kılması."
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 225, 242",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Kodlama İyileştirmesi",
+    "question": "_DetayState sınıfı içinde, Detay sınıfına ait bir özelliğe (`kisi`) erişim sağlamak için hangi anahtar kelime kullanılır?",
+    "correct_option": "widget",
+    "options": [
+      "super",
+      "this",
+      "state",
+      "widget"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 240",
+    "code_example": "defter.doc(widget.kisi.kod).delete()"
+  },
+  {
+    "unit": 8,
+    "topic": "Firebase Eklentileri",
+    "question": "Firebase Kimlik Doğrulama (`Authentication`) ve Cloud Firestore özelliklerini kullanabilmek için Flutter projesine eklenmesi gereken iki temel eklenti sırasıyla nedir?",
+    "correct_option": "firebase_auth ve cloud_firestore",
+    "options": [
+      "firebase_auth ve cloud_firestore",
+      "firebase_core ve url_launcher",
+      "shake ve sensor_plus",
+      "cloud_firestore ve sqflite"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 236",
+    "code_example": "flutter pub add cloud_firestore\nflutter pub add firebase_auth"
+  },
+  
+  {
+    "unit": 5,
+    "topic": "Dart Dili - Değişkenler",
+    "question": "Dart programlama dilinde değişkenin veri tipine, tip çıkarımı mekanizmasının karar vermesine izin veren anahtar sözcük aşağıdakilerden hangisidir?",
+    "correct_option": "var",
+    "options": [
+      "string",
+      "return",
+      "num",
+      "var"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2024-2025.pdf Soru 6",
+    "code_example": "var sayi = 10;"
+  },
+  {
+    "unit": 5,
+    "topic": "Akış Yöneticiler - switch-case",
+    "question": "Dart programlama dilinde kullanılan switch-case yapısında her case bloğu hangi ifade ile sonlandırılmalıdır?",
+    "correct_option": "break",
+    "options": [
+      "default",
+      "stop",
+      "return",
+      "break"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2023-2024.pdf Soru 7",
+    "code_example": "case 1: \\n  print('Bir');\\n  break;"
+  },
+  {
+    "unit": 6,
+    "topic": "SQLite İşlemleri",
+    "question": "Dart programlama dili kullanılarak bir SQLite veritabanı oluşturulurken, tabloların veritabanı ilk oluşturulduğunda otomatik olarak oluşturulması için `openDatabase` metodunun altında hangi metot çağrılmalıdır?",
+    "correct_option": "onCreate",
+    "options": [
+      "onAdd",
+      "onUpgrade",
+      "onCreate",
+      "addTable"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2023-2024.pdf Soru 9",
+    "code_example": "openDatabase(..., onCreate: (db, version) { ... });"
+  },
+  {
+    "unit": 6,
+    "topic": "SQLite İşlemleri",
+    "question": "SQLite veri tabanında, SQL `DELETE` komutu kullanılarak yapılan silme işlemi, hangi eylemi gerçekleştirir?",
+    "correct_option": "Silme",
+    "options": [
+      "Ekleme",
+      "Seçme",
+      "Silme",
+      "Güncelleme"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2024-2025.pdf Soru 12",
+    "code_example": "DELETE FROM Tablo WHERE Şart"
+  },
+  {
+    "unit": 7,
+    "topic": "Yapay Zeka (YZ) Bileşenleri",
+    "question": "`import 'package:mlkit/mlkit.dart';` kod satırı ile aşağıdakilerden hangisi gerçekleştirilir?",
+    "correct_option": "Mobil uygulamaya yapay zeka uygulaması entegre edilir.",
+    "options": [
+      "Mobil uygulamaya sanal gerçeklik uygulaması entegre edilir.",
+      "Mobil uygulamaya artırılmış gerçeklik uygulaması entegre edilir.",
+      "Mobil uygulamaya yapay zeka uygulaması entegre edilir.",
+      "Kamera kullanım izinleri sağlanır."
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2024-2025.pdf Soru 13",
+    "code_example": "import 'package:mlkit/mlkit.dart';"
+  },
+  {
+    "unit": 7,
+    "topic": "Sensörler",
+    "question": "`motionSensors.screenOrientation.listen` fonksiyonunun kullanım amacı aşağıdakilerden hangisidir?",
+    "correct_option": "Yönlendirme Sensörü üzerinden cihazın açısal konumlanmasını (yatay-dikey) okumak için kullanılır.",
+    "options": [
+      "İvmeölçer sensörünün ölçtüğü değerleri okumak için kullanılır.",
+      "Jiroskop sensörünün ölçtüğü değerleri okumak için kullanılır.",
+      "Yönlendirme Sensörü üzerinden cihazın açısal konumlanmasını (yatay-dikey) okumak için kullanılır.",
+      "Manyetometre sensörünün manyetik alanı algılamasına yönelik değerleri okumak için kullanılır."
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2024-2025.pdf Soru 15",
+    "code_example": "motionSensors.screenOrientation.listen(...)"
+  },
+  {
+    "unit": 8,
+    "topic": "Cloud Firestore Temelleri",
+    "question": "Cloud Firestore ile ilgili olarak aşağıdakilerden hangisi yanlıştır?",
+    "correct_option": "Cloud Firestore veritabanında tablo ve satırlar vardır.",
+    "options": [
+      "Cloud Firestore, NoSQL türünde belge odaklı bir veritabanıdır.",
+      "Cloud Firestore veritabanında tablo ve satırlar vardır.",
+      "Esnek şemalar sağlayabilir.",
+      "Büyük miktarda veri ve yüksek kullanıcı yükleriyle ölçeklenirler."
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2024-2025.pdf Soru 18",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Firebase Kurulumu",
+    "question": "Basit Posta Aktarım Protokolü (SMTP) anlamına gelir ve e-posta sunucuları tarafından e-posta göndermek, almak ve/veya iletmek için kullanılan bir uygulama nedir?",
+    "correct_option": "SMTP",
+    "options": [
+      "Flutter Fire",
+      "Cloud Firestore",
+      "Firebase Core",
+      "SMTP"
+    ],
+    "source_type": "Sınav Odaklı Sorular / mobil_uyg_gel_final_2024-2025.pdf Soru 19",
+    "code_example": null
+  }
+]
+
+
