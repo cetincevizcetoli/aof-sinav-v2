@@ -930,5 +930,983 @@
     ],
     "source_type": "Ders Kitabı / Sayfa 123",
     "code_example": null
+  },
+
+  {
+    "unit": 4,
+    "topic": "Baloncuk Sıralama (Bubble Sort)",
+    "question": "Listedeki elemanları ikili olarak yanındakiyle karşılaştırıp, sıralama yönüne göre yer değiştiren ve her adımda en büyük/küçük elemanı sona taşıyan algoritma hangisidir?",
+    "correct_option": "Baloncuk Sıralama (Bubble Sort)",
+    "options": [
+      "Baloncuk Sıralama (Bubble Sort)",
+      "Seçerek Sıralama (Selection Sort)",
+      "Ekleme Sıralama (Insertion Sort)",
+      "Hızlı Sıralama (Quick Sort)",
+      "Rastgele Sıralama"
+    ],
+    "source_type": "2023-2024 Güz Ara / Soru 19 ve Ders Kitabı Sayfa 79",
+    "code_example": "if (arr[i] > arr[i+1]) Swap(i, i+1);"
+  },
+  {
+    "unit": 4,
+    "topic": "Seçerek Sıralama (Selection Sort)",
+    "question": "Her adımda dizinin kalan kısmındaki 'en küçük' (veya en büyük) elemanı bulup, onu olması gereken sıradaki konuma yerleştiren algoritma hangisidir?",
+    "correct_option": "Seçerek Sıralama (Selection Sort)",
+    "options": [
+      "Seçerek Sıralama (Selection Sort)",
+      "Ekleme Sıralama (Insertion Sort)",
+      "Baloncuk Sıralama (Bubble Sort)",
+      "Hızlı Sıralama (Quick Sort)",
+      "Birleştirmeli Sıralama"
+    ],
+    "source_type": "2023-2024 Güz Ara / Soru 20 ve Ders Kitabı Sayfa 81",
+    "code_example": "int minIndex = i; // En küçüğü bul ve takas et"
+  },
+  {
+    "unit": 4,
+    "topic": "Ekleme Sıralama (Insertion Sort)",
+    "question": "Sıradaki elemanı alıp, sol taraftaki sıralanmış alt dizi içindeki 'uygun konuma yerleştiren' (kitaplıktaki kitapları dizer gibi) algoritma hangisidir?",
+    "correct_option": "Ekleme Sıralama (Insertion Sort)",
+    "options": [
+      "Ekleme Sıralama (Insertion Sort)",
+      "Seçerek Sıralama (Selection Sort)",
+      "Baloncuk Sıralama (Bubble Sort)",
+      "Hızlı Sıralama (Quick Sort)",
+      "Heap Sort"
+    ],
+    "source_type": "2024-2025 Güz Dönem Sonu / Soru 3 ve Ders Kitabı Sayfa 82",
+    "code_example": "while (j > 0 && arr[j-1] > temp) { arr[j] = arr[j-1]; }"
+  },
+  {
+    "unit": 4,
+    "topic": "Hızlı Sıralama (Quick Sort) - Pivot",
+    "question": "Bir 'Pivot' eleman seçerek diziyi pivottan küçükler ve büyükler olarak ikiye ayıran ve bunu özyinelemeli (recursive) olarak yapan algoritma hangisidir?",
+    "correct_option": "Hızlı Sıralama (Quick Sort)",
+    "options": [
+      "Hızlı Sıralama (Quick Sort)",
+      "Birleştirme Sıralaması (Merge Sort)",
+      "Ekleme Sıralama (Insertion Sort)",
+      "Seçerek Sıralama (Selection Sort)",
+      "Baloncuk Sıralama (Bubble Sort)"
+    ],
+    "source_type": "2023 Güz Ara / Soru 16 ve Ders Kitabı Sayfa 83",
+    "code_example": "int pivot = Partition(arr, left, right);"
+  },
+  {
+    "unit": 4,
+    "topic": "Algoritma Adım Takibi - Ekleme Sıralama",
+    "question": "26, 45, 22, 15, 7 dizisi Ekleme Sıralama (Insertion Sort) ile sıralanırken 2. adım sonunda dizinin hali ne olur?",
+    "correct_option": "22, 26, 45, 15, 7",
+    "options": [
+      "22, 26, 45, 15, 7",
+      "15, 22, 26, 45, 7",
+      "26, 22, 45, 15, 7",
+      "7, 15, 22, 26, 45",
+      "26, 45, 22, 15, 7"
+    ],
+    "source_type": "2023-2024 Güz Ara / Soru 17 (Adım Analizi)",
+    "code_example": "Adım 1: [26, 45] (Sıralı) | 22, 15, 7\nAdım 2: [22, 26, 45] (Sıralı) | 15, 7"
+  },
+  {
+    "unit": 4,
+    "topic": "Quick Sort Karmaşıklığı",
+    "question": "Hızlı Sıralama (Quick Sort) algoritmasının 'En Kötü Durum' (Worst Case) zaman karmaşıklığı nedir?",
+    "correct_option": "O(n^2) - Kuadratik",
+    "options": [
+      "O(n^2) - Kuadratik",
+      "O(n log n)",
+      "O(n)",
+      "O(log n)",
+      "O(n!)"
+    ],
+    "source_type": "2023 Güz Ara / Soru 20 ve Ders Kitabı Sayfa 85",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Quick Sort En İyi Durum",
+    "question": "Hızlı Sıralama (Quick Sort) algoritmasının 'En İyi' ve 'Ortalama' durum zaman karmaşıklığı nedir?",
+    "correct_option": "O(n log n)",
+    "options": [
+      "O(n log n)",
+      "O(n^2)",
+      "O(n)",
+      "O(log n)",
+      "O(1)"
+    ],
+    "source_type": "2023 Güz Dönem Sonu / Soru 4 ve Tablo 4.5",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Ekleme Sıralama Karmaşıklığı",
+    "question": "Ekleme Sıralama (Insertion Sort) algoritması, dizi zaten sıralıysa (En İyi Durum) hangi zaman karmaşıklığında çalışır?",
+    "correct_option": "O(n) - Doğrusal",
+    "options": [
+      "O(n) - Doğrusal",
+      "O(n^2)",
+      "O(log n)",
+      "O(1)",
+      "O(n log n)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 87 - Tablo 4.5",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Selection Sort Adım Takibi",
+    "question": "45, 50, 33, 16, 52 dizisi Seçerek Sıralama (Selection Sort) ile sıralanırken 1. adım sonunda dizi nasıl görünür? (En küçük başa alınır)",
+    "correct_option": "16, 50, 33, 45, 52",
+    "options": [
+      "16, 50, 33, 45, 52",
+      "45, 16, 33, 50, 52",
+      "16, 33, 45, 50, 52",
+      "45, 33, 16, 50, 52",
+      "52, 50, 33, 16, 45"
+    ],
+    "source_type": "2024-2025 Güz Dönem Sonu / Soru 3 (Adım Analizi)",
+    "code_example": "Adım 1: En küçük (16) bulunur, baştaki (45) ile yer değişir."
+  },
+  {
+    "unit": 4,
+    "topic": "Algoritma Tanımı - Ekleme",
+    "question": "İki döngü içeren, dış döngü ilerlerken iç döngüde elemanı geriye doğru uygun yere yerleştiren algoritma tanımı hangisine aittir?",
+    "correct_option": "Ekleme Sıralama (Insertion Sort)",
+    "options": [
+      "Ekleme Sıralama (Insertion Sort)",
+      "Seçerek Sıralama",
+      "Hızlı Sıralama",
+      "Baloncuk Sıralama",
+      "Rastgele Sıralama"
+    ],
+    "source_type": "2023-2024 Güz Dönem Sonu / Soru 4",
+    "code_example": "for(i=1..n) { temp=arr[i]; while(...) shift; }"
+  },
+  {
+    "unit": 4,
+    "topic": "Bubble Sort Karmaşıklığı",
+    "question": "Baloncuk Sıralama (Bubble Sort) algoritmasının Ortalama ve En Kötü durum karmaşıklığı nedir?",
+    "correct_option": "O(n^2)",
+    "options": [
+      "O(n^2)",
+      "O(n)",
+      "O(n log n)",
+      "O(log n)",
+      "O(n!)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 87 - Tablo 4.5",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Selection Sort Karmaşıklığı",
+    "question": "Seçerek Sıralama (Selection Sort) algoritması, dizi sıralı olsa bile (En İyi Durumda) hangi karmaşıklıkta çalışır?",
+    "correct_option": "O(n^2) - (Her durumda karekök karmaşıklık)",
+    "options": [
+      "O(n^2) - (Her durumda karekök karmaşıklık)",
+      "O(n)",
+      "O(n log n)",
+      "O(1)",
+      "O(log n)"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 87 - Tablo 4.5",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Quick Sort Pivot Seçimi",
+    "question": "Hızlı Sıralama (Quick Sort) algoritmasının performansını (en iyi/en kötü durum) belirleyen en kritik faktör nedir?",
+    "correct_option": "Pivot elemanının seçimi",
+    "options": [
+      "Pivot elemanının seçimi",
+      "Dizinin boyutu",
+      "Veri tipi",
+      "Bilgisayarın hızı",
+      "Kullanılan döngü sayısı"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 83",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Algoritma Çalışma Mantığı",
+    "question": "Sıralama algoritmaları arasında 'Böl ve Yönet' (Divide and Conquer) yaklaşımını kullanan algoritma hangisidir?",
+    "correct_option": "Hızlı Sıralama (Quick Sort)",
+    "options": [
+      "Hızlı Sıralama (Quick Sort)",
+      "Ekleme Sıralama",
+      "Seçerek Sıralama",
+      "Baloncuk Sıralama",
+      "Doğrusal Sıralama"
+    ],
+    "source_type": "2024-2025 Güz Ara / Soru 19",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Sıralama Algoritması Tanımı",
+    "question": "Verileri sıralarken en küçük (veya en büyük) elemanın seçilerek önceki sıralanan elemanlar arasındaki yerine (veya sona) yerleştirildiği algoritma hangisidir?",
+    "correct_option": "Seçerek Sıralama (Selection Sort)",
+    "options": [
+      "Seçerek Sıralama (Selection Sort)",
+      "Ekleme Sıralama",
+      "Baloncuk Sıralama",
+      "Hızlı Sıralama",
+      "Rastgele Sıralama"
+    ],
+    "source_type": "2023 Güz Ara / Soru 17",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Kod Analizi - İç İçe Döngü",
+    "question": "Kod bloğunda 'for (int i=0; ...)' ve içinde 'for (int j=i+1; ...)' görüyorsanız ve 'if (arr[j] < arr[min])' kontrolü varsa bu hangi algoritmadır?",
+    "correct_option": "Seçerek Sıralama (Selection Sort)",
+    "options": [
+      "Seçerek Sıralama (Selection Sort)",
+      "Baloncuk Sıralama (if arr[j] > arr[j+1])",
+      "Ekleme Sıralama (while döngüsü kullanır)",
+      "Hızlı Sıralama (Recursive çağrı vardır)",
+      "Merge Sort"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 81 - Kod 4.7",
+    "code_example": "if (arr[ic] < arr[min]) min = ic;"
+  },
+  {
+    "unit": 4,
+    "topic": "Kod Analizi - Recursive",
+    "question": "Bir sıralama metodunun içinde 'Metot(left, pivot-1)' ve 'Metot(pivot+1, right)' şeklinde kendisini çağıran satırlar varsa bu hangi algoritmadır?",
+    "correct_option": "Hızlı Sıralama (Quick Sort)",
+    "options": [
+      "Hızlı Sıralama (Quick Sort)",
+      "Seçerek Sıralama",
+      "Ekleme Sıralama",
+      "Baloncuk Sıralama",
+      "Counting Sort"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 85 - Kod 4.9",
+    "code_example": "HizliSiralama(left, pivot-1);"
+  },
+  {
+    "unit": 4,
+    "topic": "Bubble Sort İyileştirme",
+    "question": "Baloncuk Sıralama algoritmasında, bir geçiş (pass) sırasında hiç yer değiştirme (swap) yapılmazsa bu ne anlama gelir?",
+    "correct_option": "Dizi tamamen sıralanmıştır, algoritma durdurulabilir.",
+    "options": [
+      "Dizi tamamen sıralanmıştır, algoritma durdurulabilir.",
+      "Algoritma hatalıdır.",
+      "Dizi tersten sıralıdır.",
+      "Pivot seçimi yanlıştır.",
+      "En kötü durum oluşmuştur."
+    ],
+    "source_type": "Genel Algoritma Bilgisi / Ders Kitabı Mantığı",
+    "code_example": "if (!swapped) break;"
+  },
+  {
+    "unit": 4,
+    "topic": "Kararlılık (Stability)",
+    "question": "Aynı değere sahip elemanların, sıralama sonrasında da birbirlerine göre olan sırasını korumasına ne denir?",
+    "correct_option": "Kararlı (Stable) Sıralama",
+    "options": [
+      "Kararlı (Stable) Sıralama",
+      "Kararsız (Unstable) Sıralama",
+      "Dinamik Sıralama",
+      "Statik Sıralama",
+      "Hızlı Sıralama"
+    ],
+    "source_type": "Ders Kitabı / Genel Kavram",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Sıralama Performansı",
+    "question": "Çok büyük veri setlerinde (Örn: 1 milyon kayıt), O(n^2) karmaşıklığına sahip Bubble Sort yerine hangi algoritma tercih edilmelidir?",
+    "correct_option": "Hızlı Sıralama (Quick Sort) - O(n log n)",
+    "options": [
+      "Hızlı Sıralama (Quick Sort) - O(n log n)",
+      "Seçerek Sıralama",
+      "Ekleme Sıralama",
+      "Rastgele Sıralama",
+      "Hiçbiri"
+    ],
+    "source_type": "Ders Kitabı / Sayfa 86",
+    "code_example": null
+  },
+	
+  {
+    "unit": 5,
+    "topic": "Arama Algoritmaları Sınıflandırması",
+    "question": "Listenin bir ucundan başlayarak sonuna kadar sırayla her elemanı kontrol eden arama algoritması hangisidir?",
+    "correct_option": "Doğrusal/Sıralı Arama (Linear Search)",
+    "options": [
+      "Doğrusal/Sıralı Arama (Linear Search)",
+      "İkili Arama (Binary Search)",
+      "Üçlü Arama (Ternary Search)",
+      "Aralıklı Arama (Interval Search)",
+      "Hash Araması"
+    ],
+      "source_type": "2023-2024 Güz Dönem Sonu / Soru 6 [cite: 5791]",
+    "code_example": "for(int i=0; i<n; i++) { if(arr[i] == target) return i; }"
+  },
+  {
+    "unit": 5,
+    "topic": "İkili Arama (Binary Search) Gereksinimi",
+    "question": "İkili Arama (Binary Search) algoritmasının çalışabilmesi için veri seti üzerinde olması gereken ZORUNLU ön koşul nedir?",
+    "correct_option": "Verilerin sıralı (sorted) olması gerekir.",
+    "options": [
+      "Verilerin sıralı (sorted) olması gerekir.",
+      "Veri setinin küçük olması gerekir.",
+      "Verilerin sayısal olması gerekir.",
+      "Verilerin Hash tablosunda tutulması gerekir.",
+      "Veri setinde tekrar eden eleman olmaması gerekir."
+    ],
+      "source_type": "Ders Kitabı / Sayfa 102 [cite: 3930]",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Arama Algoritmaları Karmaşıklığı",
+    "question": "Doğrusal (Linear) Aramanın 'En Kötü Durum' (Worst Case) zaman karmaşıklığı nedir?",
+    "correct_option": "O(n)",
+    "options": [
+      "O(n)",
+      "O(log n)",
+      "O(n log n)",
+      "O(1)",
+      "O(n^2)"
+    ],
+      "source_type": "2023 Güz Dönem Sonu / Soru 5 [cite: 5766]",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Üçlü Arama (Ternary Search)",
+    "question": "Sıralı bir diziyi 'orta1' ve 'orta2' olmak üzere iki nokta kullanarak üç parçaya bölen arama algoritması hangisidir?",
+    "correct_option": "Üçlü Arama (Ternary Search)",
+    "options": [
+      "Üçlü Arama (Ternary Search)",
+      "İkili Arama (Binary Search)",
+      "Doğrusal Arama",
+      "Seçerek Arama",
+      "Atlamalı Arama"
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 8 [cite: 5610]",
+    "code_example": "mid1 = l + (r-l)/3; mid2 = r - (r-l)/3;"
+  },
+  {
+    "unit": 5,
+    "topic": "İkili Arama Mantığı",
+    "question": "İkili Arama algoritması ile ilgili aşağıdaki ifadelerden hangileri doğrudur?\nI. Böl ve yönet yaklaşımını kullanır.\nII. Sıralı dizi gerektirir.\nIII. Verilere sırayla erişir.",
+    "correct_option": "I ve II",
+    "options": [
+      "I ve II",
+      "Yalnız I",
+      "Yalnız II",
+      "II ve III",
+      "I, II ve III"
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 6 [cite: 5551]",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Binary Search Karmaşıklığı",
+    "question": "İkili Arama (Binary Search) algoritmasının 'En Kötü Durum' zaman karmaşıklığı nedir?",
+    "correct_option": "O(log n)",
+    "options": [
+      "O(log n)",
+      "O(n)",
+      "O(1)",
+      "O(n log n)",
+      "O(n^2)"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 103 [cite: 3934]",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Doğrusal Arama Özelliği",
+    "question": "Aşağıdakilerden hangisi Doğrusal (Sıralı) Arama için doğrudur?",
+    "correct_option": "İkili aramaya göre daha az karmaşıktır (kodlama mantığı olarak).",
+    "options": [
+      "İkili aramaya göre daha az karmaşıktır (kodlama mantığı olarak).",
+      "Böl ve yönet yaklaşımını kullanır.",
+      "Ögelere rastgele erişir.",
+      "Sıralanmış bir dizi gerektirir.",
+      "En kötü durum karmaşıklığı O(log n)'dir."
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 7 [cite: 5576]",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Arama Algoritması Kıyaslama",
+    "question": "Sıralanmamış (rastgele) bir veri setinde bir elemanı bulmak için kullanılabilecek en temel algoritma hangisidir?",
+    "correct_option": "Doğrusal Arama (Linear Search)",
+    "options": [
+      "Doğrusal Arama (Linear Search)",
+      "İkili Arama (Binary Search)",
+      "Üçlü Arama (Ternary Search)",
+      "Aralıklı Arama",
+      "Fibonacci Araması"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 99 [cite: 3885]",
+    "code_example": null
+  },
+  {
+    "unit": 6,
+    "topic": "Bağlantılı Liste Tanımı",
+    "question": "Düğüm (Node) adı verilen, verileri ve bir sonraki düğümün referans adresini tutan nesnelerin oluşturduğu yapı hangisidir?",
+    "correct_option": "Bağlantılı Liste (Linked List)",
+    "options": [
+      "Bağlantılı Liste (Linked List)",
+      "Dizi (Array)",
+      "Yığın (Stack)",
+      "Kuyruk (Queue)",
+      "Sözlük (Dictionary)"
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 11 [cite: 5619]",
+    "code_example": "class Node { object Data; Node Next; }"
+  },
+  {
+    "unit": 6,
+    "topic": "Çift Bağlantılı Liste Özellikleri",
+    "question": "Aşağıdakilerden hangisi Çift Bağlantılı Liste (Doubly Linked List) yapısının özelliklerinden biri DEĞİLDİR?",
+    "correct_option": "Dinamik olarak büyüyüp küçülemez.",
+    "options": [
+      "Dinamik olarak büyüyüp küçülemez.",
+      "Her iki yönde (ileri-geri) gezinmeye imkan sağlar.",
+      "Bir önceki düğüme erişim olduğu için silme işlemi kolaydır.",
+      "Ters çevirmek kolaydır.",
+      "Tek bağlı listelere göre daha fazla bellek kullanır."
+    ],
+      "source_type": "2023 Güz Dönem Sonu / Soru 11 [cite: 5847]",
+    "code_example": null
+  },
+  {
+    "unit": 6,
+    "topic": "Bağlantılı Liste Kod Analizi - Silme",
+    "question": "Verilen kod bloğunda `p.SonrakiLink.OncekiLink = p.OncekiLink;` ve `p.OncekiLink.SonrakiLink = p.SonrakiLink;` işlemleri yapılıyorsa, bu kodun işlevi nedir?",
+    "correct_option": "Belirtilen düğümü listeden silmek ve bağları güncellemek.",
+    "options": [
+      "Belirtilen düğümü listeden silmek ve bağları güncellemek.",
+      "Listeye yeni düğüm eklemek.",
+      "Listenin son elemanını bulmak.",
+      "Listeyi ters çevirmek.",
+      "Düğümün verisini güncellemek."
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 12 [cite: 5635]",
+    "code_example": "p.Next.Prev = p.Prev; p.Prev.Next = p.Next;"
+  },
+  {
+    "unit": 6,
+    "topic": "Dairesel Bağlantılı Liste",
+    "question": "Listenin son düğümünün (Last Node), 'null' yerine listenin ilk düğümünü (Head) işaret ettiği veri yapısı hangisidir?",
+    "correct_option": "Dairesel Bağlantılı Liste (Circular Linked List)",
+    "options": [
+      "Dairesel Bağlantılı Liste (Circular Linked List)",
+      "Çift Bağlantılı Liste",
+      "Tek Yönlü Bağlantılı Liste",
+      "Yığın",
+      "Kuyruk"
+    ],
+      "source_type": "2022-2023 Güz Dönem Sonu / Soru 12 [cite: 5870]",
+    "code_example": "lastNode.Next = head;"
+  },
+  {
+    "unit": 6,
+    "topic": "Bağlantılı Liste Avantajları",
+    "question": "Dizi (Array) yapısına kıyasla Bağlantılı Listelerin en önemli avantajı nedir?",
+    "correct_option": "Boyutun dinamik olması ve ekleme/silme işlemlerinin maliyetinin düşük olması.",
+    "options": [
+      "Boyutun dinamik olması ve ekleme/silme işlemlerinin maliyetinin düşük olması.",
+      "Rastgele erişim (Random Access) imkanı sağlaması.",
+      "Daha az bellek alanı kaplaması.",
+      "Verilerin bellekte sıralı tutulması.",
+      "İndeks ile doğrudan erişim sağlaması."
+    ],
+      "source_type": "Ders Kitabı / Sayfa 115 [cite: 4079]",
+    "code_example": null
+  },
+  {
+    "unit": 6,
+    "topic": "Bağlantılı Liste Kod Analizi - Gezinme",
+    "question": "`while (!(mevcut.Link == null))` döngüsü içinde `Console.WriteLine(mevcut.Link.Oge)` komutu çalıştırılan bir kod bloğu ne yapar?",
+    "correct_option": "Tek yönlü bağlantılı listedeki verileri yazdırır.",
+    "options": [
+      "Tek yönlü bağlantılı listedeki verileri yazdırır.",
+      "Listeyi tersten yazdırır.",
+      "Listenin son elemanını siler.",
+      "Listeye eleman ekler.",
+      "Sadece ilk elemanı yazdırır."
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 9 [cite: 5555]",
+    "code_example": "mevcut = mevcut.Link;"
+  },
+  {
+    "unit": 6,
+    "topic": "Düğüm (Node) Yapısı",
+    "question": "Bir Bağlantılı Liste düğümü (Node) en az hangi iki temel bileşeni içermelidir?",
+    "correct_option": "Veri (Data) ve Referans/Link (Adres)",
+    "options": [
+      "Veri (Data) ve Referans/Link (Adres)",
+      "Veri ve İndeks",
+      "Anahtar ve Değer",
+      "Veri ve Boyut",
+      "Önceki ve Sonraki Veri"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 116 [cite: 4092]",
+    "code_example": "class Node { int Data; Node Next; }"
+  },
+  {
+    "unit": 6,
+    "topic": "Bağlantılı Liste Dezavantajı",
+    "question": "Bağlantılı listelerin dizilere göre en belirgin dezavantajı nedir?",
+    "correct_option": "Rastgele erişim (Random Access) olmaması ve her düğüm için ekstra referans belleği gerekmesi.",
+    "options": [
+      "Rastgele erişim (Random Access) olmaması ve her düğüm için ekstra referans belleği gerekmesi.",
+      "Boyutunun değiştirilememesi.",
+      "Veri eklemenin çok yavaş olması.",
+      "Sadece sayısal veri tutabilmesi.",
+      "LIFO mantığıyla çalışmak zorunda olması."
+    ],
+      "source_type": "Ders Kitabı / Sayfa 115 [cite: 4085]",
+    "code_example": null
+  },
+  {
+    "unit": 5,
+    "topic": "Algoritma Seçimi",
+    "question": "Sıralı bir dizide bir eleman ararken, O(log n) karmaşıklığıyla en verimli sonucu veren algoritma hangisidir?",
+    "correct_option": "İkili Arama (Binary Search)",
+    "options": [
+      "İkili Arama (Binary Search)",
+      "Doğrusal Arama",
+      "Derinlik Öncelikli Arama",
+      "Genişlik Öncelikli Arama",
+      "Seçerek Arama"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 103 [cite: 3928]",
+    "code_example": null
+  },
+  {
+    "unit": 6,
+    "topic": "Çift Bağlantılı Liste Yapısı",
+    "question": "Her düğümün hem bir sonraki hem de bir önceki düğümün adresini tuttuğu liste yapısı hangisidir?",
+    "correct_option": "Çift Bağlantılı Liste (Doubly Linked List)",
+    "options": [
+      "Çift Bağlantılı Liste (Doubly Linked List)",
+      "Tek Yönlü Bağlantılı Liste",
+      "Dairesel Liste",
+      "Statik Liste",
+      "Yığın"
+    ],
+      "source_type": "2022-2023 Güz Dönem Sonu / Soru 9 [cite: 5858]",
+    "code_example": "Node Prev; Node Next;"
+  },
+  {
+    "unit": 5,
+    "topic": "Arama - En İyi Durum",
+    "question": "İkili Arama (Binary Search) algoritmasında aranan eleman dizinin tam ortasındaysa (En İyi Durum), kaç adımda bulunur?",
+    "correct_option": "1 Adımda (O(1))",
+    "options": [
+      "1 Adımda (O(1))",
+      "log n adımda",
+      "n/2 adımda",
+      "n adımda",
+      "n^2 adımda"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 103 [cite: 3932]",
+    "code_example": "if (arr[mid] == target) return mid;"
+  },
+  {
+    "unit": 6,
+    "topic": "Head (Başlık) Düğümü",
+    "question": "Bir bağlantılı listede, listenin başlangıç noktasını tutan özel düğüme ne ad verilir?",
+    "correct_option": "Başlık (Head)",
+    "options": [
+      "Başlık (Head)",
+      "Kuyruk (Tail)",
+      "Kök (Root)",
+      "Düğüm (Node)",
+      "Gövde (Body)"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 116 [cite: 4095]",
+    "code_example": "Node head = new Node();"
+  },
+  {
+    "unit": 6,
+    "topic": "Liste Sonu Kontrolü",
+    "question": "Tek yönlü bir bağlantılı listenin sonuna gelindiği nasıl anlaşılır?",
+    "correct_option": "Düğümün 'Next' (veya Link) referansının 'null' olmasıyla.",
+    "options": [
+      "Düğümün 'Next' (veya Link) referansının 'null' olmasıyla.",
+      "Düğümün verisinin 0 olmasıyla.",
+      "Düğümün 'Prev' referansının null olmasıyla.",
+      "Listenin eleman sayısının 0 olmasıyla.",
+      "Head düğümüne geri dönülmesiyle."
+    ],
+      "source_type": "Ders Kitabı / Sayfa 116 [cite: 4100]",
+    "code_example": "if (current.Next == null) // Son düğüm"
+  },
+  {
+    "unit": 5,
+    "topic": "Recursive Arama",
+    "question": "İkili Arama (Binary Search) algoritmasının, kendini tekrar çağırarak (Recursive) çözüm üreten versiyonunda kullanılan temel yaklaşım nedir?",
+    "correct_option": "Böl ve Yönet (Divide and Conquer)",
+    "options": [
+      "Böl ve Yönet (Divide and Conquer)",
+      "Açgözlü Yaklaşım (Greedy)",
+      "Dinamik Programlama",
+      "Geri İzleme (Backtracking)",
+      "Kaba Kuvvet (Brute Force)"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 102 [cite: 3929]",
+    "code_example": "return BinarySearch(arr, mid+1, right, x);"
+  },
+  {
+    "unit": 6,
+    "topic": "Eleman Ekleme Mantığı",
+    "question": "Bağlantılı listenin ortasına yeni bir düğüm eklerken yapılması gereken ilk işlem nedir?",
+    "correct_option": "Eklenecek konumdan önceki düğümün bulunması.",
+    "options": [
+      "Eklenecek konumdan önceki düğümün bulunması.",
+      "Listenin boyutunun artırılması.",
+      "Tüm elemanların bir sağa kaydırılması.",
+      "Listenin sonuna gidilmesi.",
+      "Head düğümünün güncellenmesi."
+    ],
+      "source_type": "Ders Kitabı / Sayfa 118 [cite: 4134]",
+    "code_example": "Dugum onceki = Bul(aranan);"
+  },
+	
+  {
+    "unit": 7,
+    "topic": "Ağaç Terimleri - Yükseklik",
+    "question": "Bir ağacın kök düğümünden, en uzaktaki yaprak düğümüne kadar olan mesafeyi (kenar sayısını) ifade eden kavram hangisidir?",
+    "correct_option": "Yükseklik (Height)",
+    "options": [
+      "Yükseklik (Height)",
+      "Derinlik (Depth)",
+      "Derece (Degree)",
+      "Seviye (Level)",
+      "Ağırlık (Weight)"
+    ],
+      "source_type": "2023 Güz Dönem Sonu / Soru 14 [cite: 1514]",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "Ağaç Terimleri - Derinlik",
+    "question": "Herhangi bir düğümün, kök düğümüne olan mesafesine ne ad verilir?",
+    "correct_option": "Derinlik (Depth)",
+    "options": [
+      "Derinlik (Depth)",
+      "Yükseklik (Height)",
+      "Boyut (Size)",
+      "Kenar (Edge)",
+      "Yaprak (Leaf)"
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 13 [cite: 1028]",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "İkili Arama Ağacı (BST) - Sıralama",
+    "question": "İkili Arama Ağacındaki (BST) verileri 'küçükten büyüğe' doğru sıralı olarak elde etmek için hangi gezinme (traversal) yöntemi kullanılmalıdır?",
+    "correct_option": "İç Kök (In-Order) / Sol-Kök-Sağ",
+    "options": [
+      "İç Kök (In-Order) / Sol-Kök-Sağ",
+      "Önce Kök (Pre-Order) / Kök-Sol-Sağ",
+      "Sonra Kök (Post-Order) / Sol-Sağ-Kök",
+      "Seviye Gezinme (Level Order)",
+      "Ters Gezinme / Sağ-Kök-Sol"
+    ],
+      "source_type": "2023 Güz Dönem Sonu / Soru 16 [cite: 1286]",
+    "code_example": "void InOrder(Node kok) { ... InOrder(kok.Sol); Yazdir(kok); InOrder(kok.Sag); }"
+  },
+  {
+    "unit": 7,
+    "topic": "Dengeli İkili Ağaç",
+    "question": "Bir ağacın 'Dengeli İkili Ağaç' (Balanced Binary Tree) olarak adlandırılabilmesi için gerekli temel koşul nedir?",
+    "correct_option": "Herhangi bir düğümün sol ve sağ alt ağaçlarının yükseklik farkı 1'den fazla olmamalıdır.",
+    "options": [
+      "Herhangi bir düğümün sol ve sağ alt ağaçlarının yükseklik farkı 1'den fazla olmamalıdır.",
+      "Tüm yaprak düğümler aynı seviyede olmalıdır.",
+      "Her düğümün tam olarak iki çocuğu olmalıdır.",
+      "Kök düğüm her zaman en büyük değeri taşımalıdır.",
+      "Ağaçta hiç yaprak düğüm bulunmamalıdır."
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 16 [cite: 1036]",
+    "code_example": "if (Math.Abs(solYukseklik - sagYukseklik) > 1) return false;"
+  },
+  {
+    "unit": 7,
+    "topic": "Ağaç Türleri - Tam İkili Ağaç",
+    "question": "Tüm düğümlerin çocuk sayısının ya 0 (yaprak) ya da 2 olduğu (tek çocuklu düğümün olmadığı) ağaç türü hangisidir?",
+    "correct_option": "Tam İkili Ağaç (Full Binary Tree)",
+    "options": [
+      "Tam İkili Ağaç (Full Binary Tree)",
+      "Mükemmel İkili Ağaç (Perfect Binary Tree)",
+      "Eksiksiz İkili Ağaç (Complete Binary Tree)",
+      "Dejenere Ağaç",
+      "Çarpık Ağaç"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 143 [cite: 5868]",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "İkili Arama Ağacı Mantığı",
+    "question": "İkili Arama Ağacında (BST) bir veriyi ararken, aranan değer mevcut düğümden BÜYÜK ise hangi yöne gidilir?",
+    "correct_option": "Sağ Çocuk Düğümüne",
+    "options": [
+      "Sağ Çocuk Düğümüne",
+      "Sol Çocuk Düğümüne",
+      "Ebeveyn Düğüme",
+      "Kök Düğüme",
+      "Arama sonlandırılır"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 145 [cite: 5897]",
+    "code_example": "if (aranan > mevcut.Data) mevcut = mevcut.Sag;"
+  },
+  {
+    "unit": 7,
+    "topic": "Ağaç Silme İşlemi",
+    "question": "İkili Arama Ağacından iki çocuğu olan bir düğüm silinirken, silinen düğümün yerine aşağıdakilerden hangisi getirilebilir?",
+    "correct_option": "Sağ alt ağacın en küçüğü (veya Sol alt ağacın en büyüğü)",
+    "options": [
+      "Sağ alt ağacın en küçüğü (veya Sol alt ağacın en büyüğü)",
+      "Sağ alt ağacın en büyüğü",
+      "Sol alt ağacın en küçüğü",
+      "Herhangi bir yaprak düğüm",
+      "Kök düğüm"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 155 [cite: 6045]",
+    "code_example": "Dugum varis = VarisDugum(mevcut.Sag); // Sağın en solunu bul"
+  },
+  {
+    "unit": 7,
+    "topic": "Ağaç Türleri - Çarpık",
+    "question": "Tüm düğümlerin sadece tek bir yöne (sadece sağa veya sadece sola) eklenmesiyle oluşan, bağlantılı listeye benzeyen ağaç türü hangisidir?",
+    "correct_option": "Çarpık İkili Ağaç (Skewed Binary Tree)",
+    "options": [
+      "Çarpık İkili Ağaç (Skewed Binary Tree)",
+      "Tam İkili Ağaç",
+      "Dengeli Ağaç",
+      "AVL Ağacı",
+      "B-Ağacı"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 144 [cite: 5880]",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Graf Tanımı - Yönlü Graf",
+    "question": "Kenarları, düğümler arasındaki bağlantının başlangıç ve bitiş noktalarını gösteren bir yönlendirme bilgisine (ok işaretine) sahip olan graf türü hangisidir?",
+    "correct_option": "Yönlü Graf (Directed Graph)",
+    "options": [
+      "Yönlü Graf (Directed Graph)",
+      "Yönsüz Graf (Undirected Graph)",
+      "Ağırlıklı Graf",
+      "Tam Graf",
+      "Çoklu Graf"
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 19 [cite: 1092]",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Graf Algoritmaları - BFS",
+    "question": "Grafın düğümlerini gezmek için 'Kuyruk' (Queue) veri yapısını kullanan ve düğümleri seviye seviye (önce komşular) ziyaret eden algoritma hangisidir?",
+    "correct_option": "Önce Genişlik Araması (BFS - Breadth First Search)",
+    "options": [
+      "Önce Genişlik Araması (BFS - Breadth First Search)",
+      "Önce Derinlik Araması (DFS - Depth First Search)",
+      "Dijkstra Algoritması",
+      "Prim Algoritması",
+      "Kruskal Algoritması"
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 18 [cite: 1076]",
+    "code_example": "Queue q = new Queue(); q.Enqueue(baslangic);"
+  },
+  {
+    "unit": 8,
+    "topic": "Graf Algoritmaları - DFS",
+    "question": "Grafın düğümlerini gezmek için 'Yığın' (Stack) veri yapısını (veya özyinelemeyi) kullanan ve bir daldan gidebildiği kadar derine inen algoritma hangisidir?",
+    "correct_option": "Önce Derinlik Araması (DFS - Depth First Search)",
+    "options": [
+      "Önce Derinlik Araması (DFS - Depth First Search)",
+      "Önce Genişlik Araması (BFS - Breadth First Search)",
+      "Aralıklı Arama",
+      "Doğrusal Arama",
+      "En Kısa Yol Araması"
+    ],
+      "source_type": "2023 Güz Dönem Sonu / Soru 20 [cite: 1350]",
+    "code_example": "Stack s = new Stack(); s.Push(baslangic);"
+  },
+  {
+    "unit": 8,
+    "topic": "Graf Tanımı - Yol (Path)",
+    "question": "Graf teorisinde, hepsi birbirinden farklı olan düğümler dizisini birleştiren sonlu veya sonsuz kenar dizisine ne ad verilir?",
+    "correct_option": "Yol (Path)",
+    "options": [
+      "Yol (Path)",
+      "Döngü (Cycle)",
+      "Derece (Degree)",
+      "Komşuluk",
+      "Ağırlık"
+    ],
+      "source_type": "2024-2025 Güz Dönem Sonu / Soru 20 [cite: 1068]",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Graf Gösterimi - Komşuluk Matrisi",
+    "question": "N adet düğümü olan bir grafı bellekte tutmak için kullanılan, N x N boyutunda ve düğümler arası bağlantı varsa 1 (veya ağırlık), yoksa 0 değerini içeren matris yapısı hangisidir?",
+    "correct_option": "Komşuluk Matrisi (Adjacency Matrix)",
+    "options": [
+      "Komşuluk Matrisi (Adjacency Matrix)",
+      "Komşuluk Listesi (Adjacency List)",
+      "Bitişiklik Matrisi (Incidence Matrix)",
+      "Yığın Matrisi",
+      "Kimlik Matrisi"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 179 [cite: 6322]",
+    "code_example": "int[,] adjMatrix = new int[5,5];"
+  },
+  {
+    "unit": 8,
+    "topic": "Ağırlıklı Graf",
+    "question": "Kenarları üzerinde maliyet, mesafe veya zaman gibi sayısal değerler (etiketler) taşıyan graf türü hangisidir?",
+    "correct_option": "Ağırlıklı Graf (Weighted Graph)",
+    "options": [
+      "Ağırlıklı Graf (Weighted Graph)",
+      "Yönlü Graf",
+      "Yönsüz Graf",
+      "Basit Graf",
+      "Tam Graf"
+    ],
+      "source_type": "2023-2024 Güz Dönem Sonu / Soru 20 ve Ders Kitabı Sayfa 169 [cite: 6227]",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "İkili Arama Ağacı - Min/Max Bulma",
+    "question": "Bir İkili Arama Ağacında (BST) 'En Büyük' değeri bulmak için kök düğümden başlayarak sürekli hangi yöne gidilmelidir?",
+    "correct_option": "Sürekli Sağ (Right) çocuk düğüme",
+    "options": [
+      "Sürekli Sağ (Right) çocuk düğüme",
+      "Sürekli Sol (Left) çocuk düğüme",
+      "Önce sol sonra sağa",
+      "Rastgele bir yaprak düğüme",
+      "Sadece kök düğüme bakılır"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 152 [cite: 5994]",
+    "code_example": "while(node.Sag != null) node = node.Sag;"
+  },
+  {
+    "unit": 8,
+    "topic": "Graf - Düğüm Derecesi",
+    "question": "Yönsüz bir grafta, bir düğüme bağlı olan kenarların toplam sayısına ne ad verilir?",
+    "correct_option": "Düğüm Derecesi (Node Degree)",
+    "options": [
+      "Düğüm Derecesi (Node Degree)",
+      "Düğüm Derinliği",
+      "Düğüm Yüksekliği",
+      "Graf Çapı",
+      "Eksantriklik"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 178 [cite: 6313]",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Graf Algoritması Adım Takibi",
+    "question": "Bir grafta 1. düğümden başlayarak BFS (Genişlik Öncelikli) araması yapıldığında, 1. düğümün tüm komşuları ziyaret edilmeden daha derin seviyelere gidilir mi?",
+    "correct_option": "Hayır, BFS önce mevcut seviyedeki tüm komşuları (kardeşleri) ziyaret eder.",
+    "options": [
+      "Hayır, BFS önce mevcut seviyedeki tüm komşuları (kardeşleri) ziyaret eder.",
+      "Evet, BFS daldan dala atlayarak gider.",
+      "Evet, eğer komşu sayısı az ise gider.",
+      "Hayır, BFS sadece kök düğümü ziyaret eder.",
+      "Evet, DFS ve BFS aynı şekilde çalışır."
+    ],
+      "source_type": "Ders Kitabı / Sayfa 187 [cite: 6398]",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "Ağaç Görsel Tanıma",
+    "question": "Tek bir kök düğümden başlayıp her düğümün en fazla 2 çocuğunun olduğu ve hiyerarşik bir yapının oluştuğu görsel yapı hangi veri modeline aittir?",
+    "correct_option": "İkili Ağaç (Binary Tree)",
+    "options": [
+      "İkili Ağaç (Binary Tree)",
+      "Bağlantılı Liste",
+      "Dizi",
+      "Yığın",
+      "Kuyruk"
+    ],
+      "source_type": "2023 Güz Dönem Sonu / Soru 15 (Görsel Yorumlama) [cite: 1255]",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Tam Graf (Complete Graph)",
+    "question": "Her bir düğüm çiftinin (tüm düğümlerin) birbirine doğrudan bir kenarla bağlı olduğu graf türü hangisidir?",
+    "correct_option": "Tam Graf (Complete Graph - Kn)",
+    "options": [
+      "Tam Graf (Complete Graph - Kn)",
+      "Düzenli Graf",
+      "Ağaç",
+      "Döngüsel Graf",
+      "Ayrık Graf"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 177 [cite: 6305]",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Bağlı Graf (Connected Graph)",
+    "question": "Bir graftaki tüm düğümler arasında en az bir yol (path) bulunuyorsa, yani erişilemeyen düğüm yoksa bu grafa ne denir?",
+    "correct_option": "Bağlı Graf (Connected Graph)",
+    "options": [
+      "Bağlı Graf (Connected Graph)",
+      "Ayrık Graf",
+      "Yönlü Graf",
+      "Ağırlıklı Graf",
+      "Alt Graf"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 175 [cite: 6297]",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Graf Kenar Kümesi",
+    "question": "Yönlü bir grafta 1'den 2'ye, 1'den 4'e, 3'ten 2'ye oklar varsa, kenar kümesi (K) nasıl gösterilir?",
+    "correct_option": "K = {(1,2), (1,4), (3,2)}",
+    "options": [
+      "K = {(1,2), (1,4), (3,2)}",
+      "K = {(2,1), (4,1), (2,3)}",
+      "K = {1, 2, 3, 4}",
+      "K = {(1,2), (1,4), (2,3)}",
+      "K = {(1,2,4), (3,2)}"
+    ],
+      "source_type": "2023 Güz Dönem Sonu / Soru 18 (Şekil Analizi) [cite: 1343]",
+    "code_example": null
+  },
+  {
+    "unit": 7,
+    "topic": "Pre-Order (Önce Kök) Mantığı",
+    "question": "Ağaç gezinme yöntemlerinden 'Önce Kök' (Pre-Order) sıralaması nasıldır?",
+    "correct_option": "Kök -> Sol -> Sağ",
+    "options": [
+      "Kök -> Sol -> Sağ",
+      "Sol -> Kök -> Sağ",
+      "Sol -> Sağ -> Kök",
+      "Sağ -> Sol -> Kök",
+      "Kök -> Sağ -> Sol"
+    ],
+      "source_type": "Ders Kitabı / Sayfa 149 - Tablo 7.1 [cite: 5953]",
+    "code_example": null
   }
 ]
