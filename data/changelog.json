@@ -1,0 +1,30 @@
+[
+  {
+    "version": "1.0.4",
+    "date": "2025-11-26",
+    "items": [
+      "Sürüm notları bileşeni eklendi (Ayarlar > Sürüm Notları)",
+      "Sürüm ve Service Worker cache adlarının senkron güncellenmesi"
+    ]
+  },
+  {
+    "version": "1.0.3",
+    "date": "2025-11-26",
+    "items": [
+      "Sürüm v1.0.3 ve footer sürüm göstergesi",
+      "Service Worker cache bölümlendirmesi ve TTL",
+      "Dağıtım webhook testi için sürüm artışı"
+    ]
+  },
+  {
+    "version": "1.0.2",
+    "date": "2025-11-26",
+    "items": [
+      "QuizUI lazy-loading",
+      "IndexedDB indeksleri ve yeni sorgular",
+      "Güvenli render (escape) ile XSS azaltımı",
+      "UpdateManager ile sürüm kontrol ve temizlik",
+      "JSON isteklerinde Stale-While-Revalidate"
+    ]
+  }
+]

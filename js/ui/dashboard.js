@@ -25,6 +25,8 @@ export class Dashboard {
         const activityStats = await this.calculateActivityStats(history);
         const lessonStats = await this.calculateLessonStats(lessons);
 
+        const versionInfo = await fetch('version.json?t=' + Date.now()).then(r => r.json()).catch(() => ({ version: 'unknown' }));
+
         let html = `
             <div class="dashboard-header">
                 <h2>Derslerim</h2>
@@ -113,7 +115,7 @@ export class Dashboard {
             </div>
         `;
 
-        html += `<div class="app-footer">Sürüm: v1.0.3</div>`;
+        html += `<div class="app-footer">Sürüm: v${versionInfo.version}</div>`;
         this.container.innerHTML = html;
         
         // Global Eventler
@@ -290,10 +292,46 @@ export class Dashboard {
     }
 
     openSettings() {
-        const html = `<div class="modal-overlay" id="settings-modal"><div class="modal-box"><h2 class="modal-title">Ayarlar</h2><div class="form-group"><p>Tüm ilerlemeni silmek istiyor musun?</p></div><div class="modal-actions"><button class="nav-btn secondary" onclick="document.getElementById('settings-modal').remove()">İptal</button><button class="primary-btn" style="background-color:#ef4444;" onclick="window.resetApp()">⚠️ Sıfırla</button></div></div></div>`;
+        const html = `<div class="modal-overlay" id="settings-modal"><div class="modal-box"><h2 class="modal-title">Ayarlar</h2><div class="form-group"><p>Tüm ilerlemeni silmek istiyor musun?</p></div><div class="modal-actions"><button class="nav-btn secondary" onclick="document.getElementById('settings-modal').remove()">İptal</button><button class="primary-btn" style="background-color:#ef4444;" onclick="window.resetApp()">⚠️ Sıfırla</button><button class="nav-btn" onclick="window.openChangelog()">Sürüm Notları</button></div></div></div>`;
         document.body.insertAdjacentHTML('beforeend', html);
         window.resetApp = async () => {
             if(confirm("Emin misin?")) { await this.db.resetAllData(); location.reload(); }
+        };
+        window.openChangelog = async () => {
+            const res = await fetch('data/changelog.json?t=' + Date.now()).then(r => r.json()).catch(() => []);
+            const list = Array.isArray(res) ? res : [];
+            const sorted = list.sort((a,b) => b.version.localeCompare(a.version));
+            const modalHtml = `
+            <div class="modal-overlay" id="changelog-modal">
+                <div class="modal-box large">
+                    <div class="modal-header"><h2 class="modal-title">Sürüm Notları</h2><button class="icon-btn" onclick="document.getElementById('changelog-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <div id="changelog-content" style="max-height:60vh; overflow-y:auto;">
+                        ${sorted.map(item => `
+                            <div class="lesson-card" style="cursor:pointer;" onclick="window.showReleaseNotes('${item.version}')">
+                                <h3>v${item.version}</h3>
+                                <small>${item.date || ''}</small>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            window.showReleaseNotes = async (v) => {
+                const res2 = await fetch('data/changelog.json?t=' + Date.now()).then(r => r.json()).catch(() => []);
+                const list2 = Array.isArray(res2) ? res2 : [];
+                const found = list2.find(x => x.version === v) || { items: [] };
+                const notes = Array.isArray(found.items) ? found.items : [];
+                const html2 = `
+                <div class="modal-overlay" id="release-modal">
+                    <div class="modal-box">
+                        <div class="modal-header"><h2 class="modal-title">v${v} Sürüm Notları</h2><button class="icon-btn" onclick="document.getElementById('release-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                        <div style="max-height:50vh; overflow-y:auto;">
+                            <ul style="padding-left:18px;">${notes.map(n => `<li>${n}</li>`).join('')}</ul>
+                        </div>
+                    </div>
+                </div>`;
+                document.body.insertAdjacentHTML('beforeend', html2);
+            };
         };
     }
 }
