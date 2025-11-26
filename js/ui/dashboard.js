@@ -293,55 +293,22 @@ export class Dashboard {
     }
 
     openSettings() {
+        const existing = document.getElementById('settings-menu-overlay');
+        if (existing) existing.remove();
         const html = `
-            <div class="modal-overlay" id="settings-modal">
-                <div class="modal-box large">
-                    <div class="modal-header">
-                        <h2 class="modal-title">Ayarlar</h2>
-                        <button class="icon-btn" onclick="document.getElementById('settings-modal').remove()"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div class="form-group">
-                        <p style="color:#64748b;">Uygulama seçeneklerini aşağıdan yönetebilirsin.</p>
-                    </div>
-                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px;">
-                        <div class="lesson-card" style="cursor:pointer;" onclick="window.openChangelog()">
-                            <div class="card-header">
-                                <span class="course-code">Sürüm Notları</span>
-                            </div>
-                            <h3>Son Değişiklikler</h3>
-                            <p style="color:#64748b; font-size:0.85rem;">En yeni sürüm en üstte listelenir.</p>
-                            <button class="nav-btn" style="margin-top:10px;">Görüntüle</button>
-                        </div>
-                        <div class="lesson-card" style="border:1px sol id #fecaca;">
-                            <div class="card-header">
-                                <span class="course-code" style="color:#ef4444;">Verileri Sıfırla</span>
-                            </div>
-                            <h3>İlerlemeyi Temizle</h3>
-                            <p style="color:#64748b; font-size:0.85rem;">Tüm istatistik ve sınav geçmişi silinir. Bu işlem geri alınamaz.</p>
-                            <button class="primary-btn" style="background-color:#ef4444; margin-top:10px;" onclick="window.confirmReset()">⚠️ Sıfırla</button>
-                        </div>
-                        <div class="lesson-card">
-                            <div class="card-header">
-                                <span class="course-code">Güncellemeler</span>
-                            </div>
-                            <h3>Güncelleme Kontrolü</h3>
-                            <p style="color:#64748b; font-size:0.85rem;">Yeni sürüm varsa otomatik temizleyip yeniler.</p>
-                            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;">
-                                <button class="nav-btn" onclick="window.checkUpdatesNow()">Kontrol Et</button>
-                                <button class="nav-btn warning" onclick="window.forceRefreshNow()">Zorla Yenile</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-actions" style="margin-top:16px;">
-                        <button class="nav-btn secondary" onclick="document.getElementById('settings-modal').remove()">Kapat</button>
-                    </div>
+            <div id="settings-menu-overlay" style="position:fixed; inset:0; background:transparent;">
+                <div id="settings-menu" style="position:fixed; right:16px; top:60px; background:white; border:1px solid #e2e8f0; box-shadow:0 10px 25px rgba(0,0,0,0.08); border-radius:12px; min-width:240px; overflow:hidden;">
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start; border:none; border-bottom:1px solid #f1f5f9;">Ayarlar</button>
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
+                    <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.forceRefreshNow()">Zorla Yenile</button>
+                    <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla</button>
+                    <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="document.getElementById('settings-menu-overlay').remove()">Kapat</button>
                 </div>
             </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
-
-        // Dış alan tıklaması ve ESC ile kapat
-        const overlay = document.getElementById('settings-modal');
-        overlay.addEventListener('click', (e) => { if (e.target.id === 'settings-modal') overlay.remove(); });
+        const overlay = document.getElementById('settings-menu-overlay');
+        overlay.addEventListener('click', (e) => { if (e.target.id === 'settings-menu-overlay') overlay.remove(); });
         const escHandler = (e) => { if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', escHandler); } };
         document.addEventListener('keydown', escHandler);
 
@@ -405,9 +372,16 @@ export class Dashboard {
         window.checkUpdatesNow = async () => {
             const updater = new UpdateManager();
             const overlayId = 'update-check-overlay';
-            const overlayHtml = `<div class="modal-overlay" id="${overlayId}"><div class="modal-box"><div class="modal-header"><h2 class="modal-title">Güncelleme Kontrolü</h2><button class="icon-btn" onclick="document.getElementById('${overlayId}').remove()"><i class="fa-solid fa-xmark"></i></button></div><div class="loading-state"><div class="spinner"></div><p>Sunucu sürümü kontrol ediliyor...</p></div></div></div>`;
+            const overlayHtml = `<div class="modal-overlay" id="${overlayId}"><div class="modal-box"><div class="modal-header"><h2 class="modal-title">Güncelleme Kontrolü</h2><button class="icon-btn" onclick="document.getElementById('${overlayId}').remove()"><i class="fa-solid fa-xmark"></i></button></div><div id="update-check-content" class="loading-state"><div class="spinner"></div><p>Sunucu sürümü kontrol ediliyor...</p></div></div></div>`;
             document.body.insertAdjacentHTML('beforeend', overlayHtml);
-            try { await updater.checkUpdates(); } catch {} finally { const el = document.getElementById(overlayId); if (el) el.remove(); }
+            try {
+                await updater.checkUpdates();
+                const cont = document.getElementById('update-check-content');
+                if (cont) cont.innerHTML = `<div style="padding:10px 0; color:#10b981; font-weight:600;">Güncel sürüm kullanılıyor.</div><div class="modal-actions"><button class="nav-btn secondary" onclick="document.getElementById('${overlayId}').remove()">Kapat</button></div>`;
+            } catch {
+                const cont = document.getElementById('update-check-content');
+                if (cont) cont.innerHTML = `<div style="padding:10px 0; color:#ef4444; font-weight:600;">Kontrol sırasında hata oluştu.</div><div class="modal-actions"><button class="nav-btn secondary" onclick="document.getElementById('${overlayId}').remove()">Kapat</button></div>`;
+            }
         };
 
         window.forceRefreshNow = async () => {

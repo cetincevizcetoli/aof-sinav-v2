@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.0.5",
+    "date": "2025-11-26",
+    "items": [
+      "Ayarlar çarkı açılışı dropdown menüye dönüştü (daha sade)",
+      "Güncelleme Kontrolü UX iyileştirildi (durum modalı, kullanıcı kapanışı)",
+      "Sürüm ve cache adları 1.0.5’e yükseltildi"
+    ]
+  },
+  {
     "version": "1.0.4",
     "date": "2025-11-26",
     "items": [
