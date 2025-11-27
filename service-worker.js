@@ -1,5 +1,5 @@
-const STATIC_CACHE = 'aof-asistan-v2-static-v1.1.0';
-const DATA_CACHE = 'aof-asistan-v2-data-v1.1.0';
+const STATIC_CACHE = 'aof-asistan-v2-static-v1.1.2';
+const DATA_CACHE = 'aof-asistan-v2-data-v1.1.2';
 const TTL_MS = 300000;
 const STATIC_ASSETS = [
     './',
@@ -45,6 +45,12 @@ self.addEventListener('activate', (event) => {
 // İstekleri Yakalama (Fetch)
 self.addEventListener('fetch', (event) => {
     if (!event.request.url.startsWith('http')) return;
+
+    // Admin arayüzü ve API taleplerini cache dışı bırak (her zaman ağdan al)
+    if (event.request.url.includes('/admin/')) {
+        event.respondWith(fetch(event.request));
+        return;
+    }
 
     if (event.request.url.includes('/data/') || event.request.url.endsWith('.json')) {
         event.respondWith(
