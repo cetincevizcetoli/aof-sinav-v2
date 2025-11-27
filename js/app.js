@@ -2,6 +2,7 @@ import { ExamDatabase } from './core/db.js';
 import { DataLoader } from './core/dataLoader.js';
 import { Dashboard } from './ui/dashboard.js';
 import { UpdateManager } from './core/updateManager.js';
+import { SyncManager } from './core/sync.js';
 
 let db, loader, dashboard, quizUI;
 
@@ -25,6 +26,7 @@ async function initApp() {
 
     // 3. Modülleri Yükle
     loader = new DataLoader(db);
+    const sync = new SyncManager(db);
     
     // Dashboard'u başlat
     dashboard = new Dashboard(loader, db);
@@ -50,6 +52,16 @@ async function initApp() {
 
     // 6. İlk Ekranı Çiz
     dashboard.render();
+
+    const drain = async () => {
+        await db.drainSyncQueue(async (payload) => {
+            if (!payload) return;
+            if (payload.type === 'push') { await sync.pushAll(); }
+            else if (payload.type === 'pull') { await sync.pullAll(); }
+        });
+    };
+    if (navigator.onLine) { drain(); }
+    window.addEventListener('online', drain);
 }
 
 // Sayfa tamamen yüklendiğinde başlat
