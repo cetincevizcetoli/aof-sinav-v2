@@ -1,8 +1,8 @@
 const base = '../api/admin.php'
 let state = { q:'', limit:50, offset:0, total:0 }
-function creds(){ return { user: localStorage.getItem('admin_user') || '', pass: localStorage.getItem('admin_pass') || '' } }
-function ensureAuth(){ const c = creds(); if (!c.user || !c.pass) { location.href = './' } }
-function logout(){ localStorage.removeItem('admin_user'); localStorage.removeItem('admin_pass'); location.href = './' }
+function creds(){ return { user: localStorage.getItem('admin_user') || '' } }
+function ensureAuth(){ const c = creds(); if (!c.user) { location.href = './' } }
+function logout(){ localStorage.removeItem('admin_user'); location.href = './' }
 async function api(action, method='GET', body=null, params={}){
   const headers = { 'Content-Type': 'application/json' }
   const usp = new URLSearchParams(params)

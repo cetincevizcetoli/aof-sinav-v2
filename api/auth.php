@@ -22,7 +22,7 @@ if ($a === 'register') {
     $u = $st->fetch(PDO::FETCH_ASSOC);
     if (!$u || !password_verify($pass, $u['password_hash'])) return err(401,'invalid');
     $token = bin2hex(random_bytes(32));
-    $pdo->prepare('INSERT OR REPLACE INTO sessions(token,user_id,created_at) VALUES(?,?,?)')->execute([$token,$u['id'],time()]);
+    $pdo->prepare('INSERT INTO sessions(token,user_id,created_at) VALUES(?,?,?)')->execute([$token,$u['id'],time()]);
     ok(['token'=>$token]);
 } elseif ($a === 'delete') {
     $uid = token_user($pdo,$SECRET);

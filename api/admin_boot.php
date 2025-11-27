@@ -1,9 +1,12 @@
 <?php
 $ADMIN_USER = 'admin';
 $ADMIN_PASS_HASH = password_hash('5211@Admin', PASSWORD_DEFAULT);
-$cfgPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'private' . DIRECTORY_SEPARATOR . 'admin.json';
+$privateDir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'private';
+$cfgPath = $privateDir . DIRECTORY_SEPARATOR . 'admin.json';
+if (!is_dir($privateDir)) { @mkdir($privateDir, 0775, true); }
 if (file_exists($cfgPath)) {
-    $j = json_decode(@file_get_contents($cfgPath), true);
+    $raw = @file_get_contents($cfgPath);
+    $j = $raw ? json_decode($raw, true) : null;
     if (is_array($j) && !empty($j['user']) && !empty($j['pass_hash'])) {
         $ADMIN_USER = $j['user'];
         $ADMIN_PASS_HASH = $j['pass_hash'];

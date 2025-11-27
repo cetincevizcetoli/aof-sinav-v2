@@ -1,50 +1,49 @@
 <?php
-require __DIR__ . '/config.php';
-$PDO_ERROR = null;
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+header('Content-Type: application/json');
+
+$root = dirname(__DIR__);
+$ROOT_LOG = null;
+$env = [];
+if (false) {}
+if (empty($env)) {
+    $envPath = $root.'/.env';
+    if (file_exists($envPath)) {
+        $parsed = parse_ini_file($envPath, false, INI_SCANNER_RAW);
+        if (is_array($parsed)) { $env = $parsed; }
+    }
+}
+
+$host = $env['AOF_MY_HOST'] ?? 'localhost';
+$port = $env['AOF_MY_PORT'] ?? '3306';
+$db   = $env['AOF_MY_DB']   ?? 'ahmetcetin_aof';
+$user = $env['AOF_MY_USER'] ?? 'ahmetcetin_aof';
+$pass = $env['AOF_MY_PASS'] ?? '5211@Admin';
+$dsn  = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
+$SECRET = $env['AOF_API_SECRET'] ?? 'change_this_secret';
+
 try {
-    if ($DB_DRIVER === 'pgsql') {
-        $pdo = new PDO($PG_DSN, $PG_USER, $PG_PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-    } elseif ($DB_DRIVER === 'mysql') {
-        $pdo = new PDO($MY_DSN, $MY_USER, $MY_PASS, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
-    } else {
-        $pdo = new PDO('sqlite:' . $DB_PATH);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-} catch(Exception $e) {
-    $pdo = null;
-    $PDO_ERROR = $e->getMessage();
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ]);
+} catch (Throwable $e) {
+    http_response_code(500);
+    echo json_encode(['ok'=>false,'error'=>'DB Error','detail'=>$e->getMessage(),'debug_host'=>$host,'debug_user'=>$user]);
+    exit;
 }
-if ($pdo) {
-    if ($DB_DRIVER === 'pgsql') {
-        $pdo->exec('CREATE TABLE IF NOT EXISTS users (id SERIAL PRIMARY KEY, email TEXT UNIQUE, password_hash TEXT, name TEXT, created_at BIGINT)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, user_id INTEGER, created_at BIGINT)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS progress (id TEXT PRIMARY KEY, user_id INTEGER, lesson TEXT, unit INTEGER, level INTEGER, nextReview BIGINT, correct INTEGER, wrong INTEGER, updated_at BIGINT)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS user_stats (user_id INTEGER PRIMARY KEY, xp INTEGER, streak INTEGER, totalQuestions INTEGER, updated_at BIGINT)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS exam_history (id SERIAL PRIMARY KEY, user_id INTEGER, date BIGINT, lesson TEXT, unit INTEGER, isCorrect INTEGER)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token TEXT PRIMARY KEY, created_at BIGINT)');
-    } elseif ($DB_DRIVER === 'mysql') {
-        $pdo->exec('CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255) UNIQUE, password_hash VARCHAR(255), name VARCHAR(255), created_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS sessions (token VARCHAR(255) PRIMARY KEY, user_id INT, created_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS progress (id VARCHAR(255) PRIMARY KEY, user_id INT, lesson VARCHAR(255), unit INT, level INT, nextReview BIGINT, correct INT, wrong INT, updated_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS user_stats (user_id INT PRIMARY KEY, xp INT, streak INT, totalQuestions INT, updated_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS exam_history (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT, date BIGINT, lesson VARCHAR(255), unit INT, isCorrect TINYINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token VARCHAR(255) PRIMARY KEY, created_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
-    } else {
-        $pdo->exec('PRAGMA foreign_keys = ON');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT UNIQUE, password_hash TEXT, name TEXT, created_at INTEGER)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS sessions (token TEXT PRIMARY KEY, user_id INTEGER, created_at INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS progress (id TEXT PRIMARY KEY, user_id INTEGER, lesson TEXT, unit INTEGER, level INTEGER, nextReview INTEGER, correct INTEGER, wrong INTEGER, updated_at INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS user_stats (user_id INTEGER PRIMARY KEY, xp INTEGER, streak INTEGER, totalQuestions INTEGER, updated_at INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS exam_history (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, date INTEGER, lesson TEXT, unit INTEGER, isCorrect INTEGER, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)');
-        $pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token TEXT PRIMARY KEY, created_at INTEGER)');
-    }
-}
+
+$pdo->exec('CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255) UNIQUE, password_hash VARCHAR(255) NOT NULL, name VARCHAR(255), created_at BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS sessions (token VARCHAR(255) PRIMARY KEY, user_id INT NOT NULL, created_at BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS progress (id VARCHAR(255) PRIMARY KEY, user_id INT NOT NULL, lesson VARCHAR(255), unit INT, level INT, nextReview BIGINT, correct INT, wrong INT, updated_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS user_stats (user_id INT PRIMARY KEY, xp INT, streak INT, totalQuestions INT, updated_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS exam_history (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, date BIGINT NOT NULL, lesson VARCHAR(255), unit INT, isCorrect TINYINT(1)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token VARCHAR(255) PRIMARY KEY, created_at BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+
 function json(){ return json_decode(file_get_contents('php://input'), true) ?: []; }
-function ok($d){ header('Content-Type: application/json'); echo json_encode(['ok'=>true,'data'=>$d]); }
-function err($c,$m){ http_response_code($c); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>$m]); }
-function token_user($pdo,$SECRET){ $h = $_SERVER['HTTP_AUTHORIZATION'] ?? ''; if (strpos($h,'Bearer ')!==0) return 0; $t = substr($h,7); $st = $pdo->prepare('SELECT user_id FROM sessions WHERE token=?'); $st->execute([$t]); $r = $st->fetch(PDO::FETCH_ASSOC); return $r ? intval($r['user_id']) : 0; }
-if ($pdo && $DB_DRIVER === 'sqlite') {
-    $checkCols = $pdo->query("PRAGMA table_info(users)")->fetchAll(PDO::FETCH_ASSOC);
-    $hasName = false; foreach ($checkCols as $c) { if (strtolower($c['name']) === 'name') { $hasName = true; break; } }
-    if (!$hasName) { try { $pdo->exec('ALTER TABLE users ADD COLUMN name TEXT'); } catch(Exception $e){} }
-}
+function ok($d){ echo json_encode(['ok'=>true,'data'=>$d]); }
+function err($c,$m){ http_response_code($c); echo json_encode(['ok'=>false,'error'=>$m]); }
+function token_user($pdo,$SECRET){ $h = $_SERVER['HTTP_AUTHORIZATION'] ?? ''; if (strpos($h,'Bearer ')!==0) return 0; $t = substr($h,7); try { $st = $pdo->prepare('SELECT user_id FROM sessions WHERE token=?'); $st->execute([$t]); $r = $st->fetch(PDO::FETCH_ASSOC); return $r ? intval($r['user_id']) : 0; } catch (Throwable $e) { return 0; } }

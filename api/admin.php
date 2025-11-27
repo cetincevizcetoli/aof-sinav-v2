@@ -1,7 +1,19 @@
 <?php
 require __DIR__ . '/db.php';
 require __DIR__ . '/admin_boot.php';
-// Basit admin auth: Cookie oturumu (tercih), Basic Authorization (opsiyonel) veya body'de username/password (login için)
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$LOG_FILE = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'aof_admin_error';
+
+function secure_token($len=24){
+    if (function_exists('random_bytes')) { return bin2hex(random_bytes($len)); }
+    if (function_exists('openssl_random_pseudo_bytes')) { return bin2hex(openssl_random_pseudo_bytes($len)); }
+    return bin2hex(substr(str_shuffle('abcdefghijklmnopqrstuvwxyz0123456789'),0,$len));
+}
+
 function adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH){
     if (!empty($_COOKIE['admin_session'])) {
         $tok = $_COOKIE['admin_session'];
@@ -19,17 +31,18 @@ function adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH){
     }
     return false;
 }
-$a = $_GET['action'] ?? '';
+
 header('Content-Type: application/json');
+$a = $_GET['action'] ?? '';
+
 if ($a === 'admin_diag') {
     try {
         $privateDir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'private';
         $cfgPath = $privateDir . DIRECTORY_SEPARATOR . 'admin.json';
-        $writable = is_writable($privateDir);
         $exists = is_dir($privateDir);
-        $dbPath = isset($DB_PATH) ? $DB_PATH : '';
+        $writable = $exists ? is_writable($privateDir) : false;
         $pdoOk = false; try { $pdo->query('SELECT 1'); $pdoOk = true; } catch(Exception $e) { $pdoOk = false; }
-        $sessTbl = false; try { $pdo->query("SELECT name FROM sqlite_master WHERE type='table' AND name='admin_sessions'"); $sessTbl = true; } catch(Exception $e) { $sessTbl = false; }
+        $sessTbl = false; try { $st = $pdo->query("SHOW TABLES LIKE 'admin_sessions'"); $sessTbl = !!($st && $st->fetchColumn()); } catch(Exception $e) { $sessTbl = false; }
         $writeTest = false; $testFile = $privateDir . DIRECTORY_SEPARATOR . 'diag_test.txt';
         try { @file_put_contents($testFile, 'ok'); $writeTest = file_exists($testFile); if ($writeTest) @unlink($testFile); } catch(Exception $e) { $writeTest = false; }
         $adminJsonOk = file_exists($cfgPath);
@@ -37,23 +50,20 @@ if ($a === 'admin_diag') {
             'private_exists' => $exists,
             'private_writable' => $writable,
             'admin_json_exists' => $adminJsonOk,
-            'db_path' => $dbPath,
             'pdo_ok' => $pdoOk,
             'admin_sessions_table' => $sessTbl,
             'write_test' => $writeTest,
         ]);
-    } catch(Exception $e) {
-        err(500,'server_error');
-    }
+    } catch(Exception $e) { err(500,'server_error'); }
     exit;
 }
+
 if ($a === 'admin_login') {
     $in = json(); $u = $in['username'] ?? ''; $p = $in['password'] ?? '';
     try {
         if ($u === $ADMIN_USER && password_verify($p, $ADMIN_PASS_HASH)) {
             $token = secure_token(24);
             $pdo->prepare('INSERT INTO admin_sessions(token,created_at) VALUES(?,?)')->execute([$token, time()]);
-            // Cookie path uygulama köküne ayarlandı
             setcookie('admin_session', $token, time()+86400, '/aof-sinav-v2/', '', true, true);
             ok(['login'=>true]);
         } else { err(401,'unauth'); }
@@ -63,7 +73,16 @@ if ($a === 'admin_login') {
     }
     exit;
 }
-if (!adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH)) { http_response_code(401); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
+
+if ($a === 'admin_logout') {
+    $tok = $_COOKIE['admin_session'] ?? '';
+    if ($tok) { $pdo->prepare('DELETE FROM admin_sessions WHERE token=?')->execute([$tok]); setcookie('admin_session','', time()-3600, '/aof-sinav-v2/'); }
+    ok(['logout'=>true]);
+    exit;
+}
+
+if (!adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH)) { http_response_code(401); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
+
 if ($a === 'list_users') {
     $q = trim($_GET['q'] ?? '');
     $limit = max(1, min(200, intval($_GET['limit'] ?? 50)));
@@ -100,7 +119,6 @@ if ($a === 'list_users') {
     $pdo->prepare($sql)->execute($args); ok(['updated'=>true]);
 } elseif ($a === 'delete_user') {
     $in = json(); $id = intval($in['id'] ?? 0); if (!$id) return err(400,'missing');
-    // Silinen kullanıcının tüm verilerini de temizle
     $pdo->beginTransaction();
     try {
         $pdo->prepare('DELETE FROM sessions WHERE user_id=?')->execute([$id]);
@@ -111,42 +129,20 @@ if ($a === 'list_users') {
         $pdo->commit(); ok(['deleted'=>true]);
     } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }
 } elseif ($a === 'db_info') {
-    $path = $DB_PATH;
-    $exists = file_exists($path);
-    $size = $exists ? filesize($path) : 0;
-    $mtime = $exists ? filemtime($path) : 0;
-    $tables = $pdo->query("SELECT name FROM sqlite_master WHERE type='table'")->fetchAll(PDO::FETCH_COLUMN);
-    $counts = [];
-    foreach(['users','sessions','progress','user_stats','exam_history'] as $t){
-        try { $counts[$t] = (int)$pdo->query("SELECT COUNT(*) FROM $t")->fetchColumn(); } catch(Exception $e){ $counts[$t] = 0; }
-    }
-    ok(['path'=>$path,'exists'=>$exists,'size'=>$size,'mtime'=>$mtime,'tables'=>$tables,'counts'=>$counts]);
+    try {
+        $tables = [];
+        try { $rs = $pdo->query('SHOW TABLES'); if ($rs) { foreach ($rs->fetchAll(PDO::FETCH_NUM) as $row) { $tables[] = $row[0]; } } } catch(Exception $e){}
+        $counts = [];
+        foreach(['users','sessions','progress','user_stats','exam_history'] as $t){
+            try { $counts[$t] = (int)$pdo->query("SELECT COUNT(*) FROM `$t`")->fetchColumn(); } catch(Exception $e){ $counts[$t] = 0; }
+        }
+        ok([
+            'path' => 'mysql',
+            'exists' => true,
+            'size' => 0,
+            'mtime' => 0,
+            'tables' => $tables,
+            'counts' => $counts,
+        ]);
+    } catch(Exception $e) { err(500,'server_error'); }
 } else { err(404,'notfound'); }
-} elseif ($a === 'admin_logout') {
-    $tok = $_COOKIE['admin_session'] ?? '';
-    if ($tok) { $pdo->prepare('DELETE FROM admin_sessions WHERE token=?')->execute([$tok]); setcookie('admin_session','', time()-3600, '/'); }
-    ok(['logout'=>true]);
-$LOG_DIR = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'private';
-$LOG_FILE = $LOG_DIR . DIRECTORY_SEPARATOR . 'admin_error.log';
-if (!is_dir($LOG_DIR)) { @mkdir($LOG_DIR, 0775, true); }
-function secure_token($len=24){
-    if (function_exists('random_bytes')) { return bin2hex(random_bytes($len)); }
-    if (function_exists('openssl_random_pseudo_bytes')) { return bin2hex(openssl_random_pseudo_bytes($len)); }
-    return bin2hex(substr(str_shuffle('abcdefghijklmnopqrstuvwxyz0123456789'),0,$len));
-}
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-$dirWritable = true;
-try {
-    $dbDir = dirname($DB_PATH ?? '');
-    if (!is_dir($dbDir)) { @mkdir($dbDir, 0775, true); }
-    if (!is_writable($dbDir)) { $dirWritable = false; }
-} catch(Exception $e) { $dirWritable = false; }
-if (!$pdo || ($DB_DRIVER === 'sqlite' && !$dirWritable)) {
-    $msg = [];
-    if (!$pdo) { $msg['pdo_error'] = isset($PDO_ERROR) ? $PDO_ERROR : 'pdo_init_failed'; }
-    if ($DB_DRIVER === 'sqlite' && !$dirWritable) { $msg['dir_writable'] = false; $msg['db_dir'] = $dbDir; }
-    err(500, json_encode($msg));
-    exit;
-}
