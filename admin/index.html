@@ -18,8 +18,10 @@
   <div class="card">
     <h2 class="title">Admin Giriş</h2>
     <div class="row" autocomplete="off">
-      <input id="user" placeholder="Kullanıcı adı" autocomplete="off" />
-      <input id="pass" placeholder="Şifre" type="password" autocomplete="off" />
+      <input id="user" placeholder="Kullanıcı adı" autocomplete="username" name="admin_user" />
+      <input id="pass" placeholder="Şifre" type="password" autocomplete="new-password" name="admin_pass" />
+      <input type="text" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" name="username" tabindex="-1" aria-hidden="true" />
+      <input type="password" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" name="password" tabindex="-1" aria-hidden="true" />
       <button class="primary" onclick="doLogin()">Giriş Yap</button>
     </div>
   </div>

@@ -1,9 +1,8 @@
 <?php
 require __DIR__ . '/db.php';
+require __DIR__ . '/admin_boot.php';
 // Basit admin auth: Cookie oturumu (tercih), Basic Authorization (opsiyonel) veya body'de username/password (login için)
-$ADMIN_USER = getenv('ADMIN_USER') ?: 'admin';
-$ADMIN_PASS = getenv('ADMIN_PASS') ?: '5211@Admin';
-function adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS){
+function adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH){
     if (!empty($_COOKIE['admin_session'])) {
         $tok = $_COOKIE['admin_session'];
         $st = $pdo->prepare('SELECT token FROM admin_sessions WHERE token=?');
@@ -15,7 +14,7 @@ function adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS){
         $dec = base64_decode(substr($auth, 6));
         if ($dec !== false) {
             [$u, $p] = array_pad(explode(':', $dec, 2), 2, '');
-            if ($u === $ADMIN_USER && $p === $ADMIN_PASS) return true;
+            if ($u === $ADMIN_USER && password_verify($p, $ADMIN_PASS_HASH)) return true;
         }
     }
     return false;
@@ -23,15 +22,16 @@ function adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS){
 $a = $_GET['action'] ?? '';
 if ($a === 'admin_login') {
     $in = json(); $u = $in['username'] ?? ''; $p = $in['password'] ?? '';
-    if ($u === $ADMIN_USER && $p === $ADMIN_PASS) {
+    if ($u === $ADMIN_USER && password_verify($p, $ADMIN_PASS_HASH)) {
         $token = bin2hex(random_bytes(24));
         $pdo->prepare('INSERT INTO admin_sessions(token,created_at) VALUES(?,?)')->execute([$token, time()]);
-        setcookie('admin_session', $token, [ 'path' => '/', 'secure' => true, 'httponly' => true, 'samesite' => 'Lax' ]);
+        // Daha geniş uyumluluk için klasik setcookie imzası
+        setcookie('admin_session', $token, time()+86400, '/', '', true, true);
         ok(['login'=>true]);
     } else { err(401,'unauth'); }
     exit;
 }
-if (!adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS)) { http_response_code(401); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
+if (!adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH)) { http_response_code(401); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
 if ($a === 'list_users') {
     $q = trim($_GET['q'] ?? '');
     $limit = max(1, min(200, intval($_GET['limit'] ?? 50)));
