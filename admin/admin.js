@@ -64,5 +64,24 @@ window.addEventListener('DOMContentLoaded', () => {
   const t = token(); if (t) document.getElementById('admin-token').value = t;
   const sizeSel = document.getElementById('page-size'); state.limit = parseInt(sizeSel.value); sizeSel.onchange = ()=>{ state.limit = parseInt(sizeSel.value); refresh() }
   const search = document.getElementById('search'); search.oninput = ()=> onSearch(search.value)
-  loadUsers()
+  loadUsers(); loadDbInfo()
 })
+
+async function loadDbInfo(){
+  try{
+    const info = await api('db_info')
+    const tbody = document.getElementById('db-info')
+    const sizeKB = ((info.size||0)/1024).toFixed(1)
+    const mtime = info.mtime ? new Date(info.mtime*1000).toLocaleString() : '-'
+    tbody.innerHTML = `
+      <tr><td class="muted">Yol</td><td>${info.path}</td></tr>
+      <tr><td class="muted">Var mı?</td><td>${info.exists ? 'Evet' : 'Hayır'}</td></tr>
+      <tr><td class="muted">Boyut</td><td>${sizeKB} KB</td></tr>
+      <tr><td class="muted">Değiştirme</td><td>${mtime}</td></tr>
+      <tr><td class="muted">Tablolar</td><td>${(info.tables||[]).join(', ')}</td></tr>
+      <tr><td class="muted">Kayıt Sayıları</td><td>
+        users=${info.counts?.users||0}, sessions=${info.counts?.sessions||0}, progress=${info.counts?.progress||0}, user_stats=${info.counts?.user_stats||0}, exam_history=${info.counts?.exam_history||0}
+      </td></tr>
+    `
+  }catch(e){ document.getElementById('db-info').innerHTML = `<tr><td colspan="2" class="muted">${e.message}</td></tr>` }
+}

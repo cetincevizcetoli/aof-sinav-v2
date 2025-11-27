@@ -50,4 +50,15 @@ if ($a === 'list_users') {
         $pdo->prepare('DELETE FROM users WHERE id=?')->execute([$id]);
         $pdo->commit(); ok(['deleted'=>true]);
     } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }
+} elseif ($a === 'db_info') {
+    $path = $DB_PATH;
+    $exists = file_exists($path);
+    $size = $exists ? filesize($path) : 0;
+    $mtime = $exists ? filemtime($path) : 0;
+    $tables = $pdo->query("SELECT name FROM sqlite_master WHERE type='table'")->fetchAll(PDO::FETCH_COLUMN);
+    $counts = [];
+    foreach(['users','sessions','progress','user_stats','exam_history'] as $t){
+        try { $counts[$t] = (int)$pdo->query("SELECT COUNT(*) FROM $t")->fetchColumn(); } catch(Exception $e){ $counts[$t] = 0; }
+    }
+    ok(['path'=>$path,'exists'=>$exists,'size'=>$size,'mtime'=>$mtime,'tables'=>$tables,'counts'=>$counts]);
 } else { err(404,'notfound'); }
