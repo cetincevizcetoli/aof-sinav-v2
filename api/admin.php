@@ -5,8 +5,20 @@ if (!$token || ($token !== ($SECRET ?? ''))) { http_response_code(401); header('
 
 $a = $_GET['action'] ?? '';
 if ($a === 'list_users') {
-    $st = $pdo->query('SELECT id,email,name,created_at FROM users ORDER BY id DESC');
-    ok($st->fetchAll(PDO::FETCH_ASSOC));
+    $q = trim($_GET['q'] ?? '');
+    $limit = max(1, min(200, intval($_GET['limit'] ?? 50)));
+    $offset = max(0, intval($_GET['offset'] ?? 0));
+    if ($q !== '') {
+        $like = '%'.$q.'%';
+        $st = $pdo->prepare('SELECT id,email,name,created_at FROM users WHERE email LIKE ? OR name LIKE ? ORDER BY id DESC LIMIT ? OFFSET ?');
+        $st->execute([$like,$like,$limit,$offset]);
+    } else {
+        $st = $pdo->prepare('SELECT id,email,name,created_at FROM users ORDER BY id DESC LIMIT ? OFFSET ?');
+        $st->execute([$limit,$offset]);
+    }
+    $rows = $st->fetchAll(PDO::FETCH_ASSOC);
+    $count = $pdo->query('SELECT COUNT(*) AS c FROM users')->fetch(PDO::FETCH_ASSOC)['c'] ?? 0;
+    ok(['items'=>$rows,'total'=>intval($count)]);
 } elseif ($a === 'create_user') {
     $in = json(); $email = trim(strtolower($in['email'] ?? '')); $pass = $in['password'] ?? ''; $name = trim($in['name'] ?? '');
     if (!$email || !$pass) return err(400,'missing');
