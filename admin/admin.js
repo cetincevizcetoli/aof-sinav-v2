@@ -1,9 +1,10 @@
 const base = '../api/admin.php'
 let state = { q:'', limit:50, offset:0, total:0 }
-function token(){ return localStorage.getItem('admin_token') || '' }
-function saveToken(){ const t = document.getElementById('admin-token').value; localStorage.setItem('admin_token', t); alert('Token kaydedildi'); }
+function creds(){ return { user: localStorage.getItem('admin_user') || 'admin', pass: localStorage.getItem('admin_pass') || '' } }
+function loginAdmin(){ const u = document.getElementById('admin-user').value; const p = document.getElementById('admin-pass').value; localStorage.setItem('admin_user', u); localStorage.setItem('admin_pass', p); alert('Giriş bilgisi kaydedildi'); refresh() }
 async function api(action, method='GET', body=null, params={}){
-  const headers = { 'X-Admin-Token': token(), 'Content-Type': 'application/json' }
+  const c = creds();
+  const headers = { 'Content-Type': 'application/json', 'Authorization': 'Basic '+btoa(`${c.user}:${c.pass}`) }
   const usp = new URLSearchParams(params)
   const res = await fetch(`${base}?action=${action}&${usp.toString()}`, { method, headers, body: body?JSON.stringify(body):undefined })
   if(!res.ok){ const txt = await res.text().catch(()=> ''); throw new Error(`API error ${res.status}: ${txt}`) }
@@ -61,7 +62,7 @@ function nextPage(){ const maxOffset = Math.max(0, (Math.ceil(state.total/state.
 function debounce(fn, ms){ let h; return (...args)=>{ clearTimeout(h); h = setTimeout(()=>fn(...args), ms) } }
 const onSearch = debounce(v => { state.q = v; refresh() }, 300)
 window.addEventListener('DOMContentLoaded', () => {
-  const t = token(); if (t) document.getElementById('admin-token').value = t;
+  const c = creds(); document.getElementById('admin-user').value = c.user; document.getElementById('admin-pass').value = c.pass;
   const sizeSel = document.getElementById('page-size'); state.limit = parseInt(sizeSel.value); sizeSel.onchange = ()=>{ state.limit = parseInt(sizeSel.value); refresh() }
   const search = document.getElementById('search'); search.oninput = ()=> onSearch(search.value)
   loadUsers(); loadDbInfo()

@@ -1,7 +1,22 @@
 <?php
 require __DIR__ . '/db.php';
-$token = $_SERVER['HTTP_X_ADMIN_TOKEN'] ?? '';
-if (!$token || ($token !== ($SECRET ?? ''))) { http_response_code(401); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
+// Basit admin auth: Basic Authorization veya body'de username/password
+$ADMIN_USER = getenv('ADMIN_USER') ?: 'admin';
+$ADMIN_PASS = getenv('ADMIN_PASS') ?: '5211@Admin';
+function adminAuthorized($ADMIN_USER, $ADMIN_PASS){
+    $auth = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    if (stripos($auth, 'Basic ') === 0) {
+        $dec = base64_decode(substr($auth, 6));
+        if ($dec !== false) {
+            [$u, $p] = array_pad(explode(':', $dec, 2), 2, '');
+            if ($u === $ADMIN_USER && $p === $ADMIN_PASS) return true;
+        }
+    }
+    $in = json_decode(file_get_contents('php://input'), true) ?: [];
+    if (($in['username'] ?? '') === $ADMIN_USER && ($in['password'] ?? '') === $ADMIN_PASS) return true;
+    return false;
+}
+if (!adminAuthorized($ADMIN_USER, $ADMIN_PASS)) { http_response_code(401); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
 
 $a = $_GET['action'] ?? '';
 if ($a === 'list_users') {
