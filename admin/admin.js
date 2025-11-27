@@ -1,11 +1,12 @@
 const base = '../api/admin.php'
 let state = { q:'', limit:50, offset:0, total:0 }
-function creds(){ return { user: localStorage.getItem('admin_user') || '', pass: localStorage.getItem('admin_pass') || '' } }
+function creds(){ return { user: sessionStorage.getItem('admin_user') || '', pass: sessionStorage.getItem('admin_pass') || '' } }
 function ensureAuth(){ const c = creds(); if (!c.user || !c.pass) { location.href = './login.html' } }
+function logout(){ sessionStorage.removeItem('admin_user'); sessionStorage.removeItem('admin_pass'); location.href = './login.html' }
 async function api(action, method='GET', body=null, params={}){
   const c = creds();
   const headers = { 'Content-Type': 'application/json', 'Authorization': 'Basic '+btoa(`${c.user}:${c.pass}`) }
-  const usp = new URLSearchParams(Object.assign({}, params, { u: c.user, p: c.pass }))
+  const usp = new URLSearchParams(params)
   const res = await fetch(`${base}?action=${action}&${usp.toString()}`, { method, headers, body: body?JSON.stringify(body):undefined })
   if(!res.ok){ if (res.status === 401) { location.href = './login.html'; return {}; } const txt = await res.text().catch(()=> ''); throw new Error(`API error ${res.status}: ${txt}`) }
   const j = await res.json().catch(()=>({}))
@@ -63,6 +64,8 @@ function debounce(fn, ms){ let h; return (...args)=>{ clearTimeout(h); h = setTi
 const onSearch = debounce(v => { state.q = v; refresh() }, 300)
 window.addEventListener('DOMContentLoaded', () => {
   ensureAuth()
+  const c = creds(); const ud = document.getElementById('admin-user-display'); if (ud) ud.textContent = c.user || ''
+  const lb = document.getElementById('logout-btn'); if (lb) lb.onclick = logout
   const sizeSel = document.getElementById('page-size'); state.limit = parseInt(sizeSel.value); sizeSel.onchange = ()=>{ state.limit = parseInt(sizeSel.value); refresh() }
   const search = document.getElementById('search'); search.oninput = ()=> onSearch(search.value)
   loadUsers(); loadDbInfo()
