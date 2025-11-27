@@ -1,4 +1,17 @@
 <?php
+// Simple .env loader (root/.env). Each line key=value
+$envPath = dirname(__DIR__) . DIRECTORY_SEPARATOR . '.env';
+if (file_exists($envPath)) {
+    $lines = @file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if ($lines) {
+        foreach ($lines as $line) {
+            if (strlen($line) === 0 || $line[0] === '#') continue;
+            $parts = explode('=', $line, 2);
+            if (count($parts) === 2) { $k = trim($parts[0]); $v = trim($parts[1]); @putenv("$k=$v"); $_ENV[$k] = $v; }
+        }
+    }
+}
+
 $DB_DRIVER = getenv('AOF_DB_DRIVER') ?: 'mysql';
 
 // PostgreSQL

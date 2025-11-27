@@ -1,0 +1,5 @@
+# Environment and private data
+.env
+private/
+admin_error.log
+*.sqlite
