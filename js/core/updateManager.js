@@ -17,8 +17,8 @@ export class UpdateManager {
 
             console.log(`Versiyon Kontrolü: Yerel=${localVersion}, Sunucu=${serverVersion}`);
 
-            // 2. Versiyonlar farklıysa veya force_update aktifse temizlik yap
-            if (localVersion !== serverVersion || forceUpdate) {
+            // 2. Sadece sürüm farklıysa temizlik yap; force_update yalnızca sürüm değişiminde geçerli
+            if (localVersion !== serverVersion) {
                 console.warn('⚠️ Yeni güncelleme bulundu! Sistem yenileniyor...');
                 
                 await this.performCleanup();

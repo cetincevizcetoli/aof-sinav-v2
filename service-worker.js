@@ -30,7 +30,7 @@ self.addEventListener('install', (event) => {
 
 // Aktifleştirme ve Eski Cache Temizliği
 self.addEventListener('activate', (event) => {
-    event.waitUntil(clients.claim());
+    event.waitUntil((async () => { try { await self.clients.claim(); } catch(e){} })());
     event.waitUntil(
         caches.keys().then((keyList) => {
             return Promise.all(keyList.map((key) => {
