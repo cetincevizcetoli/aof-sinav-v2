@@ -16,7 +16,7 @@ export class Dashboard {
         this.container.innerHTML = '<div class="loading-state"><div class="spinner"></div><p>Veriler Yükleniyor...</p></div>';
 
         const userName = await this.db.getUserName();
-        if (!userName) { this.showNameModal(); return; }
+        // Artık kullanıcı adı zorunlu değil; onboarding ile yönlendirilecek
 
         const lessons = await this.loader.getLessonList();
         
@@ -309,7 +309,8 @@ export class Dashboard {
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAuthSync()">Giriş / Senkronizasyon</button>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
                     <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.forceRefreshNow()">Zorla Yenile</button>
-                    <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla</button>
+                    <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla (Sunucu+Lokal)</button>
+                    ${localStorage.getItem('auth_token') ? `<button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.confirmDeleteAccount()">Hesabımı Sil</button>` : ''}
                     <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="document.getElementById('settings-menu-overlay').remove()">Kapat</button>
                 </div>
             </div>`;
@@ -334,7 +335,31 @@ export class Dashboard {
             document.body.insertAdjacentHTML('beforeend', html);
         };
 
+        window.confirmDeleteAccount = () => {
+            const html = `
+            <div class="modal-overlay" id="confirm-del-modal">
+                <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Hesabı Sil</h2><button class="icon-btn" onclick="document.getElementById('confirm-del-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <p style="color:#64748b;">Hesabın ve tüm verilerin kalıcı olarak silinecek. Emin misin?</p>
+                    <div class="modal-actions">
+                        <button class="nav-btn secondary" onclick="document.getElementById('confirm-del-modal').remove()">İptal</button>
+                        <button class="primary-btn" style="background-color:#ef4444;" onclick="window.deleteAccountNow()">Evet, Sil</button>
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+        };
+
+        window.deleteAccountNow = async () => {
+            const auth = new AuthManager(this.db);
+            const ok = await auth.deleteAccount();
+            if (ok) { await this.db.resetAllData(); localStorage.removeItem('guest_mode'); location.reload(); }
+            else alert('Silme işlemi başarısız');
+        };
+
         window.resetApp = async () => {
+            const auth = new AuthManager(this.db);
+            if (auth.hasToken()) { await auth.wipeRemote().catch(()=>{}); }
             await this.db.resetAllData();
             location.reload();
         };
@@ -485,11 +510,12 @@ export class Dashboard {
             const n = document.getElementById('welcome-name').value;
             const e = document.getElementById('welcome-email-r').value;
             const p = document.getElementById('welcome-pass-r').value;
-            const ok = await auth.register(e,p,n);
-            if (ok) { document.getElementById('welcome-overlay').remove(); this.render(); }
+            const res = await auth.register(e,p,n);
+            if (res && res.exists) { alert('Bu e-posta ile kayıt zaten mevcut. Lütfen giriş yapın.'); return; }
+            if (res && res.ok) { document.getElementById('welcome-overlay').remove(); this.render(); }
             else { alert('Kayıt başarısız'); }
         };
-        window.continueGuest = () => { localStorage.setItem('guest_mode','1'); document.getElementById('welcome-overlay').remove(); };
+        window.continueGuest = () => { localStorage.setItem('guest_mode','1'); const name = prompt('Adınızı girin (isteğe bağlı)'); if (name && name.trim().length>0) { this.db.setUserName(name.trim()); } document.getElementById('welcome-overlay').remove(); };
         window.switchAuthTab('login');
     }
 }

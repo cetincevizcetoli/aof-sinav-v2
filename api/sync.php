@@ -28,4 +28,13 @@ if ($a === 'push') {
     $hist = $pdo->prepare('SELECT date,lesson,unit,isCorrect FROM exam_history WHERE user_id=? ORDER BY date DESC LIMIT 500');
     $hist->execute([$user]);
     ok(['progress'=>$progress->fetchAll(PDO::FETCH_ASSOC),'stats'=>$stats->fetch(PDO::FETCH_ASSOC)?:['xp'=>0,'streak'=>0,'totalQuestions'=>0],'history'=>$hist->fetchAll(PDO::FETCH_ASSOC)]);
+} elseif ($a === 'wipe') {
+    try {
+        $pdo->beginTransaction();
+        $pdo->prepare('DELETE FROM progress WHERE user_id=?')->execute([$user]);
+        $pdo->prepare('DELETE FROM user_stats WHERE user_id=?')->execute([$user]);
+        $pdo->prepare('DELETE FROM exam_history WHERE user_id=?')->execute([$user]);
+        $pdo->commit();
+        ok(['wiped'=>true]);
+    } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }
 } else { err(404,'notfound'); }

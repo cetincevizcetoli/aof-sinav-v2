@@ -1,11 +1,11 @@
 [
   {
-    "version": "1.1.0",
+    "version": "1.1.1",
     "date": "2025-11-26",
     "items": [
-      "Çoklu cihaz desteği ve bulut senkronizasyon eklendi (SQLite/PHP API)",
-      "Kayıt/Giriş akışı ve Sunucuya Yedekle / Sunucudan Yükle arayüzü",
-      "Offline-First korunarak senkronizasyon"
+      "Onboarding: Token yoksa full-screen karşılama (Login/Register/Local)",
+      "Kayıtlı e-posta için 409 uyarısı ve hesap silme",
+      "Verileri Sıfırla: Sunucu ve Lokal birlikte temizleniyor"
     ]
   },
   {

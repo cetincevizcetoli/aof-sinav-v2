@@ -12,12 +12,13 @@ export class UpdateManager {
 
             const serverData = await response.json();
             const serverVersion = serverData.version;
+            const forceUpdate = !!serverData.force_update;
             const localVersion = localStorage.getItem(this.localVersionKey);
 
             console.log(`Versiyon Kontrolü: Yerel=${localVersion}, Sunucu=${serverVersion}`);
 
-            // 2. Versiyonlar farklıysa temizlik yap
-            if (localVersion !== serverVersion) {
+            // 2. Versiyonlar farklıysa veya force_update aktifse temizlik yap
+            if (localVersion !== serverVersion || forceUpdate) {
                 console.warn('⚠️ Yeni güncelleme bulundu! Sistem yenileniyor...');
                 
                 await this.performCleanup();
@@ -26,7 +27,7 @@ export class UpdateManager {
                 localStorage.setItem(this.localVersionKey, serverVersion);
                 
                 // Kullanıcıyı rahatsız etmeden sayfayı yenile
-                window.location.reload(true);
+                window.location.reload();
             }
         } catch (error) {
             console.log('İnternet yok veya versiyon kontrolü yapılamadı.', error);

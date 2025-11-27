@@ -24,4 +24,17 @@ if ($a === 'register') {
     $token = bin2hex(random_bytes(32));
     $pdo->prepare('INSERT OR REPLACE INTO sessions(token,user_id,created_at) VALUES(?,?,?)')->execute([$token,$u['id'],time()]);
     ok(['token'=>$token]);
+} elseif ($a === 'delete') {
+    $uid = token_user($pdo,$SECRET);
+    if (!$uid) return err(401,'unauth');
+    $pdo->beginTransaction();
+    try {
+        $pdo->prepare('DELETE FROM sessions WHERE user_id=?')->execute([$uid]);
+        $pdo->prepare('DELETE FROM progress WHERE user_id=?')->execute([$uid]);
+        $pdo->prepare('DELETE FROM user_stats WHERE user_id=?')->execute([$uid]);
+        $pdo->prepare('DELETE FROM exam_history WHERE user_id=?')->execute([$uid]);
+        $pdo->prepare('DELETE FROM users WHERE id=?')->execute([$uid]);
+        $pdo->commit();
+        ok(['deleted'=>true]);
+    } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }
 } else { err(404,'notfound'); }
