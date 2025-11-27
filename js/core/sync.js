@@ -1,5 +1,5 @@
 export class SyncManager {
-    constructor(db){ this.db = db; this.base = '/api'; }
+    constructor(db){ this.db = db; this.base = './api'; }
     getToken(){ return localStorage.getItem('auth_token') || ''; }
     setToken(t){ localStorage.setItem('auth_token', t); }
     async register(email,password){ const r = await fetch(`${this.base}/auth.php?action=register`,{ method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ email, password }) }); return r.ok; }
