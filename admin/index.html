@@ -17,9 +17,9 @@
 <body>
   <div class="card">
     <h2 class="title">Admin Giriş</h2>
-    <div class="row">
-      <input id="user" placeholder="Kullanıcı adı" value="admin" />
-      <input id="pass" placeholder="Şifre" type="password" value="5211@Admin" />
+    <div class="row" autocomplete="off">
+      <input id="user" placeholder="Kullanıcı adı" autocomplete="off" />
+      <input id="pass" placeholder="Şifre" type="password" autocomplete="off" />
       <button class="primary" onclick="doLogin()">Giriş Yap</button>
     </div>
   </div>
@@ -27,8 +27,8 @@
     function doLogin(){
       const u = document.getElementById('user').value
       const p = document.getElementById('pass').value
-      sessionStorage.setItem('admin_user', u)
-      sessionStorage.setItem('admin_pass', p)
+      localStorage.setItem('admin_user', u)
+      localStorage.setItem('admin_pass', p)
       location.href = './panel.html'
     }
   </script>
