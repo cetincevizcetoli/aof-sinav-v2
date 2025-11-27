@@ -15,6 +15,12 @@ export class Dashboard {
     async render() {
         this.container.innerHTML = '<div class="loading-state"><div class="spinner"></div><p>Veriler Yükleniyor...</p></div>';
 
+        const authGate = new AuthManager(this.db);
+        if (!authGate.hasToken() && !localStorage.getItem('guest_mode')) {
+            this.showWelcomeOverlay();
+            return;
+        }
+
         const userName = await this.db.getUserName();
         // Artık kullanıcı adı zorunlu değil; onboarding ile yönlendirilecek
 
@@ -455,7 +461,7 @@ export class Dashboard {
 
     showWelcomeOverlay(){
         const existing = document.getElementById('welcome-overlay');
-        if (existing) existing.remove();
+        if (existing) return;
         const html = `
         <div id="welcome-overlay" style="position:fixed; inset:0; background:rgba(17,24,39,0.6); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:9999;">
             <div class="modal-box" style="max-width:560px; width:90%;">
