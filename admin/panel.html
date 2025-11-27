@@ -23,7 +23,7 @@
       <button id="logout-btn">Çıkış</button>
     </div>
     <div class="toolbar" style="gap:12px;">
-      <input id="search" placeholder="Ara: email veya ad" style="flex:2" />
+      <input id="search" placeholder="Ara: email veya ad" style="flex:2" autocomplete="off" />
       <select id="page-size"><option>25</option><option selected>50</option><option>100</option></select>
       <button onclick="refresh()">Yenile</button>
     </div>
@@ -41,8 +41,8 @@
       <div class="col">
         <h3>Kullanıcı Ekle</h3>
         <input id="new-name" placeholder="Ad (opsiyonel)" />
-        <input id="new-email" placeholder="Email" />
-        <input id="new-pass" placeholder="Şifre" type="password" />
+        <input id="new-email" placeholder="Email" autocomplete="off" />
+        <input id="new-pass" placeholder="Şifre" type="password" autocomplete="off" />
         <button class="primary" onclick="createUser()">Ekle</button>
       </div>
     </div>

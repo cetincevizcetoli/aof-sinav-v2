@@ -1,9 +1,15 @@
 <?php
 require __DIR__ . '/db.php';
-// Basit admin auth: Basic Authorization veya body'de username/password
+// Basit admin auth: Cookie oturumu (tercih), Basic Authorization (opsiyonel) veya body'de username/password (login için)
 $ADMIN_USER = getenv('ADMIN_USER') ?: 'admin';
 $ADMIN_PASS = getenv('ADMIN_PASS') ?: '5211@Admin';
-function adminAuthorized($ADMIN_USER, $ADMIN_PASS){
+function adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS){
+    if (!empty($_COOKIE['admin_session'])) {
+        $tok = $_COOKIE['admin_session'];
+        $st = $pdo->prepare('SELECT token FROM admin_sessions WHERE token=?');
+        $st->execute([$tok]);
+        if ($st->fetch(PDO::FETCH_ASSOC)) return true;
+    }
     $auth = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
     if (stripos($auth, 'Basic ') === 0) {
         $dec = base64_decode(substr($auth, 6));
@@ -12,16 +18,20 @@ function adminAuthorized($ADMIN_USER, $ADMIN_PASS){
             if ($u === $ADMIN_USER && $p === $ADMIN_PASS) return true;
         }
     }
-    if (isset($_GET['u']) && isset($_GET['p'])) {
-        if ($_GET['u'] === $ADMIN_USER && $_GET['p'] === $ADMIN_PASS) return true;
-    }
-    $in = json_decode(file_get_contents('php://input'), true) ?: [];
-    if (($in['username'] ?? '') === $ADMIN_USER && ($in['password'] ?? '') === $ADMIN_PASS) return true;
     return false;
 }
-if (!adminAuthorized($ADMIN_USER, $ADMIN_PASS)) { http_response_code(401); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
-
 $a = $_GET['action'] ?? '';
+if ($a === 'admin_login') {
+    $in = json(); $u = $in['username'] ?? ''; $p = $in['password'] ?? '';
+    if ($u === $ADMIN_USER && $p === $ADMIN_PASS) {
+        $token = bin2hex(random_bytes(24));
+        $pdo->prepare('INSERT INTO admin_sessions(token,created_at) VALUES(?,?)')->execute([$token, time()]);
+        setcookie('admin_session', $token, [ 'path' => '/', 'secure' => true, 'httponly' => true, 'samesite' => 'Lax' ]);
+        ok(['login'=>true]);
+    } else { err(401,'unauth'); }
+    exit;
+}
+if (!adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS)) { http_response_code(401); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
 if ($a === 'list_users') {
     $q = trim($_GET['q'] ?? '');
     $limit = max(1, min(200, intval($_GET['limit'] ?? 50)));
@@ -80,3 +90,7 @@ if ($a === 'list_users') {
     }
     ok(['path'=>$path,'exists'=>$exists,'size'=>$size,'mtime'=>$mtime,'tables'=>$tables,'counts'=>$counts]);
 } else { err(404,'notfound'); }
+} elseif ($a === 'admin_logout') {
+    $tok = $_COOKIE['admin_session'] ?? '';
+    if ($tok) { $pdo->prepare('DELETE FROM admin_sessions WHERE token=?')->execute([$tok]); setcookie('admin_session','', time()-3600, '/'); }
+    ok(['logout'=>true]);

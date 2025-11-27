@@ -15,3 +15,4 @@ function token_user($pdo,$SECRET){ $h = $_SERVER['HTTP_AUTHORIZATION'] ?? ''; if
 $checkCols = $pdo->query("PRAGMA table_info(users)")->fetchAll(PDO::FETCH_ASSOC);
 $hasName = false; foreach ($checkCols as $c) { if (strtolower($c['name']) === 'name') { $hasName = true; break; } }
 if (!$hasName) { try { $pdo->exec('ALTER TABLE users ADD COLUMN name TEXT'); } catch(Exception $e){} }
+$pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token TEXT PRIMARY KEY, created_at INTEGER)');
