@@ -1,6 +1,7 @@
 import { Gamification } from '../core/gamification.js';
 import { ExamManager } from '../core/examManager.js';
 import { UpdateManager } from '../core/updateManager.js';
+import { SyncManager } from '../core/sync.js';
 
 export class Dashboard {
     constructor(dataLoader, db) {
@@ -300,6 +301,7 @@ export class Dashboard {
                 <div id="settings-menu" style="position:fixed; right:16px; top:60px; background:white; border:1px solid #e2e8f0; box-shadow:0 10px 25px rgba(0,0,0,0.08); border-radius:12px; min-width:240px; overflow:hidden;">
                     <button class="nav-btn" style="width:100%; justify-content:flex-start; border:none; border-bottom:1px solid #f1f5f9;">Ayarlar</button>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAuthSync()">Giriş / Senkronizasyon</button>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
                     <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.forceRefreshNow()">Zorla Yenile</button>
                     <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla</button>
@@ -391,6 +393,33 @@ export class Dashboard {
             document.body.insertAdjacentHTML('beforeend', html);
             await updater.performCleanup();
             location.reload();
+        };
+
+        window.openAuthSync = () => {
+            const html = `
+            <div class="modal-overlay" id="auth-sync-modal">
+                <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Giriş / Senkronizasyon</h2><button class="icon-btn" onclick="document.getElementById('auth-sync-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <div class="form-group">
+                        <input type="email" id="auth-email" class="form-select" placeholder="E-posta">
+                        <input type="password" id="auth-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                        <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
+                            <button class="nav-btn" onclick="window.doRegister()">Kayıt Ol</button>
+                            <button class="primary-btn" onclick="window.doLogin()">Giriş Yap</button>
+                        </div>
+                    </div>
+                    <div class="modal-actions" style="margin-top:16px; display:flex; gap:8px;">
+                        <button class="nav-btn" onclick="window.doPushSync()">Sunucuya Yedekle</button>
+                        <button class="nav-btn" onclick="window.doPullSync()">Sunucudan Yükle</button>
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+            const sm = new SyncManager(this.db);
+            window.doRegister = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await sm.register(e,p); alert(ok ? 'Kayıt başarılı' : 'Kayıt başarısız'); };
+            window.doLogin = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await sm.login(e,p); alert(ok ? 'Giriş başarılı' : 'Giriş başarısız'); };
+            window.doPushSync = async () => { const ok = await sm.pushAll().catch(async () => { const payload = { type:'push' }; await this.db.enqueueSync(payload); return false; }); alert(ok ? 'Yedekleme tamam' : 'Yedekleme başarısız'); };
+            window.doPullSync = async () => { const ok = await sm.pullAll(); alert(ok ? 'Yükleme tamam' : 'Yükleme başarısız'); };
         };
     }
 }

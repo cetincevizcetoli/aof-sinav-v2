@@ -1,7 +1,7 @@
 export class ExamDatabase {
     constructor() {
         this.dbName = 'AofSinavDB_v2';
-        this.dbVersion = 5;
+        this.dbVersion = 6;
         this.db = null;
     }
 
@@ -50,6 +50,7 @@ export class ExamDatabase {
                 if (historyStore.indexNames && !historyStore.indexNames.contains('by_unit')) {
                     historyStore.createIndex('by_unit', 'unit', { unique: false });
                 }
+                if (!db.objectStoreNames.contains('sync_queue')) db.createObjectStore('sync_queue', { keyPath: 'id', autoIncrement: true });
             };
 
             request.onsuccess = (event) => {
@@ -108,6 +109,7 @@ export class ExamDatabase {
                 unit
             });
             tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
         });
     }
 
@@ -154,6 +156,7 @@ export class ExamDatabase {
             const tx = this.db.transaction(['user_stats'], 'readwrite');
             tx.objectStore('user_stats').put({ key: 'main_stats', ...stats });
             tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
         });
     }
 
@@ -171,6 +174,7 @@ export class ExamDatabase {
         if (!this.db) return;
         const tx = this.db.transaction(['profile'], 'readwrite');
         tx.objectStore('profile').put({ key: 'username', val: name });
+        tx.onerror = () => {};
     }
 
     async logActivity(lessonCode, unit, isCorrect) {
@@ -185,6 +189,7 @@ export class ExamDatabase {
                 isCorrect: isCorrect
             });
             tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
         });
     }
 
@@ -224,6 +229,33 @@ export class ExamDatabase {
             tx.objectStore('profile').clear();
             tx.objectStore('exam_history').clear();
             tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    }
+
+    async enqueueSync(payload) {
+        return new Promise((resolve) => {
+            if (!this.db) return resolve(false);
+            const tx = this.db.transaction(['sync_queue'], 'readwrite');
+            tx.objectStore('sync_queue').add({ payload, ts: Date.now() });
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    }
+
+    async drainSyncQueue(handler) {
+        return new Promise((resolve) => {
+            if (!this.db) return resolve(false);
+            const tx = this.db.transaction(['sync_queue'], 'readwrite');
+            const store = tx.objectStore('sync_queue');
+            const req = store.getAll();
+            req.onsuccess = async () => {
+                const items = req.result || [];
+                for (const it of items) { try { await handler(it.payload); } catch {} }
+                store.clear();
+                resolve(true);
+            };
+            req.onerror = () => resolve(false);
         });
     }
 }
