@@ -12,6 +12,9 @@ function adminAuthorized($ADMIN_USER, $ADMIN_PASS){
             if ($u === $ADMIN_USER && $p === $ADMIN_PASS) return true;
         }
     }
+    if (isset($_GET['u']) && isset($_GET['p'])) {
+        if ($_GET['u'] === $ADMIN_USER && $_GET['p'] === $ADMIN_PASS) return true;
+    }
     $in = json_decode(file_get_contents('php://input'), true) ?: [];
     if (($in['username'] ?? '') === $ADMIN_USER && ($in['password'] ?? '') === $ADMIN_PASS) return true;
     return false;

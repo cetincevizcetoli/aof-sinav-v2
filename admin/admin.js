@@ -1,13 +1,13 @@
 const base = '../api/admin.php'
 let state = { q:'', limit:50, offset:0, total:0 }
-function creds(){ return { user: localStorage.getItem('admin_user') || 'admin', pass: localStorage.getItem('admin_pass') || '' } }
-function loginAdmin(){ const u = document.getElementById('admin-user').value; const p = document.getElementById('admin-pass').value; localStorage.setItem('admin_user', u); localStorage.setItem('admin_pass', p); alert('Giriş bilgisi kaydedildi'); refresh() }
+function creds(){ return { user: localStorage.getItem('admin_user') || '', pass: localStorage.getItem('admin_pass') || '' } }
+function ensureAuth(){ const c = creds(); if (!c.user || !c.pass) { location.href = './login.html' } }
 async function api(action, method='GET', body=null, params={}){
   const c = creds();
   const headers = { 'Content-Type': 'application/json', 'Authorization': 'Basic '+btoa(`${c.user}:${c.pass}`) }
-  const usp = new URLSearchParams(params)
+  const usp = new URLSearchParams(Object.assign({}, params, { u: c.user, p: c.pass }))
   const res = await fetch(`${base}?action=${action}&${usp.toString()}`, { method, headers, body: body?JSON.stringify(body):undefined })
-  if(!res.ok){ const txt = await res.text().catch(()=> ''); throw new Error(`API error ${res.status}: ${txt}`) }
+  if(!res.ok){ if (res.status === 401) { location.href = './login.html'; return {}; } const txt = await res.text().catch(()=> ''); throw new Error(`API error ${res.status}: ${txt}`) }
   const j = await res.json().catch(()=>({}))
   return j.data
 }
@@ -62,7 +62,7 @@ function nextPage(){ const maxOffset = Math.max(0, (Math.ceil(state.total/state.
 function debounce(fn, ms){ let h; return (...args)=>{ clearTimeout(h); h = setTimeout(()=>fn(...args), ms) } }
 const onSearch = debounce(v => { state.q = v; refresh() }, 300)
 window.addEventListener('DOMContentLoaded', () => {
-  const c = creds(); document.getElementById('admin-user').value = c.user; document.getElementById('admin-pass').value = c.pass;
+  ensureAuth()
   const sizeSel = document.getElementById('page-size'); state.limit = parseInt(sizeSel.value); sizeSel.onchange = ()=>{ state.limit = parseInt(sizeSel.value); refresh() }
   const search = document.getElementById('search'); search.oninput = ()=> onSearch(search.value)
   loadUsers(); loadDbInfo()
