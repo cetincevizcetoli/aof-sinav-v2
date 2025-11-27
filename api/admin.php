@@ -64,7 +64,13 @@ if ($a === 'admin_login') {
         if ($u === $ADMIN_USER && password_verify($p, $ADMIN_PASS_HASH)) {
             $token = secure_token(24);
             $pdo->prepare('INSERT INTO admin_sessions(token,created_at) VALUES(?,?)')->execute([$token, time()]);
-            setcookie('admin_session', $token, time()+86400, '/aof-sinav-v2/', '', true, true);
+            setcookie('admin_session', $token, [
+                'expires' => time()+86400,
+                'path' => '/aof-sinav-v2/',
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Lax',
+            ]);
             ok(['login'=>true]);
         } else { err(401,'unauth'); }
     } catch(Exception $e) {
@@ -76,7 +82,16 @@ if ($a === 'admin_login') {
 
 if ($a === 'admin_logout') {
     $tok = $_COOKIE['admin_session'] ?? '';
-    if ($tok) { $pdo->prepare('DELETE FROM admin_sessions WHERE token=?')->execute([$tok]); setcookie('admin_session','', time()-3600, '/aof-sinav-v2/'); }
+    if ($tok) {
+        $pdo->prepare('DELETE FROM admin_sessions WHERE token=?')->execute([$tok]);
+        setcookie('admin_session','', [
+            'expires' => time()-3600,
+            'path' => '/aof-sinav-v2/',
+            'secure' => true,
+            'httponly' => true,
+            'samesite' => 'Lax',
+        ]);
+    }
     ok(['logout'=>true]);
     exit;
 }

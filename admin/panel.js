@@ -6,8 +6,14 @@ function logout(){ localStorage.removeItem('admin_user'); location.href = './' }
 async function api(action, method='GET', body=null, params={}){
   const headers = { 'Content-Type': 'application/json' }
   const usp = new URLSearchParams(params)
-  const res = await fetch(`${base}?action=${action}&${usp.toString()}`, { method, headers, body: body?JSON.stringify(body):undefined, credentials:'include' })
-  if(!res.ok){ if (res.status === 401) { location.href = './'; return {}; } const txt = await res.text().catch(()=> ''); throw new Error(`API error ${res.status}: ${txt}`) }
+  const res = await fetch(`${base}?action=${action}&${usp.toString()}`, {
+    method,
+    headers,
+    body: body?JSON.stringify(body):undefined,
+    credentials:'include',
+    cache:'no-store'
+  })
+  if(!res.ok){ const txt = await res.text().catch(()=> ''); throw new Error(`API error ${res.status}: ${txt}`) }
   const j = await res.json().catch(()=>({}))
   return j.data
 }
