@@ -143,10 +143,10 @@ try {
     if (!is_dir($dbDir)) { @mkdir($dbDir, 0775, true); }
     if (!is_writable($dbDir)) { $dirWritable = false; }
 } catch(Exception $e) { $dirWritable = false; }
-if (!$pdo || !$dirWritable) {
+if (!$pdo || ($DB_DRIVER !== 'pgsql' && !$dirWritable)) {
     $msg = [];
     if (!$pdo) { $msg['pdo_error'] = isset($PDO_ERROR) ? $PDO_ERROR : 'pdo_init_failed'; }
-    if (!$dirWritable) { $msg['dir_writable'] = false; $msg['db_dir'] = $dbDir; }
+    if ($DB_DRIVER !== 'pgsql' && !$dirWritable) { $msg['dir_writable'] = false; $msg['db_dir'] = $dbDir; }
     err(500, json_encode($msg));
     exit;
 }
