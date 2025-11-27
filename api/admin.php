@@ -20,15 +20,47 @@ function adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH){
     return false;
 }
 $a = $_GET['action'] ?? '';
+header('Content-Type: application/json');
+if ($a === 'admin_diag') {
+    try {
+        $privateDir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'private';
+        $cfgPath = $privateDir . DIRECTORY_SEPARATOR . 'admin.json';
+        $writable = is_writable($privateDir);
+        $exists = is_dir($privateDir);
+        $dbPath = isset($DB_PATH) ? $DB_PATH : '';
+        $pdoOk = false; try { $pdo->query('SELECT 1'); $pdoOk = true; } catch(Exception $e) { $pdoOk = false; }
+        $sessTbl = false; try { $pdo->query("SELECT name FROM sqlite_master WHERE type='table' AND name='admin_sessions'"); $sessTbl = true; } catch(Exception $e) { $sessTbl = false; }
+        $writeTest = false; $testFile = $privateDir . DIRECTORY_SEPARATOR . 'diag_test.txt';
+        try { @file_put_contents($testFile, 'ok'); $writeTest = file_exists($testFile); if ($writeTest) @unlink($testFile); } catch(Exception $e) { $writeTest = false; }
+        $adminJsonOk = file_exists($cfgPath);
+        ok([
+            'private_exists' => $exists,
+            'private_writable' => $writable,
+            'admin_json_exists' => $adminJsonOk,
+            'db_path' => $dbPath,
+            'pdo_ok' => $pdoOk,
+            'admin_sessions_table' => $sessTbl,
+            'write_test' => $writeTest,
+        ]);
+    } catch(Exception $e) {
+        err(500,'server_error');
+    }
+    exit;
+}
 if ($a === 'admin_login') {
     $in = json(); $u = $in['username'] ?? ''; $p = $in['password'] ?? '';
-    if ($u === $ADMIN_USER && password_verify($p, $ADMIN_PASS_HASH)) {
-        $token = bin2hex(random_bytes(24));
-        $pdo->prepare('INSERT INTO admin_sessions(token,created_at) VALUES(?,?)')->execute([$token, time()]);
-        // Daha geniş uyumluluk için klasik setcookie imzası
-        setcookie('admin_session', $token, time()+86400, '/', '', true, true);
-        ok(['login'=>true]);
-    } else { err(401,'unauth'); }
+    try {
+        if ($u === $ADMIN_USER && password_verify($p, $ADMIN_PASS_HASH)) {
+            $token = secure_token(24);
+            $pdo->prepare('INSERT INTO admin_sessions(token,created_at) VALUES(?,?)')->execute([$token, time()]);
+            // Cookie path uygulama köküne ayarlandı
+            setcookie('admin_session', $token, time()+86400, '/aof-sinav-v2/', '', true, true);
+            ok(['login'=>true]);
+        } else { err(401,'unauth'); }
+    } catch(Exception $e) {
+        @file_put_contents($LOG_FILE, '['.date('c').'] '.$e->getMessage()."\n", FILE_APPEND);
+        err(500,'server_error');
+    }
     exit;
 }
 if (!adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH)) { http_response_code(401); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
@@ -94,3 +126,27 @@ if ($a === 'list_users') {
     $tok = $_COOKIE['admin_session'] ?? '';
     if ($tok) { $pdo->prepare('DELETE FROM admin_sessions WHERE token=?')->execute([$tok]); setcookie('admin_session','', time()-3600, '/'); }
     ok(['logout'=>true]);
+$LOG_DIR = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'private';
+$LOG_FILE = $LOG_DIR . DIRECTORY_SEPARATOR . 'admin_error.log';
+if (!is_dir($LOG_DIR)) { @mkdir($LOG_DIR, 0775, true); }
+function secure_token($len=24){
+    if (function_exists('random_bytes')) { return bin2hex(random_bytes($len)); }
+    if (function_exists('openssl_random_pseudo_bytes')) { return bin2hex(openssl_random_pseudo_bytes($len)); }
+    return bin2hex(substr(str_shuffle('abcdefghijklmnopqrstuvwxyz0123456789'),0,$len));
+}
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+$dirWritable = true;
+try {
+    $dbDir = dirname($DB_PATH ?? '');
+    if (!is_dir($dbDir)) { @mkdir($dbDir, 0775, true); }
+    if (!is_writable($dbDir)) { $dirWritable = false; }
+} catch(Exception $e) { $dirWritable = false; }
+if (!$pdo || !$dirWritable) {
+    $msg = [];
+    if (!$pdo) { $msg['pdo_error'] = isset($PDO_ERROR) ? $PDO_ERROR : 'pdo_init_failed'; }
+    if (!$dirWritable) { $msg['dir_writable'] = false; $msg['db_dir'] = $dbDir; }
+    err(500, json_encode($msg));
+    exit;
+}
