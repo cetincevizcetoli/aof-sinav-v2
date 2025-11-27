@@ -1,6 +1,7 @@
 import { Gamification } from '../core/gamification.js';
 import { ExamManager } from '../core/examManager.js';
 import { UpdateManager } from '../core/updateManager.js';
+import { AuthManager } from '../core/authManager.js';
 import { SyncManager } from '../core/sync.js';
 
 export class Dashboard {
@@ -134,6 +135,10 @@ export class Dashboard {
                 icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
             }
         };
+        const auth = new AuthManager(this.db);
+        if (!auth.hasToken() && !localStorage.getItem('guest_mode')) {
+            this.showWelcomeOverlay();
+        }
     }
 
     // --- DETAYLI DERS KARNESİ (MODAL) ---
@@ -421,5 +426,70 @@ export class Dashboard {
             window.doPushSync = async () => { const ok = await sm.pushAll().catch(async () => { const payload = { type:'push' }; await this.db.enqueueSync(payload); return false; }); alert(ok ? 'Yedekleme tamam' : 'Yedekleme başarısız'); };
             window.doPullSync = async () => { const ok = await sm.pullAll(); alert(ok ? 'Yükleme tamam' : 'Yükleme başarısız'); };
         };
+    }
+
+    showWelcomeOverlay(){
+        const existing = document.getElementById('welcome-overlay');
+        if (existing) existing.remove();
+        const html = `
+        <div id="welcome-overlay" style="position:fixed; inset:0; background:rgba(17,24,39,0.6); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:9999;">
+            <div class="modal-box" style="max-width:560px; width:90%;">
+                <div class="modal-header" style="border:none;">
+                    <h2 class="modal-title" style="display:flex; align-items:center; gap:10px;">
+                        <img src="assets/logo.png" alt="logo" style="width:32px; height:32px;"> AÖF Sınav Asistanı
+                    </h2>
+                </div>
+                <p style="color:#64748b; margin-top:-6px;">Sınavlara her yerden hazırlan, ilerlemeni asla kaybetme.</p>
+                <div style="margin-top:12px; display:flex; gap:8px;">
+                    <button class="nav-btn" onclick="window.switchAuthTab('login')" id="tab-login">Giriş Yap</button>
+                    <button class="nav-btn" onclick="window.switchAuthTab('register')" id="tab-register">Kayıt Ol</button>
+                </div>
+                <div id="auth-forms" style="margin-top:12px;">
+                    <div id="form-login">
+                        <input type="email" id="welcome-email" class="form-select" placeholder="E-posta">
+                        <input type="password" id="welcome-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                        <div class="modal-actions" style="margin-top:10px;">
+                            <button class="primary-btn" onclick="window.handleLogin()">Giriş Yap</button>
+                        </div>
+                    </div>
+                    <div id="form-register" style="display:none;">
+                        <input type="text" id="welcome-name" class="form-select" placeholder="Ad Soyad">
+                        <input type="email" id="welcome-email-r" class="form-select" placeholder="E-posta" style="margin-top:8px;">
+                        <input type="password" id="welcome-pass-r" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                        <div class="modal-actions" style="margin-top:10px;">
+                            <button class="primary-btn" onclick="window.handleRegister()">Kayıt Ol</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:12px; text-align:center;">
+                    <button class="nav-btn secondary" style="opacity:0.8;" onclick="window.continueGuest()">Üye olmadan cihazımda devam et (Veriler sadece bu cihazda kalır)</button>
+                </div>
+            </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', html);
+        const auth = new AuthManager(this.db);
+        window.switchAuthTab = (tab) => {
+            document.getElementById('form-login').style.display = (tab==='login') ? 'block':'none';
+            document.getElementById('form-register').style.display = (tab==='register') ? 'block':'none';
+            document.getElementById('tab-login').classList.toggle('primary', tab==='login');
+            document.getElementById('tab-register').classList.toggle('primary', tab==='register');
+        };
+        window.handleLogin = async () => {
+            const e = document.getElementById('welcome-email').value;
+            const p = document.getElementById('welcome-pass').value;
+            const ok = await auth.login(e,p);
+            if (ok) { document.getElementById('welcome-overlay').remove(); this.render(); }
+            else { alert('Giriş başarısız'); }
+        };
+        window.handleRegister = async () => {
+            const n = document.getElementById('welcome-name').value;
+            const e = document.getElementById('welcome-email-r').value;
+            const p = document.getElementById('welcome-pass-r').value;
+            const ok = await auth.register(e,p,n);
+            if (ok) { document.getElementById('welcome-overlay').remove(); this.render(); }
+            else { alert('Kayıt başarısız'); }
+        };
+        window.continueGuest = () => { localStorage.setItem('guest_mode','1'); document.getElementById('welcome-overlay').remove(); };
+        window.switchAuthTab('login');
     }
 }

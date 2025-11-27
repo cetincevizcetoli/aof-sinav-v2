@@ -153,6 +153,30 @@ export class QuizUI {
         `;
         this.container.innerHTML = html;
 
+        if (this._keyHandler) {
+            document.removeEventListener('keydown', this._keyHandler);
+        }
+        this._keyHandler = (e) => {
+            const key = e.key.toLowerCase();
+            const options = card.shuffledOptions || card.options;
+            if (!options) return;
+            if (key >= '1' && key <= '4') {
+                const idx = parseInt(key) - 1;
+                const opt = options[idx];
+                if (opt && !givenAnswer) {
+                    window.handleAnswer(null, opt);
+                }
+            } else if (key === 's') {
+                if (!givenAnswer) window.skipQuestion();
+            } else if (key === 'enter') {
+                const nextBtn = document.getElementById('btn-next');
+                if (nextBtn && nextBtn.style.display !== 'none') this.nextQuestion();
+            } else if (key === 'escape') {
+                this.onBack();
+            }
+        };
+        document.addEventListener('keydown', this._keyHandler);
+
         document.getElementById('btn-exit').onclick = () => this.onBack();
         document.getElementById('btn-prev').onclick = () => { if(this.currentIndex > 0) { this.currentIndex--; this.renderCard(); } };
         if(document.getElementById('btn-next')) document.getElementById('btn-next').onclick = () => this.nextQuestion();
@@ -215,6 +239,10 @@ export class QuizUI {
         const score = total > 0 ? Math.round((correct / total) * 100) : 0;
         const earnedXP = correct * 10;
 
+        if (this._keyHandler) {
+            document.removeEventListener('keydown', this._keyHandler);
+            this._keyHandler = null;
+        }
         this.container.innerHTML = `
             <div class="loading-state">
                 <i class="fa-solid fa-flag-checkered" style="font-size: 3rem; color: #2563eb; margin-bottom: 20px;"></i>
@@ -231,5 +259,17 @@ export class QuizUI {
                 <button class="primary-btn" onclick="location.reload()">Ana Ekrana Dön</button>
             </div>
         `;
+
+        if (!localStorage.getItem('auth_token')) {
+            const html = `
+            <div class="modal-overlay" id="nudge-modal">
+                <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Tebrikler!</h2><button class="icon-btn" onclick="document.getElementById('nudge-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <p>Bu skorunu kaybetmek istemezsin. Üye ol ve buluta yedekle.</p>
+                    <div class="modal-actions"><button class="primary-btn" onclick="document.getElementById('nudge-modal').remove(); if(window && window.dashboard && window.dashboard.openSettings){ window.dashboard.openSettings(); }">Üye Ol</button></div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+        }
     }
 }
