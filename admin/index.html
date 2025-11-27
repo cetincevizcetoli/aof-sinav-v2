@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Panel - AÖF Sınav Asistanı</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    body{background:#f8fafc; font-family:system-ui, -apple-system;} .container{max-width:960px; margin:40px auto; padding:20px; background:#fff; border:1px solid #e2e8f0; border-radius:12px}
+    .row{display:flex; gap:12px; flex-wrap:wrap} .col{flex:1}
+    table{width:100%; border-collapse:collapse} th,td{padding:8px; border-bottom:1px solid #e5e7eb; font-size:14px}
+    .toolbar{display:flex; gap:8px; align-items:center; margin-bottom:12px}
+    input,button{padding:8px 10px; border-radius:8px; border:1px solid #e2e8f0}
+    button.primary{background:#2563eb; color:#fff; border:none}
+    .muted{color:#64748b}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Panel</h2>
+    <div class="toolbar">
+      <input id="admin-token" placeholder="X-Admin-Token" style="flex:1" />
+      <button class="primary" onclick="saveToken()">Kaydet</button>
+      <button onclick="loadUsers()">Yenile</button>
+    </div>
+
+    <div class="row" style="margin-bottom:16px">
+      <div class="col">
+        <h3>Kullanıcı Ekle</h3>
+        <input id="new-name" placeholder="Ad (opsiyonel)" />
+        <input id="new-email" placeholder="Email" />
+        <input id="new-pass" placeholder="Şifre" type="password" />
+        <button class="primary" onclick="createUser()">Ekle</button>
+      </div>
+    </div>
+
+    <h3>Kullanıcılar</h3>
+    <table>
+      <thead><tr><th>ID</th><th>Email</th><th>Ad</th><th>Oluşturma</th><th>İşlem</th></tr></thead>
+      <tbody id="users-tbody"></tbody>
+    </table>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

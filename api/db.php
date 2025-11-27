@@ -12,3 +12,6 @@ function json(){ return json_decode(file_get_contents('php://input'), true) ?: [
 function ok($d){ header('Content-Type: application/json'); echo json_encode(['ok'=>true,'data'=>$d]); }
 function err($c,$m){ http_response_code($c); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>$m]); }
 function token_user($pdo,$SECRET){ $h = $_SERVER['HTTP_AUTHORIZATION'] ?? ''; if (strpos($h,'Bearer ')!==0) return 0; $t = substr($h,7); $st = $pdo->prepare('SELECT user_id FROM sessions WHERE token=?'); $st->execute([$t]); $r = $st->fetch(PDO::FETCH_ASSOC); return $r ? intval($r['user_id']) : 0; }
+$checkCols = $pdo->query("PRAGMA table_info(users)")->fetchAll(PDO::FETCH_ASSOC);
+$hasName = false; foreach ($checkCols as $c) { if (strtolower($c['name']) === 'name') { $hasName = true; break; } }
+if (!$hasName) { try { $pdo->exec('ALTER TABLE users ADD COLUMN name TEXT'); } catch(Exception $e){} }

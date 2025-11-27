@@ -1,0 +1,41 @@
+<?php
+require __DIR__ . '/db.php';
+$token = $_SERVER['HTTP_X_ADMIN_TOKEN'] ?? '';
+if (!$token || ($token !== ($SECRET ?? ''))) { http_response_code(401); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
+
+$a = $_GET['action'] ?? '';
+if ($a === 'list_users') {
+    $st = $pdo->query('SELECT id,email,name,created_at FROM users ORDER BY id DESC');
+    ok($st->fetchAll(PDO::FETCH_ASSOC));
+} elseif ($a === 'create_user') {
+    $in = json(); $email = trim(strtolower($in['email'] ?? '')); $pass = $in['password'] ?? ''; $name = trim($in['name'] ?? '');
+    if (!$email || !$pass) return err(400,'missing');
+    $hash = password_hash($pass, PASSWORD_DEFAULT);
+    try { $pdo->prepare('INSERT INTO users(email,password_hash,name,created_at) VALUES(?,?,?,?)')->execute([$email,$hash,$name,time()]); ok(['created'=>true]); }
+    catch(Exception $e){ return err(409,'exists'); }
+} elseif ($a === 'update_user') {
+    $in = json(); $id = intval($in['id'] ?? 0); if (!$id) return err(400,'missing');
+    $email = isset($in['email']) ? trim(strtolower($in['email'])) : null;
+    $name = isset($in['name']) ? trim($in['name']) : null;
+    $pass = $in['password'] ?? null;
+    $set = []; $args = [];
+    if ($email !== null) { $set[] = 'email=?'; $args[] = $email; }
+    if ($name !== null) { $set[] = 'name=?'; $args[] = $name; }
+    if ($pass !== null && $pass !== '') { $set[] = 'password_hash=?'; $args[] = password_hash($pass,PASSWORD_DEFAULT); }
+    if (!$set) return ok(['updated'=>false]);
+    $args[] = $id;
+    $sql = 'UPDATE users SET '.implode(',', $set).' WHERE id=?';
+    $pdo->prepare($sql)->execute($args); ok(['updated'=>true]);
+} elseif ($a === 'delete_user') {
+    $in = json(); $id = intval($in['id'] ?? 0); if (!$id) return err(400,'missing');
+    // Silinen kullanıcının tüm verilerini de temizle
+    $pdo->beginTransaction();
+    try {
+        $pdo->prepare('DELETE FROM sessions WHERE user_id=?')->execute([$id]);
+        $pdo->prepare('DELETE FROM progress WHERE user_id=?')->execute([$id]);
+        $pdo->prepare('DELETE FROM user_stats WHERE user_id=?')->execute([$id]);
+        $pdo->prepare('DELETE FROM exam_history WHERE user_id=?')->execute([$id]);
+        $pdo->prepare('DELETE FROM users WHERE id=?')->execute([$id]);
+        $pdo->commit(); ok(['deleted'=>true]);
+    } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }
+} else { err(404,'notfound'); }
