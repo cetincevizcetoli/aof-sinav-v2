@@ -56,7 +56,7 @@ async function updateUser(id, email, name, password){
   if (email !== null) payload.email = email
   if (name !== null) payload.name = name
   if (password !== null) payload.password = password
-  try{ await api('update_user','POST',payload) }catch(e){ alert(e.message) }
+  try{ await api('update_user','POST',payload); refresh() }catch(e){ alert(e.message) }
 }
 async function deleteUser(id){
   if(!confirm('Bu kullanıcı ve tüm verileri silinecek. Emin misiniz?')) return
