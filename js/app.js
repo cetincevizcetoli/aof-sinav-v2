@@ -54,15 +54,18 @@ async function initApp() {
     dashboard.render();
 
     const drain = async () => {
-        if (!sync.getToken()) return; // oturum yoksa kuyruğu beklet
+        if (!sync.getToken()) return;
         await db.drainSyncQueue(async (payload) => {
             if (!payload) return;
-            if (payload.type === 'push') { await sync.pushAll(); }
-            else if (payload.type === 'pull') { await sync.pullAll(); }
+            if (payload.type === 'push') { await sync.autoSync(); }
+            else if (payload.type === 'pull') { await sync.autoSync(); }
         });
+        await sync.autoSync();
     };
     if (navigator.onLine) { drain(); }
     window.addEventListener('online', drain);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && navigator.onLine) drain(); });
+    setInterval(() => { if (navigator.onLine) drain(); }, 60000);
 }
 
 // Sayfa tamamen yüklendiğinde başlat

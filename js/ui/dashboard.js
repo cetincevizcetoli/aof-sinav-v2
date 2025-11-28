@@ -820,7 +820,8 @@ export class Dashboard {
             const nm = document.getElementById('welcome-name-login').value || '';
             const ok = await auth.login(e,p);
             if (ok) {
-                if (nm && nm.trim().length>0) { await this.db.setUserName(nm.trim()); const sm = new SyncManager(this.db); await sm.updateProfileName(nm.trim()); await sm.pushAll(); }
+                if (nm && nm.trim().length>0) { await this.db.setUserName(nm.trim()); const sm = new SyncManager(this.db); await sm.updateProfileName(nm.trim()); }
+                { const sm = new SyncManager(this.db); await sm.autoSync(); }
                 document.getElementById('welcome-overlay').remove(); this.render();
             } else { alert('Giriş başarısız'); }
         };
@@ -830,7 +831,7 @@ export class Dashboard {
             const p = document.getElementById('welcome-pass-r').value;
             const res = await auth.register(e,p,n);
             if (res && res.exists) { alert('Bu e-posta ile kayıt zaten mevcut. Lütfen giriş yapın.'); return; }
-            if (res && res.ok) { document.getElementById('welcome-overlay').remove(); this.render(); }
+            if (res && res.ok) { const sm = new SyncManager(this.db); await sm.autoSync(); document.getElementById('welcome-overlay').remove(); this.render(); }
             else { alert('Kayıt başarısız'); }
         };
         window.continueGuest = () => { localStorage.setItem('guest_mode','1'); const name = prompt('Adınızı girin (isteğe bağlı)'); if (name && name.trim().length>0) { this.db.setUserName(name.trim()); } document.getElementById('welcome-overlay').remove(); };
