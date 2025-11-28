@@ -400,6 +400,12 @@ export class Dashboard {
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
         document.getElementById('edit-name').value = nameLocal || '';
+        const overlay = document.getElementById('account-info-modal');
+        if (overlay) {
+          const escHandler = (e) => { if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', escHandler); } };
+          document.addEventListener('keydown', escHandler);
+          overlay.addEventListener('click', (e) => { if (e.target && e.target.id === 'account-info-modal') overlay.remove(); });
+        }
         const form = document.getElementById('form-profile-update');
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
@@ -551,13 +557,6 @@ export class Dashboard {
 
                     <div class="settings-group" style="padding:8px 0; border-top:1px solid #f1f5f9;">
                         <h4 class="group-title" style="margin:8px 12px; font-size:0.9rem; color:#334155;">Hesap İşlemleri</h4>
-                        <button class="menu-item" id="btn-account-info" style="width:100%; display:flex; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
-                            <div class="icon-box" style="width:32px; height:32px; border-radius:8px; background:#f1f5f9; color:#334155; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-id-card"></i></div>
-                            <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
-                                <span class="menu-label" style="font-weight:600; color:#0f172a;">Kullanıcı Bilgileri</span>
-                                <span class="menu-sub" style="font-size:0.8rem; color:#64748b;">Hesap durumunu görüntüle</span>
-                            </div>
-                        </button>
                         <button class="menu-item" id="btn-update-cred" style="width:100%; display:none; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
                             <div class="icon-box" style="width:32px; height:32px; border-radius:8px; background:#eef2ff; color:#3730a3; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-user-pen"></i></div>
                             <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
@@ -623,7 +622,6 @@ export class Dashboard {
 
         document.getElementById('btn-sync-now').onclick = async () => { const sm = new SyncManager(this.db); await sm.autoSync(); document.getElementById('settings-menu-overlay').remove(); };
         document.getElementById('btn-check-update').onclick = () => { window.checkUpdatesNow(); };
-        const infoBtn = document.getElementById('btn-account-info'); if (infoBtn) infoBtn.onclick = () => { window.openAccountInfo(); };
         const updBtn = document.getElementById('btn-update-cred'); if (updBtn) updBtn.onclick = async () => { window.openAccountInfo(); setTimeout(() => { const el = document.getElementById('acc-new-name'); if (el) el.focus(); }, 300); };
         document.getElementById('btn-reset-data').onclick = () => { window.confirmReset(); };
         const adminBtn = document.getElementById('btn-admin-panel'); if (adminBtn) adminBtn.onclick = () => { window.openAdminAccounts(); };
