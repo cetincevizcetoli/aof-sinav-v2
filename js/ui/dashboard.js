@@ -334,9 +334,10 @@ export class Dashboard {
             <div class="form-group" style="margin-top:8px;">
                 <input type="email" id="acc-email" class="form-select" placeholder="E-posta">
                 <input type="password" id="acc-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                <small id="acc-email-status" style="display:block; margin-top:6px; color:#64748b; font-size:0.8rem;">Yeni misin? Kayıt Ol ve Aktar'ı seç.</small>
                 <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
-                    <button class="nav-btn" onclick="window.accountRegisterAndPush()">Kayıt Ol ve Aktar</button>
-                    <button class="primary-btn" onclick="window.accountLoginAndPush()">Giriş Yap ve Aktar</button>
+                    <button class="nav-btn" id="btn-register-push" onclick="window.accountRegisterAndPush()">Kayıt Ol ve Aktar</button>
+                    <button class="primary-btn" id="btn-login-push" onclick="window.accountLoginAndPush()">Giriş Yap ve Aktar</button>
                 </div>
             </div>` : '';
         const needName = !nameLocal || String(nameLocal).trim().length === 0;
@@ -383,6 +384,25 @@ export class Dashboard {
             </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
+        const emailInput = document.getElementById('acc-email');
+        if (emailInput) {
+            const sm = new SyncManager(this.db);
+            const statusEl = document.getElementById('acc-email-status');
+            const btnReg = document.getElementById('btn-register-push');
+            const btnLogin = document.getElementById('btn-login-push');
+            const guide = async () => {
+                const val = (emailInput.value||'').trim().toLowerCase();
+                if (!val) { if(statusEl) statusEl.textContent = "Yeni misin? Kayıt Ol ve Aktar'ı seç."; if(btnReg) btnReg.disabled=false; if(btnLogin) btnLogin.disabled=false; return; }
+                const exists = await sm.emailExists(val);
+                if (exists) { if(statusEl) { statusEl.textContent = "Bu e‑posta zaten kayıtlı. Lütfen Giriş Yap ve Aktar'ı kullanın."; statusEl.style.color = '#334155'; }
+                    if(btnReg) btnReg.disabled = true; if(btnLogin) btnLogin.disabled = false;
+                } else { if(statusEl) { statusEl.textContent = "Bu e‑posta için yeni hesap oluşturabilirsiniz: Kayıt Ol ve Aktar."; statusEl.style.color = '#334155'; }
+                    if(btnReg) btnReg.disabled = false; if(btnLogin) btnLogin.disabled = true;
+                }
+            };
+            emailInput.addEventListener('input', guide);
+            emailInput.addEventListener('blur', guide);
+        }
         window.pushProfileToServer = async () => {
             const sm = new SyncManager(this.db);
             const nameInput = document.getElementById('acc-name');

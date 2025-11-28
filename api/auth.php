@@ -79,4 +79,12 @@ if ($a === 'register') {
     $st2->execute([$uid]);
     $u2 = $st2->fetch(PDO::FETCH_ASSOC);
     ok($u2?:[]);
+} elseif ($a === 'exists') {
+    $in = json();
+    $email = trim(strtolower($in['email'] ?? ''));
+    if (!$email) return ok(['exists'=>false]);
+    $st = $pdo->prepare('SELECT id FROM users WHERE email=?');
+    $st->execute([$email]);
+    $ex = $st->fetch(PDO::FETCH_ASSOC);
+    ok(['exists'=>!!$ex]);
 } else { err(404,'notfound'); }

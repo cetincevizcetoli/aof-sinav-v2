@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.23",
+    "date": "2025-11-28",
+    "items": [
+      "Kayıt mı Giriş mi? Dinamik e‑posta kontrolü ve rehber metin",
+      "API: /auth.php?action=exists ile e‑posta var/yok kontrolü",
+      "Sürüm v1.1.23 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.22",
     "date": "2025-11-28",
     "items": [
