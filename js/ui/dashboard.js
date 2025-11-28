@@ -360,6 +360,7 @@ export class Dashboard {
         const html = `
         <div class="modal-overlay" id="account-info-modal">
           <div class="modal-box">
+            <div class="modal-header"><h2 class="modal-title">Profil</h2><button class="icon-btn" onclick="document.getElementById('account-info-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
             <div class="profile-edit-container">
               <div class="modal-header-center">
                 <div class="profile-avatar-large"><i class="fa-solid fa-user"></i></div>
