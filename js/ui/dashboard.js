@@ -133,14 +133,6 @@ export class Dashboard {
 
         html += `<div class="app-footer">Sürüm: v${versionInfo.version}</div>`;
         this.container.innerHTML = html;
-        const hasTokInit = !!localStorage.getItem('auth_token');
-        if (hasTokInit) {
-            const sm = new SyncManager(this.db);
-            const info = await sm.me().catch(()=>null);
-            if (info && info.email) { await this.db.setProfile('account_email', info.email); }
-            const am = new AuthManager(this.db);
-            await am.saveCurrentAccount();
-        }
         await this.refreshAccountStatus();
         window.loadTooltips = async () => {
             const tips = await fetch('api/tooltips.php?t=' + Date.now()).then(r => r.json()).catch(() => ({}));

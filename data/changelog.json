@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.1.21",
+    "date": "2025-11-28",
+    "items": [
+      "Açılışta me() çağrısı kaldırıldı; gereksiz 401 logları temizlendi",
+      "Sürüm v1.1.21 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.20",
     "date": "2025-11-28",
     "items": [
