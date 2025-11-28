@@ -786,6 +786,7 @@ export class Dashboard {
                     <div id="form-login">
                         <input type="email" id="welcome-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none">
                         <input type="password" id="welcome-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;" autocomplete="new-password">
+                        <input type="text" id="welcome-name-login" class="form-select" placeholder="Ad (Cihaz)" style="margin-top:8px;" autocomplete="off">
                         <div class="modal-actions" style="margin-top:10px;">
                             <button class="primary-btn" onclick="window.handleLogin()">Giriş Yap</button>
                         </div>
@@ -806,7 +807,7 @@ export class Dashboard {
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
         const auth = new AuthManager(this.db);
-        (async () => { const p = await this.db.getAllProgress(); const h = await this.db.getHistory(); const s = await this.db.getUserStats(); const has = (Array.isArray(p)&&p.length>0)||(Array.isArray(h)&&h.length>0)||((s.xp||0)>0||(s.streak||0)>0||(s.totalQuestions||0)>0); const banner = document.getElementById('local-data-banner'); if (banner && has) banner.style.display='block'; document.getElementById('welcome-email').value=''; document.getElementById('welcome-pass').value=''; document.getElementById('welcome-email-r').value=''; document.getElementById('welcome-pass-r').value=''; document.getElementById('welcome-name').value=''; })();
+        (async () => { const p = await this.db.getAllProgress(); const h = await this.db.getHistory(); const s = await this.db.getUserStats(); const has = (Array.isArray(p)&&p.length>0)||(Array.isArray(h)&&h.length>0)||((s.xp||0)>0||(s.streak||0)>0||(s.totalQuestions||0)>0); const banner = document.getElementById('local-data-banner'); if (banner && has) banner.style.display='block'; document.getElementById('welcome-email').value=''; document.getElementById('welcome-pass').value=''; document.getElementById('welcome-name-login').value=''; document.getElementById('welcome-email-r').value=''; document.getElementById('welcome-pass-r').value=''; document.getElementById('welcome-name').value=''; })();
         window.switchAuthTab = (tab) => {
             document.getElementById('form-login').style.display = (tab==='login') ? 'block':'none';
             document.getElementById('form-register').style.display = (tab==='register') ? 'block':'none';
@@ -816,9 +817,12 @@ export class Dashboard {
         window.handleLogin = async () => {
             const e = document.getElementById('welcome-email').value;
             const p = document.getElementById('welcome-pass').value;
+            const nm = document.getElementById('welcome-name-login').value || '';
             const ok = await auth.login(e,p);
-            if (ok) { document.getElementById('welcome-overlay').remove(); this.render(); }
-            else { alert('Giriş başarısız'); }
+            if (ok) {
+                if (nm && nm.trim().length>0) { await this.db.setUserName(nm.trim()); const sm = new SyncManager(this.db); await sm.updateProfileName(nm.trim()); await sm.pushAll(); }
+                document.getElementById('welcome-overlay').remove(); this.render();
+            } else { alert('Giriş başarısız'); }
         };
         window.handleRegister = async () => {
             const n = document.getElementById('welcome-name').value;
