@@ -1,0 +1,17 @@
+{
+  "account.info": "Durum, e‑posta ve cihaz adını görüntüler",
+  "accounts.manage": "Bu cihazda kayıtlı hesapları yönet",
+  "auth.sync": "Giriş/Kayıt ve senkron işlemlerini aç",
+  "logout": "Oturumu kapat ve misafir moda dön",
+  "delete.account": "Hesabı ve tüm verileri kalıcı sil",
+  "reset.all": "Sunucu ve lokal verileri sıfırlar",
+  "changelog": "Sürüm notlarını görüntüle",
+  "check.update": "Sunucu sürümünü kontrol et",
+  "manual.update": "Önbelleği temizleyip uygulamayı yenile",
+  "accounts.use": "Bu hesabı aktif yap",
+  "accounts.remove": "Hesabı listeden kaldır",
+  "push.sync": "Verileri buluta yedekle",
+  "pull.sync": "Buluttaki verileri cihaza al",
+  "register.push": "Yeni hesap oluştur ve verileri aktar",
+  "login.push": "Mevcut hesaba giriş yap ve verileri aktar"
+}

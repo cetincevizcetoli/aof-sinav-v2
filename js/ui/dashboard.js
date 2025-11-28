@@ -142,6 +142,12 @@ export class Dashboard {
             await am.saveCurrentAccount();
         }
         await this.refreshAccountStatus();
+        window.loadTooltips = async () => {
+            const tips = await fetch('api/tooltips.php?t=' + Date.now()).then(r => r.json()).catch(() => ({}));
+            const nodes = document.querySelectorAll('[data-tip]');
+            nodes.forEach(el => { const key = el.getAttribute('data-tip'); if (key && tips[key]) el.title = tips[key]; });
+        };
+        window.loadTooltips();
         
         // Global Eventler
         window.openLessonDetail = (code, file) => this.showLessonDetailModal(code, file);
@@ -369,7 +375,7 @@ export class Dashboard {
                     ${nameInputHtml}
                 </div>
                 <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
-                    ${hasTok ? '<button class="primary-btn" title="Cihaz adını ve ilerlemeyi buluta gönderir" onclick="window.pushProfileToServer()">Sunucuya Aktar</button><button class="nav-btn" title="Buluttaki verileri cihaza alır" onclick="window.pullFromServer()">Sunucudan Çek</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
+                    ${hasTok ? '<button class="primary-btn" data-tip="push.sync" onclick="window.pushProfileToServer()">Sunucuya Aktar</button><button class="nav-btn" data-tip="pull.sync" onclick="window.pullFromServer()">Sunucudan Çek</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
                     <button class="nav-btn secondary" onclick="document.getElementById('account-info-modal').remove()">Kapat</button>
                 </div>
             </div>
@@ -441,8 +447,8 @@ export class Dashboard {
                                 <small style=\"color:#64748b;\">Son Senkron: ${ts}</small>
                             </div>
                             <div style=\"display:flex; gap:8px;\">
-                                <button class=\"nav-btn\" onclick=\"window.useAccount('${acc.email}')\">Kullan</button>
-                                <button class=\"nav-btn warning\" onclick=\"window.removeAccount('${acc.email}')\">Kaldır</button>
+                                <button class=\"nav-btn\" data-tip=\"accounts.use\" onclick=\"window.useAccount('${acc.email}')\">Kullan</button>
+                                <button class=\"nav-btn warning\" data-tip=\"accounts.remove\" onclick=\"window.removeAccount('${acc.email}')\">Kaldır</button>
                             </div>
                         </div>`;
                     }).join('')}
@@ -478,17 +484,17 @@ export class Dashboard {
                     <div style="padding:10px 12px; font-weight:600; border-bottom:1px solid #f1f5f9;">Ayarlar</div>
                     <div style="padding:8px 12px; font-size:0.85rem; color:#334155; border-bottom:1px solid #f1f5f9;">Durum: ${localStorage.getItem('auth_token') ? 'Üye' : 'Misafir'}</div>
                     <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-bottom:1px solid #f1f5f9;">Hesap</div>
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAccountInfo()">Kullanıcı Bilgileri</button>
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAccounts()">Kayıtlı Hesaplar</button>
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAuthSync()">Giriş / Senkronizasyon</button>
-                    ${localStorage.getItem('auth_token') ? `<button class=\"nav-btn\" style=\"width:100%; justify-content:flex-start;\" onclick=\"window.logoutNow()\">Çıkış Yap</button>` : ''}
-                    ${localStorage.getItem('auth_token') ? `<button class=\"nav-btn warning\" style=\"width:100%; justify-content:flex-start;\" onclick=\"window.confirmDeleteAccount()\">Hesabımı Sil</button>` : ''}
+                    <button class="nav-btn" data-tip="account.info" style="width:100%; justify-content:flex-start;" onclick="window.openAccountInfo()">Kullanıcı Bilgileri</button>
+                    <button class="nav-btn" data-tip="accounts.manage" style="width:100%; justify-content:flex-start;" onclick="window.openAccounts()">Kayıtlı Hesaplar</button>
+                    <button class="nav-btn" data-tip="auth.sync" style="width:100%; justify-content:flex-start;" onclick="window.openAuthSync()">Giriş / Senkronizasyon</button>
+                    ${localStorage.getItem('auth_token') ? `<button class=\"nav-btn\" data-tip=\"logout\" style=\"width:100%; justify-content:flex-start;\" onclick=\"window.logoutNow()\">Çıkış Yap</button>` : ''}
+                    ${localStorage.getItem('auth_token') ? `<button class=\"nav-btn warning\" data-tip=\"delete.account\" style=\"width:100%; justify-content:flex-start;\" onclick=\"window.confirmDeleteAccount()\">Hesabımı Sil</button>` : ''}
                     <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9; border-bottom:1px solid #f1f5f9;">Veri</div>
-                    <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla (Sunucu+Lokal)</button>
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
+                    <button class="nav-btn secondary" data-tip="reset.all" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla (Sunucu+Lokal)</button>
+                    <button class="nav-btn" data-tip="changelog" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
                     <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9; border-bottom:1px solid #f1f5f9;">Sistem</div>
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
-                    <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.manualUpdateNow()">Manuel Güncelle</button>
+                    <button class="nav-btn" data-tip="check.update" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
+                    <button class="nav-btn warning" data-tip="manual.update" style="width:100%; justify-content:flex-start;" onclick="window.manualUpdateNow()">Manuel Güncelle</button>
                     <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="document.getElementById('settings-menu-overlay').remove()">Kapat</button>
                 </div>
             </div>`;
@@ -616,8 +622,8 @@ export class Dashboard {
                             <input type="email" id="auth-email" class="form-select" placeholder="E-posta">
                             <input type="password" id="auth-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
                             <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
-                                <button class="nav-btn" onclick="window.doRegister()">Kayıt Ol</button>
-                                <button class="primary-btn" onclick="window.doLogin()">Giriş Yap</button>
+                                <button class="nav-btn" data-tip="register.push" onclick="window.doRegister()">Kayıt Ol</button>
+                                <button class="primary-btn" data-tip="login.push" onclick="window.doLogin()">Giriş Yap</button>
                             </div>
                         </div>`;
             const html = `

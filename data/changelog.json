@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.17",
+    "date": "2025-11-28",
+    "items": [
+      "Merkezi tooltip kontrolü: api/tooltips.php + data/tooltips.json",
+      "UI: data-tip anahtarları ile tooltıp uygulaması",
+      "Sürüm v1.1.17 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.16",
     "date": "2025-11-28",
     "items": [
