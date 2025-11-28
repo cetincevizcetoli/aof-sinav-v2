@@ -54,6 +54,7 @@ async function initApp() {
     dashboard.render();
 
     const drain = async () => {
+        if (!sync.getToken()) return; // oturum yoksa kuyruğu beklet
         await db.drainSyncQueue(async (payload) => {
             if (!payload) return;
             if (payload.type === 'push') { await sync.pushAll(); }

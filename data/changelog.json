@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.19",
+    "date": "2025-11-28",
+    "items": [
+      "Sync kuyruğu TransactionInactiveError düzeltildi (await-safe işlem)",
+      "Oturum yoksa drainSyncQueue çalışmaz (401 logları kesildi)",
+      "Sürüm v1.1.19 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.18",
     "date": "2025-11-28",
     "items": [

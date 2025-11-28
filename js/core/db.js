@@ -264,18 +264,21 @@ export class ExamDatabase {
     }
 
     async drainSyncQueue(handler) {
-        return new Promise((resolve) => {
-            if (!this.db) return resolve(false);
-            const tx = this.db.transaction(['sync_queue'], 'readwrite');
+        if (!this.db) return false;
+        const items = await new Promise((resolve) => {
+            const tx = this.db.transaction(['sync_queue'], 'readonly');
             const store = tx.objectStore('sync_queue');
             const req = store.getAll();
-            req.onsuccess = async () => {
-                const items = req.result || [];
-                for (const it of items) { try { await handler(it.payload); } catch {} }
-                store.clear();
-                resolve(true);
-            };
-            req.onerror = () => resolve(false);
+            req.onsuccess = () => resolve(req.result || []);
+            req.onerror = () => resolve([]);
         });
+        for (const it of items) { try { await handler(it.payload); } catch {} }
+        await new Promise((resolve) => {
+            const tx = this.db.transaction(['sync_queue'], 'readwrite');
+            tx.objectStore('sync_queue').clear();
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+        return true;
     }
 }
