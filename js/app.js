@@ -36,6 +36,7 @@ async function initApp() {
     // 4. Global Başlatıcı Fonksiyonu (Dashboard'dan çağrılır)
     window.startSession = async (lessonCode, config) => {
         const safeConfig = config || { mode: 'study' };
+        if (loader && typeof loader.resetCache === 'function') { loader.resetCache(); }
         if (!quizUI) {
             const module = await import('./ui/quizUI.js');
             const QuizUI = module.QuizUI;
@@ -53,8 +54,12 @@ async function initApp() {
     // 6. İlk Ekranı Çiz
     dashboard.render();
 
-    document.addEventListener('app:data-updated', () => {
-        try { console.log('♻️ Veri değişti, Dashboard yenileniyor...'); dashboard.render(); } catch(e){}
+    document.addEventListener('app:data-updated', async () => {
+        try {
+            console.log('♻️ Veri değişti algılandı.');
+            if (loader && typeof loader.resetCache === 'function') { loader.resetCache(); }
+            await dashboard.render();
+        } catch(e){}
     });
 
     const drain = async () => {

@@ -10,6 +10,11 @@ export class DataLoader {
         this.cachedLessons = {}; // Bellekte tutulan dersler
     }
 
+    resetCache(){
+        this.cachedLessons = {};
+        try { console.log('🧹 RAM Önbelleği temizlendi.'); } catch(e){}
+    }
+
     // Config dosyasını çekip ders listesini döndürür
     async getLessonList() {
         try {
