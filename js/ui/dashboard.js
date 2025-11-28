@@ -311,6 +311,30 @@ export class Dashboard {
         };
     }
 
+    async openAccountInfo() {
+        const hasTok = !!localStorage.getItem('auth_token');
+        const email = await this.db.getProfile('account_email');
+        const nameLocal = await this.db.getUserName();
+        const lastSyncTs = await this.db.getProfile('last_sync');
+        const status = hasTok ? 'Üye' : 'Misafir';
+        const html = `
+        <div class="modal-overlay" id="account-info-modal">
+            <div class="modal-box">
+                <div class="modal-header"><h2 class="modal-title">Kullanıcı Bilgileri</h2><button class="icon-btn" onclick="document.getElementById('account-info-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div><strong>Durum:</strong> ${status}</div>
+                    <div><strong>E‑posta:</strong> ${email || '-'}</div>
+                    <div><strong>Ad (Cihaz):</strong> ${nameLocal || '-'}</div>
+                    <div><strong>Son Senkron:</strong> ${lastSyncTs ? new Date(lastSyncTs).toLocaleString() : '-'}</div>
+                </div>
+                <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
+                    <button class="nav-btn secondary" onclick="document.getElementById('account-info-modal').remove()">Kapat</button>
+                </div>
+            </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', html);
+    }
+
     openSettings() {
         const existing = document.getElementById('settings-menu-overlay');
         if (existing) existing.remove();
@@ -319,8 +343,9 @@ export class Dashboard {
                 <div id="settings-menu" style="position:fixed; right:16px; top:60px; background:white; border:1px solid #e2e8f0; box-shadow:0 10px 25px rgba(0,0,0,0.08); border-radius:12px; min-width:240px; overflow:hidden;">
                     <button class="nav-btn" style="width:100%; justify-content:flex-start; border:none; border-bottom:1px solid #f1f5f9;">Ayarlar</button>
                     <div style="padding:8px 12px; font-size:0.85rem; color:#334155; border-bottom:1px solid #f1f5f9;">Durum: ${localStorage.getItem('auth_token') ? 'Üye' : 'Misafir'}</div>
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAccountInfo()">Kullanıcı Bilgileri</button>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAuthSync()">Giriş / Senkronizasyon</button>
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
                     <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.forceRefreshNow()">Zorla Yenile</button>
                     <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla (Sunucu+Lokal)</button>
@@ -440,12 +465,16 @@ export class Dashboard {
             location.reload();
         };
 
-        window.openAuthSync = () => {
+        window.openAuthSync = async () => {
+            const hasTokenNow = !!localStorage.getItem('auth_token');
+            const accEmailNow = await this.db.getProfile('account_email');
+            const lastSyncNow = await this.db.getProfile('last_sync');
+            const statusNow = hasTokenNow ? `Üye${accEmailNow?` • ${accEmailNow}`:''}${lastSyncNow?` • Son Senkron: ${new Date(lastSyncNow).toLocaleString()}`:''}` : 'Misafir';
             const html = `
             <div class="modal-overlay" id="auth-sync-modal">
                 <div class="modal-box">
                     <div class="modal-header"><h2 class="modal-title">Giriş / Senkronizasyon</h2><button class="icon-btn" onclick="document.getElementById('auth-sync-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
-                    <div style="background:#f1f5f9; color:#334155; padding:8px 12px; border-radius:8px; font-size:0.85rem; margin-bottom:10px;">Durum: ${hasToken ? `Üye${accEmail?` • ${accEmail}`:''}${lastSync?` • Son Senkron: ${new Date(lastSync).toLocaleString()}`:''}` : 'Misafir'}</div>
+                    <div style="background:#f1f5f9; color:#334155; padding:8px 12px; border-radius:8px; font-size:0.85rem; margin-bottom:10px;">Durum: ${statusNow}</div>
                     <div class="form-group">
                         <input type="email" id="auth-email" class="form-select" placeholder="E-posta">
                         <input type="password" id="auth-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
@@ -457,7 +486,7 @@ export class Dashboard {
                     <div class="modal-actions" style="margin-top:16px; display:flex; gap:8px;">
                         <button class="nav-btn" onclick="window.doPushSync()">Sunucuya Yedekle</button>
                         <button class="nav-btn" onclick="window.doPullSync()">Sunucudan Yükle</button>
-                        ${hasToken ? '<button class="nav-btn warning" onclick="window.logoutNow()">Çıkış Yap</button>' : ''}
+                        ${hasTokenNow ? '<button class="nav-btn warning" onclick="window.logoutNow()">Çıkış Yap</button>' : ''}
                     </div>
                 </div>
             </div>`;
