@@ -38,6 +38,7 @@ export class SyncManager {
         const ts = Date.now(); await this.db.setProfile('last_sync', ts);
         const email = await this.db.getProfile('account_email'); const accounts = (await this.db.getProfile('accounts')) || [];
         const i = Array.isArray(accounts) ? accounts.findIndex(a => a && a.email === email) : -1; if (i >= 0) { accounts[i].lastSync = ts; await this.db.setProfile('accounts', accounts); }
+        try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch(e){}
         return pushRes.ok;
     }
 }

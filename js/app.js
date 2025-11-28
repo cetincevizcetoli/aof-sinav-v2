@@ -53,6 +53,10 @@ async function initApp() {
     // 6. İlk Ekranı Çiz
     dashboard.render();
 
+    document.addEventListener('app:data-updated', () => {
+        try { console.log('♻️ Veri değişti, Dashboard yenileniyor...'); dashboard.render(); } catch(e){}
+    });
+
     const drain = async () => {
         if (!sync.getToken()) return;
         await db.drainSyncQueue(async (payload) => {
@@ -62,7 +66,7 @@ async function initApp() {
         });
         await sync.autoSync();
     };
-    if (navigator.onLine) { drain(); }
+    if (navigator.onLine) { await drain(); }
     window.addEventListener('online', drain);
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && navigator.onLine) drain(); });
     setInterval(() => { if (navigator.onLine) drain(); }, 60000);
