@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.7",
+    "date": "2025-11-28",
+    "items": [
+      "ES module hatası düzeltildi (authManager import satırı temizlendi)",
+      "PWA meta etiketi eklendi: mobile-web-app-capable",
+      "Sürüm v1.1.7 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.6",
     "date": "2025-11-28",
     "items": [

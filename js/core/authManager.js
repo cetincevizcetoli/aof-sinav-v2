@@ -1,6 +1,4 @@
-
-
-https://github.com/cetincevizcetoli/aof-sinav-v2import { SyncManager } from './sync.js'
+import { SyncManager } from './sync.js'
 
 export class AuthManager {
     constructor(db){ this.db = db; this.sync = new SyncManager(db) }
