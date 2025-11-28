@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.28",
+    "date": "2025-11-28",
+    "items": [
+      "Mevcut Hesaba Giriş ve Aktarım formuna Ad (Cihaz) alanı eklendi",
+      "Login sonrası ad yerelde ve sunucuda senkronize edilir",
+      "Sürüm v1.1.28 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.27",
     "date": "2025-11-28",
     "items": [

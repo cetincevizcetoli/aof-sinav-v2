@@ -335,6 +335,7 @@ export class Dashboard {
                 <div style="font-weight:600; margin-bottom:6px;">Mevcut Hesaba Giriş ve Aktarım</div>
                 <input type="email" id="acc-email" class="form-select" placeholder="E-posta">
                 <input type="password" id="acc-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                <input type="text" id="acc-login-name" class="form-select" placeholder="Ad (Cihaz)" style="margin-top:8px;">
                 <small id="acc-email-status" style="display:block; margin-top:6px; color:#64748b; font-size:0.8rem;">Yeni misin? Kayıt Ol ve Aktar'ı seç.</small>
                 <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
                     <button class="nav-btn" id="btn-register-push" onclick="window.accountRegisterAndPush()">Kayıt Ol ve Aktar</button>
@@ -408,9 +409,13 @@ export class Dashboard {
         window.pushProfileToServer = async () => {
             const sm = new SyncManager(this.db);
             const nameInput = document.getElementById('acc-name');
+            const nameLoginInput = document.getElementById('acc-login-name');
             const unameLocal = await this.db.getUserName();
-            const uname = (nameInput && nameInput.value && nameInput.value.trim().length>0) ? nameInput.value.trim() : unameLocal;
+            const uname = (nameInput && nameInput.value && nameInput.value.trim().length>0)
+                ? nameInput.value.trim()
+                : ((nameLoginInput && nameLoginInput.value && nameLoginInput.value.trim().length>0) ? nameLoginInput.value.trim() : unameLocal);
             if (nameInput && nameInput.value && nameInput.value.trim().length>0) { await this.db.setUserName(nameInput.value.trim()); }
+            if (nameLoginInput && nameLoginInput.value && nameLoginInput.value.trim().length>0) { await this.db.setUserName(nameLoginInput.value.trim()); }
             let authorized = !!sm.getToken();
             if (authorized) { const chk = await sm.me().catch(()=>null); authorized = !!chk; }
             if (!authorized) {
@@ -436,7 +441,11 @@ export class Dashboard {
             const e = document.getElementById('acc-email').value; const p = document.getElementById('acc-pass').value;
             const auth = new AuthManager(this.db);
             const okLogin = await auth.login(e,p);
-            if (okLogin) { await auth.saveCurrentAccount(); await window.pushProfileToServer(); }
+            if (okLogin) {
+                const nm = (document.getElementById('acc-login-name')||{}).value || '';
+                if (nm && nm.trim().length>0) { await this.db.setUserName(nm.trim()); const sm = new SyncManager(this.db); await sm.updateProfileName(nm.trim()); }
+                await auth.saveCurrentAccount(); await window.pushProfileToServer();
+            }
             else { const msg = document.getElementById('profile-sync-msg'); if (msg) { msg.textContent = 'Giriş başarısız'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } }
         };
         window.accountRegisterAndPush = async () => {
