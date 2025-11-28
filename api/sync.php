@@ -53,7 +53,7 @@ if ($a === 'push') {
     }
     ok(['pushed'=>true]);
 } elseif ($a === 'pull') {
-    $progress = $pdo->prepare('SELECT id,lesson,unit,level,nextReview,correct,wrong FROM progress WHERE user_id=?');
+    $progress = $pdo->prepare('SELECT id,lesson,unit,level,nextReview,correct,wrong,updated_at FROM progress WHERE user_id=?');
     $progress->execute([$user]);
     $stats = $pdo->prepare('SELECT xp,streak,totalQuestions,updated_at FROM user_stats WHERE user_id=?');
     $stats->execute([$user]);

@@ -601,6 +601,7 @@ export class Dashboard {
                     <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9; border-bottom:1px solid #f1f5f9;">Sistem</div>
                     <button class="nav-btn" data-tip="check.update" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
                     <button class="nav-btn warning" data-tip="manual.update" style="width:100%; justify-content:flex-start;" onclick="window.manualUpdateNow()">Manuel Güncelle</button>
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.forceSyncNow()">Senkronu Zorla</button>
                     <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9;">Admin</div>
                     <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.openAdminAccounts()">Hesap Temizleme (Admin)</button>
                     <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="document.getElementById('settings-menu-overlay').remove()">Kapat</button>
@@ -720,6 +721,8 @@ export class Dashboard {
             await updater.performCleanup();
             location.reload();
         };
+
+        window.forceSyncNow = async () => { const sm = new SyncManager(this.db); await sm.autoSync(); const pill = document.querySelector('.account-pill'); if (pill) { const lastSync = await this.db.getProfile('last_sync'); pill.textContent = await this.getAccountStatusText(); } document.getElementById('settings-menu-overlay').remove(); };
 
         window.openAccountInfo = () => this.openAccountInfo();
         window.openAccounts = () => this.openAccounts();
