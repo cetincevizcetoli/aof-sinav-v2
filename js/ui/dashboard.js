@@ -628,7 +628,7 @@ export class Dashboard {
         const adminBtn = document.getElementById('btn-admin-panel'); if (adminBtn) adminBtn.onclick = () => { window.openAdminAccounts(); };
         const delBtn = document.getElementById('btn-delete-account'); if (delBtn) delBtn.onclick = () => { window.confirmDeleteAccount(); };
         const clBtn = document.getElementById('btn-changelog'); if (clBtn) clBtn.onclick = () => { window.openChangelog(); };
-        const logoutBtn = document.getElementById('btn-logout'); if (logoutBtn) logoutBtn.onclick = () => { window.logoutNow(); };
+        const logoutBtn = document.getElementById('btn-logout'); if (logoutBtn) logoutBtn.onclick = () => { window.confirmLogout(); };
 
         window.confirmReset = () => {
             const html = `
@@ -665,6 +665,39 @@ export class Dashboard {
             const ok = await auth.deleteAccount();
             if (ok) { await this.db.resetAllData(); localStorage.removeItem('guest_mode'); location.reload(); }
             else alert('Silme işlemi başarısız');
+        };
+
+        window.confirmLogout = () => {
+            const html = `
+            <div class="modal-overlay" id="confirm-logout-modal">
+                <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Çıkış Yap</h2><button class="icon-btn" onclick="document.getElementById('confirm-logout-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <p style="color:#64748b;">Çıkış yapmak istiyor musun? İlerlemelerin kaydedilecektir.</p>
+                    <div class="modal-actions">
+                        <button class="nav-btn secondary" onclick="document.getElementById('confirm-logout-modal').remove()">İptal</button>
+                        <button class="primary-btn" onclick="window.doLogoutConfirmed()">Evet, Çıkış Yap</button>
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+        };
+
+        window.doLogoutConfirmed = async () => {
+            const sm = new SyncManager(this.db);
+            try { await sm.autoSync(); } catch {}
+            await (async () => { localStorage.removeItem('auth_token'); await this.db.setProfile('account_email',''); await this.refreshAccountStatus(); })();
+            const settings = document.getElementById('settings-menu-overlay'); if (settings) settings.remove();
+            const cm = document.getElementById('confirm-logout-modal'); if (cm) cm.remove();
+            const html = `
+            <div class="modal-overlay" id="farewell-modal">
+                <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Güle Güle</h2><button class="icon-btn" onclick="document.getElementById('farewell-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <p style="color:#64748b;">İlerlemeleriniz kaydedildi. Uygulamayı kullandığınız için teşekkür ederiz.</p>
+                    <div class="modal-actions"><button class="nav-btn secondary" onclick="document.getElementById('farewell-modal').remove()">Kapat</button></div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+            this.render();
         };
 
         window.resetApp = async () => {
