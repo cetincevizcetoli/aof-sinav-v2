@@ -335,22 +335,69 @@ export class Dashboard {
         document.body.insertAdjacentHTML('beforeend', html);
     }
 
+    async openAccounts() {
+        const list = (await this.db.getProfile('accounts')) || [];
+        const items = Array.isArray(list) ? list : [];
+        const html = `
+        <div class="modal-overlay" id="accounts-modal">
+            <div class="modal-box large">
+                <div class="modal-header"><h2 class="modal-title">Kayıtlı Hesaplar</h2><button class="icon-btn" onclick="document.getElementById('accounts-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                <div id="accounts-content" style="max-height:60vh; overflow:auto;">
+                    ${items.length === 0 ? '<div style="padding:12px; color:#64748b;">Kayıtlı hesap bulunmuyor.</div>' : items.map(acc => {
+                        const ts = acc.lastSync ? new Date(acc.lastSync).toLocaleString() : '-';
+                        return `<div class=\"lesson-card\" style=\"display:flex; align-items:center; justify-content:space-between;\">
+                            <div>
+                                <div style=\"font-weight:600;\">${acc.email}</div>
+                                <small style=\"color:#64748b;\">Son Senkron: ${ts}</small>
+                            </div>
+                            <div style=\"display:flex; gap:8px;\">
+                                <button class=\"nav-btn\" onclick=\"window.useAccount('${acc.email}')\">Kullan</button>
+                                <button class=\"nav-btn warning\" onclick=\"window.removeAccount('${acc.email}')\">Kaldır</button>
+                            </div>
+                        </div>`;
+                    }).join('')}
+                </div>
+            </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', html);
+        window.useAccount = async (email) => {
+            const list2 = (await this.db.getProfile('accounts')) || [];
+            const found = (Array.isArray(list2) ? list2 : []).find(a => a && a.email === email);
+            if (!found) return;
+            localStorage.setItem('auth_token', found.token || '');
+            await this.db.setProfile('account_email', email);
+            document.getElementById('accounts-modal').remove();
+            this.render();
+        };
+        window.removeAccount = async (email) => {
+            const list2 = (await this.db.getProfile('accounts')) || [];
+            const filtered = (Array.isArray(list2) ? list2 : []).filter(a => !a || a.email !== email);
+            await this.db.setProfile('accounts', filtered);
+            document.getElementById('accounts-modal').remove();
+            this.openAccounts();
+        };
+    }
+
     openSettings() {
         const existing = document.getElementById('settings-menu-overlay');
         if (existing) existing.remove();
         const html = `
             <div id="settings-menu-overlay" style="position:fixed; inset:0; background:transparent;">
-                <div id="settings-menu" style="position:fixed; right:16px; top:60px; background:white; border:1px solid #e2e8f0; box-shadow:0 10px 25px rgba(0,0,0,0.08); border-radius:12px; min-width:240px; overflow:hidden;">
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start; border:none; border-bottom:1px solid #f1f5f9;">Ayarlar</button>
+                <div id="settings-menu" style="position:fixed; right:16px; top:60px; background:white; border:1px solid #e2e8f0; box-shadow:0 10px 25px rgba(0,0,0,0.08); border-radius:12px; min-width:280px; overflow:hidden;">
+                    <div style="padding:10px 12px; font-weight:600; border-bottom:1px solid #f1f5f9;">Ayarlar</div>
                     <div style="padding:8px 12px; font-size:0.85rem; color:#334155; border-bottom:1px solid #f1f5f9;">Durum: ${localStorage.getItem('auth_token') ? 'Üye' : 'Misafir'}</div>
+                    <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-bottom:1px solid #f1f5f9;">Hesap</div>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAccountInfo()">Kullanıcı Bilgileri</button>
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAccounts()">Kayıtlı Hesaplar</button>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAuthSync()">Giriş / Senkronizasyon</button>
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
-                    <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.forceRefreshNow()">Zorla Yenile</button>
-                    <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla (Sunucu+Lokal)</button>
-                    ${localStorage.getItem('auth_token') ? `<button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.confirmDeleteAccount()">Hesabımı Sil</button>` : ''}
                     ${localStorage.getItem('auth_token') ? `<button class=\"nav-btn\" style=\"width:100%; justify-content:flex-start;\" onclick=\"window.logoutNow()\">Çıkış Yap</button>` : ''}
+                    ${localStorage.getItem('auth_token') ? `<button class=\"nav-btn warning\" style=\"width:100%; justify-content:flex-start;\" onclick=\"window.confirmDeleteAccount()\">Hesabımı Sil</button>` : ''}
+                    <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9; border-bottom:1px solid #f1f5f9;">Veri</div>
+                    <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla (Sunucu+Lokal)</button>
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
+                    <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9; border-bottom:1px solid #f1f5f9;">Sistem</div>
+                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
+                    <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.manualUpdateNow()">Manuel Güncelle</button>
                     <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="document.getElementById('settings-menu-overlay').remove()">Kapat</button>
                 </div>
             </div>`;
@@ -456,14 +503,17 @@ export class Dashboard {
             }
         };
 
-        window.forceRefreshNow = async () => {
+        window.manualUpdateNow = async () => {
             const updater = new UpdateManager();
-            const id = 'force-refresh-overlay';
-            const html = `<div class="modal-overlay" id="${id}"><div class="modal-box"><div class="modal-header"><h2 class="modal-title">Zorla Yenile</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div><div class="loading-state"><div class="spinner"></div><p>Önbellek temizleniyor ve sayfa yenileniyor...</p></div></div></div>`;
+            const id = 'manual-update-overlay';
+            const html = `<div class="modal-overlay" id="${id}"><div class="modal-box"><div class="modal-header"><h2 class="modal-title">Manuel Güncelle</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div><div class="loading-state"><div class="spinner"></div><p>Önbellek temizleniyor ve sayfa yenileniyor...</p></div></div></div>`;
             document.body.insertAdjacentHTML('beforeend', html);
             await updater.performCleanup();
             location.reload();
         };
+
+        window.openAccountInfo = () => this.openAccountInfo();
+        window.openAccounts = () => this.openAccounts();
 
         window.openAuthSync = async () => {
             const hasTokenNow = !!localStorage.getItem('auth_token');

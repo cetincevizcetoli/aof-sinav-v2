@@ -4,8 +4,19 @@ export class AuthManager {
     constructor(db){ this.db = db; this.sync = new SyncManager(db) }
     hasToken(){ return !!localStorage.getItem('auth_token') }
     async hasLocalData(){ const p = await this.db.getAllProgress(); const h = await this.db.getHistory(); const s = await this.db.getUserStats(); const sHas = ((s.xp||0) > 0) || ((s.streak||0) > 0) || ((s.totalQuestions||0) > 0); return (Array.isArray(p) && p.length>0) || (Array.isArray(h) && h.length>0) || sHas }
-    async login(email,password){ const ok = await this.sync.login(email,password); if(ok){ const hasLocal = await this.hasLocalData(); if(hasLocal){ const pushed = await this.sync.pushAll(); if(!pushed){ await this.db.enqueueSync({ type:'push' }); } } else { await this.sync.pullAll(); } const info = await this.sync.me(); if (info) { await this.db.setProfile('account_email', info.email||''); await this.db.setProfile('account_name', info.name||''); } } return ok }
+    async login(email,password){ const ok = await this.sync.login(email,password); if(ok){ const hasLocal = await this.hasLocalData(); if(hasLocal){ const pushed = await this.sync.pushAll(); if(!pushed){ await this.db.enqueueSync({ type:'push' }); } } else { await this.sync.pullAll(); } const info = await this.sync.me(); if (info) { await this.db.setProfile('account_email', info.email||''); await this.db.setProfile('account_name', info.name||''); } await this.saveCurrentAccount(); } return ok }
     async register(email,password,name){ const res = await this.sync.register(email,password); if(res.exists){ return { ok:false, exists:true } } if(res.ok){ const logged = await this.sync.login(email,password); if(logged){ const hasLocal = await this.hasLocalData(); if(hasLocal){ const pushed = await this.sync.pushAll(); if(!pushed){ await this.db.enqueueSync({ type:'push' }); } } else { await this.sync.pullAll(); } if(name){ await this.db.setUserName(name) } const info = await this.sync.me(); if (info) { await this.db.setProfile('account_email', info.email||''); await this.db.setProfile('account_name', info.name||''); } } return { ok:logged } } return { ok:false }
+    }
+
+    async saveCurrentAccount(){
+        const email = await this.db.getProfile('account_email');
+        const token = localStorage.getItem('auth_token') || '';
+        if (!email || !token) return;
+        const list = (await this.db.getProfile('accounts')) || [];
+        const idx = Array.isArray(list) ? list.findIndex(a => a && a.email === email) : -1;
+        const entry = { email, token, lastSync: await this.db.getProfile('last_sync') || 0 };
+        if (idx >= 0) { list[idx] = entry; } else { (Array.isArray(list) ? list : []).push(entry); }
+        await this.db.setProfile('accounts', list);
     }
     async deleteAccount(){ return await this.sync.deleteAccount() }
     async wipeRemote(){ return await this.sync.wipeRemote() }
