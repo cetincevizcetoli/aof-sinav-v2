@@ -691,8 +691,8 @@ export class Dashboard {
             const html = `
             <div class="modal-overlay" id="farewell-modal">
                 <div class="modal-box">
-                    <div class="modal-header"><h2 class="modal-title">Güle Güle</h2><button class="icon-btn" onclick="document.getElementById('farewell-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
-                    <p style="color:#64748b;">İlerlemeleriniz kaydedildi. Uygulamayı kullandığınız için teşekkür ederiz.</p>
+                    <div class="modal-header"><h2 class="modal-title">Güle Güle 👋</h2><button class="icon-btn" onclick="document.getElementById('farewell-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <p style="color:#64748b;">İlerlemeleriniz kaydedildi. Uygulamayı kullandığınız için teşekkür ederiz. Tekrar bekleriz!</p>
                     <div class="modal-actions"><button class="nav-btn secondary" onclick="document.getElementById('farewell-modal').remove()">Kapat</button></div>
                 </div>
             </div>`;

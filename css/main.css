@@ -80,12 +80,14 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); colo
 .option-btn.incorrect { background-color: #fee2e2 !important; border-color: #ef4444 !important; color: #b91c1c !important; }
 
 /* Butonlar */
-.primary-btn { background-color: var(--primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 1rem; margin-top: 20px; }
-.nav-btn { padding: 12px 20px; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; border: none; }
+.primary-btn { background: #ffffff; color: var(--primary); border: 2px solid var(--primary); padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 1rem; }
+.primary-btn:hover { background: var(--primary); color: #ffffff; }
+.nav-btn { padding: 12px 20px; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; background: #ffffff; border: 2px solid #e2e8f0; color: #0f172a; }
 .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-.nav-btn.primary { background-color: var(--primary); color: white; margin-left: auto; }
-.nav-btn.secondary { background-color: #f1f5f9; color: #475569; }
-.nav-btn.secondary:hover:not(:disabled) { background-color: #e2e8f0; }
+.nav-btn.primary { background: #ffffff; color: var(--primary); border-color: var(--primary); margin-left: auto; }
+.nav-btn.primary:hover { background: var(--primary); color: #ffffff; }
+.nav-btn.secondary { background-color: #ffffff; color: #475569; border-color: #e2e8f0; }
+.nav-btn.secondary:hover:not(:disabled) { background-color: #f8fafc; }
 
 /* Sonuç İstatistikleri */
 .stat-box { background: white; padding: 15px 25px; border-radius: 12px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; min-width: 80px; }
@@ -160,13 +162,8 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); colo
 }
 
 /* Butonlar */
-.nav-btn.warning {
-    background-color: #f59e0b;
-    color: white;
-}
-.nav-btn.warning:hover {
-    background-color: #d97706;
-}
+.nav-btn.warning { background-color: #ffffff; color: #b45309; border-color: #f59e0b; }
+.nav-btn.warning:hover { background-color: #f59e0b; color: #ffffff; border-color: #f59e0b; }
 
 /* Atlanan Soruda Doğru Cevap Gösterimi */
 .option-btn.skipped-reveal {
