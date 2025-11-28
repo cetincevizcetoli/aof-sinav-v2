@@ -450,8 +450,14 @@ export class Dashboard {
         };
         window.accountRegisterAndPush = async () => {
             const e = document.getElementById('acc-email').value; const p = document.getElementById('acc-pass').value; const auth = new AuthManager(this.db);
-            const res = await auth.register(e,p, await this.db.getUserName());
-            if (res && res.ok) { await auth.saveCurrentAccount(); await window.pushProfileToServer(); }
+            const nmLogin = (document.getElementById('acc-login-name')||{}).value || '';
+            const nmLocal = await this.db.getUserName();
+            const nm = nmLogin && nmLogin.trim().length>0 ? nmLogin.trim() : nmLocal;
+            const res = await auth.register(e,p,nm);
+            if (res && res.ok) {
+                if (nm && nm.trim().length>0) { await this.db.setUserName(nm.trim()); const sm = new SyncManager(this.db); await sm.updateProfileName(nm.trim()); }
+                await auth.saveCurrentAccount(); await window.pushProfileToServer();
+            }
             else { const msg = document.getElementById('profile-sync-msg'); if (msg) { msg.textContent = res && res.exists ? 'Bu e‑posta kayıtlı, lütfen Giriş Yapın' : 'Kayıt başarısız'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } }
         };
         window.pullFromServer = async () => {
@@ -644,6 +650,10 @@ export class Dashboard {
             const auth = new AuthManager(this.db);
             if (auth.hasToken()) { await auth.wipeRemote().catch(()=>{}); }
             await this.db.resetAllData();
+            localStorage.removeItem('auth_token');
+            await this.db.setProfile('account_email','');
+            await this.db.setProfile('accounts', []);
+            localStorage.removeItem('guest_mode');
             location.reload();
         };
 
