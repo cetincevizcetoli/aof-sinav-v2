@@ -1,5 +1,5 @@
-const STATIC_CACHE = 'aof-asistan-v2-static-v1.1.5';
-const DATA_CACHE = 'aof-asistan-v2-data-v1.1.5';
+const STATIC_CACHE = 'aof-asistan-v2-static-v1.1.6';
+const DATA_CACHE = 'aof-asistan-v2-data-v1.1.6';
 const TTL_MS = 300000;
 const STATIC_ASSETS = [
     './',

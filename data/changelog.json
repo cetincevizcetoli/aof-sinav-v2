@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.1.6",
+    "date": "2025-11-28",
+    "items": [
+      "Hesap durumu göstergesi: Üye/Misafir • e‑posta • Son Senkron",
+      "Auth Sync modali: durum şeridi ve Çıkış Yap butonu",
+      "API: /auth.php?action=me ile kullanıcı bilgisi",
+      "Profil mağazasında last_sync ve hesap bilgisi saklama"
+    ]
+  },
+  {
     "version": "1.1.5",
     "date": "2025-11-28",
     "items": [

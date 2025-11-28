@@ -37,4 +37,12 @@ if ($a === 'register') {
         $pdo->commit();
         ok(['deleted'=>true]);
     } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }
+} elseif ($a === 'me') {
+    $uid = token_user($pdo,$SECRET);
+    if (!$uid) return err(401,'unauth');
+    $st = $pdo->prepare('SELECT email,name,created_at FROM users WHERE id=?');
+    $st->execute([$uid]);
+    $u = $st->fetch(PDO::FETCH_ASSOC);
+    if (!$u) return err(404,'notfound');
+    ok($u);
 } else { err(404,'notfound'); }

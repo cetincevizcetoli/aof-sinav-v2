@@ -36,10 +36,17 @@ export class Dashboard {
 
         const versionInfo = await fetch('version.json?t=' + Date.now()).then(r => r.json()).catch(() => ({ version: 'unknown' }));
 
+        const hasToken = !!localStorage.getItem('auth_token');
+        const accEmail = await this.db.getProfile('account_email');
+        const lastSync = await this.db.getProfile('last_sync');
+        const statusText = hasToken ? `Üye${accEmail?` • ${accEmail}`:''}${lastSync?` • Son Senkron: ${new Date(lastSync).toLocaleString()}`:''}` : 'Misafir (Veriler sadece bu cihazda)';
         let html = `
-            <div class="dashboard-header">
-                <h2>Derslerim</h2>
-                <p class="subtitle">Çalışmak veya Test olmak için bir ders seçin.</p>
+            <div class="dashboard-header" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                <div>
+                    <h2>Derslerim</h2>
+                    <p class="subtitle">Çalışmak veya Test olmak için bir ders seçin.</p>
+                </div>
+                <div class="account-pill" title="Hesap durumu" style="white-space:nowrap; background:#eef2ff; color:#3730a3; padding:8px 12px; border-radius:999px; font-size:0.85rem; border:1px solid #e2e8f0;">${statusText}</div>
             </div>
             
             <div class="lesson-grid" style="margin-bottom: 30px;">
@@ -311,12 +318,14 @@ export class Dashboard {
             <div id="settings-menu-overlay" style="position:fixed; inset:0; background:transparent;">
                 <div id="settings-menu" style="position:fixed; right:16px; top:60px; background:white; border:1px solid #e2e8f0; box-shadow:0 10px 25px rgba(0,0,0,0.08); border-radius:12px; min-width:240px; overflow:hidden;">
                     <button class="nav-btn" style="width:100%; justify-content:flex-start; border:none; border-bottom:1px solid #f1f5f9;">Ayarlar</button>
+                    <div style="padding:8px 12px; font-size:0.85rem; color:#334155; border-bottom:1px solid #f1f5f9;">Durum: ${localStorage.getItem('auth_token') ? 'Üye' : 'Misafir'}</div>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.openAuthSync()">Giriş / Senkronizasyon</button>
                     <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
                     <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.forceRefreshNow()">Zorla Yenile</button>
                     <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla (Sunucu+Lokal)</button>
                     ${localStorage.getItem('auth_token') ? `<button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.confirmDeleteAccount()">Hesabımı Sil</button>` : ''}
+                    ${localStorage.getItem('auth_token') ? `<button class=\"nav-btn\" style=\"width:100%; justify-content:flex-start;\" onclick=\"window.logoutNow()\">Çıkış Yap</button>` : ''}
                     <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="document.getElementById('settings-menu-overlay').remove()">Kapat</button>
                 </div>
             </div>`;
@@ -436,6 +445,7 @@ export class Dashboard {
             <div class="modal-overlay" id="auth-sync-modal">
                 <div class="modal-box">
                     <div class="modal-header"><h2 class="modal-title">Giriş / Senkronizasyon</h2><button class="icon-btn" onclick="document.getElementById('auth-sync-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <div style="background:#f1f5f9; color:#334155; padding:8px 12px; border-radius:8px; font-size:0.85rem; margin-bottom:10px;">Durum: ${hasToken ? `Üye${accEmail?` • ${accEmail}`:''}${lastSync?` • Son Senkron: ${new Date(lastSync).toLocaleString()}`:''}` : 'Misafir'}</div>
                     <div class="form-group">
                         <input type="email" id="auth-email" class="form-select" placeholder="E-posta">
                         <input type="password" id="auth-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
@@ -447,6 +457,7 @@ export class Dashboard {
                     <div class="modal-actions" style="margin-top:16px; display:flex; gap:8px;">
                         <button class="nav-btn" onclick="window.doPushSync()">Sunucuya Yedekle</button>
                         <button class="nav-btn" onclick="window.doPullSync()">Sunucudan Yükle</button>
+                        ${hasToken ? '<button class="nav-btn warning" onclick="window.logoutNow()">Çıkış Yap</button>' : ''}
                     </div>
                 </div>
             </div>`;
@@ -457,7 +468,10 @@ export class Dashboard {
             window.doLogin = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await auth.login(e,p); alert(ok ? 'Giriş başarılı' : 'Giriş başarısız'); };
             window.doPushSync = async () => { const ok = await sm.pushAll().catch(async () => { const payload = { type:'push' }; await this.db.enqueueSync(payload); return false; }); alert(ok ? 'Yedekleme tamam' : 'Yedekleme başarısız'); };
             window.doPullSync = async () => { const ok = await sm.pullAll(); alert(ok ? 'Yükleme tamam' : 'Yükleme başarısız'); };
+            window.logoutNow = () => { localStorage.removeItem('auth_token'); document.getElementById('auth-sync-modal').remove(); this.render(); };
         };
+
+        window.logoutNow = () => { localStorage.removeItem('auth_token'); document.getElementById('settings-menu-overlay').remove(); this.render(); };
     }
 
     showWelcomeOverlay(){
@@ -472,6 +486,7 @@ export class Dashboard {
                     </h2>
                 </div>
                 <p style="color:#64748b; margin-top:-6px;">Sınavlara her yerden hazırlan, ilerlemeni asla kaybetme.</p>
+                <div id="local-data-banner" style="display:none; margin-top:8px; background:#ecfeff; color:#0e7490; padding:10px 12px; border-radius:10px; font-size:0.85rem;">Bu cihazda kayıtlı ilerleme bulundu. Üye olursan otomatik buluta taşınacak.</div>
                 <div style="margin-top:12px; display:flex; gap:8px;">
                     <button class="nav-btn" onclick="window.switchAuthTab('login')" id="tab-login">Giriş Yap</button>
                     <button class="nav-btn" onclick="window.switchAuthTab('register')" id="tab-register">Kayıt Ol</button>
@@ -500,6 +515,7 @@ export class Dashboard {
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
         const auth = new AuthManager(this.db);
+        (async () => { const p = await this.db.getAllProgress(); const h = await this.db.getHistory(); const s = await this.db.getUserStats(); const has = (Array.isArray(p)&&p.length>0)||(Array.isArray(h)&&h.length>0)||((s.xp||0)>0||(s.streak||0)>0||(s.totalQuestions||0)>0); const banner = document.getElementById('local-data-banner'); if (banner && has) banner.style.display='block'; const name = await this.db.getUserName(); if (name) { const nm = document.getElementById('welcome-name'); if (nm) nm.value = name; } })();
         window.switchAuthTab = (tab) => {
             document.getElementById('form-login').style.display = (tab==='login') ? 'block':'none';
             document.getElementById('form-register').style.display = (tab==='register') ? 'block':'none';

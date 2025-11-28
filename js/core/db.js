@@ -177,6 +177,26 @@ export class ExamDatabase {
         tx.onerror = () => {};
     }
 
+    async getProfile(key) {
+        return new Promise(resolve => {
+            if (!this.db) return resolve(null);
+            const tx = this.db.transaction(['profile'], 'readonly');
+            const req = tx.objectStore('profile').get(key);
+            req.onsuccess = () => resolve(req.result ? req.result.val : null);
+            req.onerror = () => resolve(null);
+        });
+    }
+
+    async setProfile(key, val) {
+        if (!this.db) return false;
+        return new Promise(resolve => {
+            const tx = this.db.transaction(['profile'], 'readwrite');
+            tx.objectStore('profile').put({ key, val });
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    }
+
     async logActivity(lessonCode, unit, isCorrect) {
         return new Promise((resolve) => {
             if (!this.db) return resolve(false);
