@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.22",
+    "date": "2025-11-28",
+    "items": [
+      "Hesap Bilgilerini Güncelle: e‑posta/şifre sunucuda değiştir ve lokali senkronize et",
+      "API: /auth.php?action=update (email uniq, 409 çakışma)",
+      "Sürüm v1.1.22 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.21",
     "date": "2025-11-28",
     "items": [

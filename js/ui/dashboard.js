@@ -345,6 +345,15 @@ export class Dashboard {
                 <label class="form-label">Ad (Cihaz)</label>
                 <input type="text" id="acc-name" class="form-select" placeholder="Adınızı girin">
             </div>` : '';
+        const credUpdateHtml = hasTok ? `
+            <div class="form-group" style="margin-top:8px;">
+                <label class="form-label">Hesap Bilgilerini Güncelle</label>
+                <input type="email" id="acc-new-email" class="form-select" placeholder="Yeni E-posta (opsiyonel)">
+                <input type="password" id="acc-new-pass" class="form-select" placeholder="Yeni Şifre (opsiyonel)" style="margin-top:8px;">
+                <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
+                    <button class="nav-btn" onclick="window.updateCredentialsAndSync()">Kaydet ve Senkronize Et</button>
+                </div>
+            </div>` : '';
         const html = `
         <div class="modal-overlay" id="account-info-modal">
             <div class="modal-box">
@@ -365,6 +374,7 @@ export class Dashboard {
                     <div id="profile-sync-msg" style="display:none; margin-top:8px; background:#dcfce7; color:#166534; padding:8px 12px; border-radius:8px; font-weight:600;">İşlem tamamlandı.</div>
                     ${accFormHtml}
                     ${nameInputHtml}
+                    ${credUpdateHtml}
                 </div>
                 <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
                     ${hasTok ? '<button class="primary-btn" data-tip="push.sync" onclick="window.pushProfileToServer()">Sunucuya Aktar</button><button class="nav-btn" data-tip="pull.sync" onclick="window.pullFromServer()">Sunucudan Çek</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
@@ -419,6 +429,18 @@ export class Dashboard {
             await this.refreshAccountStatus();
             const msg = document.getElementById('profile-sync-msg');
             if (msg) { msg.textContent = ok ? 'Sunucudan alındı' : 'Yükleme başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }
+        };
+        window.updateCredentialsAndSync = async () => {
+            const sm = new SyncManager(this.db);
+            const newEmail = (document.getElementById('acc-new-email')||{}).value || '';
+            const newPass = (document.getElementById('acc-new-pass')||{}).value || '';
+            const res = await sm.updateCredentials(newEmail,newPass);
+            const msg = document.getElementById('profile-sync-msg');
+            if (!res.ok) { if (msg) { msg.textContent = res.code===409 ? 'Bu e‑posta zaten kullanımda' : 'Güncelleme başarısız'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } return; }
+            if (res.data && res.data.email) { await this.db.setProfile('account_email', res.data.email); const am = new AuthManager(this.db); await am.saveCurrentAccount(); }
+            const ok = await sm.pushAll();
+            await this.refreshAccountStatus();
+            if (msg) { msg.textContent = ok ? 'Güncellendi ve yedeklendi' : 'Güncellendi, yedekleme başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }
         };
     }
 
