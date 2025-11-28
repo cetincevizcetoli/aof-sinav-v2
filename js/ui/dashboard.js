@@ -350,172 +350,73 @@ export class Dashboard {
     }
 
     async openAccountInfo() {
+        const sm = new SyncManager(this.db);
         const hasTok = !!localStorage.getItem('auth_token');
-        let email = await this.db.getProfile('account_email');
-        const nameLocal = await this.db.getUserName();
-        const lastSyncTs = await this.db.getProfile('last_sync');
-        const status = hasTok ? 'Üye' : 'Misafir';
-        if (hasTok && !email) {
-            const sm = new SyncManager(this.db);
-            const info = await sm.me();
-            if (info && info.email) { email = info.email; await this.db.setProfile('account_email', email); const am = new AuthManager(this.db); await am.saveCurrentAccount(); }
-        }
-        const needsAccountForm = !hasTok || !email;
-        const accFormHtml = needsAccountForm ? `
-            <div class="form-group" style="margin-top:8px;">
-                <div style="font-weight:600; margin-bottom:6px;">Mevcut Hesaba Giriş ve Aktarım</div>
-                <input type="email" id="acc-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none">
-                <input type="password" id="acc-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;" autocomplete="new-password">
-                <input type="text" id="acc-login-name" class="form-select" placeholder="Ad (Cihaz)" style="margin-top:8px;">
-                <small id="acc-email-status" style="display:block; margin-top:6px; color:#64748b; font-size:0.8rem;">Yeni misin? Kayıt Ol ve Aktar'ı seç.</small>
-                <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
-                    <button class="nav-btn" id="btn-register-push" onclick="window.accountRegisterAndPush()">Kayıt Ol ve Aktar</button>
-                    <button class="primary-btn" id="btn-login-push" onclick="window.accountLoginAndPush()">Giriş Yap ve Aktar</button>
-                </div>
-            </div>` : '';
-        const needName = !nameLocal || String(nameLocal).trim().length === 0;
-        const nameInputHtml = needName ? `
-            <div class="form-group" style="margin-top:8px;">
-                <label class="form-label">Ad (Cihaz)</label>
-                <input type="text" id="acc-name" class="form-select" placeholder="Adınızı girin">
-            </div>` : '';
-        const credUpdateHtml = hasTok ? `
-            <div class="form-group" style="margin-top:8px;">
-                <label class="form-label">Hesap Bilgilerini Güncelle (Sunucu)</label>
-                <input type="email" id="acc-new-email" class="form-select" placeholder="Yeni E-posta (opsiyonel)">
-                <input type="password" id="acc-new-pass" class="form-select" placeholder="Yeni Şifre (opsiyonel)" style="margin-top:8px;">
-                <input type="text" id="acc-new-name" class="form-select" placeholder="Yeni Ad (opsiyonel)" style="margin-top:8px;">
-                <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
-                    <button class="nav-btn" onclick="window.updateCredentialsAndSync()">Kaydet ve Senkronize Et</button>
-                </div>
-            </div>` : '';
+        const serverInfo = await sm.me().catch(()=>null) || {};
+        const email = serverInfo.email || await this.db.getProfile('account_email') || '';
+        const nameLocal = serverInfo.name || await this.db.getUserName() || '';
+        const badgeText = hasTok ? 'Üye Hesabı' : 'Misafir (Yerel)';
+
         const html = `
         <div class="modal-overlay" id="account-info-modal">
-            <div class="modal-box">
-                <div class="modal-header"><h2 class="modal-title">Kullanıcı Bilgileri</h2><button class="icon-btn" onclick="document.getElementById('account-info-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
-                <div style="display:flex; flex-direction:column; gap:8px;">
-                    <div><strong>Durum:</strong> ${status}</div>
-                    <div><strong>E‑posta:</strong> ${email || '-'}</div>
-                    <div><strong>Ad (Cihaz):</strong> ${nameLocal || '-'}</div>
-                    <div><strong>Son Senkron:</strong> ${lastSyncTs ? new Date(lastSyncTs).toLocaleString() : '-'}</div>
-                    <div style="margin-top:8px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
-                        <div style="font-weight:600; margin-bottom:6px;">Neden sunucuya aktarmalıyım?</div>
-                        <ul style="margin:0; padding-left:18px; color:#334155; font-size:0.9rem;">
-                            <li>Veriler bulutta yedeklenir; cihaz değiştirince geri yüklenir.</li>
-                            <li>Birden fazla cihazda aynı hesabı kullanırsın.</li>
-                            <li>İlerleme ve skorların kaybolmaz.</li>
-                        </ul>
-                    </div>
-                    <div id="profile-sync-msg" style="display:none; margin-top:8px; background:#dcfce7; color:#166534; padding:8px 12px; border-radius:8px; font-weight:600;">İşlem tamamlandı.</div>
-                    ${accFormHtml}
-                    ${nameInputHtml}
-                    ${credUpdateHtml}
+          <div class="modal-box">
+            <div class="profile-edit-container">
+              <div class="modal-header-center">
+                <div class="profile-avatar-large"><i class="fa-solid fa-user"></i></div>
+                <h3 id="profile-email-display">${email || '-'}</h3>
+                <span class="badge badge-member">${badgeText}</span>
+              </div>
+              <form id="form-profile-update" class="modern-form">
+                <div class="form-group">
+                  <label for="edit-name">Ad Soyad</label>
+                  <div class="input-wrapper">
+                    <i class="fa-solid fa-id-card"></i>
+                    <input type="text" id="edit-name" placeholder="Adınız" required>
+                  </div>
                 </div>
-                <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
-                    ${hasTok ? '<button class="primary-btn" data-tip="push.sync" onclick="window.pushProfileToServer()">Sunucuya Aktar</button><button class="nav-btn" data-tip="pull.sync" onclick="window.pullFromServer()">Sunucudan Çek</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
-                    <button class="nav-btn secondary" onclick="document.getElementById('account-info-modal').remove()">Kapat</button>
+                <div class="form-group">
+                  <label for="edit-email">E-posta (Değiştirmek için)</label>
+                  <div class="input-wrapper">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="edit-email" placeholder="yeni@mail.com">
+                  </div>
                 </div>
+                <div class="form-group">
+                  <label for="edit-pass">Yeni Şifre (Opsiyonel)</label>
+                  <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="edit-pass" placeholder="••••••">
+                  </div>
+                </div>
+                <button type="submit" class="btn-primary-block" id="btn-save-profile">
+                  <i class="fa-solid fa-floppy-disk"></i> Değişiklikleri Kaydet
+                </button>
+              </form>
+              <div class="form-footer-note">
+                <i class="fa-solid fa-circle-info"></i> Değişiklikler anında sunucu ile senkronize edilir.
+              </div>
             </div>
+          </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
-            const emailInput = document.getElementById('acc-email');
-            if (emailInput) {
-            const sm = new SyncManager(this.db);
-            const statusEl = document.getElementById('acc-email-status');
-            const btnReg = document.getElementById('btn-register-push');
-            const btnLogin = document.getElementById('btn-login-push');
-            const guide = async () => {
-                const val = (emailInput.value||'').trim().toLowerCase();
-                if (!val) { if(statusEl) statusEl.textContent = "Yeni misin? Kayıt Ol ve Aktar'ı seç."; if(btnReg) btnReg.disabled=false; if(btnLogin) btnLogin.disabled=false; return; }
-                const exists = await sm.emailExists(val);
-                if (exists) { if(statusEl) { statusEl.textContent = "Bu e‑posta zaten kayıtlı. Lütfen Giriş Yap ve Aktar'ı kullanın."; statusEl.style.color = '#334155'; }
-                    if(btnReg) btnReg.disabled = true; if(btnLogin) btnLogin.disabled = false;
-                } else { if(statusEl) { statusEl.textContent = "Bu e‑posta için yeni hesap oluşturabilirsiniz: Kayıt Ol ve Aktar."; statusEl.style.color = '#334155'; }
-                    if(btnReg) btnReg.disabled = false; if(btnLogin) btnLogin.disabled = true;
-                }
-            };
-            emailInput.value = '';
-            const passInput = document.getElementById('acc-pass'); if (passInput) passInput.value = '';
-            const loginName = document.getElementById('acc-login-name'); if (loginName) loginName.value = '';
-            emailInput.addEventListener('input', guide);
-            emailInput.addEventListener('blur', guide);
-        }
-        window.pushProfileToServer = async () => {
-            const sm = new SyncManager(this.db);
-            const nameInput = document.getElementById('acc-name');
-            const nameLoginInput = document.getElementById('acc-login-name');
-            const unameLocal = await this.db.getUserName();
-            const uname = (nameInput && nameInput.value && nameInput.value.trim().length>0)
-                ? nameInput.value.trim()
-                : ((nameLoginInput && nameLoginInput.value && nameLoginInput.value.trim().length>0) ? nameLoginInput.value.trim() : unameLocal);
-            if (nameInput && nameInput.value && nameInput.value.trim().length>0) { await this.db.setUserName(nameInput.value.trim()); }
-            if (nameLoginInput && nameLoginInput.value && nameLoginInput.value.trim().length>0) { await this.db.setUserName(nameLoginInput.value.trim()); }
-            let authorized = !!sm.getToken();
-            if (authorized) { const chk = await sm.me().catch(()=>null); authorized = !!chk; }
-            if (!authorized) {
-                const e = (document.getElementById('acc-email')||{}).value || '';
-                const p = (document.getElementById('acc-pass')||{}).value || '';
-                if (e && p) {
-                    const auth = new AuthManager(this.db);
-                    const okLogin = await auth.login(e,p);
-                    if (okLogin) { await auth.saveCurrentAccount(); authorized = true; }
-                }
-            }
-            const msg = document.getElementById('profile-sync-msg');
-            if (!authorized) { if (msg) { msg.textContent = 'Önce giriş yapın veya doğru e‑posta/şifre girin'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } return; }
-
-            if (uname) { await sm.updateProfileName(uname); }
-            const info = await sm.me().catch(()=>null);
-            if (info && info.email) { await this.db.setProfile('account_email', info.email); const am = new AuthManager(this.db); await am.saveCurrentAccount(); }
-            const ok = await sm.pushAll();
-            await this.refreshAccountStatus();
-            if (msg) { msg.textContent = ok ? 'Buluta yedeklendi' : 'Aktarım başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }
-        };
-        window.accountLoginAndPush = async () => {
-            const e = document.getElementById('acc-email').value; const p = document.getElementById('acc-pass').value;
-            const auth = new AuthManager(this.db);
-            const okLogin = await auth.login(e,p);
-            if (okLogin) {
-                const nm = (document.getElementById('acc-login-name')||{}).value || '';
-                if (nm && nm.trim().length>0) { await this.db.setUserName(nm.trim()); const sm = new SyncManager(this.db); await sm.updateProfileName(nm.trim()); }
-                await auth.saveCurrentAccount(); await window.pushProfileToServer();
-            }
-            else { const msg = document.getElementById('profile-sync-msg'); if (msg) { msg.textContent = 'Giriş başarısız'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } }
-        };
-        window.accountRegisterAndPush = async () => {
-            const e = document.getElementById('acc-email').value; const p = document.getElementById('acc-pass').value; const auth = new AuthManager(this.db);
-            const nmLogin = (document.getElementById('acc-login-name')||{}).value || '';
-            const nmLocal = await this.db.getUserName();
-            const nm = nmLogin && nmLogin.trim().length>0 ? nmLogin.trim() : nmLocal;
-            const res = await auth.register(e,p,nm);
-            if (res && res.ok) {
-                if (nm && nm.trim().length>0) { await this.db.setUserName(nm.trim()); const sm = new SyncManager(this.db); await sm.updateProfileName(nm.trim()); }
-                await auth.saveCurrentAccount(); await window.pushProfileToServer();
-            }
-            else { const msg = document.getElementById('profile-sync-msg'); if (msg) { msg.textContent = res && res.exists ? 'Bu e‑posta kayıtlı, lütfen Giriş Yapın' : 'Kayıt başarısız'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } }
-        };
-        window.pullFromServer = async () => {
-            const sm = new SyncManager(this.db);
-            const ok = await sm.pullAll();
-            await this.refreshAccountStatus();
-            const msg = document.getElementById('profile-sync-msg');
-            if (msg) { msg.textContent = ok ? 'Sunucudan alındı' : 'Yükleme başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }
-        };
-        window.updateCredentialsAndSync = async () => {
-            const sm = new SyncManager(this.db);
-            const newEmail = (document.getElementById('acc-new-email')||{}).value || '';
-            const newPass = (document.getElementById('acc-new-pass')||{}).value || '';
-            const newName = (document.getElementById('acc-new-name')||{}).value || '';
-            const res = await sm.updateCredentials(newEmail,newPass,newName);
-            const msg = document.getElementById('profile-sync-msg');
-            if (!res.ok) { if (msg) { msg.textContent = res.code===409 ? 'Bu e‑posta zaten kullanımda' : 'Güncelleme başarısız'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } return; }
-            if (res.data && res.data.email) { await this.db.setProfile('account_email', res.data.email); const am = new AuthManager(this.db); await am.saveCurrentAccount(); }
-            if (newName) { await this.db.setUserName(newName); }
-            const ok = await sm.pushAll();
-            await this.refreshAccountStatus();
-            if (msg) { msg.textContent = ok ? 'Güncellendi ve yedeklendi' : 'Güncellendi, yedekleme başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }
-        };
-    }
+        document.getElementById('edit-name').value = nameLocal || '';
+        const form = document.getElementById('form-profile-update');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const newName = (document.getElementById('edit-name').value||'').trim();
+          const newEmail = (document.getElementById('edit-email').value||'').trim();
+          const newPass = (document.getElementById('edit-pass').value||'');
+          const res = await sm.updateCredentials(newEmail, newPass, newName);
+          if (res && res.ok) {
+            if (newName) await this.db.setUserName(newName);
+            if (res.data && res.data.email) await this.db.setProfile('account_email', res.data.email);
+            document.dispatchEvent(new CustomEvent('app:data-updated'));
+            document.getElementById('account-info-modal').remove();
+          } else {
+            alert(res && res.code===409 ? 'Bu e‑posta kullanımda' : 'Güncelleme başarısız');
+          }
+        });
+      }
 
     async openAccounts() {
         let list = (await this.db.getProfile('accounts')) || [];
