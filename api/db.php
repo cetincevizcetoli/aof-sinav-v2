@@ -55,4 +55,16 @@ function auth_header(){
     }
     return $h;
 }
-function token_user($pdo,$SECRET){ $h = auth_header(); if (!$h || stripos($h,'Bearer ')!==0) return 0; $t = substr($h,7); try { $st = $pdo->prepare('SELECT user_id FROM sessions WHERE token=?'); $st->execute([$t]); $r = $st->fetch(PDO::FETCH_ASSOC); return $r ? intval($r['user_id']) : 0; } catch (Throwable $e) { return 0; } }
+function token_user($pdo,$SECRET){
+    $h = auth_header();
+    $t = '';
+    if ($h && stripos($h,'Bearer ')===0) { $t = substr($h,7); }
+    if (!$t) { $t = $_GET['token'] ?? $_POST['token'] ?? ''; }
+    if (!$t) return 0;
+    try {
+        $st = $pdo->prepare('SELECT user_id FROM sessions WHERE token=?');
+        $st->execute([$t]);
+        $r = $st->fetch(PDO::FETCH_ASSOC);
+        return $r ? intval($r['user_id']) : 0;
+    } catch (Throwable $e) { return 0; }
+}

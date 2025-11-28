@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.25",
+    "date": "2025-11-28",
+    "items": [
+      "Auth fallback: token query param desteği (server+client)",
+      "me/profile/push/pull/delete/wipe çağrılarında token hem header hem query ile gönderilir",
+      "Sürüm v1.1.25 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.24",
     "date": "2025-11-28",
     "items": [
