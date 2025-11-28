@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.18",
+    "date": "2025-11-28",
+    "items": [
+      "Auth header düzeltmesi: REDIRECT_HTTP_AUTHORIZATION ve getallheaders() desteği",
+      "401 Unauthorized sorunları giderildi (me/profile/push)",
+      "Sürüm v1.1.18 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.17",
     "date": "2025-11-28",
     "items": [

@@ -46,4 +46,13 @@ $pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token VARCHAR(255) PRIMAR
 function json(){ return json_decode(file_get_contents('php://input'), true) ?: []; }
 function ok($d){ echo json_encode(['ok'=>true,'data'=>$d]); }
 function err($c,$m){ http_response_code($c); echo json_encode(['ok'=>false,'error'=>$m]); }
-function token_user($pdo,$SECRET){ $h = $_SERVER['HTTP_AUTHORIZATION'] ?? ''; if (strpos($h,'Bearer ')!==0) return 0; $t = substr($h,7); try { $st = $pdo->prepare('SELECT user_id FROM sessions WHERE token=?'); $st->execute([$t]); $r = $st->fetch(PDO::FETCH_ASSOC); return $r ? intval($r['user_id']) : 0; } catch (Throwable $e) { return 0; } }
+function auth_header(){
+    $h = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    if (!$h) $h = $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] ?? '';
+    if (!$h && function_exists('getallheaders')) {
+        $headers = getallheaders();
+        foreach($headers as $k=>$v){ if (strcasecmp($k,'Authorization')===0) { $h = $v; break; } }
+    }
+    return $h;
+}
+function token_user($pdo,$SECRET){ $h = auth_header(); if (!$h || stripos($h,'Bearer ')!==0) return 0; $t = substr($h,7); try { $st = $pdo->prepare('SELECT user_id FROM sessions WHERE token=?'); $st->execute([$t]); $r = $st->fetch(PDO::FETCH_ASSOC); return $r ? intval($r['user_id']) : 0; } catch (Throwable $e) { return 0; } }
