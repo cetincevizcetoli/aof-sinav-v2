@@ -11,6 +11,11 @@ export class Dashboard {
         this.container = document.getElementById('app-container');
     }
 
+    async refreshAndRender(){
+        if (this.loader && typeof this.loader.resetCache === 'function') { this.loader.resetCache(); }
+        await this.render();
+    }
+
     // Ana Ekranı Çiz
     async render() {
         this.container.innerHTML = '<div class="loading-state"><div class="spinner"></div><p>Veriler Yükleniyor...</p></div>';

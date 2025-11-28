@@ -40,7 +40,7 @@ async function initApp() {
         if (!quizUI) {
             const module = await import('./ui/quizUI.js');
             const QuizUI = module.QuizUI;
-            quizUI = new QuizUI(loader, db, () => { dashboard.render(); });
+            quizUI = new QuizUI(loader, db, () => { if (dashboard.refreshAndRender) { dashboard.refreshAndRender(); } else { dashboard.render(); } });
         }
         await quizUI.start(lessonCode, safeConfig);
     };
@@ -59,9 +59,13 @@ async function initApp() {
         try {
             if (__refreshLock) return;
             __refreshLock = true;
-            console.log('♻️ Veri değişti algılandı. UI tazeleniyor...');
-            if (loader && typeof loader.resetCache === 'function') { loader.resetCache(); }
-            await dashboard.render();
+            console.log('♻️ Veri değişti algılandı. UI tam tazeleme...');
+            if (dashboard && typeof dashboard.refreshAndRender === 'function') {
+                await dashboard.refreshAndRender();
+            } else {
+                if (loader && typeof loader.resetCache === 'function') { loader.resetCache(); }
+                await dashboard.render();
+            }
             setTimeout(() => { __refreshLock = false; }, 1500);
         } catch(e) { __refreshLock = false; }
     });
