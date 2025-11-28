@@ -526,6 +526,43 @@ export class Dashboard {
         };
     }
 
+    async openAdminAccounts() {
+        const html = `
+        <div class="modal-overlay" id="admin-accounts-modal">
+            <div class="modal-box large">
+                <div class="modal-header"><h2 class="modal-title">Hesap Temizleme (Admin)</h2><button class="icon-btn" onclick="document.getElementById('admin-accounts-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                <div class="form-group"><input type="password" id="admin-secret" class="form-select" placeholder="Admin Secret"></div>
+                <div class="modal-actions" style="margin-top:8px;"><button class="nav-btn" onclick="window.loadAdminAccounts()">Listele</button></div>
+                <div id="admin-accounts-list" style="max-height:60vh; overflow:auto; margin-top:8px;"></div>
+                <div class="modal-actions" style="margin-top:8px; display:flex; gap:8px;">
+                    <button class="nav-btn warning" onclick="window.bulkDeleteSelected()">Seçili Hesapları Sil</button>
+                    <button class="nav-btn secondary" onclick="document.getElementById('admin-accounts-modal').remove()">Kapat</button>
+                </div>
+            </div>
+        </div>`;
+        document.body.insertAdjacentHTML('beforeend', html);
+        window.loadAdminAccounts = async () => {
+            const sec = (document.getElementById('admin-secret')||{}).value || '';
+            const res = await fetch(`api/admin_accounts.php?action=list&secret=${encodeURIComponent(sec)}`).then(r=>r.json()).catch(()=>({ data:[] }));
+            const list = Array.isArray(res.data) ? res.data : [];
+            const rows = list.map(u => `<div class=\"lesson-card\" style=\"display:flex; align-items:center; justify-content:space-between;\"><div><div style=\"font-weight:600;\">${u.email}</div><small style=\"color:#64748b;\">Ad: ${u.name||'-'} • ID: ${u.id}</small></div><div style=\"display:flex; gap:8px;\"><input type=\"checkbox\" class=\"admin-del\" value=\"${u.email}\"><button class=\"nav-btn warning\" onclick=\"window.deleteOne('${u.email}')\">Sil</button></div></div>`).join('');
+            const el = document.getElementById('admin-accounts-list');
+            if (el) el.innerHTML = rows || '<div style="padding:12px; color:#64748b;">Kayıt yok</div>';
+        };
+        window.deleteOne = async (email) => {
+            const sec = (document.getElementById('admin-secret')||{}).value || '';
+            await fetch('api/admin_accounts.php?action=delete', { method:'POST', headers:{ 'Content-Type':'application/x-www-form-urlencoded' }, body: `secret=${encodeURIComponent(sec)}&email=${encodeURIComponent(email)}` });
+            window.loadAdminAccounts();
+        };
+        window.bulkDeleteSelected = async () => {
+            const sec = (document.getElementById('admin-secret')||{}).value || '';
+            const els = Array.from(document.querySelectorAll('.admin-del'));
+            const emails = els.filter(e=>e.checked).map(e=>e.value);
+            await fetch(`api/admin_accounts.php?action=bulk_delete&secret=${encodeURIComponent(sec)}`, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ emails }) });
+            window.loadAdminAccounts();
+        };
+    }
+
     openSettings() {
         const existing = document.getElementById('settings-menu-overlay');
         if (existing) existing.remove();
@@ -546,6 +583,8 @@ export class Dashboard {
                     <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9; border-bottom:1px solid #f1f5f9;">Sistem</div>
                     <button class="nav-btn" data-tip="check.update" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
                     <button class="nav-btn warning" data-tip="manual.update" style="width:100%; justify-content:flex-start;" onclick="window.manualUpdateNow()">Manuel Güncelle</button>
+                    <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9;">Admin</div>
+                    <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.openAdminAccounts()">Hesap Temizleme (Admin)</button>
                     <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="document.getElementById('settings-menu-overlay').remove()">Kapat</button>
                 </div>
             </div>`;
@@ -662,6 +701,7 @@ export class Dashboard {
 
         window.openAccountInfo = () => this.openAccountInfo();
         window.openAccounts = () => this.openAccounts();
+        window.openAdminAccounts = () => this.openAdminAccounts();
 
         window.openAuthSync = async () => {
             const hasTokenNow = !!localStorage.getItem('auth_token');

@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.27",
+    "date": "2025-11-28",
+    "items": [
+      "Admin: Hesap Temizleme servisi (listele/sil/toplu sil)",
+      "Dashboard: Admin Hesap Temizleme modali",
+      "Sürüm v1.1.27 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.26",
     "date": "2025-11-28",
     "items": [
