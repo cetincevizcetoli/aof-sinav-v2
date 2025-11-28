@@ -45,4 +45,17 @@ if ($a === 'register') {
     $u = $st->fetch(PDO::FETCH_ASSOC);
     if (!$u) return err(404,'notfound');
     ok($u);
+} elseif ($a === 'profile') {
+    $uid = token_user($pdo,$SECRET);
+    if (!$uid) return err(401,'unauth');
+    $in = json();
+    $name = isset($in['name']) ? trim($in['name']) : null;
+    if ($name !== null) {
+        try { $st = $pdo->prepare('UPDATE users SET name=? WHERE id=?'); $st->execute([$name,$uid]); }
+        catch(Exception $e){ return err(500,'server_error'); }
+    }
+    $st2 = $pdo->prepare('SELECT email,name,created_at FROM users WHERE id=?');
+    $st2->execute([$uid]);
+    $u2 = $st2->fetch(PDO::FETCH_ASSOC);
+    ok($u2?:[]);
 } else { err(404,'notfound'); }

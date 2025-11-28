@@ -314,10 +314,15 @@ export class Dashboard {
 
     async openAccountInfo() {
         const hasTok = !!localStorage.getItem('auth_token');
-        const email = await this.db.getProfile('account_email');
+        let email = await this.db.getProfile('account_email');
         const nameLocal = await this.db.getUserName();
         const lastSyncTs = await this.db.getProfile('last_sync');
         const status = hasTok ? 'Üye' : 'Misafir';
+        if (hasTok && !email) {
+            const sm = new SyncManager(this.db);
+            const info = await sm.me();
+            if (info && info.email) { email = info.email; await this.db.setProfile('account_email', email); }
+        }
         const html = `
         <div class="modal-overlay" id="account-info-modal">
             <div class="modal-box">
@@ -327,13 +332,31 @@ export class Dashboard {
                     <div><strong>E‑posta:</strong> ${email || '-'}</div>
                     <div><strong>Ad (Cihaz):</strong> ${nameLocal || '-'}</div>
                     <div><strong>Son Senkron:</strong> ${lastSyncTs ? new Date(lastSyncTs).toLocaleString() : '-'}</div>
+                    <div style="margin-top:8px; background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
+                        <div style="font-weight:600; margin-bottom:6px;">Neden sunucuya aktarmalıyım?</div>
+                        <ul style="margin:0; padding-left:18px; color:#334155; font-size:0.9rem;">
+                            <li>Veriler bulutta yedeklenir; cihaz değiştirince geri yüklenir.</li>
+                            <li>Birden fazla cihazda aynı hesabı kullanırsın.</li>
+                            <li>İlerleme ve skorların kaybolmaz.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
+                    ${hasTok ? '<button class="primary-btn" onclick="window.pushProfileToServer()">Sunucuya Aktar</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
                     <button class="nav-btn secondary" onclick="document.getElementById('account-info-modal').remove()">Kapat</button>
                 </div>
             </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
+        window.pushProfileToServer = async () => {
+            const sm = new SyncManager(this.db);
+            const uname = await this.db.getUserName();
+            if (uname) { await sm.updateProfileName(uname); }
+            const ok = await sm.pushAll();
+            await this.refreshAccountStatus();
+            alert(ok ? 'Aktarım tamamlandı' : 'Aktarım başarısız');
+            document.getElementById('account-info-modal').remove();
+        };
     }
 
     async openAccounts() {
