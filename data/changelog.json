@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.16",
+    "date": "2025-11-28",
+    "items": [
+      "Eksik bilgiler kontrolü: Ad (Cihaz) için alan ve aktarımda güncelleme",
+      "Aktarımda sunucudan e‑posta alınır ve hesap listeye eklenir",
+      "Sürüm v1.1.16 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.15",
     "date": "2025-11-28",
     "items": [

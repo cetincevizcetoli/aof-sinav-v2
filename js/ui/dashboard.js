@@ -341,6 +341,12 @@ export class Dashboard {
                     <button class="primary-btn" onclick="window.accountLoginAndPush()">Giriş Yap ve Aktar</button>
                 </div>
             </div>` : '';
+        const needName = !nameLocal || String(nameLocal).trim().length === 0;
+        const nameInputHtml = needName ? `
+            <div class="form-group" style="margin-top:8px;">
+                <label class="form-label">Ad (Cihaz)</label>
+                <input type="text" id="acc-name" class="form-select" placeholder="Adınızı girin">
+            </div>` : '';
         const html = `
         <div class="modal-overlay" id="account-info-modal">
             <div class="modal-box">
@@ -360,9 +366,10 @@ export class Dashboard {
                     </div>
                     <div id="profile-sync-msg" style="display:none; margin-top:8px; background:#dcfce7; color:#166534; padding:8px 12px; border-radius:8px; font-weight:600;">İşlem tamamlandı.</div>
                     ${accFormHtml}
+                    ${nameInputHtml}
                 </div>
                 <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
-                    ${hasTok ? '<button class="primary-btn" onclick="window.pushProfileToServer()">Sunucuya Aktar</button><button class="nav-btn" onclick="window.pullFromServer()">Sunucudan Çek</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
+                    ${hasTok ? '<button class="primary-btn" title="Cihaz adını ve ilerlemeyi buluta gönderir" onclick="window.pushProfileToServer()">Sunucuya Aktar</button><button class="nav-btn" title="Buluttaki verileri cihaza alır" onclick="window.pullFromServer()">Sunucudan Çek</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
                     <button class="nav-btn secondary" onclick="document.getElementById('account-info-modal').remove()">Kapat</button>
                 </div>
             </div>
@@ -370,8 +377,13 @@ export class Dashboard {
         document.body.insertAdjacentHTML('beforeend', html);
         window.pushProfileToServer = async () => {
             const sm = new SyncManager(this.db);
-            const uname = await this.db.getUserName();
+            const nameInput = document.getElementById('acc-name');
+            const unameLocal = await this.db.getUserName();
+            const uname = (nameInput && nameInput.value && nameInput.value.trim().length>0) ? nameInput.value.trim() : unameLocal;
+            if (nameInput && nameInput.value && nameInput.value.trim().length>0) { await this.db.setUserName(nameInput.value.trim()); }
             if (uname) { await sm.updateProfileName(uname); }
+            const info = await sm.me().catch(()=>null);
+            if (info && info.email) { await this.db.setProfile('account_email', info.email); const am = new AuthManager(this.db); await am.saveCurrentAccount(); }
             const ok = await sm.pushAll();
             await this.refreshAccountStatus();
             const msg = document.getElementById('profile-sync-msg');
