@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.14",
+    "date": "2025-11-28",
+    "items": [
+      "Kullanıcı Bilgileri içinde Kayıt Ol/Giriş Yap ve Aktar formu",
+      "Aktarım öncesi oturum yoksa form ile oturum açma/oluşturma",
+      "Sürüm v1.1.14 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.13",
     "date": "2025-11-28",
     "items": [

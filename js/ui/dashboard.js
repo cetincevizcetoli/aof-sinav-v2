@@ -323,6 +323,16 @@ export class Dashboard {
             const info = await sm.me();
             if (info && info.email) { email = info.email; await this.db.setProfile('account_email', email); }
         }
+        const needsAccountForm = !hasTok || !email;
+        const accFormHtml = needsAccountForm ? `
+            <div class="form-group" style="margin-top:8px;">
+                <input type="email" id="acc-email" class="form-select" placeholder="E-posta">
+                <input type="password" id="acc-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
+                    <button class="nav-btn" onclick="window.accountRegisterAndPush()">Kayıt Ol ve Aktar</button>
+                    <button class="primary-btn" onclick="window.accountLoginAndPush()">Giriş Yap ve Aktar</button>
+                </div>
+            </div>` : '';
         const html = `
         <div class="modal-overlay" id="account-info-modal">
             <div class="modal-box">
@@ -341,6 +351,7 @@ export class Dashboard {
                         </ul>
                     </div>
                     <div id="profile-sync-msg" style="display:none; margin-top:8px; background:#dcfce7; color:#166534; padding:8px 12px; border-radius:8px; font-weight:600;">İşlem tamamlandı.</div>
+                    ${accFormHtml}
                 </div>
                 <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
                     ${hasTok ? '<button class="primary-btn" onclick="window.pushProfileToServer()">Sunucuya Aktar</button><button class="nav-btn" onclick="window.pullFromServer()">Sunucudan Çek</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
@@ -357,6 +368,19 @@ export class Dashboard {
             await this.refreshAccountStatus();
             const msg = document.getElementById('profile-sync-msg');
             if (msg) { msg.textContent = ok ? 'Buluta yedeklendi' : 'Aktarım başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }
+        };
+        window.accountLoginAndPush = async () => {
+            const e = document.getElementById('acc-email').value; const p = document.getElementById('acc-pass').value;
+            const auth = new AuthManager(this.db);
+            const okLogin = await auth.login(e,p);
+            if (okLogin) { await auth.saveCurrentAccount(); await window.pushProfileToServer(); }
+            else { const msg = document.getElementById('profile-sync-msg'); if (msg) { msg.textContent = 'Giriş başarısız'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } }
+        };
+        window.accountRegisterAndPush = async () => {
+            const e = document.getElementById('acc-email').value; const p = document.getElementById('acc-pass').value; const auth = new AuthManager(this.db);
+            const res = await auth.register(e,p, await this.db.getUserName());
+            if (res && res.ok) { await auth.saveCurrentAccount(); await window.pushProfileToServer(); }
+            else { const msg = document.getElementById('profile-sync-msg'); if (msg) { msg.textContent = res && res.exists ? 'Bu e‑posta kayıtlı, lütfen Giriş Yapın' : 'Kayıt başarısız'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } }
         };
         window.pullFromServer = async () => {
             const sm = new SyncManager(this.db);
