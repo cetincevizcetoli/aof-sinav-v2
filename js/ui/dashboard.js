@@ -338,16 +338,19 @@ export class Dashboard {
     async openAccounts() {
         const list = (await this.db.getProfile('accounts')) || [];
         const items = Array.isArray(list) ? list : [];
+        const activeEmail = await this.db.getProfile('account_email');
         const html = `
         <div class="modal-overlay" id="accounts-modal">
             <div class="modal-box large">
                 <div class="modal-header"><h2 class="modal-title">Kayıtlı Hesaplar</h2><button class="icon-btn" onclick="document.getElementById('accounts-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                <div style="display:flex; justify-content:flex-end; gap:8px; padding:8px 0;"><button class="nav-btn" onclick="document.getElementById('accounts-modal').remove(); window.openAuthSync()">Hesap Ekle</button></div>
                 <div id="accounts-content" style="max-height:60vh; overflow:auto;">
                     ${items.length === 0 ? '<div style="padding:12px; color:#64748b;">Kayıtlı hesap bulunmuyor.</div>' : items.map(acc => {
                         const ts = acc.lastSync ? new Date(acc.lastSync).toLocaleString() : '-';
+                        const active = (acc.email === activeEmail);
                         return `<div class=\"lesson-card\" style=\"display:flex; align-items:center; justify-content:space-between;\">
                             <div>
-                                <div style=\"font-weight:600;\">${acc.email}</div>
+                                <div style=\"font-weight:600; display:flex; align-items:center; gap:8px;\">${acc.email} ${active ? '<span style=\\"background:#dcfce7; color:#166534; padding:2px 8px; border-radius:999px; font-size:0.75rem;\\">Aktif</span>' : ''}</div>
                                 <small style=\"color:#64748b;\">Son Senkron: ${ts}</small>
                             </div>
                             <div style=\"display:flex; gap:8px;\">
@@ -520,19 +523,21 @@ export class Dashboard {
             const accEmailNow = await this.db.getProfile('account_email');
             const lastSyncNow = await this.db.getProfile('last_sync');
             const statusNow = hasTokenNow ? `Üye${accEmailNow?` • ${accEmailNow}`:''}${lastSyncNow?` • Son Senkron: ${new Date(lastSyncNow).toLocaleString()}`:''}` : 'Misafir';
+            const formHtml = hasTokenNow ? `<div style="padding:8px 12px; color:#334155; font-size:0.9rem;">Giriş yapmışsınız. Aşağıdan yedekleme işlemlerini kullanabilirsiniz.</div>` : `
+                        <div class="form-group">
+                            <input type="email" id="auth-email" class="form-select" placeholder="E-posta">
+                            <input type="password" id="auth-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                            <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
+                                <button class="nav-btn" onclick="window.doRegister()">Kayıt Ol</button>
+                                <button class="primary-btn" onclick="window.doLogin()">Giriş Yap</button>
+                            </div>
+                        </div>`;
             const html = `
             <div class="modal-overlay" id="auth-sync-modal">
                 <div class="modal-box">
                     <div class="modal-header"><h2 class="modal-title">Giriş / Senkronizasyon</h2><button class="icon-btn" onclick="document.getElementById('auth-sync-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
                     <div style="background:#f1f5f9; color:#334155; padding:8px 12px; border-radius:8px; font-size:0.85rem; margin-bottom:10px;">Durum: ${statusNow}</div>
-                    <div class="form-group">
-                        <input type="email" id="auth-email" class="form-select" placeholder="E-posta">
-                        <input type="password" id="auth-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
-                        <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
-                            <button class="nav-btn" onclick="window.doRegister()">Kayıt Ol</button>
-                            <button class="primary-btn" onclick="window.doLogin()">Giriş Yap</button>
-                        </div>
-                    </div>
+                    ${formHtml}
                     <div class="modal-actions" style="margin-top:16px; display:flex; gap:8px;">
                         <button class="nav-btn" onclick="window.doPushSync()">Sunucuya Yedekle</button>
                         <button class="nav-btn" onclick="window.doPullSync()">Sunucudan Yükle</button>
@@ -543,8 +548,8 @@ export class Dashboard {
             document.body.insertAdjacentHTML('beforeend', html);
             const sm = new SyncManager(this.db);
             const auth = new AuthManager(this.db);
-            window.doRegister = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const res = await auth.register(e,p); if (res && res.exists) { alert('Bu e-posta ile kayıt zaten mevcut. Lütfen giriş yapın.'); return; } alert(res && res.ok ? 'Kayıt başarılı' : 'Kayıt başarısız'); };
-            window.doLogin = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await auth.login(e,p); alert(ok ? 'Giriş başarılı' : 'Giriş başarısız'); };
+            window.doRegister = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const res = await auth.register(e,p); if (res && res.exists) { alert('Bu e-posta ile kayıt zaten mevcut. Lütfen giriş yapın.'); return; } await auth.saveCurrentAccount(); alert(res && res.ok ? 'Kayıt başarılı' : 'Kayıt başarısız'); };
+            window.doLogin = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await auth.login(e,p); if (ok) { await auth.saveCurrentAccount(); } alert(ok ? 'Giriş başarılı' : 'Giriş başarısız'); };
             window.doPushSync = async () => { const ok = await sm.pushAll().catch(async () => { const payload = { type:'push' }; await this.db.enqueueSync(payload); return false; }); alert(ok ? 'Yedekleme tamam' : 'Yedekleme başarısız'); };
             window.doPullSync = async () => { const ok = await sm.pullAll(); alert(ok ? 'Yükleme tamam' : 'Yükleme başarısız'); };
             window.logoutNow = () => { localStorage.removeItem('auth_token'); document.getElementById('auth-sync-modal').remove(); this.render(); };
