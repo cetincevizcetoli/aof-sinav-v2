@@ -133,6 +133,14 @@ export class Dashboard {
 
         html += `<div class="app-footer">Sürüm: v${versionInfo.version}</div>`;
         this.container.innerHTML = html;
+        const hasTokInit = !!localStorage.getItem('auth_token');
+        if (hasTokInit) {
+            const sm = new SyncManager(this.db);
+            const info = await sm.me().catch(()=>null);
+            if (info && info.email) { await this.db.setProfile('account_email', info.email); }
+            const am = new AuthManager(this.db);
+            await am.saveCurrentAccount();
+        }
         await this.refreshAccountStatus();
         
         // Global Eventler
@@ -321,7 +329,7 @@ export class Dashboard {
         if (hasTok && !email) {
             const sm = new SyncManager(this.db);
             const info = await sm.me();
-            if (info && info.email) { email = info.email; await this.db.setProfile('account_email', email); }
+            if (info && info.email) { email = info.email; await this.db.setProfile('account_email', email); const am = new AuthManager(this.db); await am.saveCurrentAccount(); }
         }
         const needsAccountForm = !hasTok || !email;
         const accFormHtml = needsAccountForm ? `
@@ -392,8 +400,19 @@ export class Dashboard {
     }
 
     async openAccounts() {
-        const list = (await this.db.getProfile('accounts')) || [];
-        const items = Array.isArray(list) ? list : [];
+        let list = (await this.db.getProfile('accounts')) || [];
+        let items = Array.isArray(list) ? list : [];
+        if ((!items || items.length===0) && !!localStorage.getItem('auth_token')) {
+            const sm = new SyncManager(this.db);
+            const info = await sm.me().catch(()=>null);
+            if (info && info.email) {
+                await this.db.setProfile('account_email', info.email);
+                const am = new AuthManager(this.db);
+                await am.saveCurrentAccount();
+                list = (await this.db.getProfile('accounts')) || [];
+                items = Array.isArray(list) ? list : [];
+            }
+        }
         const activeEmail = await this.db.getProfile('account_email');
         const html = `
         <div class="modal-overlay" id="accounts-modal">

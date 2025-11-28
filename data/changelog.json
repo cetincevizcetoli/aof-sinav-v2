@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.15",
+    "date": "2025-11-28",
+    "items": [
+      "Oturum açıkken e‑posta otomatik alınır ve hesap listeye eklenir",
+      "Kayıtlı Hesaplar boşsa token ile me() çağrısı ile tohumlama",
+      "Sürüm v1.1.15 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.14",
     "date": "2025-11-28",
     "items": [
