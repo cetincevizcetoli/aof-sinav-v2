@@ -59,6 +59,7 @@ async function initApp() {
             console.log('♻️ Veri değişti algılandı.');
             if (loader && typeof loader.resetCache === 'function') { loader.resetCache(); }
             await dashboard.render();
+            location.reload();
         } catch(e){}
     });
 
@@ -82,7 +83,7 @@ async function initApp() {
         const j = await r.json();
         const lastServer = (j && j.data && j.data.last_server_update) ? parseInt(j.data.last_server_update) : 0;
         const lastLocal = await db.getProfile('last_sync') || 0;
-        if (lastServer > lastLocal) { await drain(); }
+        if (lastServer > lastLocal) { await drain(); location.reload(); }
     };
     setInterval(() => { if (navigator.onLine) shortPoll(); }, 10000);
 }
