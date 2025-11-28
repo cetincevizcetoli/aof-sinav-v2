@@ -340,9 +340,10 @@ export class Dashboard {
                             <li>İlerleme ve skorların kaybolmaz.</li>
                         </ul>
                     </div>
+                    <div id="profile-sync-msg" style="display:none; margin-top:8px; background:#dcfce7; color:#166534; padding:8px 12px; border-radius:8px; font-weight:600;">İşlem tamamlandı.</div>
                 </div>
                 <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
-                    ${hasTok ? '<button class="primary-btn" onclick="window.pushProfileToServer()">Sunucuya Aktar</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
+                    ${hasTok ? '<button class="primary-btn" onclick="window.pushProfileToServer()">Sunucuya Aktar</button><button class="nav-btn" onclick="window.pullFromServer()">Sunucudan Çek</button>' : '<button class="primary-btn" onclick="document.getElementById(\'account-info-modal\').remove(); window.openAuthSync()">Üye Ol / Giriş Yap</button>'}
                     <button class="nav-btn secondary" onclick="document.getElementById('account-info-modal').remove()">Kapat</button>
                 </div>
             </div>
@@ -354,8 +355,15 @@ export class Dashboard {
             if (uname) { await sm.updateProfileName(uname); }
             const ok = await sm.pushAll();
             await this.refreshAccountStatus();
-            alert(ok ? 'Aktarım tamamlandı' : 'Aktarım başarısız');
-            document.getElementById('account-info-modal').remove();
+            const msg = document.getElementById('profile-sync-msg');
+            if (msg) { msg.textContent = ok ? 'Buluta yedeklendi' : 'Aktarım başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }
+        };
+        window.pullFromServer = async () => {
+            const sm = new SyncManager(this.db);
+            const ok = await sm.pullAll();
+            await this.refreshAccountStatus();
+            const msg = document.getElementById('profile-sync-msg');
+            if (msg) { msg.textContent = ok ? 'Sunucudan alındı' : 'Yükleme başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }
         };
     }
 
@@ -671,11 +679,14 @@ export class Dashboard {
                 mini.style.marginRight = '8px';
                 mini.style.fontSize = '0.85rem';
                 mini.style.color = '#334155';
+                mini.style.cursor = 'pointer';
                 ua.insertBefore(mini, ua.firstChild);
             }
             const hasToken = !!localStorage.getItem('auth_token');
             const accEmail = await this.db.getProfile('account_email');
             mini.textContent = hasToken ? (accEmail || 'Üye') : 'Misafir';
+            mini.title = 'Kayıtlı Hesaplar';
+            mini.onclick = () => this.openAccounts();
         }
     }
 }
