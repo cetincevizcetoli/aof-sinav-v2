@@ -650,6 +650,20 @@ export class Dashboard {
 
                     <div class="settings-group" style="padding:8px 0; border-top:1px solid #f1f5f9;">
                         <h4 class="group-title" style="margin:8px 12px; font-size:0.9rem; color:#334155;">Hesap İşlemleri</h4>
+                        <button class="menu-item" id="btn-account-info" style="width:100%; display:flex; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
+                            <div class="icon-box" style="width:32px; height:32px; border-radius:8px; background:#f1f5f9; color:#334155; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-id-card"></i></div>
+                            <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
+                                <span class="menu-label" style="font-weight:600; color:#0f172a;">Kullanıcı Bilgileri</span>
+                                <span class="menu-sub" style="font-size:0.8rem; color:#64748b;">Hesap durumunu görüntüle</span>
+                            </div>
+                        </button>
+                        <button class="menu-item" id="btn-update-cred" style="width:100%; display:none; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
+                            <div class="icon-box" style="width:32px; height:32px; border-radius:8px; background:#eef2ff; color:#3730a3; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-user-pen"></i></div>
+                            <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
+                                <span class="menu-label" style="font-weight:600; color:#0f172a;">Bilgileri Güncelle</span>
+                                <span class="menu-sub" style="font-size:0.8rem; color:#64748b;">Ad / E‑posta / Şifre</span>
+                            </div>
+                        </button>
                         <button class="menu-item" id="btn-reset-data" style="width:100%; display:flex; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
                             <div class="icon-box orange" style="width:32px; height:32px; border-radius:8px; background:#ffedd5; color:#f97316; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-eraser"></i></div>
                             <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
@@ -660,6 +674,12 @@ export class Dashboard {
                             <div class="icon-box purple" style="width:32px; height:32px; border-radius:8px; background:#ede9fe; color:#7c3aed; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-user-shield"></i></div>
                             <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
                                 <span class="menu-label" style="font-weight:600; color:#0f172a;">Yönetici Paneli</span>
+                            </div>
+                        </button>
+                        <button class="menu-item" id="btn-logout" style="width:100%; display:none; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
+                            <div class="icon-box" style="width:32px; height:32px; border-radius:8px; background:#fee2e2; color:#ef4444; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-right-from-bracket"></i></div>
+                            <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
+                                <span class="menu-label" style="font-weight:600; color:#0f172a;">Çıkış Yap</span>
                             </div>
                         </button>
                     </div>
@@ -694,13 +714,21 @@ export class Dashboard {
             if (nameEl) nameEl.textContent = nameLocal || '-';
             if (badgeEl) { badgeEl.textContent = hasToken ? 'Üye' : 'Misafir'; badgeEl.style.color = hasToken ? '#166534' : '#334155'; }
         })();
+        (async () => {
+            const hasToken = !!localStorage.getItem('auth_token');
+            const btnUpd = document.getElementById('btn-update-cred'); if (btnUpd) btnUpd.style.display = hasToken ? 'flex' : 'none';
+            const btnLogout = document.getElementById('btn-logout'); if (btnLogout) btnLogout.style.display = hasToken ? 'flex' : 'none';
+        })();
 
         document.getElementById('btn-sync-now').onclick = async () => { const sm = new SyncManager(this.db); await sm.autoSync(); document.getElementById('settings-menu-overlay').remove(); };
         document.getElementById('btn-check-update').onclick = () => { window.checkUpdatesNow(); };
+        const infoBtn = document.getElementById('btn-account-info'); if (infoBtn) infoBtn.onclick = () => { window.openAccountInfo(); };
+        const updBtn = document.getElementById('btn-update-cred'); if (updBtn) updBtn.onclick = async () => { window.openAccountInfo(); setTimeout(() => { const el = document.getElementById('acc-new-name'); if (el) el.focus(); }, 300); };
         document.getElementById('btn-reset-data').onclick = () => { window.confirmReset(); };
         const adminBtn = document.getElementById('btn-admin-panel'); if (adminBtn) adminBtn.onclick = () => { window.openAdminAccounts(); };
         const delBtn = document.getElementById('btn-delete-account'); if (delBtn) delBtn.onclick = () => { window.confirmDeleteAccount(); };
         const clBtn = document.getElementById('btn-changelog'); if (clBtn) clBtn.onclick = () => { window.openChangelog(); };
+        const logoutBtn = document.getElementById('btn-logout'); if (logoutBtn) logoutBtn.onclick = () => { window.logoutNow(); };
 
         window.confirmReset = () => {
             const html = `
