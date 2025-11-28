@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.11",
+    "date": "2025-11-28",
+    "items": [
+      "Başlıkta mini hesap etiketi (Üye/Misafir • e‑posta)",
+      "Hesap geçişinde durum pili ve başlık etiketi anında tazelenir",
+      "Sürüm v1.1.11 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.10",
     "date": "2025-11-28",
     "items": [

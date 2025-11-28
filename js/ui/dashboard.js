@@ -133,6 +133,7 @@ export class Dashboard {
 
         html += `<div class="app-footer">Sürüm: v${versionInfo.version}</div>`;
         this.container.innerHTML = html;
+        await this.refreshAccountStatus();
         
         // Global Eventler
         window.openLessonDetail = (code, file) => this.showLessonDetailModal(code, file);
@@ -369,6 +370,7 @@ export class Dashboard {
             if (!found) return;
             localStorage.setItem('auth_token', found.token || '');
             await this.db.setProfile('account_email', email);
+            await this.refreshAccountStatus();
             document.getElementById('accounts-modal').remove();
             this.render();
         };
@@ -549,13 +551,13 @@ export class Dashboard {
             const sm = new SyncManager(this.db);
             const auth = new AuthManager(this.db);
             window.doRegister = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const res = await auth.register(e,p); if (res && res.exists) { alert('Bu e-posta ile kayıt zaten mevcut. Lütfen giriş yapın.'); return; } await auth.saveCurrentAccount(); alert(res && res.ok ? 'Kayıt başarılı' : 'Kayıt başarısız'); };
-            window.doLogin = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await auth.login(e,p); if (ok) { await auth.saveCurrentAccount(); } alert(ok ? 'Giriş başarılı' : 'Giriş başarısız'); };
+            window.doLogin = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await auth.login(e,p); if (ok) { await auth.saveCurrentAccount(); await this.refreshAccountStatus(); } alert(ok ? 'Giriş başarılı' : 'Giriş başarısız'); };
             window.doPushSync = async () => { const ok = await sm.pushAll().catch(async () => { const payload = { type:'push' }; await this.db.enqueueSync(payload); return false; }); alert(ok ? 'Yedekleme tamam' : 'Yedekleme başarısız'); };
             window.doPullSync = async () => { const ok = await sm.pullAll(); alert(ok ? 'Yükleme tamam' : 'Yükleme başarısız'); };
-            window.logoutNow = () => { localStorage.removeItem('auth_token'); document.getElementById('auth-sync-modal').remove(); this.render(); };
+            window.logoutNow = async () => { localStorage.removeItem('auth_token'); await this.db.setProfile('account_email',''); await this.refreshAccountStatus(); document.getElementById('auth-sync-modal').remove(); this.render(); };
         };
 
-        window.logoutNow = () => { localStorage.removeItem('auth_token'); document.getElementById('settings-menu-overlay').remove(); this.render(); };
+        window.logoutNow = async () => { localStorage.removeItem('auth_token'); await this.db.setProfile('account_email',''); await this.refreshAccountStatus(); document.getElementById('settings-menu-overlay').remove(); this.render(); };
     }
 
     showWelcomeOverlay(){
@@ -624,5 +626,33 @@ export class Dashboard {
         };
         window.continueGuest = () => { localStorage.setItem('guest_mode','1'); const name = prompt('Adınızı girin (isteğe bağlı)'); if (name && name.trim().length>0) { this.db.setUserName(name.trim()); } document.getElementById('welcome-overlay').remove(); };
         window.switchAuthTab('login');
+    }
+    
+    async getAccountStatusText(){
+        const hasToken = !!localStorage.getItem('auth_token');
+        const accEmail = await this.db.getProfile('account_email');
+        const lastSync = await this.db.getProfile('last_sync');
+        return hasToken ? `Üye${accEmail?` • ${accEmail}`:''}${lastSync?` • Son Senkron: ${new Date(lastSync).toLocaleString()}`:''}` : 'Misafir (Veriler sadece bu cihazda)';
+    }
+
+    async refreshAccountStatus(){
+        const txt = await this.getAccountStatusText();
+        const pill = document.querySelector('.account-pill');
+        if (pill) { pill.textContent = txt; }
+        const ua = document.querySelector('.user-actions');
+        if (ua) {
+            let mini = document.getElementById('account-mini');
+            if (!mini) {
+                mini = document.createElement('span');
+                mini.id = 'account-mini';
+                mini.style.marginRight = '8px';
+                mini.style.fontSize = '0.85rem';
+                mini.style.color = '#334155';
+                ua.insertBefore(mini, ua.firstChild);
+            }
+            const hasToken = !!localStorage.getItem('auth_token');
+            const accEmail = await this.db.getProfile('account_email');
+            mini.textContent = hasToken ? (accEmail || 'Üye') : 'Misafir';
+        }
     }
 }
