@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.1.32",
+    "date": "2025-11-28",
+    "items": [
+      "PWA: In‑App Update Toast eklendi; görünür olduğunda sessiz sürüm kontrolü",
+      "UpdateManager semver karşılaştırma ve unregister+cache temizliği ile güncelle"
+    ]
+  },
+  {
     "version": "1.1.31",
     "date": "2025-11-28",
     "items": [
