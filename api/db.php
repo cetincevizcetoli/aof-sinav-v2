@@ -43,6 +43,15 @@ $pdo->exec('CREATE TABLE IF NOT EXISTS user_stats (user_id INT PRIMARY KEY, xp I
 $pdo->exec('CREATE TABLE IF NOT EXISTS exam_history (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, date BIGINT NOT NULL, lesson VARCHAR(255), unit INT, isCorrect TINYINT(1)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
 $pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token VARCHAR(255) PRIMARY KEY, created_at BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
 
+try {
+    $st = $pdo->query("SHOW COLUMNS FROM exam_history LIKE 'uuid'");
+    $has = ($st && $st->fetch(PDO::FETCH_ASSOC)) ? true : false;
+    if (!$has) {
+        try { $pdo->exec('ALTER TABLE exam_history ADD COLUMN uuid VARCHAR(36) NOT NULL'); } catch (Throwable $e) {}
+        try { $pdo->exec('ALTER TABLE exam_history ADD UNIQUE INDEX idx_uuid (uuid)'); } catch (Throwable $e) {}
+    }
+} catch (Throwable $e) {}
+
 function json(){ return json_decode(file_get_contents('php://input'), true) ?: []; }
 function ok($d){ echo json_encode(['ok'=>true,'data'=>$d]); }
 function err($c,$m){ http_response_code($c); echo json_encode(['ok'=>false,'error'=>$m]); }

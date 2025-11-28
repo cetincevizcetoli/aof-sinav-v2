@@ -66,6 +66,16 @@ async function initApp() {
     window.addEventListener('online', drain);
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && navigator.onLine) drain(); });
     setInterval(() => { if (navigator.onLine) drain(); }, 60000);
+    const shortPoll = async () => {
+        const token = sync.getToken(); if(!token) return;
+        const r = await fetch(`./api/sync.php?action=check_version&token=${encodeURIComponent(token)}`,{ headers:{ 'Authorization': `Bearer ${token}` }, cache:'no-store' });
+        if (!r.ok) return;
+        const j = await r.json();
+        const lastServer = (j && j.data && j.data.last_server_update) ? parseInt(j.data.last_server_update) : 0;
+        const lastLocal = await db.getProfile('last_sync') || 0;
+        if (lastServer > lastLocal) { await drain(); }
+    };
+    setInterval(() => { if (navigator.onLine) shortPoll(); }, 10000);
 }
 
 // Sayfa tamamen yüklendiğinde başlat

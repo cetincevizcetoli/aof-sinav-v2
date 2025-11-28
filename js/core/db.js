@@ -106,7 +106,8 @@ export class ExamDatabase {
                 ...data,
                 id: cardId || data.id,
                 lesson,
-                unit
+                unit,
+                updated_at: Date.now()
             });
             tx.oncomplete = () => resolve(true);
             tx.onerror = () => resolve(false);
@@ -154,7 +155,7 @@ export class ExamDatabase {
         return new Promise((resolve) => {
             if (!this.db) return resolve(false);
             const tx = this.db.transaction(['user_stats'], 'readwrite');
-            tx.objectStore('user_stats').put({ key: 'main_stats', ...stats });
+            tx.objectStore('user_stats').put({ key: 'main_stats', ...stats, updated_at: Date.now() });
             tx.oncomplete = () => resolve(true);
             tx.onerror = () => resolve(false);
         });
@@ -202,11 +203,13 @@ export class ExamDatabase {
             if (!this.db) return resolve(false);
             const tx = this.db.transaction(['exam_history'], 'readwrite');
             const store = tx.objectStore('exam_history');
+            const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){ const r = Math.random()*16|0, v = c=='x'?r:(r&0x3|0x8); return v.toString(16)});
             store.add({
                 date: Date.now(),
                 lesson: lessonCode,
                 unit: parseInt(unit) || 0,
-                isCorrect: isCorrect
+                isCorrect: isCorrect,
+                uuid
             });
             tx.oncomplete = () => resolve(true);
             tx.onerror = () => resolve(false);
