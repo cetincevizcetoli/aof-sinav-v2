@@ -333,8 +333,8 @@ export class Dashboard {
         const accFormHtml = needsAccountForm ? `
             <div class="form-group" style="margin-top:8px;">
                 <div style="font-weight:600; margin-bottom:6px;">Mevcut Hesaba Giriş ve Aktarım</div>
-                <input type="email" id="acc-email" class="form-select" placeholder="E-posta">
-                <input type="password" id="acc-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                <input type="email" id="acc-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none">
+                <input type="password" id="acc-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;" autocomplete="new-password">
                 <input type="text" id="acc-login-name" class="form-select" placeholder="Ad (Cihaz)" style="margin-top:8px;">
                 <small id="acc-email-status" style="display:block; margin-top:6px; color:#64748b; font-size:0.8rem;">Yeni misin? Kayıt Ol ve Aktar'ı seç.</small>
                 <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
@@ -387,8 +387,8 @@ export class Dashboard {
             </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
-        const emailInput = document.getElementById('acc-email');
-        if (emailInput) {
+            const emailInput = document.getElementById('acc-email');
+            if (emailInput) {
             const sm = new SyncManager(this.db);
             const statusEl = document.getElementById('acc-email-status');
             const btnReg = document.getElementById('btn-register-push');
@@ -403,6 +403,9 @@ export class Dashboard {
                     if(btnReg) btnReg.disabled = false; if(btnLogin) btnLogin.disabled = true;
                 }
             };
+            emailInput.value = '';
+            const passInput = document.getElementById('acc-pass'); if (passInput) passInput.value = '';
+            const loginName = document.getElementById('acc-login-name'); if (loginName) loginName.value = '';
             emailInput.addEventListener('input', guide);
             emailInput.addEventListener('blur', guide);
         }
@@ -729,8 +732,8 @@ export class Dashboard {
             const statusNow = hasTokenNow ? `Üye${accEmailNow?` • ${accEmailNow}`:''}${lastSyncNow?` • Son Senkron: ${new Date(lastSyncNow).toLocaleString()}`:''}` : 'Misafir';
             const formHtml = hasTokenNow ? `<div style="padding:8px 12px; color:#334155; font-size:0.9rem;">Giriş yapmışsınız. Aşağıdan yedekleme işlemlerini kullanabilirsiniz.</div>` : `
                         <div class="form-group">
-                            <input type="email" id="auth-email" class="form-select" placeholder="E-posta">
-                            <input type="password" id="auth-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                        <input type="email" id="auth-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none">
+                        <input type="password" id="auth-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;" autocomplete="new-password">
                             <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
                                 <button class="nav-btn" data-tip="register.push" onclick="window.doRegister()">Kayıt Ol</button>
                                 <button class="primary-btn" data-tip="login.push" onclick="window.doLogin()">Giriş Yap</button>
@@ -781,16 +784,16 @@ export class Dashboard {
                 </div>
                 <div id="auth-forms" style="margin-top:12px;">
                     <div id="form-login">
-                        <input type="email" id="welcome-email" class="form-select" placeholder="E-posta">
-                        <input type="password" id="welcome-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                        <input type="email" id="welcome-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none">
+                        <input type="password" id="welcome-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;" autocomplete="new-password">
                         <div class="modal-actions" style="margin-top:10px;">
                             <button class="primary-btn" onclick="window.handleLogin()">Giriş Yap</button>
                         </div>
                     </div>
                     <div id="form-register" style="display:none;">
-                        <input type="text" id="welcome-name" class="form-select" placeholder="Ad Soyad">
-                        <input type="email" id="welcome-email-r" class="form-select" placeholder="E-posta" style="margin-top:8px;">
-                        <input type="password" id="welcome-pass-r" class="form-select" placeholder="Şifre" style="margin-top:8px;">
+                        <input type="text" id="welcome-name" class="form-select" placeholder="Ad Soyad" autocomplete="off">
+                        <input type="email" id="welcome-email-r" class="form-select" placeholder="E-posta" style="margin-top:8px;" autocomplete="off" autocapitalize="none">
+                        <input type="password" id="welcome-pass-r" class="form-select" placeholder="Şifre" style="margin-top:8px;" autocomplete="new-password">
                         <div class="modal-actions" style="margin-top:10px;">
                             <button class="primary-btn" onclick="window.handleRegister()">Kayıt Ol</button>
                         </div>
@@ -803,7 +806,7 @@ export class Dashboard {
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
         const auth = new AuthManager(this.db);
-        (async () => { const p = await this.db.getAllProgress(); const h = await this.db.getHistory(); const s = await this.db.getUserStats(); const has = (Array.isArray(p)&&p.length>0)||(Array.isArray(h)&&h.length>0)||((s.xp||0)>0||(s.streak||0)>0||(s.totalQuestions||0)>0); const banner = document.getElementById('local-data-banner'); if (banner && has) banner.style.display='block'; const name = await this.db.getUserName(); if (name) { const nm = document.getElementById('welcome-name'); if (nm) nm.value = name; } })();
+        (async () => { const p = await this.db.getAllProgress(); const h = await this.db.getHistory(); const s = await this.db.getUserStats(); const has = (Array.isArray(p)&&p.length>0)||(Array.isArray(h)&&h.length>0)||((s.xp||0)>0||(s.streak||0)>0||(s.totalQuestions||0)>0); const banner = document.getElementById('local-data-banner'); if (banner && has) banner.style.display='block'; document.getElementById('welcome-email').value=''; document.getElementById('welcome-pass').value=''; document.getElementById('welcome-email-r').value=''; document.getElementById('welcome-pass-r').value=''; document.getElementById('welcome-name').value=''; })();
         window.switchAuthTab = (tab) => {
             document.getElementById('form-login').style.display = (tab==='login') ? 'block':'none';
             document.getElementById('form-register').style.display = (tab==='register') ? 'block':'none';

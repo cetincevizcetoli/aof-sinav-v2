@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.30",
+    "date": "2025-11-28",
+    "items": [
+      "Welcome overlay giriş/kayıt alanları boş ve autocomplete kapalı",
+      "Account Info formunda e‑posta/şifre/ad alanları temiz başlar (autocomplete kapalı)",
+      "Sürüm v1.1.30 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.29",
     "date": "2025-11-28",
     "items": [
