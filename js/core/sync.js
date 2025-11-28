@@ -24,21 +24,23 @@ export class SyncManager {
         const remoteH = (j.data && j.data.history) || [];
         const localP = await this.db.getAllProgress();
         const localS = await this.db.getUserStats();
-        const merged = []; const pushQueue = [];
+        const merged = []; const pushQueue = []; let remoteApplied = false; let historyAdded = false; let statsChanged = false;
         const mapLocal = new Map(localP.map(x=>[x.id,x]));
         const mapRemote = new Map(remoteP.map(x=>[x.id,x]));
         const ids = new Set([...mapLocal.keys(), ...mapRemote.keys()]);
-        for(const id of ids){ const l = mapLocal.get(id)||{}; const r = mapRemote.get(id)||{}; const lu = parseInt(l.updated_at||0); const ru = parseInt(r.updated_at||0); if (ru > lu) { merged.push({ id: r.id, level: r.level||0, nextReview: r.nextReview||0, correct: r.correct||0, wrong: r.wrong||0, updated_at: ru }); } else if (lu > ru) { merged.push({ id: l.id, level: l.level||0, nextReview: l.nextReview||0, correct: l.correct||0, wrong: l.wrong||0, updated_at: lu }); pushQueue.push({ id: l.id, level: l.level||0, nextReview: l.nextReview||0, correct: l.correct||0, wrong: l.wrong||0, updated_at: lu, lesson: l.lesson||'', unit: l.unit||0 }); } }
+        for(const id of ids){ const l = mapLocal.get(id)||{}; const r = mapRemote.get(id)||{}; const lu = parseInt(l.updated_at||0); const ru = parseInt(r.updated_at||0); if (ru > lu) { merged.push({ id: r.id, level: r.level||0, nextReview: r.nextReview||0, correct: r.correct||0, wrong: r.wrong||0, updated_at: ru }); remoteApplied = true; } else if (lu > ru) { merged.push({ id: l.id, level: l.level||0, nextReview: l.nextReview||0, correct: l.correct||0, wrong: l.wrong||0, updated_at: lu }); pushQueue.push({ id: l.id, level: l.level||0, nextReview: l.nextReview||0, correct: l.correct||0, wrong: l.wrong||0, updated_at: lu, lesson: l.lesson||'', unit: l.unit||0 }); } }
         for(const item of merged){ await this.db.saveProgress(item.id, item); }
         const lsU = parseInt(localS.updated_at||0); const rsU = parseInt(remoteS.updated_at||0);
-        const finalStats = rsU > lsU ? remoteS : localS;
+        const finalStats = rsU > lsU ? remoteS : localS; statsChanged = rsU > lsU;
         await this.db.updateUserStats(finalStats);
-        for(const hi of remoteH){ if (!lastTs || (hi.date||0) > lastTs) { await this.db.logActivity(hi.lesson, hi.unit, !!hi.isCorrect); } }
+        for(const hi of remoteH){ if (!lastTs || (hi.date||0) > lastTs) { await this.db.logActivity(hi.lesson, hi.unit, !!hi.isCorrect); historyAdded = true; } }
         const pushRes = pushQueue.length>0 ? await fetch(`${this.base}/sync.php?action=push&token=${encodeURIComponent(token)}`,{ method:'POST', headers:{ 'Content-Type':'application/json', 'Authorization': `Bearer ${token}` }, body: JSON.stringify({ progress: pushQueue, stats: finalStats, history: [] }) }) : { ok:true };
         const ts = Date.now(); await this.db.setProfile('last_sync', ts);
         const email = await this.db.getProfile('account_email'); const accounts = (await this.db.getProfile('accounts')) || [];
         const i = Array.isArray(accounts) ? accounts.findIndex(a => a && a.email === email) : -1; if (i >= 0) { accounts[i].lastSync = ts; await this.db.setProfile('accounts', accounts); }
-        try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch(e){}
+        if (remoteApplied || pushQueue.length>0 || statsChanged || historyAdded) {
+            try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch(e){}
+        }
         return pushRes.ok;
     }
 }

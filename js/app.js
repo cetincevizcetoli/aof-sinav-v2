@@ -54,13 +54,16 @@ async function initApp() {
     // 6. İlk Ekranı Çiz
     dashboard.render();
 
+    let __refreshLock = false;
     document.addEventListener('app:data-updated', async () => {
         try {
-            console.log('♻️ Veri değişti algılandı.');
+            if (__refreshLock) return;
+            __refreshLock = true;
+            console.log('♻️ Veri değişti algılandı. UI tazeleniyor...');
             if (loader && typeof loader.resetCache === 'function') { loader.resetCache(); }
             await dashboard.render();
-            location.reload();
-        } catch(e){}
+            setTimeout(() => { __refreshLock = false; }, 1500);
+        } catch(e) { __refreshLock = false; }
     });
 
     const drain = async () => {
@@ -83,7 +86,7 @@ async function initApp() {
         const j = await r.json();
         const lastServer = (j && j.data && j.data.last_server_update) ? parseInt(j.data.last_server_update) : 0;
         const lastLocal = await db.getProfile('last_sync') || 0;
-        if (lastServer > lastLocal) { await drain(); location.reload(); }
+        if (lastServer > lastLocal) { await drain(); }
     };
     setInterval(() => { if (navigator.onLine) shortPoll(); }, 10000);
 }
