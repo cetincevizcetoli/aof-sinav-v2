@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.20",
+    "date": "2025-11-28",
+    "items": [
+      "Sunucuya Aktar: token yoksa formdaki e‑posta/şifre ile otomatik giriş",
+      "Yetkisiz durumda uyarı ve aktarımı durdurma",
+      "Sürüm v1.1.20 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.19",
     "date": "2025-11-28",
     "items": [

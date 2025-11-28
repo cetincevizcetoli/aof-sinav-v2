@@ -387,12 +387,25 @@ export class Dashboard {
             const unameLocal = await this.db.getUserName();
             const uname = (nameInput && nameInput.value && nameInput.value.trim().length>0) ? nameInput.value.trim() : unameLocal;
             if (nameInput && nameInput.value && nameInput.value.trim().length>0) { await this.db.setUserName(nameInput.value.trim()); }
+            let authorized = !!sm.getToken();
+            if (authorized) { const chk = await sm.me().catch(()=>null); authorized = !!chk; }
+            if (!authorized) {
+                const e = (document.getElementById('acc-email')||{}).value || '';
+                const p = (document.getElementById('acc-pass')||{}).value || '';
+                if (e && p) {
+                    const auth = new AuthManager(this.db);
+                    const okLogin = await auth.login(e,p);
+                    if (okLogin) { await auth.saveCurrentAccount(); authorized = true; }
+                }
+            }
+            const msg = document.getElementById('profile-sync-msg');
+            if (!authorized) { if (msg) { msg.textContent = 'Önce giriş yapın veya doğru e‑posta/şifre girin'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } return; }
+
             if (uname) { await sm.updateProfileName(uname); }
             const info = await sm.me().catch(()=>null);
             if (info && info.email) { await this.db.setProfile('account_email', info.email); const am = new AuthManager(this.db); await am.saveCurrentAccount(); }
             const ok = await sm.pushAll();
             await this.refreshAccountStatus();
-            const msg = document.getElementById('profile-sync-msg');
             if (msg) { msg.textContent = ok ? 'Buluta yedeklendi' : 'Aktarım başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }
         };
         window.accountLoginAndPush = async () => {
