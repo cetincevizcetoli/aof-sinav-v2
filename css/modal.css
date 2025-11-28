@@ -9,3 +9,11 @@
 .form-label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #64748b; }
 .form-select { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1rem; background: white; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 2rem; }
+.settings-panel .menu-item:hover { background:#f8fafc; }
+.settings-panel .group-title { font-weight:600; }
+.settings-panel .badge-member { background:#f1f5f9; padding:2px 8px; border-radius:999px; }
+.settings-panel .btn-text-danger:hover { text-decoration: underline; }
+.settings-panel .icon-box.blue { background:#dbeafe; color:#2563eb; }
+.settings-panel .icon-box.green { background:#dcfce7; color:#16a34a; }
+.settings-panel .icon-box.orange { background:#ffedd5; color:#f97316; }
+.settings-panel .icon-box.purple { background:#ede9fe; color:#7c3aed; }

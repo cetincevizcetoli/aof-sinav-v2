@@ -617,25 +617,61 @@ export class Dashboard {
         if (existing) existing.remove();
         const html = `
             <div id="settings-menu-overlay" style="position:fixed; inset:0; background:transparent;">
-                <div id="settings-menu" style="position:fixed; right:16px; top:60px; background:white; border:1px solid #e2e8f0; box-shadow:0 10px 25px rgba(0,0,0,0.08); border-radius:12px; min-width:280px; overflow:hidden;">
-                    <div style="padding:10px 12px; font-weight:600; border-bottom:1px solid #f1f5f9;">Ayarlar</div>
-                    <div style="padding:8px 12px; font-size:0.85rem; color:#334155; border-bottom:1px solid #f1f5f9;">Durum: ${localStorage.getItem('auth_token') ? 'Üye' : 'Misafir'}</div>
-                    <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-bottom:1px solid #f1f5f9;">Hesap</div>
-                    <button class="nav-btn" data-tip="account.info" style="width:100%; justify-content:flex-start;" onclick="window.openAccountInfo()">Kullanıcı Bilgileri</button>
-                    <button class="nav-btn" data-tip="accounts.manage" style="width:100%; justify-content:flex-start;" onclick="window.openAccounts()">Kayıtlı Hesaplar</button>
-                    <button class="nav-btn" data-tip="auth.sync" style="width:100%; justify-content:flex-start;" onclick="window.openAuthSync()">Giriş / Senkronizasyon</button>
-                    ${localStorage.getItem('auth_token') ? `<button class=\"nav-btn\" data-tip=\"logout\" style=\"width:100%; justify-content:flex-start;\" onclick=\"window.logoutNow()\">Çıkış Yap</button>` : ''}
-                    ${localStorage.getItem('auth_token') ? `<button class=\"nav-btn warning\" data-tip=\"delete.account\" style=\"width:100%; justify-content:flex-start;\" onclick=\"window.confirmDeleteAccount()\">Hesabımı Sil</button>` : ''}
-                    <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9; border-bottom:1px solid #f1f5f9;">Veri</div>
-                    <button class="nav-btn secondary" data-tip="reset.all" style="width:100%; justify-content:flex-start;" onclick="window.confirmReset()">Verileri Sıfırla (Sunucu+Lokal)</button>
-                    <button class="nav-btn" data-tip="changelog" style="width:100%; justify-content:flex-start;" onclick="window.openChangelog()">Sürüm Notları</button>
-                    <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9; border-bottom:1px solid #f1f5f9;">Sistem</div>
-                    <button class="nav-btn" data-tip="check.update" style="width:100%; justify-content:flex-start;" onclick="window.checkUpdatesNow()">Güncellemeleri Kontrol Et</button>
-                    <button class="nav-btn warning" data-tip="manual.update" style="width:100%; justify-content:flex-start;" onclick="window.manualUpdateNow()">Manuel Güncelle</button>
-                    <button class="nav-btn" style="width:100%; justify-content:flex-start;" onclick="window.forceSyncNow()">Senkronu Zorla</button>
-                    <div style="padding:8px 12px; font-size:0.8rem; color:#64748b; border-top:1px solid #f1f5f9;">Admin</div>
-                    <button class="nav-btn warning" style="width:100%; justify-content:flex-start;" onclick="window.openAdminAccounts()">Hesap Temizleme (Admin)</button>
-                    <button class="nav-btn secondary" style="width:100%; justify-content:flex-start;" onclick="document.getElementById('settings-menu-overlay').remove()">Kapat</button>
+                <div id="settings-menu" class="settings-panel" style="position:fixed; right:16px; top:60px; background:white; border:1px solid #e2e8f0; box-shadow:0 10px 25px rgba(0,0,0,0.08); border-radius:12px; min-width:320px; overflow:hidden;">
+                    <div class="settings-profile-card" style="display:flex; align-items:center; justify-content:space-between; padding:12px; background:#f8fafc; border-bottom:1px solid #f1f5f9;">
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            <div class="profile-avatar" style="width:40px; height:40px; border-radius:999px; background:#eef2ff; display:flex; align-items:center; justify-content:center; color:#3730a3;"><i class="fa-solid fa-user-circle"></i></div>
+                            <div class="profile-info">
+                                <h3 id="menu-user-name" style="margin:0; font-size:1rem; color:#0f172a;">-</h3>
+                                <span class="badge badge-member" id="menu-user-badge" style="font-size:0.75rem; color:#334155;">-</span>
+                            </div>
+                        </div>
+                        <button class="btn-icon-logout" title="Çıkış Yap" onclick="window.logoutNow()" style="border:none; background:transparent; color:#ef4444; font-size:1rem;"><i class="fa-solid fa-right-from-bracket"></i></button>
+                    </div>
+
+                    <div class="settings-group" style="padding:8px 0;">
+                        <h4 class="group-title" style="margin:8px 12px; font-size:0.9rem; color:#334155;">Uygulama & Veri</h4>
+                        <button class="menu-item" id="btn-sync-now" style="width:100%; display:flex; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
+                            <div class="icon-box blue" style="width:32px; height:32px; border-radius:8px; background:#dbeafe; color:#2563eb; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-rotate"></i></div>
+                            <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
+                                <span class="menu-label" style="font-weight:600; color:#0f172a;">Senkronize Et</span>
+                                <span class="menu-sub" style="font-size:0.8rem; color:#64748b;">Verileri sunucuyla eşitle</span>
+                            </div>
+                        </button>
+
+                        <button class="menu-item" id="btn-check-update" style="width:100%; display:flex; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
+                            <div class="icon-box green" style="width:32px; height:32px; border-radius:8px; background:#dcfce7; color:#16a34a; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                            <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
+                                <span class="menu-label" style="font-weight:600; color:#0f172a;">Güncelleme Kontrol</span>
+                                <span class="menu-sub" id="version-text" style="font-size:0.8rem; color:#64748b;">-</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="settings-group" style="padding:8px 0; border-top:1px solid #f1f5f9;">
+                        <h4 class="group-title" style="margin:8px 12px; font-size:0.9rem; color:#334155;">Hesap İşlemleri</h4>
+                        <button class="menu-item" id="btn-reset-data" style="width:100%; display:flex; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
+                            <div class="icon-box orange" style="width:32px; height:32px; border-radius:8px; background:#ffedd5; color:#f97316; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-eraser"></i></div>
+                            <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
+                                <span class="menu-label" style="font-weight:600; color:#0f172a;">İlerlemeyi Sıfırla</span>
+                            </div>
+                        </button>
+                        <button class="menu-item admin-only" id="btn-admin-panel" style="width:100%; display:none; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
+                            <div class="icon-box purple" style="width:32px; height:32px; border-radius:8px; background:#ede9fe; color:#7c3aed; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-user-shield"></i></div>
+                            <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
+                                <span class="menu-label" style="font-weight:600; color:#0f172a;">Yönetici Paneli</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="settings-danger-zone" style="padding:12px; border-top:1px solid #f1f5f9;">
+                        <button class="btn-text-danger" id="btn-delete-account" style="border:none; background:transparent; color:#ef4444; font-weight:600;"><i class="fa-solid fa-trash"></i> Hesabımı Kalıcı Olarak Sil</button>
+                        <div class="app-footer-info" style="margin-top:10px; color:#64748b; font-size:0.8rem;">
+                            <span id="footer-version">AÖF Asistanı</span><br>
+                            <a href="#" id="btn-changelog">Sürüm Notları</a>
+                        </div>
+                        <div style="display:flex; justify-content:flex-end; margin-top:8px;"><button class="nav-btn secondary" onclick="document.getElementById('settings-menu-overlay').remove()">Kapat</button></div>
+                    </div>
                 </div>
             </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
@@ -643,6 +679,28 @@ export class Dashboard {
         overlay.addEventListener('click', (e) => { if (e.target.id === 'settings-menu-overlay') overlay.remove(); });
         const escHandler = (e) => { if (e.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', escHandler); } };
         document.addEventListener('keydown', escHandler);
+
+        // Etkileşimler
+        (async () => {
+            const hasToken = !!localStorage.getItem('auth_token');
+            const nameLocal = await this.db.getUserName();
+            const badgeEl = document.getElementById('menu-user-badge');
+            const nameEl = document.getElementById('menu-user-name');
+            const verEl = document.getElementById('version-text');
+            const footVer = document.getElementById('footer-version');
+            const versionInfo = await fetch('version.json?t=' + Date.now()).then(r => r.json()).catch(() => ({ version: 'unknown' }));
+            if (verEl) verEl.textContent = `v${versionInfo.version}`;
+            if (footVer) footVer.textContent = `AÖF Asistanı v${versionInfo.version}`;
+            if (nameEl) nameEl.textContent = nameLocal || '-';
+            if (badgeEl) { badgeEl.textContent = hasToken ? 'Üye' : 'Misafir'; badgeEl.style.color = hasToken ? '#166534' : '#334155'; }
+        })();
+
+        document.getElementById('btn-sync-now').onclick = async () => { const sm = new SyncManager(this.db); await sm.autoSync(); document.getElementById('settings-menu-overlay').remove(); };
+        document.getElementById('btn-check-update').onclick = () => { window.checkUpdatesNow(); };
+        document.getElementById('btn-reset-data').onclick = () => { window.confirmReset(); };
+        const adminBtn = document.getElementById('btn-admin-panel'); if (adminBtn) adminBtn.onclick = () => { window.openAdminAccounts(); };
+        const delBtn = document.getElementById('btn-delete-account'); if (delBtn) delBtn.onclick = () => { window.confirmDeleteAccount(); };
+        const clBtn = document.getElementById('btn-changelog'); if (clBtn) clBtn.onclick = () => { window.openChangelog(); };
 
         window.confirmReset = () => {
             const html = `
