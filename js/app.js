@@ -11,7 +11,7 @@ async function initApp() {
 
     // 1. Otomatik Güncelleme Kontrolü
     const updater = new UpdateManager();
-    updater.checkUpdates(); // Arka planda versiyon kontrolü yapar
+    updater.checkUpdates(true);
 
     // 2. Veritabanı Başlatma
     db = new ExamDatabase();
@@ -81,7 +81,7 @@ async function initApp() {
     };
     if (navigator.onLine) { await drain(); }
     window.addEventListener('online', drain);
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && navigator.onLine) drain(); });
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { updater.checkUpdates(true); if (navigator.onLine) drain(); } });
     setInterval(() => { if (navigator.onLine) drain(); }, 60000);
     const shortPoll = async () => {
         const token = sync.getToken(); if(!token) return;

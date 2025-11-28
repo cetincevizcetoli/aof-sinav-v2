@@ -324,6 +324,12 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); colo
 .ghost-btn:focus { outline: 2px solid #93c5fd; outline-offset: 2px; }
 .ghost-btn i { font-size: 0.95rem; }
 
+/* Update Toast */
+.update-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #1e293b; color: white; padding: 12px 20px; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); display: flex; align-items: center; gap: 15px; z-index: 9999; animation: slideUp 0.5s ease-out; width: 90%; max-width: 400px; justify-content: space-between; }
+.toast-content { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
+.btn-update-action { background: #3b82f6; color: white; border: none; padding: 6px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+@keyframes slideUp { from { transform: translate(-50%, 100px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+
 /* Renkler */
 .text-green { color: #15803d; }
 .text-blue { color: #2563eb; }
