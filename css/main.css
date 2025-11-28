@@ -380,3 +380,4 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); colo
     .nav-btn { width: 100%; justify-content: center; }
     .nav-btn.primary { margin-left: 0; }
 }
+.user-name-display { text-transform: capitalize; }

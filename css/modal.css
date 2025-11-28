@@ -17,3 +17,4 @@
 .settings-panel .icon-box.green { background:#dcfce7; color:#16a34a; }
 .settings-panel .icon-box.orange { background:#ffedd5; color:#f97316; }
 .settings-panel .icon-box.purple { background:#ede9fe; color:#7c3aed; }
+.settings-panel #menu-user-name { text-transform: capitalize; }
