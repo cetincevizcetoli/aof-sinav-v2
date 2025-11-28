@@ -12,8 +12,33 @@ export class Dashboard {
     }
 
     async refreshAndRender(){
-        if (this.loader && typeof this.loader.resetCache === 'function') { this.loader.resetCache(); }
-        await this.render();
+        const wrap = document.getElementById('dashboard-container');
+        if (!wrap || !wrap.children || wrap.children.length === 0) {
+            if (this.loader && typeof this.loader.resetCache === 'function') { this.loader.resetCache(); }
+            await this.render();
+            return;
+        }
+        await this.updateUIValues();
+    }
+
+    async updateUIValues(){
+        const lessons = await this.loader.getLessonList();
+        const stats = await this.db.getUserStats();
+        const rank = new Gamification(this.db).getRank(stats.xp);
+        const lessonStats = await this.calculateLessonStats(lessons);
+        lessons.forEach(lesson => {
+            const st = lessonStats[lesson.code] || { total:0, learned:0 };
+            const percent = st.total>0 ? Math.round((st.learned/st.total)*100) : 0;
+            const bar = document.getElementById(`prog-bar-${lesson.code}`);
+            const txt = document.getElementById(`prog-text-${lesson.code}`);
+            if (bar) bar.style.width = `${percent}%`;
+            if (txt) txt.textContent = `%${percent}`;
+        });
+        const xpEl = document.getElementById('dash-xp-value');
+        const xpFill = document.querySelector('.xp-fill');
+        if (xpEl) xpEl.textContent = String(stats.xp||0);
+        if (xpFill) xpFill.style.width = `${Math.min(100, (stats.xp / (rank.next||1)) * 100)}%`;
+        await this.refreshAccountStatus();
     }
 
     // Ana Ekranı Çiz
@@ -45,7 +70,7 @@ export class Dashboard {
         const accEmail = await this.db.getProfile('account_email');
         const lastSync = await this.db.getProfile('last_sync');
         const statusText = hasToken ? `Üye${accEmail?` • ${accEmail}`:''}${lastSync?` • Son Senkron: ${new Date(lastSync).toLocaleString()}`:''}` : 'Misafir (Veriler sadece bu cihazda)';
-        let html = `
+        let html = `<div id="dashboard-container">
             <div class="dashboard-header" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
                 <div>
                     <h2>Derslerim</h2>
@@ -69,8 +94,8 @@ export class Dashboard {
                     </div>
                     <h3>${lesson.name}</h3>
                     <div class="progress-container">
-                        <div class="progress-info"><span>İlerleme</span><span>%${percent}</span></div>
-                        <div class="progress-bar"><div class="fill" style="width: ${percent}%"></div></div>
+                        <div class="progress-info"><span>İlerleme</span><span id="prog-text-${lesson.code}">%${percent}</span></div>
+                        <div class="progress-bar"><div class="fill" id="prog-bar-${lesson.code}" style="width: ${percent}%"></div></div>
                     </div>
                 </div>
             `;
@@ -93,7 +118,7 @@ export class Dashboard {
                             <div class="rank-title">${rank.title}</div>
                             <div class="user-name-display">${userName}</div>
                             <div class="xp-bar-container">
-                                <div class="xp-info"><span>${stats.xp} XP</span><small>Sonraki: ${rank.next} XP</small></div>
+                                <div class="xp-info"><span id="dash-xp-value">${stats.xp}</span> XP<small>Sonraki: ${rank.next} XP</small></div>
                                 <div class="xp-bar"><div class="xp-fill" style="width: ${(stats.xp / rank.next) * 100}%"></div></div>
                             </div>
                         </div>
@@ -137,6 +162,7 @@ export class Dashboard {
         `;
 
         html += `<div class="app-footer">Sürüm: v${versionInfo.version}</div>`;
+        html += `</div>`;
         this.container.innerHTML = html;
         await this.refreshAccountStatus();
         window.loadTooltips = async () => {
