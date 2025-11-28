@@ -64,6 +64,7 @@ if ($a === 'register') {
     $in = json();
     $newEmail = isset($in['new_email']) ? trim(strtolower($in['new_email'])) : '';
     $newPass = isset($in['new_password']) ? (string)$in['new_password'] : '';
+    $newName = isset($in['new_name']) ? trim($in['new_name']) : '';
     if ($newEmail) {
         $st = $pdo->prepare('SELECT id FROM users WHERE email=?');
         $st->execute([$newEmail]);
@@ -74,6 +75,9 @@ if ($a === 'register') {
     if ($newPass) {
         $hash = password_hash($newPass, PASSWORD_DEFAULT);
         $pdo->prepare('UPDATE users SET password_hash=? WHERE id=?')->execute([$hash,$uid]);
+    }
+    if ($newName) {
+        $pdo->prepare('UPDATE users SET name=? WHERE id=?')->execute([$newName,$uid]);
     }
     $st2 = $pdo->prepare('SELECT email,name,created_at FROM users WHERE id=?');
     $st2->execute([$uid]);

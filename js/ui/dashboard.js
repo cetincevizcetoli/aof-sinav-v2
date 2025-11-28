@@ -332,6 +332,7 @@ export class Dashboard {
         const needsAccountForm = !hasTok || !email;
         const accFormHtml = needsAccountForm ? `
             <div class="form-group" style="margin-top:8px;">
+                <div style="font-weight:600; margin-bottom:6px;">Mevcut Hesaba Giriş ve Aktarım</div>
                 <input type="email" id="acc-email" class="form-select" placeholder="E-posta">
                 <input type="password" id="acc-pass" class="form-select" placeholder="Şifre" style="margin-top:8px;">
                 <small id="acc-email-status" style="display:block; margin-top:6px; color:#64748b; font-size:0.8rem;">Yeni misin? Kayıt Ol ve Aktar'ı seç.</small>
@@ -348,9 +349,10 @@ export class Dashboard {
             </div>` : '';
         const credUpdateHtml = hasTok ? `
             <div class="form-group" style="margin-top:8px;">
-                <label class="form-label">Hesap Bilgilerini Güncelle</label>
+                <label class="form-label">Hesap Bilgilerini Güncelle (Sunucu)</label>
                 <input type="email" id="acc-new-email" class="form-select" placeholder="Yeni E-posta (opsiyonel)">
                 <input type="password" id="acc-new-pass" class="form-select" placeholder="Yeni Şifre (opsiyonel)" style="margin-top:8px;">
+                <input type="text" id="acc-new-name" class="form-select" placeholder="Yeni Ad (opsiyonel)" style="margin-top:8px;">
                 <div class="modal-actions" style="margin-top:10px; display:flex; gap:8px;">
                     <button class="nav-btn" onclick="window.updateCredentialsAndSync()">Kaydet ve Senkronize Et</button>
                 </div>
@@ -454,10 +456,12 @@ export class Dashboard {
             const sm = new SyncManager(this.db);
             const newEmail = (document.getElementById('acc-new-email')||{}).value || '';
             const newPass = (document.getElementById('acc-new-pass')||{}).value || '';
-            const res = await sm.updateCredentials(newEmail,newPass);
+            const newName = (document.getElementById('acc-new-name')||{}).value || '';
+            const res = await sm.updateCredentials(newEmail,newPass,newName);
             const msg = document.getElementById('profile-sync-msg');
             if (!res.ok) { if (msg) { msg.textContent = res.code===409 ? 'Bu e‑posta zaten kullanımda' : 'Güncelleme başarısız'; msg.style.display = 'block'; msg.style.background = '#fee2e2'; msg.style.color = '#991b1b'; } return; }
             if (res.data && res.data.email) { await this.db.setProfile('account_email', res.data.email); const am = new AuthManager(this.db); await am.saveCurrentAccount(); }
+            if (newName) { await this.db.setUserName(newName); }
             const ok = await sm.pushAll();
             await this.refreshAccountStatus();
             if (msg) { msg.textContent = ok ? 'Güncellendi ve yedeklendi' : 'Güncellendi, yedekleme başarısız'; msg.style.display = 'block'; msg.style.background = ok ? '#dcfce7' : '#fee2e2'; msg.style.color = ok ? '#166534' : '#991b1b'; }

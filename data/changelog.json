@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.24",
+    "date": "2025-11-28",
+    "items": [
+      "Hesap Bilgilerini Güncelle bölümüne Ad (Sunucu) alanı eklendi",
+      "Kayıt/Giriş formu başlıkları ile akış ayrımı daha net",
+      "Sürüm v1.1.24 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.23",
     "date": "2025-11-28",
     "items": [
