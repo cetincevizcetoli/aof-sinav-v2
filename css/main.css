@@ -319,6 +319,11 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); colo
 
 .full-width { width: 100%; margin: 0; }
 
+.ghost-btn { background: transparent; border: none; color: var(--primary); padding: 8px 10px; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+.ghost-btn:hover { background: #f8fafc; text-decoration: underline; }
+.ghost-btn:focus { outline: 2px solid #93c5fd; outline-offset: 2px; }
+.ghost-btn i { font-size: 0.95rem; }
+
 /* Renkler */
 .text-green { color: #15803d; }
 .text-blue { color: #2563eb; }

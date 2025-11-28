@@ -258,7 +258,7 @@ export class Dashboard {
                         </div>
                         <small style="color:#64748b; font-size:0.75rem; margin-top:2px;">${u.learned} / ${u.total} Soru Öğrenildi</small>
                     </div>
-                    <button class="sm-btn" onclick="window.startUnitStudy('${code}', ${i})">
+                    <button class="ghost-btn" onclick="window.startUnitStudy('${code}', ${i})" aria-label="Ünite ${i} çalış">
                         <i class="fa-solid fa-play"></i> Çalış
                     </button>
                 </div>
