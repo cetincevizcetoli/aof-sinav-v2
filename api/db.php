@@ -60,6 +60,13 @@ function token_user($pdo,$SECRET){
     $t = '';
     if ($h && stripos($h,'Bearer ')===0) { $t = substr($h,7); }
     if (!$t) { $t = $_GET['token'] ?? $_POST['token'] ?? ''; }
+    if (!$t && ($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
+        $raw = file_get_contents('php://input');
+        if ($raw) {
+            $j = json_decode($raw, true);
+            if (is_array($j) && !empty($j['token'])) { $t = $j['token']; }
+        }
+    }
     if (!$t) return 0;
     try {
         $st = $pdo->prepare('SELECT user_id FROM sessions WHERE token=?');

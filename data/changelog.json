@@ -1,5 +1,14 @@
 [
   {
+    "version": "1.1.26",
+    "date": "2025-11-28",
+    "items": [
+      "Auth fallback genişletildi: JSON body içindeki token okunur",
+      "Eski istemciler için push/pull me/profile çağrılarında 401 azaltıldı",
+      "Sürüm v1.1.26 ve SW cache adları güncellendi"
+    ]
+  },
+  {
     "version": "1.1.25",
     "date": "2025-11-28",
     "items": [
