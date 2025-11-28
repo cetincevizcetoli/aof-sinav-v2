@@ -1,5 +1,15 @@
 [
   {
+    "version": "1.1.5",
+    "date": "2025-11-28",
+    "items": [
+      "Login/Register sonrası otomatik senkron: yerelde veri varsa push, yoksa pull",
+      "Ayarlar > Giriş/Senkron penceresi AuthManager üzerinden çalışır (auto push/pull devrede)",
+      "Push hatalarında görev otomatik kuyruğa alınır ve çevrimiçi olduğunda gönderilir",
+      "Service Worker cache adları ve version.json v1.1.5 ile senkron"
+    ]
+  },
+  {
     "version": "1.1.1",
     "date": "2025-11-26",
     "items": [

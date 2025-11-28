@@ -452,8 +452,9 @@ export class Dashboard {
             </div>`;
             document.body.insertAdjacentHTML('beforeend', html);
             const sm = new SyncManager(this.db);
-            window.doRegister = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await sm.register(e,p); alert(ok ? 'Kayıt başarılı' : 'Kayıt başarısız'); };
-            window.doLogin = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await sm.login(e,p); alert(ok ? 'Giriş başarılı' : 'Giriş başarısız'); };
+            const auth = new AuthManager(this.db);
+            window.doRegister = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const res = await auth.register(e,p); if (res && res.exists) { alert('Bu e-posta ile kayıt zaten mevcut. Lütfen giriş yapın.'); return; } alert(res && res.ok ? 'Kayıt başarılı' : 'Kayıt başarısız'); };
+            window.doLogin = async () => { const e = document.getElementById('auth-email').value; const p = document.getElementById('auth-pass').value; const ok = await auth.login(e,p); alert(ok ? 'Giriş başarılı' : 'Giriş başarısız'); };
             window.doPushSync = async () => { const ok = await sm.pushAll().catch(async () => { const payload = { type:'push' }; await this.db.enqueueSync(payload); return false; }); alert(ok ? 'Yedekleme tamam' : 'Yedekleme başarısız'); };
             window.doPullSync = async () => { const ok = await sm.pullAll(); alert(ok ? 'Yükleme tamam' : 'Yükleme başarısız'); };
         };
