@@ -412,14 +412,14 @@ export class ExamDatabase {
     async resetProgressOnly(){
         return new Promise((resolve)=>{
             if (!this.db) return resolve(false);
-            const stores = ['progress','user_stats','exam_history'];
-            // sessions store eklenmişse onu da temizle
+            const stores = ['progress','user_stats','exam_history','profile'];
             const hasSessions = this.db.objectStoreNames && this.db.objectStoreNames.contains('sessions');
             const hasQueue = this.db.objectStoreNames && this.db.objectStoreNames.contains('sync_queue');
             const tx = this.db.transaction(hasSessions || hasQueue ? [...stores, ...(hasSessions?['sessions']:[]), ...(hasQueue?['sync_queue']:[])] : stores, 'readwrite');
             tx.objectStore('progress').clear();
             tx.objectStore('user_stats').clear();
             tx.objectStore('exam_history').clear();
+            tx.objectStore('profile').clear();
             if (hasSessions) { tx.objectStore('sessions').clear(); }
             if (hasQueue) { tx.objectStore('sync_queue').clear(); }
             tx.oncomplete = () => resolve(true);

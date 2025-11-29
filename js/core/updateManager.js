@@ -14,10 +14,12 @@ export class UpdateManager {
             const swVer = await this.getServiceWorkerVersion().catch(()=>null);
             if (!localVersion) { localStorage.setItem(this.localVersionKey, serverVersion); return; }
             const cmp = this.compareVersions(serverVersion, localVersion);
-            if (cmp > 0 || (swVer && this.compareVersions(serverVersion, swVer) !== 0)) {
+            const needsUpdate = (cmp > 0) || (swVer && this.compareVersions(serverVersion, swVer) !== 0);
+            const force = !!remote.force_update;
+            if (needsUpdate && force && !silent) {
                 this.showUpdateNotification(serverVersion);
             } else {
-                if (!silent) alert(`Sürümünüz güncel: ${localVersion}`);
+                if (needsUpdate) { localStorage.setItem(this.localVersionKey, serverVersion); }
             }
         } catch (error) {
             console.log('İnternet yok veya versiyon kontrolü yapılamadı.', error);

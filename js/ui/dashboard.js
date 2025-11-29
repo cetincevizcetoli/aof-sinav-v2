@@ -167,7 +167,7 @@ export class Dashboard {
         this.container.innerHTML = html;
         await this.refreshAccountStatus();
         window.loadTooltips = async () => {
-            const tips = await fetch('api/tooltips.php?t=' + Date.now()).then(r => r.json()).catch(() => ({}));
+            const tips = await fetch('data/tooltips.json?t=' + Date.now()).then(r => r.json()).catch(() => ({}));
             const nodes = document.querySelectorAll('[data-tip]');
             nodes.forEach(el => { const key = el.getAttribute('data-tip'); if (key && tips[key]) el.title = tips[key]; });
         };
