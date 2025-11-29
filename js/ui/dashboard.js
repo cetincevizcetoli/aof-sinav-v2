@@ -834,16 +834,42 @@ export class Dashboard {
                     </h2>
                 </div>
                 <p style="color:#64748b; margin-top:-6px;">Yerel modda çalışır. Lütfen adınızı girin.</p>
-                <div style="margin-top:12px;">
+                <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
                     <input type="text" id="welcome-name" class="form-select" placeholder="Adınız" autocomplete="off">
-                    <div class="modal-actions" style="margin-top:10px;">
+                    <div style="background:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
+                        <div style="font-size:0.9rem; color:#334155; font-weight:600; margin-bottom:6px;">Opsiyonel: Bulut Yedekleme</div>
+                        <div style="font-size:0.85rem; color:#64748b; margin-bottom:8px;">Bu bilgileri doldurursanız verileriniz buluta yedeklenir ve başka cihazdan erişebilirsiniz. Doldurmazsanız verileriniz bu cihazda güvenle saklanır.</div>
+                        <input type="email" id="welcome-cloud-email" class="form-select" placeholder="E-posta (opsiyonel)" autocomplete="off" autocapitalize="none">
+                        <input type="password" id="welcome-cloud-pass" class="form-select" placeholder="Şifre (opsiyonel)" style="margin-top:8px;" autocomplete="new-password">
+                    </div>
+                    <div class="modal-actions" style="margin-top:6px;">
                         <button class="primary-btn" onclick="window.handleSetName()">Başla</button>
                     </div>
                 </div>
             </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
-        window.handleSetName = async () => { const n = (document.getElementById('welcome-name').value||'').trim(); if (n.length>0) { await this.db.setUserName(n); } await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch{} this.render(); };
+        window.handleSetName = async () => {
+            const n = (document.getElementById('welcome-name').value||'').trim();
+            if (n.length>0) { await this.db.setUserName(n); }
+            const e = (document.getElementById('welcome-cloud-email')||{}).value||'';
+            const p = (document.getElementById('welcome-cloud-pass')||{}).value||'';
+            if (e && p) {
+                const sm = new SyncManager(this.db);
+                let ok=false; try { ok = await sm.login(e,p); } catch{}
+                if (!ok) { try { const reg = await sm.register(e,p); if (reg && reg.ok) { ok = await sm.login(e,p); } } catch{} }
+                if (ok) {
+                    await this.db.setProfile('account_email', e);
+                    const token = localStorage.getItem('auth_token')||'';
+                    if (token) { await this.db.setProfile('account_token', token); }
+                    try { await sm.pushAll(); } catch{}
+                }
+            }
+            await this.db.setProfile('onboarding_done', 1);
+            const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove();
+            try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch{}
+            this.render();
+        };
     }
     
     async getAccountStatusText(){ const name = await this.db.getUserName(); return `Profil: ${name||'-'}`; }
