@@ -724,11 +724,13 @@ export class Dashboard {
                   </div>
                 </div>`;
                 document.body.insertAdjacentHTML('beforeend', html);
-                window.cloudLoginDo = async () => {
-                    const e = (document.getElementById('cloud-email')||{}).value||'';
-                    const p = (document.getElementById('cloud-pass')||{}).value||'';
-                    let ok=false; try { ok = await sm.login(e,p); } catch{}
-                    if (!ok) { try { alert('Giriş başarısız'); } catch{} return; }
+        window.cloudLoginDo = async () => {
+            const e = (document.getElementById('cloud-email')||{}).value||'';
+            const p = (document.getElementById('cloud-pass')||{}).value||'';
+            let exists=false; try { exists = await sm.emailExists(e); } catch{}
+            if (!exists) { try { alert('Bu e‑posta ile kayıt bulunamadı'); } catch{} return; }
+            let ok=false; try { ok = await sm.login(e,p); } catch{}
+            if (!ok) { try { alert('Şifre hatalı'); } catch{} return; }
                     await this.db.setProfile('account_email', e);
                     const token = localStorage.getItem('auth_token')||'';
                     if (token) { await this.db.setProfile('account_token', token); }
@@ -769,8 +771,10 @@ export class Dashboard {
                 window.cloudLoginPull = async () => {
                     const e = (document.getElementById('cloud-email')||{}).value||'';
                     const p = (document.getElementById('cloud-pass')||{}).value||'';
+                    let exists=false; try { exists = await sm.emailExists(e); } catch{}
+                    if (!exists) { try { alert('Bu e‑posta ile kayıt bulunamadı'); } catch{} return; }
                     let ok=false; try { ok = await sm.login(e,p); } catch{}
-                    if (!ok) { try { alert('Giriş başarısız'); } catch{} return; }
+                    if (!ok) { try { alert('Şifre hatalı'); } catch{} return; }
                     await this.db.setProfile('account_email', e);
                     const token = localStorage.getItem('auth_token')||'';
                     if (token) { await this.db.setProfile('account_token', token); }
@@ -871,11 +875,11 @@ export class Dashboard {
         window.logoutNow = async () => { localStorage.removeItem('auth_token'); await this.db.setProfile('account_email',''); await this.db.setProfile('account_token',''); await this.db.setProfile('server_reset_at', 0); await this.db.setProfile('last_reset_ack', 0); await this.db.setProfile('last_sync', 0); await this.refreshAccountStatus(); const s=document.getElementById('settings-menu-overlay'); if (s) s.remove(); this.render(); };
     }
 
-    async showWelcomeOverlay(){
+    showWelcomeOverlay(){
         const existing = document.getElementById('welcome-overlay');
         if (existing) return;
-        const pendingEmail = await this.db.getProfile('account_email_pending')||'';
-        const pendingPass = await this.db.getProfile('account_pass_pending')||'';
+        const pendingEmail = '';
+        const pendingPass = '';
         const html = `
         <div id="welcome-overlay" style="position:fixed; inset:0; background:rgba(17,24,39,0.6); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:9999;">
             <div class="modal-box" style="max-width:560px; width:90%;">
@@ -917,6 +921,14 @@ export class Dashboard {
             </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
+        (async () => {
+            const pe = await this.db.getProfile('account_email_pending')||'';
+            const pp = await this.db.getProfile('account_pass_pending')||'';
+            const em = document.getElementById('welcome-cloud-email'); if (em) em.value = pe||'';
+            const pw = document.getElementById('welcome-cloud-pass'); if (pw) pw.value = pp||'';
+            const em2 = document.getElementById('onb-email'); if (em2) em2.value = pe||'';
+            const pw2 = document.getElementById('onb-pass'); if (pw2) pw2.value = pp||'';
+        })();
         window.switchOnboarding = (tab) => { const l = document.getElementById('onb-local'); const c = document.getElementById('onb-cloud'); const tl = document.getElementById('tab-local'); const tc = document.getElementById('tab-cloud'); if (tab==='cloud'){ l.style.display='none'; c.style.display='block'; tl.classList.remove('primary'); tc.classList.add('primary'); } else { l.style.display='block'; c.style.display='none'; tl.classList.add('primary'); tc.classList.remove('primary'); } };
         window.handleSetName = async () => {
             const n = (document.getElementById('welcome-name').value||'').trim();
@@ -930,8 +942,8 @@ export class Dashboard {
             try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch{}
             this.render();
         };
-        window.handleCloudLogin = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let ok=false; try { ok = await sm.login(e,p); } catch{} if (!ok) { try { alert('Giriş başarısız'); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
-        window.handleCloudLoginRestore = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let ok=false; try { ok = await sm.login(e,p); } catch{} if (!ok) { try { alert('Giriş başarısız'); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } let pulled=false; try { pulled = await sm.pullAll(true); } catch{} try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{} await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
+        window.handleCloudLogin = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let exists=false; try { exists = await sm.emailExists(e); } catch{} if (!exists) { try { alert('Bu e‑posta ile kayıt bulunamadı'); } catch{} return; } let ok=false; try { ok = await sm.login(e,p); } catch{} if (!ok) { try { alert('Şifre hatalı'); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
+        window.handleCloudLoginRestore = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let exists=false; try { exists = await sm.emailExists(e); } catch{} if (!exists) { try { alert('Bu e‑posta ile kayıt bulunamadı'); } catch{} return; } let ok=false; try { ok = await sm.login(e,p); } catch{} if (!ok) { try { alert('Şifre hatalı'); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } let pulled=false; try { pulled = await sm.pullAll(true); } catch{} try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{} await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
     }
     
     async getAccountStatusText(){ const name = await this.db.getUserName(); return `Profil: ${name||'-'}`; }
