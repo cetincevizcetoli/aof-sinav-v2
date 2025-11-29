@@ -341,6 +341,19 @@ export class ExamDatabase {
         });
     }
 
+    async getLastCompletedEnd(lesson, unit){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve(0);
+            const tx = this.db.transaction(['sessions'],'readonly');
+            const idx = tx.objectStore('sessions').index('by_lesson_unit');
+            const range = IDBKeyRange.only([lesson, parseInt(unit)||0]);
+            let lastEnd = 0;
+            const req = idx.openCursor(range);
+            req.onsuccess = (e)=>{ const c = e.target.result; if (c){ const v = c.value; if (v && v.ended_at && v.ended_at>lastEnd) lastEnd = v.ended_at; c.continue(); } else resolve(lastEnd); };
+            req.onerror = ()=>resolve(0);
+        });
+    }
+
     async getHistory() {
         return new Promise((resolve) => {
             if (!this.db) return resolve([]);

@@ -252,7 +252,16 @@ export class Dashboard {
             const percent = Math.round((u.learned / u.total) * 100);
             const rCount = (this.db.countUnitRepeats ? await this.db.countUnitRepeats(code, i) : 0);
             const activeRep = (this.db.hasActiveSessionForUnit ? await this.db.hasActiveSessionForUnit(code, i) : false);
-            const repLabel = rCount > 0 ? `${rCount}. tekrar${activeRep ? ' • devam ediyor' : ''}` : '';
+            let repLabel = '';
+            if (activeRep && rCount > 0) {
+                // yalnızca bir tamamlanma sonrası başlayan aktif oturumda göster
+                const sessions = (this.db.getSessionsByUnit ? await this.db.getSessionsByUnit(code, i) : []);
+                const active = sessions.find(s => !s.ended_at || s.ended_at === 0);
+                const lastEnd = (this.db.getLastCompletedEnd ? await this.db.getLastCompletedEnd(code, i) : 0);
+                if (active && active.started_at && active.started_at > lastEnd) {
+                    repLabel = `${rCount}. tekrar • devam ediyor`;
+                }
+            }
             
             let statusBadge = '';
             let statusClass = '';
@@ -306,11 +315,21 @@ export class Dashboard {
         };
         window.openUnitHistory = async (lessonCode, unitNo) => {
             const sessions = (this.db.getSessionsByUnit ? await this.db.getSessionsByUnit(lessonCode, unitNo) : []);
+            // cycle cluster: baseline cycle 0 until first completed end, then cycles increment at each completion
+            const sorted = sessions.slice().sort((a,b)=> (a.started_at||0)-(b.started_at||0));
+            const cycles = [];
+            let cycleStart = 0; let cycleEnd = 0; let firstStarted = true;
+            for (const s of sorted) {
+                if (firstStarted) { cycleStart = s.started_at||0; firstStarted = false; }
+                if (s.ended_at && s.ended_at>0) { cycleEnd = s.ended_at; cycles.push({ start: cycleStart, end: cycleEnd }); cycleStart = 0; cycleEnd = 0; firstStarted = true; }
+            }
+            if (!firstStarted) { cycles.push({ start: cycleStart, end: Date.now() }); }
             const rows = [];
-            for (const s of sessions) {
-                const list = (this.db.getHistoryRange ? await this.db.getHistoryRange(lessonCode, unitNo, s.started_at||0, s.ended_at||Date.now()) : []);
+            for (let idx=0; idx<cycles.length; idx++){
+                const cinfo = cycles[idx];
+                const list = (this.db.getHistoryRange ? await this.db.getHistoryRange(lessonCode, unitNo, cinfo.start, cinfo.end) : []);
                 let c=0,w=0; list.forEach(x=>{ if (x.isCorrect) c++; else w++; });
-                rows.push({ started_at: s.started_at, ended_at: s.ended_at, mode: s.mode||'study', correct:c, wrong:w, uuid:s.uuid });
+                rows.push({ started_at: cinfo.start, ended_at: cinfo.end, mode: 'study', correct:c, wrong:w, cycle: idx });
             }
             const id = 'unit-history-modal';
             const html = `
@@ -322,7 +341,7 @@ export class Dashboard {
                             <div class="lesson-card" style="display:flex; align-items:center; justify-content:space-between;">
                                 <div>
                                     <div style="font-weight:600; color:#334155;">${idx+1}. ${new Date(r.started_at||Date.now()).toLocaleString()}${r.ended_at?` - ${new Date(r.ended_at).toLocaleString()}`:''}</div>
-                                    <small style="color:#64748b;">Mod: ${r.mode} • Doğru: ${r.correct} • Yanlış: ${r.wrong}</small>
+                                    <small style="color:#64748b;">${r.cycle===0?'İlk çalışma':`${r.cycle}. tekrar`} • Doğru: ${r.correct} • Yanlış: ${r.wrong}</small>
                                 </div>
                                 <button class="sm-btn" onclick="window.viewSessionMistakes('${lessonCode}', ${unitNo}, ${r.started_at||0}, ${r.ended_at||0})">Yanlışları Gör</button>
                             </div>
