@@ -230,23 +230,20 @@ export class Dashboard {
             if(u.total === 0) continue;
 
             const percent = Math.round((u.learned / u.total) * 100);
-            const rCount = (this.db.countUnitRepeats ? await this.db.countUnitRepeats(code, i) : 0);
-            const activeRep = (this.db.hasActiveSessionForUnit ? await this.db.hasActiveSessionForUnit(code, i) : false);
-            let repLabel = '';
-            if (activeRep) {
-                // yalnızca bir tamamlanma sonrası başlayan aktif oturumda göster
-                const sessions = (this.db.getSessionsByUnit ? await this.db.getSessionsByUnit(code, i) : []);
-                const active = sessions.find(s => !s.ended_at || s.ended_at === 0);
-                const lastEnd = (this.db.getLastCompletedEnd ? await this.db.getLastCompletedEnd(code, i) : 0);
-                if (active && active.started_at && active.started_at > lastEnd) {
-                    repLabel = `${(rCount||0)+1}. tekrar • devam ediyor`;
-                }
-            }
+            // Tamamlama bazlı tekrar sayısı hesapla
+            const allHistory = await this.db.getHistory();
+            const unitHistory = (allHistory||[]).filter(h => String(h.lesson||'')===String(code) && parseInt(h.unit||0)===parseInt(i||0)).sort((a,b)=> (a.date||0)-(b.date||0));
+            let completedCount = 0; let lastEnd = 0; { const learnedSet = new Set(); const totalQs = u.total; for (const h of unitHistory){ const qid = h.qid||''; if (h.isCorrect && qid) learnedSet.add(qid); if (totalQs>0 && learnedSet.size>=totalQs){ completedCount++; learnedSet.clear(); lastEnd = h.date||Date.now(); } } }
+            const hasAfter = unitHistory.some(h => (h.date||0) > (lastEnd||0));
+            let repLabel = hasAfter && completedCount>0 ? `${completedCount}. tekrar` : '';
             
             let statusBadge = '';
             let statusClass = '';
             
-            if (percent === 0) {
+            if (repLabel) {
+                statusBadge = `<i class="fa-solid fa-rotate"></i> ${repLabel}`;
+                statusClass = 'status-blue';
+            } else if (percent === 0) {
                 statusBadge = '<i class="fa-regular fa-circle"></i> Hiç Bakılmadı';
                 statusClass = 'status-gray';
             } else if (percent === 100) {
@@ -294,33 +291,29 @@ export class Dashboard {
             this.showExamConfigModal(lessonCode); 
         };
         window.openUnitHistory = async (lessonCode, unitNo) => {
-            // Cycle-based history using persisted cycle_no
-            const sessions = await this.db.getSessionsByUnit(lessonCode, unitNo);
-            const cycleNos = Array.from(new Set((sessions||[]).map(s => parseInt(s.cycle_no)||0))).sort((a,b)=> a-b);
-            const cycles = cycleNos.map(n => ({ cycle_no: n }));
-            const rows = [];
-            for (let idx=0; idx<cycles.length; idx++){
-                const cinfo = cycles[idx];
-                const list = await this.db.getHistoryByCycle(lessonCode, unitNo, cinfo.cycle_no);
-                let c=0,w=0; list.forEach(x=>{ if (x.isCorrect) c++; else w++; });
-                const first = list.length>0 ? list[0].date : 0; const last = list.length>0 ? list[list.length-1].date : 0;
-                rows.push({ started_at: first, ended_at: last, mode: 'study', correct:c, wrong:w, cycle: cinfo.cycle_no });
-            }
+            // Tamamlama bazlı sanal gruplama
+            const allHistory2 = await this.db.getHistory();
+            const unitHistory2 = (allHistory2||[]).filter(h => String(h.lesson||'')===String(lessonCode) && parseInt(h.unit||0)===parseInt(unitNo||0)).sort((a,b)=> (a.date||0)-(b.date||0));
+            const fileName2 = this.currentLessonFile;
+            const data2 = (this.loader && this.loader.loadLessonData) ? await this.loader.loadLessonData(lessonCode, fileName2) : [];
+            const unitCards2 = data2.filter(c => parseInt(c.unit||0)===parseInt(unitNo||0));
+            const totalQs2 = unitCards2.length;
+            const groups=[]; { const learned = new Set(); let cur=[]; let start=0; let end=0; for (const h of unitHistory2){ if (cur.length===0) start=h.date||Date.now(); cur.push(h); end=h.date||start; if (h.isCorrect && h.qid) learned.add(h.qid); if (totalQs2>0 && learned.size>=totalQs2){ const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at:end, correct:c, wrong:w }); cur=[]; start=0; end=0; learned.clear(); } } if (cur.length>0){ const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at:end, correct:c, wrong:w }); } }
             const id = 'unit-history-modal';
             const html = `
             <div class="modal-overlay" id="${id}">
                 <div class="modal-box large">
                     <div class="modal-header"><h2 class="modal-title">Ünite ${unitNo} Geçmişi</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
                     <div style="max-height:60vh; overflow:auto;">
-                        ${rows.length===0 ? '<div style="color:#64748b; padding:12px;">Kayıt yok</div>' : rows.map((r,idx)=>`
+                        ${groups.length===0 ? '<div style="color:#64748b; padding:12px;">Kayıt yok</div>' : groups.map((g,idx)=>`
                             <div class="lesson-card" style="display:flex; align-items:center; justify-content:space-between;">
                                 <div>
-                                    <div style="font-weight:600; color:#334155;">${idx+1}. ${new Date(r.started_at||Date.now()).toLocaleString()}${r.ended_at?` - ${new Date(r.ended_at).toLocaleString()}`:''}</div>
-                                    <small style="color:#64748b;">${r.cycle===0?'İlk çalışma':`${r.cycle}. tekrar`} • Doğru: ${r.correct} • Yanlış: ${r.wrong}</small>
+                                    <div style="font-weight:600; color:#334155;">${idx+1}. ${new Date(g.started_at||Date.now()).toLocaleString()}${g.ended_at?` - ${new Date(g.ended_at).toLocaleString()}`:''} • ${idx===0?'İlk bitiriş':`${idx}. tekrar`}</div>
+                                    <small style="color:#64748b;">Doğru: ${g.correct} • Yanlış: ${g.wrong}</small>
                                 </div>
                                 <button class="sm-btn" onclick="window.viewGroupMistakes('${lessonCode}', ${unitNo}, ${idx})">Yanlışları Gör</button>
-            </div>
-        `).join('')}
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
             </div>`;
