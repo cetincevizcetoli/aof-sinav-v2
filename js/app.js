@@ -58,6 +58,7 @@ async function initApp() {
     let __refreshLock = false;
     document.addEventListener('app:data-updated', async () => {
         try {
+            if (window.__inSession) return;
             if (__refreshLock) return;
             __refreshLock = true;
             console.log('♻️ Veri değişti algılandı. UI tam tazeleme...');
