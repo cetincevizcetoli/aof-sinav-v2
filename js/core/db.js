@@ -1,7 +1,7 @@
 export class ExamDatabase {
     constructor() {
         this.dbName = 'AofSinavDB_v2';
-        this.dbVersion = 7;
+        this.dbVersion = 8;
         this.db = null;
     }
 
@@ -442,7 +442,7 @@ export class ExamDatabase {
         });
         return true;
     }
-}
+
     async getMaxCycleNo(lesson, unit){
         const list = await this.getSessionsByUnit(lesson, unit);
         if (!list || list.length===0) return 0;
@@ -462,3 +462,4 @@ export class ExamDatabase {
             req.onerror = ()=>resolve([]);
         });
     }
+}
