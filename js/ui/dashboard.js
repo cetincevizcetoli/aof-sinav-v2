@@ -2,7 +2,7 @@ import { Gamification } from '../core/gamification.js';
 import { ExamManager } from '../core/examManager.js';
 import { UpdateManager } from '../core/updateManager.js';
 import { AuthManager } from '../core/authManager.js';
- 
+import { SyncManager } from '../core/sync.js';
 
 export class Dashboard {
     constructor(dataLoader, db) {
@@ -696,7 +696,16 @@ export class Dashboard {
         })();
         (async () => {})();
 
-        document.getElementById('btn-sync-now').onclick = async () => {};
+        document.getElementById('btn-sync-now').onclick = async () => {
+            const sm = new SyncManager(this.db);
+            const t = sm.getToken();
+            if (!t) { try { alert('Yedekleme için giriş gerekli'); } catch{} return; }
+            let okPush = false;
+            try { okPush = await sm.pushAll(); } catch {}
+            try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch {}
+            try { alert(okPush ? 'Yedekleme tamam' : 'Yedekleme başarısız'); } catch{}
+            const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove();
+        };
         document.getElementById('btn-check-update').onclick = () => { window.checkUpdatesNow(); };
         
         document.getElementById('btn-reset-data').onclick = () => { window.confirmReset(); };
