@@ -11,6 +11,8 @@ export class Dashboard {
         this.container = document.getElementById('app-container');
     }
 
+    escapeHTML(str){ return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;'); }
+
     async ensureActiveAccountToken(){
         const hasToken = !!localStorage.getItem('auth_token');
         if (hasToken) return;
@@ -351,13 +353,13 @@ export class Dashboard {
                                 const isCorrect = q && String(q.correct_option) === String(o);
                                 const color = isCorrect ? '#10b981' : (isGiven ? '#ef4444' : '#334155');
                                 const icon = isCorrect ? 'fa-check' : (isGiven ? 'fa-xmark' : 'fa-circle');
-                                return `<div style=\"font-size:0.9rem; color:${color}; display:flex; align-items:center; gap:6px;\"><i class=\"fa-solid ${icon}\"></i> ${escapeHTML(o)}</div>`;
+                                return `<div style=\"font-size:0.9rem; color:${color}; display:flex; align-items:center; gap:6px;\"><i class=\"fa-solid ${icon}\"></i> ${this.escapeHTML(o)}</div>`;
                             }).join('') : '';
                             return `<div class=\"lesson-card\" style=\"padding:12px; border-left:4px solid #ef4444;\">
-                                <div style=\"font-weight:600; color:#334155; margin-bottom:6px;\">${idx+1}. ${q ? escapeHTML(q.question) : 'Soru bulunamadı'}</div>
+                                <div style=\"font-weight:600; color:#334155; margin-bottom:6px;\">${idx+1}. ${q ? this.escapeHTML(q.question) : 'Soru bulunamadı'}</div>
                                 <div style=\"display:flex; flex-direction:column; gap:4px;\">${opts}</div>
-                                <div style=\"font-size:0.9rem; color:#ef4444;\"><strong>Senin Cevabın:</strong> ${w.given ? escapeHTML(w.given) : '-'}</div>
-                                <div style=\"font-size:0.9rem; color:#10b981;\"><strong>Doğru Cevap:</strong> ${q ? escapeHTML(q.correct_option) : '-'}</div>
+                                <div style=\"font-size:0.9rem; color:#ef4444;\"><strong>Senin Cevabın:</strong> ${w.given ? this.escapeHTML(w.given) : '-'}</div>
+                                <div style=\"font-size:0.9rem; color:#10b981;\"><strong>Doğru Cevap:</strong> ${q ? this.escapeHTML(q.correct_option) : '-'}</div>
                                 ${expl}
                                 <small style=\"color:#64748b;\">Tarih: ${new Date(w.date).toLocaleString()}</small>
                             </div>`;

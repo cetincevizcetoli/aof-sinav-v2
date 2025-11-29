@@ -303,9 +303,9 @@ export class ExamDatabase {
             const tx = this.db.transaction(['sessions'],'readonly');
             const idx = tx.objectStore('sessions').index('by_lesson_unit');
             const range = IDBKeyRange.only([lesson, parseInt(unit)||0]);
-            let cnt = 0;
+            let completed = 0;
             const req = idx.openCursor(range);
-            req.onsuccess = (e)=>{ const c = e.target.result; if (c){ cnt++; c.continue(); } else resolve(cnt); };
+            req.onsuccess = (e)=>{ const c = e.target.result; if (c){ const v = c.value; if (v && v.ended_at && v.ended_at > 0) completed++; c.continue(); } else { const repeats = Math.max(0, completed - 1); resolve(repeats); } };
             req.onerror = ()=>resolve(0);
         });
     }
