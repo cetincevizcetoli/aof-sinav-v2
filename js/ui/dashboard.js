@@ -230,12 +230,8 @@ export class Dashboard {
             if(u.total === 0) continue;
 
             const percent = Math.round((u.learned / u.total) * 100);
-            // Tamamlama bazlı tekrar sayısı hesapla
-            const allHistory = await this.db.getHistory();
-            const unitHistory = (allHistory||[]).filter(h => String(h.lesson||'')===String(code) && parseInt(h.unit||0)===parseInt(i||0)).sort((a,b)=> (a.date||0)-(b.date||0));
-            let completedCount = 0; let lastEnd = 0; { const learnedSet = new Set(); const totalQs = u.total; for (const h of unitHistory){ const qid = h.qid||''; if (h.isCorrect && qid) learnedSet.add(qid); if (totalQs>0 && learnedSet.size>=totalQs){ completedCount++; learnedSet.clear(); lastEnd = h.date||Date.now(); } } }
-            const hasAfter = unitHistory.some(h => (h.date||0) > (lastEnd||0));
-            let repLabel = hasAfter && completedCount>0 ? `${completedCount}. tekrar` : '';
+            const maxCycle = await this.db.getMaxCycleNo(code, i);
+            const repLabel = maxCycle>0 ? `${maxCycle}. tekrar • %${percent}` : '';
             
             let statusBadge = '';
             let statusClass = '';
@@ -291,58 +287,31 @@ export class Dashboard {
             this.showExamConfigModal(lessonCode); 
         };
         window.openUnitHistory = async (lessonCode, unitNo) => {
-            // Tamamlama bazlı + tamamlama sonrası yeni oturum başladığında yeni grup
-            const allHistory2 = await this.db.getHistory();
-            const unitHistory2 = (allHistory2||[]).filter(h => String(h.lesson||'')===String(lessonCode) && parseInt(h.unit||0)===parseInt(unitNo||0)).sort((a,b)=> (a.date||0)-(b.date||0));
-            const fileName2 = this.currentLessonFile;
-            const data2 = (this.loader && this.loader.loadLessonData) ? await this.loader.loadLessonData(lessonCode, fileName2) : [];
-            const unitCards2 = data2.filter(c => parseInt(c.unit||0)===parseInt(unitNo||0));
-            const totalQs2 = unitCards2.length;
-            const groups=[]; {
-                // Tamamlamada kapat, sonraki grup yeni session başladığında aç
-                const learned = new Set(); let cur=[]; let start=0; let end=0;
-                const sessions = (this.db.getSessionsByUnit ? await this.db.getSessionsByUnit(lessonCode, unitNo) : []) || [];
-                const sessSorted = sessions.filter(s => s && s.started_at).sort((a,b)=> (a.started_at||0)-(b.started_at||0));
-                let waitingBoundary = false; let boundaryStart = 0;
-                const findNextBoundary = (afterTs) => {
-                    const s = sessSorted.find(ss => (ss.started_at||0) > (afterTs||0));
-                    return s ? (s.started_at||0) : 0;
-                };
-                for (const h of unitHistory2){
-                    const ts = h.date || Date.now();
-                    if (waitingBoundary){
-                        if (!boundaryStart) boundaryStart = ts; // fallback: ilk sonraki log
-                        if (ts < boundaryStart) { continue; }
-                        waitingBoundary = false;
-                        // yeni grup başlat
-                        start = ts; end = ts; cur = [h]; if (h.isCorrect && h.qid) learned.add(h.qid); continue;
-                    }
-                    if (cur.length===0) start = ts;
-                    cur.push(h); end = ts;
-                    if (h.isCorrect && h.qid) learned.add(h.qid);
-                    if (totalQs2>0 && learned.size>=totalQs2){
-                        const c = cur.filter(x=>x.isCorrect).length; const w = cur.length - c;
-                        groups.push({ started_at: start, ended_at: end, correct: c, wrong: w });
-                        // tamamlandı; sonraki grup yeni session başlama anında açılacak
-                        waitingBoundary = true; boundaryStart = findNextBoundary(end);
-                        cur = []; start = 0; end = 0; learned.clear();
-                    }
-                }
-                if (cur.length>0){ const c = cur.filter(x=>x.isCorrect).length; const w = cur.length - c; groups.push({ started_at: start, ended_at: end, correct: c, wrong: w }); }
-            }
+            // Cycle-based grouping using stored cycle_no
+            const allHist = await this.db.getHistory();
+            const unitHist = (allHist||[]).filter(h => String(h.lesson||'')===String(lessonCode) && parseInt(h.unit||0)===parseInt(unitNo||0)).sort((a,b)=> (a.date||0)-(b.date||0));
+            const cycleNos = Array.from(new Set(unitHist.map(h => parseInt(h.cycle_no)||0))).sort((a,b)=> a-b);
+            const rows = cycleNos.map(cy => {
+                const list = unitHist.filter(h => (parseInt(h.cycle_no)||0)===cy);
+                const started_at = list.length>0 ? (list[0].date||0) : 0;
+                const ended_at = list.length>0 ? (list[list.length-1].date||0) : 0;
+                const correct = list.filter(x=>!!x.isCorrect).length;
+                const wrong = list.length - correct;
+                return { cycle: cy, started_at, ended_at, correct, wrong };
+            });
             const id = 'unit-history-modal';
             const html = `
             <div class="modal-overlay" id="${id}">
                 <div class="modal-box large">
                     <div class="modal-header"><h2 class="modal-title">Ünite ${unitNo} Geçmişi</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
                     <div style="max-height:60vh; overflow:auto;">
-                        ${groups.length===0 ? '<div style="color:#64748b; padding:12px;">Kayıt yok</div>' : groups.map((g,idx)=>`
+                        ${rows.length===0 ? '<div style="color:#64748b; padding:12px;">Kayıt yok</div>' : rows.map((r,idx)=>`
                             <div class="lesson-card" style="display:flex; align-items:center; justify-content:space-between;">
                                 <div>
-                                    <div style="font-weight:600; color:#334155;">${idx+1}. ${new Date(g.started_at||Date.now()).toLocaleString()}${g.ended_at?` - ${new Date(g.ended_at).toLocaleString()}`:''} • ${idx===0?'İlk bitiriş':`${idx}. tekrar`}</div>
-                                    <small style="color:#64748b;">Doğru: ${g.correct} • Yanlış: ${g.wrong}</small>
+                                    <div style="font-weight:600; color:#334155;">${idx+1}. ${new Date(r.started_at||Date.now()).toLocaleString()}${r.ended_at?` - ${new Date(r.ended_at).toLocaleString()}`:''} • ${r.cycle===0?'İlk bitiriş':`${r.cycle}. tekrar`}</div>
+                                    <small style="color:#64748b;">Doğru: ${r.correct} • Yanlış: ${r.wrong}</small>
                                 </div>
-                                <button class="sm-btn" onclick="window.viewGroupMistakes('${lessonCode}', ${unitNo}, ${idx})">Yanlışları Gör</button>
+                                <button class="sm-btn" onclick="window.viewCycleMistakes('${lessonCode}', ${unitNo}, ${r.cycle})">Yanlışları Gör</button>
                             </div>
                         `).join('')}
                     </div>
@@ -350,24 +319,22 @@ export class Dashboard {
             </div>`;
             document.body.insertAdjacentHTML('beforeend', html);
         };
-        window.viewGroupMistakes = async (lessonCode, unitNo, groupIndex) => {
-            const allHistory = await this.db.getHistory();
-            const unitHistory = (allHistory||[]).filter(h => String(h.lesson||'')===String(lessonCode) && parseInt(h.unit||0)===parseInt(unitNo||0)).sort((a,b)=> (a.date||0)-(b.date||0));
+        window.viewCycleMistakes = async (lessonCode, unitNo, cycleNo) => {
             const fileName = this.currentLessonFile;
             const data = (this.loader && this.loader.loadLessonData) ? await this.loader.loadLessonData(lessonCode, fileName) : [];
             const cards = data.filter(c => parseInt(c.unit||0) === parseInt(unitNo||0));
             const map = new Map(cards.map(c => [c.id, c]));
-            const totalQs = cards.length; const learnedSet=new Set(); const lastResult=new Map(); const groups=[]; let cur=[]; let start=0; let end=0;
-            for (const h of unitHistory){ if (cur.length===0) start=h.date||Date.now(); cur.push(h); end=h.date||start; const qid=h.qid||''; if (qid){ lastResult.set(qid, !!h.isCorrect); if (h.isCorrect) learnedSet.add(qid); } if (totalQs>0 && learnedSet.size>=totalQs){ groups.push({ items:cur.slice(), start,end,lastResult:new Map(lastResult) }); cur=[]; start=0; end=0; learnedSet.clear(); lastResult.clear(); } }
-            if (cur.length>0) groups.push({ items:cur.slice(), start,end,lastResult:new Map(lastResult) });
-            const g = groups[groupIndex] || { items:[], lastResult:new Map() };
-            const wrongQIDs = Array.from(g.lastResult.entries()).filter(([qid,res]) => res!==true).map(([qid])=>qid);
-            const wrongs = g.items.filter(x=> wrongQIDs.includes(x.qid||''));
-            const id = 'session-mistakes-modal';
+            const rows = await this.db.getHistoryByCycle(lessonCode, unitNo, cycleNo);
+            const wrongs = rows.filter(x => !x.isCorrect).map(x => ({
+                date: x.date,
+                given: x.given_option,
+                card: map.get(x.qid)
+            }));
+            const id = 'cycle-mistakes-modal';
             const html = `
             <div class="modal-overlay" id="${id}">
                 <div class="modal-box">
-                    <div class="modal-header"><h2 class="modal-title">Yanlışlar</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <div class="modal-header"><h2 class="modal-title">Yanlışlar • ${cycleNo===0?'İlk bitiriş':`${parseInt(cycleNo)||0}. tekrar`}</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
                     <div style="max-height:50vh; overflow:auto;">
                         ${wrongs.length===0?'<div style="color:#64748b; padding:12px;">Yanlış yok</div>':wrongs.map((w,idx)=>{
                             const q = w.card;
