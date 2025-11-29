@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+python bump_version.py >/dev/null 2>&1 || exit 0
+git add version.json service-worker.js data/changelog.json >/dev/null 2>&1 || true

@@ -1,0 +1,2123 @@
+[
+  {
+    "unit": 1,
+    "topic": "Temel Kavramlar",
+    "question": "Python programlama dilinde, 'anahtar: değer' çiftleri kullanılarak tanımlanan veri yapısı nedir?",
+    "correct_option": "Dictionary (Sözlük)",
+    "options": [
+      "Dictionary (Sözlük)",
+      "Numbers (Sayılar)",
+      "Tuple (Demet)",
+      "List (Liste)"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 1",
+    "code_example": "sozluk = {'anahtar': 'değer'}"
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Tipleri",
+    "question": "Aşağıdaki veri yapılarından hangisi Python'daki standart beş veri türünden biri **değildir**?",
+    "correct_option": "Vector (Vektör)",
+    "options": [
+      "Numbers (Sayılar)",
+      "List (Liste)",
+      "Dictionary (Sözlük)",
+      "Vector (Vektör)"
+    ],
+    "source_type": "Sınav Sorusu / Bölüm 1 - Neler Öğrendik Soru 6",
+    "code_example": "print(type([1, 2]))  # <class 'list'>"
+  },
+  {
+    "unit": 1,
+    "topic": "Python Özellikleri ve Yanlış İfadeler",
+    "question": "Python programlama dili ile ilgili olarak, aşağıdaki ifadelerden hangisi **yanlıştır**?",
+    "correct_option": "Web geliştirme yapılamaz.",
+    "options": [
+      "Diğer dillere göre daha kolaydır.",
+      "Dinamik bir yapıya sahiptir.",
+      "Açık kaynak kodlu olarak geliştirilmiştir.",
+      "Web geliştirme yapılamaz."
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 3",
+      "code_example": "Flask ve Django gibi ortamlarla web geliştirme yapılabilir. [cite: 439]"
+  },
+  {
+    "unit": 1,
+    "topic": "Yorumlar",
+    "question": "Python'da tek satırlık bir yorum eklemek için kullanılan sembol nedir?",
+    "correct_option": "#",
+    "options": [
+      "//",
+      "/*",
+      "#",
+      "!"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 4",
+    "code_example": "# Bu bir yorum satırıdır"
+  },
+  {
+    "unit": 1,
+    "topic": "Deyimin Çalıştırılması",
+    "question": "Python kodu `str1 = \"Python\"\nprint(str1 * 3)` çalıştırıldığında elde edilen ekran çıktısı nedir?",
+    "correct_option": "PythonPythonPython",
+    "options": [
+      "Python 3",
+      "PytPytPyt",
+      "SyntaxError",
+      "PythonPythonPython"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 20",
+    "code_example": "str1 = \"Python\"\nprint(str1 * 3)"
+  },
+  {
+    "unit": 1,
+    "topic": "Değişken Tipleri",
+    "question": "Python'da değişkenin tipi ne zaman belirlenir?",
+    "correct_option": "Atanan değere göre yorumlama (runtime) sırasında belirlenir.",
+    "options": [
+      "Değişken tanımlanmadan önce bir tür bildirimi ile belirlenir.",
+      "Derleme (compilation) sırasında sabitlenir.",
+      "Atanan değere göre yorumlama (runtime) sırasında belirlenir.",
+      "Her zaman 'object' türündedir ve hiç değişmez."
+    ],
+    "source_type": "Teknik Detay / Sayfa 717",
+    "code_example": "deger = 222 # int\ndeger = \"Anadolu\" # string"
+  },
+  {
+    "unit": 1,
+    "topic": "Sabitler (Constants)",
+    "question": "Python programlama dilinde sabit (constant) tanımlarken dikkat edilmesi gereken kritik nokta nedir?",
+    "correct_option": "Python'da sabit diye bir kavram yoktur, ancak büyük harfle yazılması geleneksel olarak tavsiye edilir.",
+    "options": [
+      "Sabitler mutlaka `const` anahtar kelimesi ile tanımlanmalıdır.",
+      "Sabitlerin değerleri ilk atamadan sonra değiştirilemez, aksi halde hata verir.",
+      "Python'da sabit diye bir kavram yoktur, ancak büyük harfle yazılması geleneksel olarak tavsiye edilir.",
+      "Sabitler her zaman bir `global` anahtar kelimesi ile bildirilmelidir."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 759",
+    "code_example": "PI = 3.14159\nprint(PI) # Geleneksel kullanım"
+  },
+  {
+    "unit": 1,
+    "topic": "Metin Dizisi İşlemleri (String)",
+    "question": "Python'da bir metin dizesi üzerinde 'tekrarlama' işlemi için kullanılan operatör hangisidir?",
+    "correct_option": "Yıldız işareti (*)",
+    "options": [
+      "Artı işareti (+)",
+      "Yıldız işareti (*)",
+      "Bölme işareti (/)",
+      "Mod alma işareti (%)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 837",
+    "code_example": "print('a' * 5) # Çıktı: aaaaa"
+  },
+  {
+    "unit": 1,
+    "topic": "String Kısıtlamaları",
+    "question": "Python'daki metin dizileri (String) hangi yapısal özelliğe sahiptir?",
+    "correct_option": "Değiştirilemez (immutable) yapıda oldukları için ekleme veya çıkarma yapılamaz.",
+    "options": [
+      "Değiştirilebilir (mutable) yapıda oldukları için elemanları güncellenebilir.",
+      "Sadece aynı tipteki elemanları barındırabilirler.",
+      "Değiştirilemez (immutable) yapıda oldukları için ekleme veya çıkarma yapılamaz.",
+      "Köşeli parantez `[]` kullanılarak yeniden atama yapılabilir."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 867",
+    "code_example": "str1 = 'test'\n# str1[0] = 'T' Hata verir."
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Tipleri ve Kapsam",
+    "question": "Python'da `x = [1, 2, 3]` ve `y = x[:]` atamaları yapıldıktan sonra `y.append(4)` çalıştırılırsa, `print(x)` çıktısı ne olur?",
+    "correct_option": "[1, 2, 3]",
+    "options": [
+      "[1, 2, 3, 4]",
+      "[1, 2, 3]",
+      "[4, 1, 2, 3]",
+      "Hata verir"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 19",
+    "code_example": "x = [1, 2, 3]\ny = x[:] # Slice ile kopyalama, farklı adres\ny.append(4)\nprint(x)"
+  },
+  {
+    "unit": 1,
+    "topic": "Tuple (Demet) Özelliği",
+    "question": "Tuple (Demet) yapısının List (Liste) yapısına göre temel farkı nedir?",
+    "correct_option": "Tuple'lar değiştirilemez (immutable) iken, listeler değiştirilebilir (mutable) bir yapıdadır.",
+    "options": [
+      "Tuple'lar sadece aynı tipte verileri barındırabilir.",
+      "Listelerden daha fazla bellek kaplar.",
+      "Tuple'lar değiştirilemez (immutable) iken, listeler değiştirilebilir (mutable) bir yapıdadır.",
+      "Tuple elemanlarına dilimleme operatörü `[]` ile erişilemez."
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 892",
+    "code_example": "demet = (1, 2, 3)\n# demet[0] = 5 Hata verir"
+  },
+  {
+    "unit": 1,
+    "topic": "Tuple Elemanlarına Erişim",
+    "question": "Python kodu `dm = (\"Portakal\", [10, 20, 30], (5, 15, 25))` içindeki `20` değerine erişmek için hangi ifade kullanılmalıdır?",
+    "correct_option": "dm[1][1]",
+    "options": [
+      "dm[1:2](1)",
+      "dm[1:][3]",
+      "dm[1:2:3][1]",
+      "dm[1][1]"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 16",
+    "code_example": "dm = (\"Portakal\", [10, 20, 30], (5, 15, 25))\nprint(dm[1][1])"
+  },
+  {
+    "unit": 1,
+    "topic": "Dictionary (Sözlük) Metotları",
+    "question": "Bir sözlükte anahtara karşılık gelen değeri, anahtarın var olmaması durumunda hata vermeden almak için kullanılan metot nedir?",
+    "correct_option": "get()",
+    "options": [
+      "get()",
+      "append()",
+      "index()",
+      "indexOf()"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 20",
+    "code_example": "sozluk.get('olmayan_anahtar', 'Varsayılan Değer')"
+  },
+  {
+    "unit": 1,
+    "topic": "Python'da Yorumlanma",
+    "question": "Python programlama dilinin çalışma modeli nedir?",
+    "correct_option": "Interpreted Language (Yorumlanan Dil) mimarisinde tasarlanmıştır ve kodlar satır satır çalıştırılır.",
+    "options": [
+      "Öncelikle bir makine koduna derlenir (compiled), sonra çalıştırılır.",
+      "Sadece Linux ortamında çalışır.",
+      "Interpreted Language (Yorumlanan Dil) mimarisinde tasarlanmıştır ve kodlar satır satır çalıştırılır.",
+      "Yüksek seviyeli bir dil değildir."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 451, 453",
+    "code_example": "print(2+2) # Yorumlayıcı bu satırı anında çalıştırır."
+  },
+  {
+    "unit": 1,
+    "topic": "Tür Dönüşümü (Explicit Conversion)",
+    "question": "Açık Tür Dönüşümünde ('Explicit'), karakter dizisi (string) tipindeki bir değeri tam sayı (integer) tipine dönüştürmek için hangi fonksiyon kullanılır?",
+    "correct_option": "int()",
+    "options": [
+      "float()",
+      "str()",
+      "int()",
+      "complex()"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 991",
+    "code_example": "sayi_str = '987'\nsayi_int = int(sayi_str)"
+  },
+  {
+    "unit": 1,
+    "topic": "Modül İçe Aktarma",
+    "question": "Python'da bir modülün tüm tanımlamalarını (fonksiyon, değişken vb.) içe aktarmak için hangi sembol kullanılır?",
+    "correct_option": "*",
+    "options": [
+      "#",
+      "*",
+      "%",
+      "&"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 13",
+    "code_example": "from math import *"
+  },
+  {
+    "unit": 1,
+    "topic": "Sayı Türleri",
+    "question": "Python programlama dilinde ondalıklı sayıları (kayan nokta) depolamak için kullanılan veri türü aşağıdakilerden hangisidir?",
+    "correct_option": "Float",
+    "options": [
+      "Integer",
+      "Float",
+      "Char",
+      "Boolean"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 17",
+    "code_example": "pi = 3.14159\nprint(type(pi)) # <class 'float'>"
+  },
+  {
+    "unit": 1,
+    "topic": "Veri Yapıları",
+    "question": "Aşağıdaki değişken türlerinden hangisi Python tarafından desteklenmez?",
+    "correct_option": "Let",
+    "options": [
+      "Int",
+      "Float",
+      "Long",
+      "Let"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 5",
+    "code_example": "Python, Long yerine Int ve Complex sayıları destekler."
+  },
+  {
+    "unit": 1,
+    "topic": "Operatörler",
+    "question": "İşlenenlerden herhangi biri doğruysa True döndüren mantıksal operatör hangisidir?",
+    "correct_option": "or",
+    "options": [
+      "and",
+      "or",
+      "not",
+      "xor"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Tablo 1.5",
+    "code_example": "x = True\ny = False\nprint(x or y) # True"
+  },
+  {
+    "unit": 1,
+    "topic": "Üyelik Operatörleri",
+    "question": "Python'da bir dizide (string, list, tuple, set ve dictionary) bir değerin veya değişkenin bulunup bulunmadığını test etmek için kullanılan operatörler hangileridir?",
+    "correct_option": "in ve not in",
+    "options": [
+      "== ve !=",
+      "is ve is not",
+      "& ve |",
+      "in ve not in"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 1326",
+    "code_example": "liste = [1, 2, 3]\nprint(5 not in liste) # True"
+  },
+  {
+    "unit": 1,
+    "topic": "Kimlik Operatörleri",
+    "question": "`x1 = 25`, `y1 = 25` ve `x3 = [10, 20, 30]`, `y3 = [10, 20, 30]` tanımlamaları için, `x1 is y1` ve `x3 is y3` ifadelerinin çıktıları sırasıyla ne olur?",
+    "correct_option": "True, False",
+    "options": [
+      "True, True",
+      "False, False",
+      "True, False",
+      "False, True"
+    ],
+    "source_type": "Teknik Detay / Sayfa 1322, 1324",
+    "code_example": "# Liste tipleri eşit olsa da bellek adresi farklıdır."
+  },
+  {
+    "unit": 1,
+    "topic": "Fonksiyonlar",
+    "question": "Bir metin dizesinin uzunluğunu (karakter sayısını) öğrenmek için kullanılan fonksiyon aşağıdakilerden hangisidir?",
+    "correct_option": "len()",
+    "options": [
+      "index()",
+      "size()",
+      "length()",
+      "len()"
+    ],
+    "source_type": "Sınav Sorusu / 2024-2025 GÜZ ARA-A Soru 18",
+    "code_example": "print(len('Python')) # Çıktı: 6"
+  },
+  
+  {
+    "unit": 2,
+    "topic": "Karar Kontrol Yapıları",
+    "question": "Python'da bir koşul doğruysa bir işlemi gerçekleştirmek, yanlışsa başka bir işlemi gerçekleştirmek için kullanılan yapı nedir?",
+    "correct_option": "if-else",
+    "options": [
+      "for",
+      "while",
+      "try-except",
+      "if-else"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 1581",
+    "code_example": "if x > 0:\n  print('Pozitif')\nelse:\n  print('Negatif')"
+  },
+  {
+    "unit": 2,
+    "topic": "Karar Kontrol Yapıları",
+    "question": "Birden fazla koşulu ardışık olarak kontrol etmek için kullanılan, `if` ve `else` arasında yer alan anahtar kelime nedir?",
+    "correct_option": "elif",
+    "options": [
+      "then",
+      "except",
+      "elif",
+      "while"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 1599",
+    "code_example": "if notlar == 'AA':\n  print('Başarılı')\nelif notlar == 'BA':\n  print('Orta')"
+  },
+  {
+    "unit": 2,
+    "topic": "Döngüler",
+    "question": "Aşağıdaki kod bloğunda verilen `for i in range(2, 10, 2): print(i, end=\" \")` ifadesinin ekran çıktısı nedir?",
+    "correct_option": "2 4 6 8",
+    "options": [
+      "2 10 2",
+      "2 4 6 8",
+      "2 4 6 8 10",
+      "1 2 3 4 5 6 7 8 9"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ ARA-A Soru 6",
+    "code_example": "for i in range(2, 10, 2):\n  print(i, end=\" \")"
+  },
+  {
+    "unit": 2,
+    "topic": "Döngü Kontrolü",
+    "question": "Python'da bir döngünün (for veya while) çalışmasını koşul sağlanmasa dahi bir sonraki iterasyona geçmeye zorlayan anahtar kelime hangisidir?",
+    "correct_option": "continue",
+    "options": [
+      "break",
+      "exit",
+      "continue",
+      "return"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 1761",
+    "code_example": "for i in range(5):\n  if i == 2:\n    continue\n  print(i)"
+  },
+  {
+    "unit": 2,
+    "topic": "Döngü Kontrolü",
+    "question": "Python'da bir döngüyü (for veya while) hemen sonlandırıp döngüden çıkmak için kullanılan anahtar kelime hangisidir?",
+    "correct_option": "break",
+    "options": [
+      "continue",
+      "exit",
+      "stop",
+      "break"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 2",
+    "code_example": "for i in 'Anadolu':\n  if i == 'd':\n    break\n  print(i, end=', ')"
+  },
+  {
+    "unit": 2,
+    "topic": "for döngüsü",
+    "question": "`for i in 'Anadolu': if i == 'd': break print(i, end=\", \")` kodunun çıktısı nedir?",
+    "correct_option": "A, n, a, ",
+    "options": [
+      "A, n, a, d, o, l, u, ",
+      "A, n, a, ",
+      "A, n, a, d, ",
+      "Anadolu, "
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 2",
+    "code_example": "for i in 'Anadolu':\n  if i == 'd':\n    break\n  print(i, end=\", \")"
+  },
+  {
+    "unit": 2,
+    "topic": "Fonksiyon Tanımı",
+    "question": "Python'da bir fonksiyon tanımlamak için kullanılan anahtar kelime nedir?",
+    "correct_option": "def",
+    "options": [
+      "func",
+      "function",
+      "define",
+      "def"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 1867",
+    "code_example": "def my_function():\n  print('Hello')"
+  },
+  {
+    "unit": 2,
+    "topic": "Fonksiyon Geri Dönüş Değeri",
+    "question": "Bir fonksiyondan bir değer döndürmek ve fonksiyonun çalışmasını sonlandırmak için kullanılan anahtar kelime nedir?",
+    "correct_option": "return",
+    "options": [
+      "yield",
+      "return",
+      "break",
+      "exit"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 1881",
+    "code_example": "def topla(a, b):\n  return a + b"
+  },
+  {
+    "unit": 2,
+    "topic": "Parametre Türleri",
+    "question": "Fonksiyon tanımlanırken parametrelerin önüne yıldız (*) konularak tanımlanan ve fonksiyona değişken sayıda pozisyonel bağımsız değişken (argument) geçirilmesine izin veren parametre tipi nedir?",
+    "correct_option": "Arbitrary Arguments (*args)",
+    "options": [
+      "Keyword Arguments (**kwargs)",
+      "Arbitrary Arguments (*args)",
+      "Default Arguments",
+      "Required Arguments"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 1978",
+    "code_example": "def my_func(*args):\n  for arg in args:\n    print(arg)"
+  },
+  {
+    "unit": 2,
+    "topic": "Parametre Türleri",
+    "question": "Fonksiyon tanımlanırken parametrelerin önüne çift yıldız (**) konularak tanımlanan ve anahtar kelime/değer çiftleri (key=value) şeklinde değişken sayıda bağımsız değişken geçirilmesine izin veren parametre tipi nedir?",
+    "correct_option": "Keyword Arguments (**kwargs)",
+    "options": [
+      "Arbitrary Arguments (*args)",
+      "Default Arguments",
+      "Keyword Arguments (**kwargs)",
+      "Required Arguments"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 1978",
+    "code_example": "def my_func(**kwargs):\n  for key, value in kwargs.items():\n    print(f'{key}: {value}')"
+  },
+  {
+    "unit": 2,
+    "topic": "Lambda Fonksiyonları",
+    "question": "Python'da tek bir ifade (expression) içerebilen, küçük, anonim (isimsiz) fonksiyonlar oluşturmak için kullanılan yapı nedir?",
+    "correct_option": "Lambda Fonksiyonu",
+    "options": [
+      "Nested Fonksiyon",
+      "Decorator",
+      "Lambda Fonksiyonu",
+      "Generator"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 2033",
+    "code_example": "topla = lambda a, b: a + b\nprint(topla(5, 3))"
+  },
+  {
+    "unit": 2,
+    "topic": "Döngü İşlemi Çıktısı",
+    "question": "Aşağıdaki kod bloğunun çıktısı nedir: `x = 10; while x > 5: x = x - 2; print(x)`",
+    "correct_option": "8\n6\n4",
+    "options": [
+      "10\n8\n6",
+      "8\n6\n4",
+      "4\n6\n8",
+      "Sonsuz döngüye girer"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ ARA-A Soru 7",
+    "code_example": "x = 10\nwhile x > 5:\n  x = x - 2\n  print(x)"
+  },
+  {
+    "unit": 2,
+    "topic": "Karşılaştırma ve Mantıksal Operatörler",
+    "question": "Python kodu `x = 0; a = 3; b = 4; if a > 0 and b > 0: x = 1; else: x = 2; print(x)` çalıştırıldığında çıktı ne olur?",
+    "correct_option": "1",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ ARA-A Soru 7 (Kodun devamı)",
+    "code_example": "x = 0; a = 3; b = 4\nif a > 0 and b > 0:\n  x = 1\nelse:\n  x = 2\nprint(x)"
+  },
+  {
+    "unit": 2,
+    "topic": "Range Fonksiyonu Detay",
+    "question": "`range(start, stop, step)` fonksiyonunda, `start` ve `step` parametrelerinin varsayılan (default) değerleri sırasıyla nedir?",
+    "correct_option": "0 ve 1",
+    "options": [
+      "1 ve 1",
+      "0 ve 1",
+      "1 ve 0",
+      "Her ikisi de zorunludur"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 1722",
+    "code_example": "print(list(range(5))) # start: 0, step: 1"
+  },
+  {
+    "unit": 2,
+    "topic": "Döngü Optimizasyonu Uyarısı",
+    "question": "Büyük veri kümeleriyle çalışırken `range()` yerine, belleği daha verimli kullanan ve gerektiğinde değer üreten (Lazy Evaluation) hangi alternatif kullanılmalıdır?",
+    "correct_option": "xrange() (Python 2'de) veya doğrudan range() (Python 3'te bir generator olduğu için)",
+    "options": [
+      "list()",
+      "tuple()",
+      "xrange() (Python 2'de) veya doğrudan range() (Python 3'te bir generator olduğu için)",
+      "range() fonksiyonu bellek açısından zaten en verimlisidir."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 1729",
+    "code_example": "null"
+  },
+  {
+    "unit": 2,
+    "topic": "Fonksiyon Kapsamı (Scope)",
+    "question": "Bir fonksiyon içinde tanımlanan ve yalnızca o fonksiyon içinde erişilebilen değişkenler hangi kapsamdadır?",
+    "correct_option": "Yerel (Local) Kapsam",
+    "options": [
+      "Genel (Global) Kapsam",
+      "Yerel (Local) Kapsam",
+      "Yerleşik (Built-in) Kapsam",
+      "Modül Kapsamı"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 1925",
+    "code_example": "def f():\n  x = 10 # Yerel değişken\n  print(x)"
+  },
+  {
+    "unit": 2,
+    "topic": "Global Anahtar Kelimesi",
+    "question": "Bir fonksiyonun yerel kapsamı içinden, genel (global) kapsamdaki bir değişkenin değerini değiştirmek için hangi anahtar kelime kullanılmalıdır?",
+    "correct_option": "global",
+    "options": [
+      "nonlocal",
+      "public",
+      "global",
+      "extern"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 1933",
+    "code_example": "g = 5\ndef f():\n  global g\n  g = 10 # Global g değişir"
+  },
+  {
+    "unit": 2,
+    "topic": "Pass Deyimi",
+    "question": "Python'da bir kod bloğunun (örneğin bir if, for, while, def veya class bloğu) içine herhangi bir kod yazılmadığında syntax hatası almamak için kullanılan ve hiçbir şey yapmayan deyim nedir?",
+    "correct_option": "pass",
+    "options": [
+      "continue",
+      "break",
+      "null",
+      "pass"
+    ],
+    "source_type": "Teknik Detay / Sayfa 1675",
+    "code_example": "def gelecekteki_fonksiyon():\n  pass"
+  },
+  {
+    "unit": 2,
+    "topic": "Range Çıktısı",
+    "question": "Aşağıdaki kod bloğunun çıktısı nedir: `print(list(range(5)))`",
+    "correct_option": "[0, 1, 2, 3, 4]",
+    "options": [
+      "[1, 2, 3, 4, 5]",
+      "[0, 1, 2, 3, 4]",
+      "[0, 1, 2, 3, 4, 5]",
+      "Hata verir"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 2 - Neler Öğrendik Soru 1",
+    "code_example": "print(list(range(5)))"
+  },
+  
+  {
+    "unit": 3,
+    "topic": "Fonksiyon Tanımı",
+    "question": "Python'da bir fonksiyon tanımlamak için kullanılan geçerli sözdizimi hangisidir?",
+    "correct_option": "def ornek_fonksiyon():",
+    "options": [
+      "def ornek_fonksiyon():",
+      "def ornek-fonksiyon():",
+      "function ornek_fonksiyon()",
+      "function ornek_fonksiyon():"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ ARA-A Soru 11",
+    "code_example": "def ornek_fonksiyon():\n  pass"
+  },
+  {
+    "unit": 3,
+    "topic": "Geri Dönüş Değeri",
+    "question": "Python'da bir fonksiyonda `return` ifadesi bulunmuyorsa veya ifadesiz kullanılırsa, fonksiyon varsayılan olarak hangi nesneyi döndürür?",
+    "correct_option": "None",
+    "options": [
+      "0",
+      "null",
+      "False",
+      "None"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 3",
+    "code_example": "def display():\n  c = 10 + 20\n  print(c)\nprint(display()) # Çıktı: 30\nprint(display()) # Çıktı: None"
+  },
+  {
+    "unit": 3,
+    "topic": "Özyinelemeli Fonksiyonlar (Recursive)",
+    "question": "Özyinelemeli fonksiyonların (Recursive) temel avantajlarından biri nedir?",
+    "correct_option": "Kodun daha temiz ve düzenli görünmesini sağlar.",
+    "options": [
+      "Sonsuz döngüler oluşturabilir.",
+      "Fonksiyonlar daha hızlı çalışır.",
+      "Kodun daha temiz ve düzenli görünmesini sağlar.",
+      "Hata ayıklaması daha kolaydır."
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ ARA-A Soru 12",
+    "code_example": "def faktöriyel(x):\n  if x == 1:\n    return 1\n  return x * faktöriyel(x-1)"
+  },
+  {
+    "unit": 3,
+    "topic": "Modül Yapısı (Module)",
+    "question": "Geçerli Python kodunu içeren ve bir modül olarak kabul edilen dosyanın uzantısı nedir?",
+    "correct_option": ".py",
+    "options": [
+      ".pym",
+      ".pymodule",
+      ".module",
+      ".py"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ ARA-A Soru 14",
+    "code_example": "import math # math.py"
+  },
+  {
+    "unit": 3,
+    "topic": "İsteğe Bağlı Argümanlar (*args)",
+    "question": "Aşağıdaki kod bloğunun çıktısı nedir: `def fonksiyon(*args): return sum(args); print(fonksiyon(1, 2, 3, 4))`",
+    "correct_option": "10",
+    "options": [
+      "1",
+      "4",
+      "10",
+      "Hata verir"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ ARA-A Soru 15",
+    "code_example": "def fonksiyon(*args):\n  return sum(args)\nprint(fonksiyon(1, 2, 3, 4))"
+  },
+  {
+    "unit": 3,
+    "topic": "Modül İçe Aktarma Hataları",
+    "question": "Aşağıdaki kod parçasında hata veren yer neresidir: `import math as m; pi = math.pi; print(m.factorial(5))`",
+    "correct_option": "pi = math.pi",
+    "options": [
+      "import math as m",
+      "pi = math.pi",
+      "print(m.factorial(5))",
+      "format(pi, \"1.7f\")"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 3 - Neler Öğrendik Soru 5",
+    "code_example": "import math as m\n# Modül yeniden adlandırıldığı için 'math' yerine 'm' kullanılmalıydı."
+  },
+  {
+    "unit": 3,
+    "topic": "Modül Yeniden Yükleme (Reload)",
+    "question": "Python yorumlayıcısı, bir oturum sırasında bir modülü yalnızca bir kez içe aktarır. Program sırasında değişen bir modülü yeniden yüklemek için hangi fonksiyon kullanılır?",
+    "correct_option": "imp.reload(modül_adı)",
+    "options": [
+      "import modül_adı",
+      "modül_adı.refresh()",
+      "imp.reload(modül_adı)",
+      "sys.reimport(modül_adı)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 2861, 2867",
+    "code_example": "import imp\nimp.reload(test_modul)"
+  },
+  {
+    "unit": 3,
+    "topic": "Paket Yapısı (Package)",
+    "question": "Python programlama dilinde, bir dizin yapısı altında toplanmış, birbiri ile bağlantılı, alakalı modüllerden oluşan yapıya ne ad verilir?",
+    "correct_option": "Paket (Package)",
+    "options": [
+      "Fonksiyon",
+      "Modül",
+      "Paket (Package)",
+      "Sözlük"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 3 - Neler Öğrendik Soru 9",
+    "code_example": "import Oyun.Seviye.start"
+  },
+  {
+    "unit": 3,
+    "topic": "Paket Oluşturma Gerekliliği",
+    "question": "Bir Python dizininin paket olarak kabul edilmesi için mutlaka içermesi gereken dosya nedir?",
+    "correct_option": "__init__.py",
+    "options": [
+      "setup.py",
+      "manifest.in",
+      "main.py",
+      "__init__.py"
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 2887",
+    "code_example": "Paket klasörüne bu dosya eklenir."
+  },
+  {
+    "unit": 3,
+    "topic": "Paket Yöneticisi (PIP)",
+    "question": "PyPI (The Python Package Index) ortamındaki paketlerin kurulması, güncellenmesi veya kaldırılmasını sağlayan paket yükleme ortamı nedir?",
+    "correct_option": "pip",
+    "options": [
+      "conda",
+      "npm",
+      "pip",
+      "pyinstaller"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 2935, 2937",
+    "code_example": "pip install Django"
+  },
+  {
+    "unit": 3,
+    "topic": "from...import İfadesi",
+    "question": "Python'da bir modülü bir bütün olarak içe aktarmadan, sadece ihtiyaç duyulan belirli özellik veya fonksiyonları içe aktarmak için hangi anahtar kelime kullanılır?",
+    "correct_option": "from",
+    "options": [
+      "include",
+      "using",
+      "from",
+      "require"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 2812",
+    "code_example": "from math import sqrt"
+  },
+  {
+    "unit": 3,
+    "topic": "İçe Aktarma Yöntemleri",
+    "question": "`from math import pi, e, sqrt as karekok` ifadesiyle içeri aktarılan `sqrt` fonksiyonu nasıl çağrılabilir?",
+    "correct_option": "karekok(16)",
+    "options": [
+      "math.sqrt(16)",
+      "sqrt(16)",
+      "karekok(16)",
+      "pi.karekok(16)"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 2822, 2829",
+    "code_example": "print(karekok(16)) # Çıktı: 4.0"
+  },
+  {
+    "unit": 3,
+    "topic": "PIP Yanlış Bilgi",
+    "question": "Python Paket Yöneticisi (PIP) için aşağıdaki ifadelerden hangisi **yanlıştır**?",
+    "correct_option": "Kendi paketinizi oluşturabilmek için pip’in kullanılması gereklidir.",
+    "options": [
+      "Python paketlerinin yükleme ortamıdır.",
+      "Standart Python paketleri için kuruluma ihtiyaç yoktur.",
+      "pip ile üçüncü şahısların paketleri kurulmaktadır.",
+      "Kendi paketinizi oluşturabilmek için pip’in kullanılması gereklidir."
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 3 - Neler Öğrendik Soru 10",
+    "code_example": "Paket oluşturmak için sadece .py dosyalarını bir klasör altına toplamak yeterlidir."
+  },
+  {
+    "unit": 3,
+    "topic": "Paket Yapısı",
+    "question": "Bir yapının paket olabilmesi için `__init__.py` içermesi ve alt paketleri/modülleri olabilmesi Python'daki Paket yapısı kurallarından mıdır?",
+    "correct_option": "Evet, her iki madde de doğrudur.",
+    "options": [
+      "Sadece `__init__.py` içermesi doğrudur.",
+      "Sadece alt paketleri/modülleri olabilmesi doğrudur.",
+      "Evet, her iki madde de doğrudur.",
+      "Hayır, bir paket en az 3 adet dosya içermelidir."
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 3 - Neler Öğrendik Soru 6",
+    "code_example": "import Oyun.Seviye # Oyun bir dizin yapısıdır."
+  },
+  {
+    "unit": 3,
+    "topic": "Argüman Kullanımı",
+    "question": "Python'da bir fonksiyon çağrısı sırasında konumsal (positional) argümanlar, anahtar kelime (keyword) argümanlarını takip ederse ne tür bir hata oluşur?",
+    "correct_option": "SyntaxError: positional argument follows keyword argument",
+    "options": [
+      "TypeError: missing required positional arguments",
+      "SyntaxError: positional argument follows keyword argument",
+      "NameError: keyword argument not defined",
+      "Kod sorunsuz çalışır."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 2436",
+    "code_example": "def selamlama(isim, mesaj):\n  pass\nselamlama(isim=\"Fatih\", \"Okumak...\") # Hata verir"
+  },
+  {
+    "unit": 3,
+    "topic": "Fonksiyon Kapsamı",
+    "question": "Bir fonksiyon içinde tanımlanan bir değişken, fonksiyonun dışında tanımlanmış aynı isimdeki genel (global) değişkenin değerini nasıl etkiler?",
+    "correct_option": "Sadece fonksiyon içinde yeni bir yerel değişken oluşur ve global değişkenin değeri değişmez.",
+    "options": [
+      "Global değişkenin değeri de otomatik olarak değişir.",
+      "Sadece fonksiyon içinde yeni bir yerel değişken oluşur ve global değişkenin değeri değişmez.",
+      "Program UnboundLocalError hatası verir.",
+      "Python bu durumlarda yerel değişken tanımlamaya izin vermez."
+    ],
+    "source_type": "Teknik Detay / Sayfa 2325-2327",
+    "code_example": "x = 34\ndef f():\n  x = 26 # Yerel x\nf()"
+  },
+  {
+    "unit": 3,
+    "topic": "global/local/nonlocal",
+    "question": "İç içe fonksiyonlarda (nested functions) yerel kapsamı tanımlanmamış, ancak global de olmayan bir değişkenin değerini değiştirmek için hangi anahtar kelime kullanılır?",
+    "correct_option": "nonlocal",
+    "options": [
+      "global",
+      "local",
+      "nonlocal",
+      "private"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 2717-2719",
+    "code_example": "def dis_fonk():\n  x = 'local'\n  def ic_fonk():\n    nonlocal x\n    x = 'nonlocal'"
+  },
+  {
+    "unit": 3,
+    "topic": "Dahili Fonksiyonlar",
+    "question": "Aşağıdaki fonksiyonlardan hangisi Python'ın kullanıma hazır, yerleşik (built-in) fonksiyonlarından biridir?",
+    "correct_option": "len()",
+    "options": [
+      "get_value()",
+      "execute()",
+      "len()",
+      "db_connect()"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 2346-2357",
+    "code_example": "print(len(['a', 'b'])) # Çıktı: 2"
+  },
+  {
+    "unit": 3,
+    "topic": "Sınıfın Üstünlüğü",
+    "question": "Programlama dilini C, C++ gibi dillerle entegre edebilme ve yazılan yazılımı platformdan bağımsız çalıştırma özelliği Python'ın hangi özelliğinin sonucudur?",
+    "correct_option": "Platformlar arası olması (cross-platform)",
+    "options": [
+      "Açık kaynak kodlu olması",
+      "Dinamic Type Control'ü desteklemesi",
+      "Yorumlanan bir dil olması",
+      "Platformlar arası olması (cross-platform)"
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 246",
+    "code_example": "null"
+  },
+  
+  {
+    "unit": 4,
+    "topic": "Sayı Türleri",
+    "question": "Python'da bir değişkenin hangi sayısal sınıfa ait olduğunu kontrol etmek için hangi fonksiyon kullanılır?",
+    "correct_option": "isinstance()",
+    "options": [
+      "type()",
+      "classof()",
+      "isinstance()",
+      "checktype()"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 3226",
+    "code_example": "isinstance(82, int) # Çıktı: True"
+  },
+  {
+    "unit": 4,
+    "topic": "Sayı Türleri",
+    "question": "Python'da kayan noktalı (float) bir sayı, en fazla kaç ondalık basamağa kadar değer alabilir?",
+    "correct_option": "15 ondalık basamağa kadar",
+    "options": [
+      "2 ondalık basamağa kadar",
+      "8 ondalık basamağa kadar",
+      "15 ondalık basamağa kadar",
+      "Sonsuz ondalık basamağa kadar"
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 3227",
+    "code_example": "float(10)/3 # Hassasiyet sınırlı olur"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste (List) İşlemleri",
+    "question": "Bir listenin tamamının bir kopyasını döndüren liste metodu nedir?",
+    "correct_option": "copy()",
+    "options": [
+      "clone()",
+      "copy()",
+      "duplicate()",
+      "extend()"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Tablo 4.2",
+    "code_example": "yeni_liste = eski_liste.copy() # ya da yeni_liste = eski_liste[:]"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste (List) Özellikleri",
+    "question": "Aşağıdaki ifadelerden hangisi Python'daki Liste (List) veri tipi için **yanlıştır**?",
+    "correct_option": "Liste elemanları atandıktan sonra değiştirilemez (immutable).",
+    "options": [
+      "Liste tanımı köşeli parantez `[]` içine yapılır.",
+      "Aynı anda birden fazla nesne ile çalışmaya izin verir.",
+      "Liste elemanları değiştirilebilir (mutable) bir yapıya sahiptir.",
+      "Liste elemanları atandıktan sonra değiştirilemez (immutable)."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3261",
+    "code_example": "liste[0] = 'yeni değer'"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste Elemanlarına Erişim",
+    "question": "Python'da bir listedeki öğeye erişmek için kullanılan operatör hangisidir ve indeksler kaçtan başlar?",
+    "correct_option": "Dizin operatörü `[]`, 0'dan başlar.",
+    "options": [
+      "Dilimleme operatörü `:`, 1'den başlar.",
+      "Dizin operatörü `[]`, 1'den başlar.",
+      "Dizin operatörü `[]`, 0'dan başlar.",
+      "Nokta operatörü `.`, 0'dan başlar."
+    ],
+    "source_type": "Teknik Detay / Sayfa 3271, 3272",
+    "code_example": "liste = [1, 2, 3]\nprint(liste[0]) # Çıktı: 1"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste Elemanı Ekleme",
+    "question": "Bir listenin sonuna tek bir eleman eklemek için hangi liste metodu kullanılır?",
+    "correct_option": "append()",
+    "options": [
+      "insert()",
+      "extend()",
+      "add()",
+      "append()"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Tablo 4.2",
+    "code_example": "liste.append(7) # listenin sonuna 7 ekler"
+  },
+  {
+    "unit": 4,
+    "topic": "Tuple (Demet) Kısıtlamaları",
+    "question": "Tuple (Demet) yapısının temel kısıtlaması nedir?",
+    "correct_option": "Elemanlar atandıktan sonra değiştirilemez (immutable).",
+    "options": [
+      "Sadece aynı veri türlerini barındırabilir.",
+      "Elemanlar atandıktan sonra değiştirilemez (immutable).",
+      "İndeksleme ve dilimleme desteklemez.",
+      "Sadece tek bir elemana sahip olabilir."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3318, 3319",
+    "code_example": "demet = (1, 2, 3)\n# demet[0] = 5 Hata verir"
+  },
+  {
+    "unit": 4,
+    "topic": "Tek Elemanlı Tuple",
+    "question": "Python'da tek elemanlı bir demet (Tuple) oluşturmanın doğru yolu nedir?",
+    "correct_option": "Elemanın yanına mutlaka virgül eklenmelidir.",
+    "options": [
+      "Sadece parantez içine elemanı yazmak yeterlidir.",
+      "Elemanın yanına mutlaka virgül eklenmelidir.",
+      "Sadece `tuple()` fonksiyonu kullanılabilir.",
+      "Tek elemanlı Tuple oluşturulamaz."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 3326",
+    "code_example": "demet = (\"hello\",) # Virgüle dikkat"
+  },
+  {
+    "unit": 4,
+    "topic": "String (Metin Dizisi) Özellikleri",
+    "question": "Dizeler (string), hangi yapısal özelliğe sahip oldukları için elemanları atandıktan sonra değiştirilemez?",
+    "correct_option": "Değişmez (immutable)",
+    "options": [
+      "Değişken (mutable)",
+      "Sıralı (ordered)",
+      "Değişmez (immutable)",
+      "Homojen (homogeneous)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3389",
+    "code_example": "str = 'Anadolu'\n# str[2] = 'A' Hata verir"
+  },
+  {
+    "unit": 4,
+    "topic": "String Metotları",
+    "question": "Bir dizedeki tüm kelimeleri bir listeye bölmek için kullanılan metot hangisidir?",
+    "correct_option": "split()",
+    "options": [
+      "lower()",
+      "join()",
+      "split()",
+      "replace()"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 3428",
+    "code_example": "\"Bu metin\".split() # Çıktı: ['Bu', 'metin']"
+  },
+  {
+    "unit": 4,
+    "topic": "Dize Biçimlendirme",
+    "question": "Python'da dize biçimlendirme (string formatting) için kullanılan, küme parantezleri `{}` ile yer tutucular belirten ve esnek bir yapı sunan metot hangisidir?",
+    "correct_option": "format()",
+    "options": [
+      "format()",
+      "printf()",
+      "str_format()",
+      "concat()"
+    ],
+    "source_type": "Teknik Detay / Sayfa 3416",
+    "code_example": "print('{} ve {}'.format('a', 'b'))"
+  },
+  {
+    "unit": 4,
+    "topic": "Küme (Set) Özellikleri",
+    "question": "Aşağıdaki ifadelerden hangisi Python'daki Küme (Set) veri tipi için **yanlıştır**?",
+    "correct_option": "Sıralı (ordered) bir öğeler topluluğudur.",
+    "options": [
+      "Her elemanı benzersizdir (tekrar etmez).",
+      "Sıralı (ordered) bir öğeler topluluğudur.",
+      "Kendisi değiştirilebilir (mutable) bir yapıdır.",
+      "Eleman olarak liste veya sözlük gibi değiştirilebilir türleri içeremez."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3435, 3439",
+    "code_example": "kume = {1, 2, 1, 3}\nprint(kume) # Çıktı: {1, 2, 3}"
+  },
+  {
+    "unit": 4,
+    "topic": "Küme Oluşturma",
+    "question": "Python'da boş bir küme (set) oluşturmak için hangi yöntem kullanılmalıdır?",
+    "correct_option": "set() fonksiyonu kullanılmalıdır.",
+    "options": [
+      "`{}` parantezleri kullanılmalıdır.",
+      "set() fonksiyonu kullanılmalıdır.",
+      "set('') ifadesi kullanılmalıdır.",
+      "Boş küme oluşturulamaz."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 3442, 3443",
+    "code_example": "bos_kume = set()\n# bos_sozluk = {}"
+  },
+  {
+    "unit": 4,
+    "topic": "Kümeden Eleman Çıkarma",
+    "question": "Bir kümeden (set) eleman çıkarmak için kullanılan `discard()` ve `remove()` metotları arasındaki temel fark nedir?",
+    "correct_option": "`remove()` eleman bulunmazsa `KeyError` verir, `discard()` hata vermez.",
+    "options": [
+      "`discard()` eleman bulunmazsa `KeyError` verir, `remove()` hata vermez.",
+      "Her ikisi de eleman bulunmazsa hata verir.",
+      "`remove()` eleman bulunmazsa `KeyError` verir, `discard()` hata vermez.",
+      "`discard()` sadece kümenin son elemanını siler."
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 3450, 3452",
+    "code_example": "kume.remove(2) # Hata verebilir\nkume.discard(2) # Hata vermez"
+  },
+  {
+    "unit": 4,
+    "topic": "Sözlük (Dictionary) Özellikleri",
+    "question": "Python'da bir sözlüğün (Dictionary) anahtarları (keys) için hangi kural geçerlidir?",
+    "correct_option": "Anahtarlar değişmez (immutable) tipte ve benzersiz olmalıdır.",
+    "options": [
+      "Anahtarlar değiştirilebilir (mutable) tipte olabilir.",
+      "Anahtarlar tekrarlanabilir olabilir.",
+      "Anahtarlar değişmez (immutable) tipte ve benzersiz olmalıdır.",
+      "Anahtar olarak sadece string tipte veriler kullanılabilir."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3490",
+    "code_example": "sozluk = {1: 'a', 'anahtar': [1, 2]}"
+  },
+  {
+    "unit": 4,
+    "topic": "Sözlük Elemanlarına Erişim",
+    "question": "Bir sözlükteki bir değere erişim için kullanılan ve anahtar bulunmadığında `KeyError` hatasına yol açan yöntem hangisidir?",
+    "correct_option": "Köşeli parantez `[]` kullanımı",
+    "options": [
+      "get() metodu",
+      "items() metodu",
+      "Köşeli parantez `[]` kullanımı",
+      "keys() metodu"
+    ],
+    "source_type": "Teknik Detay / Sayfa 3492",
+    "code_example": "sozluk['olmayan_anahtar'] # Hata verir"
+  },
+  {
+    "unit": 4,
+    "topic": "Sözlükten Eleman Kaldırma",
+    "question": "Bir sözlükten (Dictionary) belirli bir elemanı kaldırmak ve değerini döndürmek için kullanılan metot hangisidir?",
+    "correct_option": "pop(key)",
+    "options": [
+      "remove(key)",
+      "discard(key)",
+      "pop(key)",
+      "popitem()"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Tablo 4.6",
+    "code_example": "kareler.pop(4) # Anahtarı 4 olanı kaldırır ve değerini döndürür."
+  },
+  {
+    "unit": 4,
+    "topic": "Frozenset",
+    "question": "Tuple'ların değişmez listeler (immutable lists) olması gibi, Frozenset'ler hangi veri yapısının değişmez (immutable) karşılığıdır?",
+    "correct_option": "Küme (Set)",
+    "options": [
+      "Liste (List)",
+      "Sözlük (Dictionary)",
+      "Demet (Tuple)",
+      "Küme (Set)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3471",
+    "code_example": "A = frozenset([1, 2, 3])\n# A.add(4) Hata verir"
+  },
+  {
+    "unit": 4,
+    "topic": "Örtülü Tür Dönüşümü (Implicit)",
+    "question": "`sayi_int = 123` ve `sayi_flo = 1.23` değişkenleri toplanırsa (`sayi_int + sayi_flo`), sonuç hangi veri tipinde olur ve neden?",
+    "correct_option": "Float, veri kaybını önlemek için düşük tür (int) yüksek türe (float) dönüştürülür.",
+    "options": [
+      "Integer, Python her zaman sonucu tamsayıya yuvarlar.",
+      "Float, veri kaybını önlemek için düşük tür (int) yüksek türe (float) dönüştürülür.",
+      "Integer, çünkü ilk tanımlanan değişken integer'dır.",
+      "Hata verir, çünkü farklı türler toplanmaz."
+    ],
+    "source_type": "Teknik Detay / Sayfa 724, 738",
+    "code_example": "print(2 + 7.0) # Çıktı: 9.0"
+  },
+  {
+    "unit": 4,
+    "topic": "String İndeksleme",
+    "question": "Bir dizeye erişimde indeks aralığı dışında bir tamsayı kullanıldığında (örneğin 10 elemanlı dizede 11. indekse erişim) hangi istisna ortaya çıkar?",
+    "correct_option": "IndexError",
+    "options": [
+      "TypeError",
+      "IndexError",
+      "ValueError",
+      "KeyError"
+    ],
+    "source_type": "Teknik Detay / Sayfa 3384",
+    "code_example": "str = 'abc'\n# print(str[3]) # IndexError"
+  },
+  
+  {
+    "unit": 5,
+    "topic": "Dosya İşlemleri Adımları",
+    "question": "Python'da bir dosya işleminin gerçekleşme sırası hangi adımları takip eder?",
+    "correct_option": "Bir dosya aç, Okuma/yazma işlemleri, Dosyayı kapat",
+    "options": [
+      "Dosyayı aç, Kaynakları serbest bırak, Okuma/yazma işlemleri",
+      "Bir dosya aç, Okuma/yazma işlemleri, Dosyayı kapat",
+      "Dosyayı kapat, Okuma/yazma işlemleri, Bir dosya aç",
+      "Okuma/yazma işlemleri, Dosyayı aç, Dosyayı kapat"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 3660",
+    "code_example": "with open('dosya.txt', 'r') as f: # Dosya açılır\n  f.read() # İşlem yapılır\n# with bloğundan çıkınca dosya kapanır"
+  },
+  {
+    "unit": 5,
+    "topic": "Dosya Erişim Modları",
+    "question": "Python'da bir dosyayı oluşturmak için kullanılan ve dosya zaten varsa işlemin başarısız olmasına neden olan dosya açma modu hangisidir?",
+    "correct_option": "x",
+    "options": [
+      "r",
+      "w",
+      "a",
+      "x"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Tablo 5.1",
+    "code_example": "dosya = open('yeni_dosya.txt', 'x')"
+  },
+  {
+    "unit": 5,
+    "topic": "Dosya Kapatma Güvenliği",
+    "question": "Python'da bir dosyayı açtıktan sonra, dosya işlemi sırasında bir hata oluşsa bile dosyanın düzgün bir şekilde kapatılmasını sağlayan en güvenli yöntem nedir?",
+    "correct_option": "with deyimi kullanmak",
+    "options": [
+      "try...finally bloğu kullanmak",
+      "dosya.close() metodu",
+      "with deyimi kullanmak",
+      "Çöp toplayıcıya (Garbage Collector) güvenmek"
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 3683, 3684",
+    "code_example": "with open('metin.txt', 'r') as dosya:\n  # İşlemler..."
+  },
+  {
+    "unit": 5,
+    "topic": "Dosya Yazma Modu Uyarısı",
+    "question": "Bir dosyayı yazma ('w') modunda açarken, mevcut dosya içeriği ile ilgili hangi kritik durum ortaya çıkar?",
+    "correct_option": "Dosya mevcutsa, var olan dosyadaki tüm verileri siler (sıfırlar) ve üzerine yazar.",
+    "options": [
+      "Dosya mevcutsa, içeriği silmeden sonuna ekler.",
+      "Dosya mevcutsa, var olan dosyadaki tüm verileri siler (sıfırlar) ve üzerine yazar.",
+      "Dosya mevcut değilse hata verir.",
+      "Dosya mevcutsa hata verir."
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 3686",
+    "code_example": "with open('mevcut.txt', 'w') as dosya:\n  # Mevcut içerik silindi"
+  },
+  {
+    "unit": 5,
+    "topic": "Dosya Okuma Metotları",
+    "question": "Dosyanın tüm kalan satırlarının bir listesini döndürmek için kullanılan dosya okuma metodu nedir?",
+    "correct_option": "readlines()",
+    "options": [
+      "read(boyut)",
+      "readline()",
+      "getlines()",
+      "readlines()"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 3703",
+    "code_example": "dosya.readlines() # ['satır 1\\n', 'satır 2\\n']"
+  },
+  {
+    "unit": 5,
+    "topic": "Dizin İşlemleri",
+    "question": "Python'da, programın mevcut çalışma dizinini (Current Working Directory - CWD) öğrenmek için kullanılan `os` modülü metodu hangisidir?",
+    "correct_option": "os.getcwd()",
+    "options": [
+      "os.listdir()",
+      "os.mkdir()",
+      "os.chdir()",
+      "os.getcwd()"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 3723",
+    "code_example": "import os\nprint(os.getcwd())"
+  },
+  {
+    "unit": 5,
+    "topic": "Dizin İşlemleri",
+    "question": "Bir dizindeki tüm dosya ve alt dizinlere ait listeyi döndürmek için kullanılan `os` modülü metodu hangisidir?",
+    "correct_option": "os.listdir()",
+    "options": [
+      "os.getcwd()",
+      "os.listdir()",
+      "os.readDir()",
+      "os.getDir()"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 3732",
+    "code_example": "import os\nprint(os.listdir())"
+  },
+  {
+    "unit": 5,
+    "topic": "Dizin İşlemleri",
+    "question": "Python'da boş olmayan bir dizini (klasörü) ve içindekileri silmek için hangi modül ve metot kullanılmalıdır?",
+    "correct_option": "shutil modülündeki rmtree() metodu",
+    "options": [
+      "os.rmdir() metodu",
+      "os.remove() metodu",
+      "shutil modülündeki rmtree() metodu",
+      "os.deleteDir() metodu"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 3747, 3748",
+    "code_example": "import shutil\nshutil.rmtree('dizin_adı')"
+  },
+  {
+    "unit": 5,
+    "topic": "Hata Türleri",
+    "question": "Python programlama dilinde bir ifadenin söz dizimine uygun olmaması (noktalı virgül eksikliği, hatalı girinti vb.) nedeniyle ortaya çıkan hata türü nedir?",
+    "correct_option": "Program Hataları (Syntax Errors)",
+    "options": [
+      "İstisnalar (Exceptions)",
+      "Mantık Hataları (Bug)",
+      "Program Hataları (Syntax Errors)",
+      "Runtime Errors"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3751, 3752",
+    "code_example": "for i in range(5) # İki nokta üst üste (:) eksik"
+  },
+  {
+    "unit": 5,
+    "topic": "Hata Türleri",
+    "question": "Söz diziminden başarılı bir şekilde geçtikten sonra, çalışma zamanında (runtime) bir sayının sıfıra bölünmesi veya olmayan bir dosyaya erişim gibi durumlarda oluşan hatalara ne ad verilir?",
+    "correct_option": "İstisnalar (Exceptions)",
+    "options": [
+      "Program Hataları (Syntax Errors)",
+      "Mantık Hataları (Bug)",
+      "İstisnalar (Exceptions)",
+      "Parsing Errors"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3761",
+    "code_example": "x = 5 / 0 # ZeroDivisionError istisnası"
+  },
+  {
+    "unit": 5,
+    "topic": "İstisna Yakalama Mekanizması",
+    "question": "Python'da hata yakalamak için hangi anahtar kelimeler kullanılır?",
+    "correct_option": "try, except ve finally",
+    "options": [
+      "try, catch ve throw",
+      "try, except ve finally",
+      "if, else ve throw",
+      "error, handler ve stop"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3775",
+    "code_example": "try:\n  pass\nexcept:\n  pass"
+  },
+  {
+    "unit": 5,
+    "topic": "finally Bloğu",
+    "question": "Hata yakalama mekanizmasında, `try` bloğunda bir hata oluşsa da oluşmasa da **her zaman** çalıştırılması garanti edilen kod bloğu hangisidir?",
+    "correct_option": "finally bloğu",
+    "options": [
+      "except bloğu",
+      "else bloğu",
+      "finally bloğu",
+      "try bloğu"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 3814",
+    "code_example": "try:\n  pass\nfinally:\n  print('Her zaman çalışır')"
+  },
+  {
+    "unit": 5,
+    "topic": "Hata Türleri Karşılaştırması",
+    "question": "Aşağıdaki hata türlerinden hangisi Python programlama dilindeki hatalardan biri **değildir**?",
+    "correct_option": "I/O hataları",
+    "options": [
+      "Program hataları",
+      "Mantık hataları",
+      "İstisnalar",
+      "I/O hataları"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 5 - Neler Öğrendik Soru 7",
+    "code_example": "Temel hata grupları: Program, Mantık, İstisnalar."
+  },
+  {
+    "unit": 5,
+    "topic": "try-except Kuralı",
+    "question": "Python'da hata yakalama (try-except) mekanizması için aşağıdakilerden hangisi doğrudur?",
+    "correct_option": "Bir `try` ifadesi birden fazla `except` ifadesine sahip olabilir ve birden fazla `except` ifadesinden sadece biri çalışabilir.",
+    "options": [
+      "Her `try` bloğu, mutlaka bir `finally` bloğu ile devam etmelidir.",
+      "Bir `try` ifadesi birden fazla `except` ifadesine sahip olabilir ve birden fazla `except` ifadesinden sadece biri çalışabilir.",
+      "Hata oluşursa, tüm `except` blokları sırasıyla çalışır.",
+      "Mantık hataları (Bug) `try-except` ile yakalanabilir."
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 5 - Neler Öğrendik Soru 8, Sayfa 3800",
+    "code_example": "try:\n  pass\nexcept ValueError:\n  pass\nexcept TypeError:\n  pass"
+  },
+  {
+    "unit": 5,
+    "topic": "Hata Fırlatma",
+    "question": "Python'da, kod tarafında kullanıcı tarafından istisna (hata) oluşturmak/fırlatmak için hangi anahtar sözcük kullanılır?",
+    "correct_option": "raise",
+    "options": [
+      "throw",
+      "generate",
+      "raise",
+      "assert"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 3804",
+    "code_example": "raise ValueError('Hata oluştu!')"
+  },
+  {
+    "unit": 5,
+    "topic": "Yerleşik İstisnalar (Built-in Exceptions)",
+    "question": "Sözlükte (Dictionary) bir anahtar bulunmadığında Python'da hangi yerleşik istisna ortaya çıkar?",
+    "correct_option": "KeyError",
+    "options": [
+      "ValueError",
+      "IndexError",
+      "KeyError",
+      "NameError"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Tablo 5.3",
+    "code_example": "sozluk['olmayan_anahtar'] # KeyError"
+  },
+  {
+    "unit": 5,
+    "topic": "Yerleşik İstisnalar (Built-in Exceptions)",
+    "question": "Bir dizinin indeks değeri aralık dışında olduğunda (örneğin 5 elemanlı listeye 6. indeksle erişim) Python'da hangi yerleşik istisna ortaya çıkar?",
+    "correct_option": "IndexError",
+    "options": [
+      "KeyError",
+      "IndexError",
+      "TypeError",
+      "ValueError"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Tablo 5.3",
+    "code_example": "liste[10] # IndexError"
+  },
+  {
+    "unit": 5,
+    "topic": "Kullanıcı Tanımlı Hata Yakalama",
+    "question": "Kullanıcı tanımlı yeni bir istisna (hata) sınıfı oluşturmak için, bu sınıfın doğrudan veya dolaylı olarak hangi yerleşik sınıftan türetilmesi gerekir?",
+    "correct_option": "Exception sınıfından",
+    "options": [
+      "BaseException sınıfından",
+      "StandardError sınıfından",
+      "BaseClass sınıfından",
+      "Exception sınıfından"
+    ],
+    "source_type": "Teknik Detay / Sayfa 3820",
+    "code_example": "class OzelHata(Exception):\n  pass"
+  },
+  {
+    "unit": 5,
+    "topic": "Dizin İşlemleri",
+    "question": "Aşağıdaki kod bloğu çalıştırıldığında ne olur: `import os; os.mkdir(\"klasor2\"); os.rmdir(\"klasor2\"); os.listdir(\"klasor2\")`",
+    "correct_option": "\"klasor2\" başarıyla silinir, `os.listdir()` hata verir.",
+    "options": [
+      "\"klasor2\" silindikten sonra `os.listdir()` boş bir liste döner.",
+      "\"klasor2\" başarıyla silinir, `os.listdir()` hata verir.",
+      "Klasör dolu olduğu için silinemez.",
+      "Klasör taşınır ve listelenir."
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 8",
+    "code_example": "os.rmdir('klasor2') # Silme başarılı\nos.listdir('klasor2') # NameError/FileNotFoundError"
+  },
+  {
+    "unit": 5,
+    "topic": "Temel Dosya İşlemleri",
+    "question": "Aşağıdaki dosya açma modlarından hangisi Python dosya açma işlemleri için **doğru** olarak verilmiştir?",
+    "correct_option": "r modu okumak için dosya açar, w modu yazmak için dosya açar, a modu sonuna eklemek için dosya açar.",
+    "options": [
+      "r modu yazmak için dosya açar.",
+      "w modu sonuna eklemek için dosya açar.",
+      "r modu okumak için dosya açar, w modu yazmak için dosya açar, a modu sonuna eklemek için dosya açar.",
+      "a modu okumak için dosya açar."
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 5 - Neler Öğrendik Soru 3",
+    "code_example": "open('dosya.txt', 'r') # Okuma"
+  },
+  
+  {
+    "unit": 6,
+    "topic": "OOP Temel Kavramlar",
+    "question": "Aşağıdakilerden hangisi nesne yönelimli programlamadaki (OOP) temel terimlerden biri **değildir**?",
+    "correct_option": "Dictionary (Sözlük)",
+    "options": [
+      "Sınıf (Class)",
+      "Kalıtım (Inheritance)",
+      "Metot (Method)",
+      "Dictionary (Sözlük)"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 6 - Neler Öğrendik Soru 1, Sayfa 4193",
+    "code_example": "OOP temel terimleri: Sınıf, Nesne, Metot, Kalıtım, Kapsülleme, Çok Biçimlilik."
+  },
+  {
+    "unit": 6,
+    "topic": "Sınıf ve Nesne",
+    "question": "Bir sınıfın somutlaştırılmış (instantiated) haline ve iki temel özelliği (Özellikler/Attributes ve Davranışlar/Methods) olan yapıya ne ad verilir?",
+    "correct_option": "Nesne (Object)",
+    "options": [
+      "Sınıf (Class)",
+      "Kapsülleme (Encapsulation)",
+      "Nesne (Object)",
+      "Modül (Module)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3926, 3937",
+    "code_example": "spor = Araç(\"Kırmızı\", \"Benzin\") # Spor, Araç sınıfının bir nesnesidir."
+  },
+  {
+    "unit": 6,
+    "topic": "Metotlar",
+    "question": "Sınıfın içinde tanımlanan, bir nesnenin davranışlarını tanımlamak için kullanılan ve çağrıldığında çalışan kod bloklarına ne ad verilir?",
+    "correct_option": "Metot (Method)",
+    "options": [
+      "Özellik (Attribute)",
+      "Fonksiyon (Function)",
+      "Metot (Method)",
+      "Yapıcı (Constructor)"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 6 - Neler Öğrendik Soru 2",
+    "code_example": "class Kopek:\n  def yuru(self): # Metot\n    return \"*yuruyor*\""
+  },
+  {
+    "unit": 6,
+    "topic": "Yapıcı Metotlar (Constructor)",
+    "question": "Python'da bir sınıftan yeni bir nesne oluşturulacağı zaman **otomatik olarak çağrılan** ve nesne için bellekte yer ayrıldığı anda çalışan özel metot hangisidir?",
+    "correct_option": "__init__()",
+    "options": [
+      "__new__()",
+      "__init__()",
+      "__main__()",
+      "__call__()"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 4016, 4018",
+    "code_example": "def __init__(self, marka):\n  self.marka = marka"
+  },
+  {
+    "unit": 6,
+    "topic": "self Anahtar Kelimesi",
+    "question": "Sınıf içinde tanımlanan tüm metotların ilk parametresi olması gereken ve sınıfın kendisine verilen bir referansı temsil eden anahtar kelime nedir?",
+    "correct_option": "self",
+    "options": [
+      "this",
+      "me",
+      "self",
+      "cls"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 4003, 4004",
+    "code_example": "def selam(self): # self zorunlu ilk parametredir\n  print('Merhaba')"
+  },
+  {
+    "unit": 6,
+    "topic": "Kalıtım (Inheritance)",
+    "question": "Mevcut bir sınıfın nitelikleri ve davranışları değiştirilmeden, bu özelliklerin tekrar düzenlenebileceği yeni bir sınıf oluşturma işlemine ne ad verilir?",
+    "correct_option": "Kalıtım (Inheritance)",
+    "options": [
+      "Kapsülleme (Encapsulation)",
+      "Çok Biçimlilik (Polymorphism)",
+      "Kalıtım (Inheritance)",
+      "Soyutlama (Abstraction)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3950, 4200",
+    "code_example": "class AltSınıf(AnaSınıf): # AltSınıf, AnaSınıf'tan miras alır."
+  },
+  {
+    "unit": 6,
+    "topic": "Çoklu Kalıtım",
+    "question": "Python'da bir sınıfın birden fazla temel sınıftan türetilmesi işlemine ne ad verilir?",
+    "correct_option": "Çoklu Kalıtım",
+    "options": [
+      "Çok Biçimlilik",
+      "Çoklu Kalıtım",
+      "Çok Düzeyli Kalıtım",
+      "Anonim Sınıf"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4204",
+    "code_example": "class AltSınıf(AnaSınıf1, AnaSınıf2): # Çoklu Kalıtım\n  pass"
+  },
+  {
+    "unit": 6,
+    "topic": "Operatör Aşırı Yüklemesi",
+    "question": "Nesneye yönelik programlamada, bir operatörün (örneğin '+') işlem yapılan türlere göre farklı davranışlar göstermesine ne ad verilir?",
+    "correct_option": "Operatör Aşırı Yüklemesi",
+    "options": [
+      "Kalıtım",
+      "Operatör Aşırı Yüklemesi",
+      "Çok Biçimlilik",
+      "Geçersiz Kılma"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 6 - Neler Öğrendik Soru 8",
+    "code_example": "def __add__(self, nesne):\n  return self.değer + nesne.değer"
+  },
+  {
+    "unit": 6,
+    "topic": "Geçersiz Kılma (Overriding)",
+    "question": "Ana sınıftan kalıtım yoluyla geçen bir metot, alt sınıfta **aynı isimle** tekrar tanımlandığında, ana sınıftaki metodun geçersiz hale gelmesi işlemine ne ad verilir?",
+    "correct_option": "Geçersiz Kılma (Overriding)",
+    "options": [
+      "Operatör Aşırı Yüklemesi",
+      "Çok Biçimlilik",
+      "Geçersiz Kılma (Overriding)",
+      "Kapsülleme"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4208, 4209",
+    "code_example": "class AltSınıf(AnaSınıf):\n  def metod_adı(self): # Override eder\n    pass"
+  },
+  {
+    "unit": 6,
+    "topic": "Veri Gizleme (Encapsulation)",
+    "question": "Sınıf dışından verilere, metot ve özelliklere doğrudan erişimi kısıtlayarak verilerin tek bir birim altında toplanması işlemine ne ad verilir?",
+    "correct_option": "Veri Gizleme (Kapsülleme)",
+    "options": [
+      "Çok Biçimlilik",
+      "Kalıtım",
+      "Veri Gizleme (Kapsülleme)",
+      "Soyutlama"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 6 - Neler Öğrendik Soru 9",
+    "code_example": "class Sayac:\n  __gizliSayac = 0 # Gizli özellik"
+  },
+  {
+    "unit": 6,
+    "topic": "Kapsülleme Detay",
+    "question": "Python'da bir sınıf üyesini özel/gizli ('private') olarak belirtmek ve sınıf dışından erişimi kısıtlamak için özellik adından önce hangi önek kullanılır?",
+    "correct_option": "Çift altçizgi `__`",
+    "options": [
+      "Tek altçizgi `_`",
+      "Çift altçizgi `__`",
+      "Dolar işareti `$`",
+      "At işareti `@`"
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 4125",
+    "code_example": "self.__maas = 5000"
+  },
+  {
+    "unit": 6,
+    "topic": "Çöp Toplama (Garbage Collection)",
+    "question": "Python programlama dilinde bellek ayırma ve ayrılan belleği serbest bırakma/temizleme işlemleri nasıl gerçekleştirilir?",
+    "correct_option": "Otomatik olarak gerçekleştirilir (Çöp Toplama mekanizması).",
+    "options": [
+      "Programcı tarafından manuel olarak yönetilir (C/C++ gibi).",
+      "Sadece referans sayımı (Reference Counting) ile gerçekleştirilir.",
+      "Otomatik olarak gerçekleştirilir (Çöp Toplama mekanizması).",
+      "Sadece nesneler silindiğinde çalışır."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4218",
+    "code_example": "del nesne # Belleği otomatik serbest bırakma sürecini tetikler."
+  },
+  {
+    "unit": 6,
+    "topic": "Çöp Toplama Tetikleme",
+    "question": "Python'da Çöp Toplama mekanizması (Garbage Collection) programcı tarafından da tetiklenebilir mi?",
+    "correct_option": "Evet, `gc` modülü ve `gc.collect()` fonksiyonu ile elle tetiklenebilir.",
+    "options": [
+      "Hayır, sadece sistem tarafından otomatik olarak yönetilir.",
+      "Evet, `gc` modülü ve `gc.collect()` fonksiyonu ile elle tetiklenebilir.",
+      "Sadece özel olarak tanımlanmış nesneler için mümkündür.",
+      "Sadece `del` anahtar kelimesi ile tetiklenir."
+    ],
+    "source_type": "Teknik Detay / Sayfa 4220, 4158",
+    "code_example": "import gc\ngc.collect() # Çöp toplamayı elle tetikler"
+  },
+  {
+    "unit": 6,
+    "topic": "Kod Çıktısı",
+    "question": "`class Insan(): def __init__(self, name): self.name = name; def namePrint(self): print(self.name); person1 = Insan('Ali'); person2 = Insan('Ayşe'); person1.namePrint()` kodunun ekran çıktısı nedir?",
+    "correct_option": "Ali",
+    "options": [
+      "Ayşe",
+      "Ali",
+      "Ali Ayşe",
+      "Kod hata verir"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 11",
+    "code_example": "person1 = Insan('Ali')\nperson1.namePrint() # Sadece person1'in adını yazdırır."
+  },
+  {
+    "unit": 6,
+    "topic": "Geçersiz Kılma (Overriding) Örnek",
+    "question": "Aşağıdaki kod bloğunda `bobo.yuru()` çağrısının ekran çıktısı nedir: `class Kopek: def yuru(self): return \"*yuruyor*\"... class JackRussellTerrier(Kopek): ... bobo = JackRussellTerrier(); print(bobo.yuru())`",
+    "correct_option": "*yuruyor*",
+    "options": [
+      "Arff!",
+      "Woof!",
+      "*yuruyor*",
+      "AttributeError"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 9",
+    "code_example": "class JackRussellTerrier(Kopek): # Kalıtım\n  def konus(self): return \"Arff!\"\n  # yuru metodu override edilmedi, ana sınıftan kalır."
+  },
+  {
+    "unit": 6,
+    "topic": "Çok Biçimlilik (Polymorphism)",
+    "question": "Farklı veri türleri veya sınıflar için **aynı metot adı** (örneğin `alan()`) kullanarak farklı işlemler yapabilme yeteneğine ne ad verilir?",
+    "correct_option": "Çok Biçimlilik (Polymorphism)",
+    "options": [
+      "Kalıtım",
+      "Kapsülleme",
+      "Çok Biçimlilik (Polymorphism)",
+      "Soyutlama"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 3965",
+    "code_example": "kare.alan() ve daire.alan() farklı formüller çalıştırır."
+  },
+  {
+    "unit": 6,
+    "topic": "Nesne ve Metot",
+    "question": "Aşağıdaki kod bloğu, nesneye yönelik programlamadaki hangi kavrama bir örnektir: `merhaba = Selamlama(); merhaba.selam('Ali Veli')`",
+    "correct_option": "Metot (Method)",
+    "options": [
+      "Kalıtım",
+      "Aşırı yükleme",
+      "Kapsülleme",
+      "Metot (Method)"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 10",
+    "code_example": "merhaba.selam(\"Ali Veli\") # 'selam' metodunu çağırır."
+  },
+  {
+    "unit": 6,
+    "topic": "Yerleşik Özellikler",
+    "question": "Python sınıflarının yerleşik özelliklerinden olan `__doc__` özelliği ne işe yarar?",
+    "correct_option": "Sınıf oluşturulurken tanımlanmışsa, sınıfa ait açıklama metnini döndürür.",
+    "options": [
+      "Sınıfın niteliklerini içeren sözlük değerini döndürür.",
+      "Sınıfın adını döndürür.",
+      "Sınıf oluşturulurken tanımlanmışsa, sınıfa ait açıklama metnini döndürür.",
+      "Sınıfın temel sınıflarının demetini döndürür."
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 3992",
+    "code_example": "print(Personel.__doc__)"
+  },
+  
+  {
+    "unit": 7,
+    "topic": "Veritabanı Bağlantısı",
+    "question": "Python'ın MySQL veritabanına ulaşabilmesi için gerekli olan sürücü (driver) nedir?",
+    "correct_option": "MySQL Connector",
+    "options": [
+      "Django ORM",
+      "SQLite Driver",
+      "MySQL Connector",
+      "psycopg2"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4459, 4460",
+    "code_example": "pip install mysql-connector-python"
+  },
+  {
+    "unit": 7,
+    "topic": "Veritabanı Oluşturma",
+    "question": "MySQL'de yeni bir veritabanı oluşturmak için kullanılan SQL komutu nedir?",
+    "correct_option": "CREATE DATABASE",
+    "options": [
+      "CREATE TABLE",
+      "CREATE DATABASE",
+      "OPEN DATABASE",
+      "NEW DATABASE"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 7 - Neler Öğrendik Soru 2",
+    "code_example": "cursor.execute(\"CREATE DATABASE personel\")"
+  },
+  {
+    "unit": 7,
+    "topic": "Tablo Oluşturma",
+    "question": "MySQL'de yeni bir tablo oluşturmak için kullanılan SQL komutu nedir?",
+    "correct_option": "CREATE TABLE",
+    "options": [
+      "CREATE DATABASE",
+      "CREATE TABLE",
+      "CREATE INDEX",
+      "CREATE VIEW"
+    ],
+    "source_type": "Teknik Detay / Sayfa 4464",
+    "code_example": "CREATE TABLE calisan (isim VARCHAR(30))"
+  },
+  {
+    "unit": 7,
+    "topic": "Birincil Anahtar (Primary Key)",
+    "question": "MySQL'de bir tabloya **birincil anahtar** (Primary Key) ve **otomatik artırma** (Auto Increment) özellikleri eklemek için kullanılan SQL ifadesi hangisidir?",
+    "correct_option": "INT AUTO_INCREMENT PRIMARY KEY",
+    "options": [
+      "INT PRIMARY KEY",
+      "INT UNIQUE INDEX",
+      "INT AUTO_INCREMENT PRIMARY KEY",
+      "INT NOT NULL"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 7 - Neler Öğrendik Soru 4",
+    "code_example": "ALTER TABLE calisan ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY"
+  },
+  {
+    "unit": 7,
+    "topic": "Veri Ekleme",
+    "question": "Veritabanındaki tablolara tekli veya çoklu veri kaydı yapmak için kullanılan SQL komutu nedir?",
+    "correct_option": "INSERT INTO",
+    "options": [
+      "UPDATE",
+      "ADD ROW",
+      "INSERT INTO",
+      "SELECT"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4467",
+    "code_example": "INSERT INTO calisan (isim) VALUES ('Ali')"
+  },
+  {
+    "unit": 7,
+    "topic": "Veri Kaydetme",
+    "question": "Python'da, veritabanına girilmesi istenen verilerin **kalıcı olarak** kaydedilmesi (uygulanması) için hangi metot kullanılır?",
+    "correct_option": "veritabani.commit()",
+    "options": [
+      "veritabani.commit()",
+      "veritabani.execute()",
+      "veritabani.insert()",
+      "veritabani.write()"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 14",
+    "code_example": "veritabani.commit() # Bu metot çağrılmadan işlemler veritabanına yansımaz."
+  },
+  {
+    "unit": 7,
+    "topic": "Veri Çekme",
+    "question": "Tablolara girilen verileri okuma (çekme) işlemi için kullanılan SQL komutu nedir?",
+    "correct_option": "SELECT",
+    "options": [
+      "INSERT",
+      "UPDATE",
+      "DELETE",
+      "SELECT"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4467",
+    "code_example": "SELECT * FROM calisan"
+  },
+  {
+    "unit": 7,
+    "topic": "Veri Güncelleme",
+    "question": "Bir tablodaki kayıtlı verilerin değerlerini değiştirmek için kullanılan SQL komutu hangisidir: `... calisan SET maas = 5000 WHERE id = 3`",
+    "correct_option": "UPDATE",
+    "options": [
+      "INSERT",
+      "DELETE",
+      "UPDATE",
+      "CHANGE"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 7 - Neler Öğrendik Soru 9",
+    "code_example": "UPDATE calisan SET maas = 5000 WHERE id = 3"
+  },
+  {
+    "unit": 7,
+    "topic": "UPDATE Komutu",
+    "question": "`UPDATE calisan SET maas = 5000 WHERE id = 3;` SQL sorgusu hangi işlemi gerçekleştirir?",
+    "correct_option": "ID'si 3 olan çalışanın maaşını 5000 olarak günceller.",
+    "options": [
+      "Tüm çalışanların maaşlarını 5000 yapar.",
+      "ID'si 3 olan çalışanın maaşını 5000 olarak günceller.",
+      "Tüm çalışanların ID'sini 3 yapar.",
+      "ID'si 3 olan çalışanın maaşını siler."
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 13",
+    "code_example": "UPDATE tablosu WHERE şartı ile kullanılır."
+  },
+  {
+    "unit": 7,
+    "topic": "WHERE Komutu",
+    "question": "Veritabanında veri çekerken filtreleme yapmak ve aranan ifadenin **'a' harfi ile biten** kayıtları döndürmek için kullanılan SQL komutu hangisidir: `SELECT ... LIKE '%a'`",
+    "correct_option": "LIKE '%a'",
+    "options": [
+      "LIKE 'a%'",
+      "LIKE '%a%'",
+      "LIKE 'a'",
+      "LIKE '%a'"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 16, Sayfa 4358",
+    "code_example": "SELECT isim FROM calisan WHERE isim LIKE '%a'"
+  },
+  {
+    "unit": 7,
+    "topic": "Veri Silme",
+    "question": "Tablodan belirli bir kaydın silinmesi için kullanılan SQL komutu nedir?",
+    "correct_option": "DELETE FROM",
+    "options": [
+      "DROP ROW",
+      "REMOVE",
+      "DELETE FROM",
+      "TRUNCATE"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4469",
+    "code_example": "DELETE FROM calisan WHERE id = 7"
+  },
+  {
+    "unit": 7,
+    "topic": "Tablo Silme",
+    "question": "Veritabanında varolan bir tabloyu **verileriyle birlikte** silmek için kullanılan SQL komutu nedir?",
+    "correct_option": "DROP TABLE",
+    "options": [
+      "DELETE TABLE",
+      "REMOVE TABLE",
+      "DROP TABLE",
+      "TRUNCATE TABLE"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4469",
+    "code_example": "DROP TABLE IF EXIST calisan"
+  },
+  {
+    "unit": 7,
+    "topic": "SQL Injection Önleme",
+    "question": "SQL Injection saldırılarını engellemek amacıyla sorgu ve parametre değerlerini ayırarak güvenli sorgu yaparken, verilerin gizlenmesi için Python'da kullanılan yer tutucusu nedir?",
+    "correct_option": "%s",
+    "options": [
+      "?",
+      "{}",
+      "%s",
+      "!"
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 4381, 4382",
+    "code_example": "sql = \"SELECT * FROM calisan WHERE isim = %s\"\narama = ('Ali',)\ncursor.execute(sql, arama)"
+  },
+  {
+    "unit": 7,
+    "topic": "Sıralama (ORDER BY)",
+    "question": "Bir tablodaki verileri **azalan** düzende (büyükten küçüğe) sıralamak için kullanılan SQL komutu hangisidir?",
+    "correct_option": "ORDER BY DESC",
+    "options": [
+      "LIMIT",
+      "ORDER BY ASC",
+      "ORDER BY DESC",
+      "OFFSET"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 15, Sayfa 4369",
+    "code_example": "SELECT isim FROM calisan ORDER BY isim DESC"
+  },
+  {
+    "unit": 7,
+    "topic": "LIMIT ve OFFSET",
+    "question": "`LIMIT 5 OFFSET 3` SQL ifadesi, sorgu sonucunda dönen veri kümesinden hangi kayıtları getirir?",
+    "correct_option": "3. kayıttan sonraki 5 kaydı getirir.",
+    "options": [
+      "İlk 3 kaydı atlayıp, sonraki 5 kaydı getirir.",
+      "İlk 5 kaydı atlayıp, sonraki 3 kaydı getirir.",
+      "3. kayıttan sonraki 5 kaydı getirir.",
+      "Sadece ilk 3 kaydı getirir."
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4402, 4405",
+    "code_example": "SELECT * FROM tablo LIMIT 5 OFFSET 3"
+  },
+  {
+    "unit": 7,
+    "topic": "JOIN Komutu",
+    "question": "İki veya daha fazla tablonun verilerini, aralarındaki ilişkili sütunlara göre birleştirmek için kullanılan SQL komutu nedir?",
+    "correct_option": "JOIN",
+    "options": [
+      "UNION",
+      "GROUP",
+      "JOIN",
+      "MERGE"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4471",
+    "code_example": "SELECT * FROM tablo1 JOIN tablo2 ON tablo1.id = tablo2.id"
+  },
+  {
+    "unit": 7,
+    "topic": "FETCHONE Metodu",
+    "question": "`cursor.fetchone()` metodunun işlevi nedir?",
+    "correct_option": "Sorgu sonucunda gelen **ilk satırın** verisini alır.",
+    "options": [
+      "Sorgu sonucunda gelen tüm verileri bir liste olarak alır.",
+      "Sorgu sonucunda gelen **ilk satırın** verisini alır.",
+      "Son sorgu işleminin kaç satırı etkilediğini döndürür.",
+      "Bir sonraki satıra geçmek için kullanılır."
+    ],
+    "source_type": "Teknik ve Fonksiyonel Detaylar / Sayfa 4349, 4350",
+    "code_example": "sonuc = cursor.fetchone()\nprint(sonuc)"
+  },
+  {
+    "unit": 7,
+    "topic": "Veri Çekme Metotları",
+    "question": "Veritabanından sorgulanan tüm verileri Python'da bir **liste** şeklinde döndüren metot hangisidir?",
+    "correct_option": "cursor.fetchall()",
+    "options": [
+      "cursor.fetchone()",
+      "cursor.fetchmany()",
+      "cursor.fetchall()",
+      "cursor.execute()"
+    ],
+    "source_type": "Teknik Detay / Sayfa 4342",
+    "code_example": "sonucListe = cursor.fetchall()"
+  },
+  
+  {
+    "unit": 8,
+    "topic": "Django Mimarisi",
+    "question": "Django web uygulama geliştirme platformunun temel aldığı mimari yapı hangisidir?",
+    "correct_option": "MVT (Model View Template)",
+    "options": [
+      "MVC (Model View Controller)",
+      "MVVM (Model View ViewModel)",
+      "MVT (Model View Template)",
+      "WAF (Web Application Framework)"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 17",
+    "code_example": "MVT yapısı: Model (Veritabanı), View (İş mantığı), Template (Kullanıcı arayüzü)."
+  },
+  {
+    "unit": 8,
+    "topic": "Proje Yönetimi",
+    "question": "Django projesini çalıştırmak ve yönetmek için komut satırı aracılığıyla iletişim kurmaya yarayan yerel Django-admin dosyası hangisidir?",
+    "correct_option": "manage.py",
+    "options": [
+      "settings.py",
+      "urls.py",
+      "wsgi.py",
+      "manage.py"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 4556",
+    "code_example": "python manage.py runserver"
+  },
+  {
+    "unit": 8,
+    "topic": "Arayüz (View) İşlevi",
+      "question": "Django'da bir View (arayüz) fonksiyonu oluştururken, HTTP isteği alır ve HTML, XML, CSV vb. gibi bir Web yanıtı döndürür[cite: 4917]. Bu işlevi gerçekleştiren kod bloğu hangisidir: `def hello(request): return HttpResponse(\"<h1>Merhaba Django! </h1>\")`",
+    "correct_option": "HTTP isteği alır ve HTML döner.",
+    "options": [
+      "Bir HTML şablonunu çağırır.",
+      "HTTP isteği alır ve HTML döner.",
+      "Bir Python hatasını yakalar.",
+      "Veritabanına yeni bir kayıt ekler."
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 19, 4932",
+    "code_example": "from django.http import HttpResponse"
+  },
+  {
+    "unit": 8,
+    "topic": "Proje Yapılandırması",
+    "question": "Django projesinin tüm yapılandırma ayarlarını (veritabanı bağlantısı, kurulu uygulamalar vb.) içeren dosya hangisidir?",
+    "correct_option": "settings.py",
+    "options": [
+      "manage.py",
+      "urls.py",
+      "settings.py",
+      "__init__.py"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 4556",
+    "code_example": "DATABASES = { ... }"
+  },
+  {
+    "unit": 8,
+    "topic": "URL Yönlendirme",
+    "question": "Django projesinde, site linklerini kontrol eden, tüm bağlantıları ve metotları ilgili View fonksiyonlarına yönlendiren ana işlev hangi dosyada tanımlanır?",
+    "correct_option": "urls.py",
+    "options": [
+      "settings.py",
+      "views.py",
+      "models.py",
+      "urls.py"
+    ],
+    "source_type": "Liste ve Karşılaştırmalar / Sayfa 4556",
+    "code_example": "urlpatterns = [path('admin/', admin.site.urls)]"
+  },
+  {
+    "unit": 8,
+    "topic": "URL Dönüştürücüleri",
+    "question": "Django.urls.path için varsayılan Django yol (url) dönüştürücüleri hangileridir?",
+    "correct_option": "str, int, slug, uuid",
+    "options": [
+      "string, int, slug, uuid",
+      "text, int, slug, uuid",
+      "str, int, slug, uuid",
+      "number, int, slug, uuid"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 20",
+    "code_example": "path('urunler/<int:urun_no>/', ...)"
+  },
+  {
+    "unit": 8,
+    "topic": "URL Parametreleri",
+    "question": "`path('arsiv/<str:tarih>', views.arsiv_getir, name='arsiv_getir')` ifadesi, URL'den alınan `tarih` metin verisini, `arsiv_getir` View fonksiyonuna hangi türde ve şekilde parametre olarak iletir?",
+    "correct_option": "`str` tipinde bir metin parametresi olarak iletir.",
+    "options": [
+      "Tam sayı (`int`) tipinde bir sayı parametresi olarak iletir.",
+      "Ondalık (`float`) tipinde bir sayı parametresi olarak iletir.",
+      "`str` tipinde bir metin parametresi olarak iletir.",
+      "URL'den parametre alamaz, hata verir."
+    ],
+    "source_type": "Teknik Detay / Sayfa 4796",
+    "code_example": "def arsiv_getir(request, tarih):\n  print(tarih)"
+  },
+  {
+    "unit": 8,
+    "topic": "Model Oluşturma",
+    "question": "Django'da veritabanında tablo veya koleksiyonu temsil eden ve her özelliği tablo alanını gösteren sınıf nerede tanımlanır?",
+    "correct_option": "models.py",
+    "options": [
+      "views.py",
+      "urls.py",
+      "settings.py",
+      "models.py"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4811, 4921",
+    "code_example": "class Kartvizit(models.Model):\n  isim = models.CharField(max_length=50)"
+  },
+  {
+    "unit": 8,
+    "topic": "Model Güncelleme",
+    "question": "Modellerde yapılan tüm değişikliklerin veritabanında uygulanarak güncellenmesi için sırasıyla hangi komutlar çalıştırılmalıdır?",
+    "correct_option": "makemigrations, migrate",
+    "options": [
+      "makemigrations, check",
+      "runserver, migrate",
+      "makemigrations, migrate",
+      "createsuperuser, migrate"
+    ],
+    "source_type": "Teknik Detay / Sayfa 4822, 4823",
+    "code_example": "python manage.py makemigrations\npython manage.py migrate"
+  },
+  {
+    "unit": 8,
+    "topic": "CRUD İşlemleri",
+    "question": "CRUD kısaltması, veritabanı işlemlerinde hangi dört temel işlemi ifade eder?",
+    "correct_option": "Oluştur (Create), Al (Retrieve), Güncelle (Update), Sil (Delete)",
+    "options": [
+      "Çağır (Call), Raporla (Report), Uygula (Use), Durdur (Disable)",
+      "Oluştur (Create), Al (Retrieve), Güncelle (Update), Sil (Delete)",
+      "Oluştur (Create), Bağlan (Relate), Kullan (Utilize), Dağıt (Distribute)",
+      "Kodla (Code), Kaydet (Record), Yükle (Upload), Dağıt (Deploy)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 4825",
+    "code_example": "kayit.save() # Create/Update\nKartvizit.objects.all() # Retrieve"
+  },
+  {
+    "unit": 8,
+    "topic": "Form İşlemleri",
+    "question": "Django formları kullanılarak bir form oluşturulurken, şifre alanının (`password`) tarayıcıda gizli olarak görüntülenmesini sağlamak için hangi widget (araç) kullanılır?",
+    "correct_option": "forms.PasswordInput()",
+    "options": [
+      "forms.TextInput()",
+      "forms.HiddenInput()",
+      "forms.PasswordInput()",
+      "forms.CharField(mask=True)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 4850",
+    "code_example": "password = forms.CharField(widget = forms.PasswordInput())"
+  },
+  {
+    "unit": 8,
+    "topic": "Güvenlik",
+    "question": "Django'da Siteler Arası İstek Sahteciliği (CSRF) saldırısını önlemek için form şablonuna eklenmesi gereken özel etiket nedir?",
+    "correct_option": "{% csrf_token %}",
+    "options": [
+      "{% form_token %}",
+      "{% secure_token %}",
+      "{% csrf_token %}",
+      "{% http_token %}"
+    ],
+    "source_type": "Teknik Detay / Sayfa 4860",
+    "code_example": "<form ...>{% csrf_token %}\n  \n</form>"
+  },
+  {
+    "unit": 8,
+    "topic": "Yönetici Arayüzü",
+    "question": "Django'nun yönetimsel işlemler için kullanıma hazır olarak sağladığı ve modeller üzerinde CRUD işlemleri yapmaya olanak tanıyan arayüz hangisidir?",
+    "correct_option": "Admin arayüzü",
+    "options": [
+      "View",
+      "Model",
+      "Template",
+      "Admin arayüzü"
+    ],
+    "source_type": "Sınav Odaklı Sorular / Bölüm 8 - Neler Öğrendik Soru 10, Sayfa 4868",
+    "code_example": "http://127.0.0.1:8000/admin/"
+  },
+  {
+    "unit": 8,
+    "topic": "Yönetici Kullanıcısı",
+    "question": "Django projesinde yönetici işlemleri için bir süper kullanıcı (superuser) oluşturmak amacıyla kullanılan `manage.py` komutu nedir?",
+    "correct_option": "python manage.py createsuperuser",
+    "options": [
+      "python manage.py makemigrations",
+      "python manage.py migrate",
+      "python manage.py runserver",
+      "python manage.py createsuperuser"
+    ],
+    "source_type": "Teknik Detay / Sayfa 4875",
+    "code_example": "python manage.py createsuperuser"
+  },
+  {
+    "unit": 8,
+    "topic": "Proje Bileşenleri",
+    "question": "Python Django ile ilgili olarak aşağıdaki ifadelerden hangileri doğrudur: I. Django, BSD lisansı ile lisanslanmıştır. II. manage.py dosyası, Django projesini çalıştırmak ve yönetmek için kullanılır. III. settings.py dosyası, Django projesinin yapılandırma ayarlarını içerir.",
+    "correct_option": "I, II ve IV (III yerine IV)",
+    "options": [
+      "I ve II",
+      "I ve III",
+      "I, II ve III (Sınavdaki 4. madde 'settings.py'yi içeriyor)",
+      "I, II ve IV (settings.py IV. madde olarak geçiyor)"
+    ],
+    "source_type": "Sınav Odaklı Sorular / 2024-2025 GÜZ DÖNEM SONU-A Soru 18, Sayfa 4735, 4916",
+    "code_example": "Views.py veritabanı tablolarını değil, iş mantığını tanımlar."
+  }
+]

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Giriş</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    body{background:#f8fafc; font-family:system-ui,-apple-system;}
+    .card{max-width:420px; margin:10vh auto; padding:20px; background:#fff; border:1px solid #e2e8f0; border-radius:12px;}
+    .title{margin-bottom:12px}
+    .row{display:flex; flex-direction:column; gap:10px}
+    input,button{padding:10px; border-radius:8px; border:1px solid #e2e8f0}
+    button.primary{background:#2563eb; color:#fff; border:none}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 class="title">Admin Giriş</h2>
+    <div class="row" autocomplete="off">
+      <input id="user" placeholder="Kullanıcı adı" autocomplete="username" name="admin_user" />
+      <input id="pass" placeholder="Şifre" type="password" autocomplete="new-password" name="admin_pass" />
+      <input type="text" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" name="username" tabindex="-1" aria-hidden="true" />
+      <input type="password" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" name="password" tabindex="-1" aria-hidden="true" />
+      <button class="primary" onclick="doLogin()">Giriş Yap</button>
+    </div>
+  </div>
+  <script>
+    function doLogin(){
+      const u = document.getElementById('user').value
+      const p = document.getElementById('pass').value
+      fetch('../api/admin.php?action=admin_login', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ username: u, password: p }), credentials:'include' })
+        .then(r => { if(!r.ok) throw new Error('Giriş başarısız'); return r.json() })
+        .then(() => { localStorage.setItem('admin_user', u); location.href = './panel.html' })
+        .catch(err => alert(err.message))
+    }
+  </script>
+</body>
+</html>

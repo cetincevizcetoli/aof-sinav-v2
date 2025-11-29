@@ -1,0 +1,515 @@
+BAŞLIK: Admin 500 Hatası – Teknik Özet ve Yapılanlar
+
+AMAÇ
+- Admin giriş ve yönetim uçlarında görülen 500 hatalarını kalıcı şekilde teşhis ve düzeltmek.
+
+SUNUCU/ENV DURUMU
+- .env kullanılmakta; MySQL için aşağıdaki anahtarlar:
+  - AOF_MY_HOST=localhost
+  - AOF_MY_PORT=3306
+  - AOF_MY_DB=ahmetcetin_aof
+  - AOF_MY_USER=ahmetcetin_aof
+  - AOF_MY_PASS=5211@Admin
+  - AOF_API_SECRET=super_secret_change_me
+
+ÖNEMLİ LOG DOSYASI
+- Kök dizinde hata günlüğü: aof_admin_error
+- PDO bağlantı hataları ve HTTP 500 err(...) kayıtları buraya yazılıyor.
+
+FRONTEND – ADMIN AKIŞI
+- Giriş sayfası: admin/index.html
+  - POST ../api/admin.php?action=admin_login
+  - Gövde JSON: {"username":"admin","password":"5211@Admin"}
+  - Başarılı olduğunda cookie: admin_session (path /aof-sinav-v2/), yönlendirme: panel.html
+- Panel kodu: admin/panel.js
+  - Sadece localStorage.admin_user kontrolü (şifre saklanmaz)
+  - API çağrıları: fetch('../api/admin.php?action=...',{credentials:'include'}) cookie ile oturum gönderir
+  - Kullanıcı tablo, arama, sayfalama ve DB info sekmesi bulunur
+
+BACKEND – DOSYALAR VE UÇLAR
+- api/db.php
+  - Env Yükleme: Dotenv varsa kullanır; yoksa parse_ini_file ile .env okur
+  - MySQL DSN: mysql:host=...; port=...; dbname=...; charset=utf8mb4
+  - PDO ERRMODE=EXCEPTION, FETCH_ASSOC
+  - Şema oluşturma (eğer yoksa): users, sessions, progress, user_stats, exam_history, admin_sessions (InnoDB/utf8mb4)
+  - Helper’lar: json(), ok(), err(), token_user()
+  - SECRET: AOF_API_SECRET
+  - Hata logu: köke aof_admin_error
+- api/admin.php (cookie oturum)
+  - admin_login: Body JSON ile kimlik (admin/admin_pass_hash). Başarılıysa admin_sessions tablosuna token ekler ve cookie set eder
+  - admin_logout: cookie token’ını siler
+  - adminAuthorized: admin_session cookie kontrolü (opsiyonel Basic fallback)
+  - list_users/create_user/update_user/delete_user: users ve bağlı tablolar üzerinde CRUD
+  - db_info: MySQL’de SHOW TABLES ve tablo sayıları
+  - admin_diag: pdo_ok, admin_sessions_table (SHOW TABLES LIKE), private_writable testleri
+- api/auth.php (kullanıcı uçları)
+  - register: email+password ile kayıt, hashlenmiş olarak saklanır
+  - login: token üretir (sessions’a INSERT)
+  - delete: kullanıcının tüm verilerini siler
+- api/sync.php (senkronizasyon)
+  - push: progress ve user_stats upsert (MySQL ON DUPLICATE KEY), exam_history append
+  - pull: tüm verileri döner
+  - wipe: kullanıcı verilerini temizler
+
+SERVICE WORKER
+- /admin/ ve /api/ isteklerini cache dışı bırakır, ağdan alır
+- Cache sürümü: v1.1.4 (eski SW cevaplarını devreden çıkarmak için)
+
+ŞU ANKİ HATA DURUMU
+- admin_diag çağrısı 500 veriyor
+- aof_admin_error dosyası yoksa, muhtemelen PHP tarafında yazma yetkisi, PDO uzantısı veya DSN/kimlik hatası var
+
+GEMINI’YE SORULACAK SORULAR
+- a) PHP’de pdo_mysql uzantısı yüklü mü? Yüklü değilse 500 verir
+- b) MySQL kullanıcı yetkileri (GRANT) doğru mu? DB ve tablo oluşturma yetkisi var mı?
+- c) .env dosyası okunabiliyor mu? `parse_ini_file` Windows/Nginx/FCGI altında izinli mi?
+- d) Nginx/PHP-FPM dosya sisteminde proje köküne yazma izni var mı? aof_admin_error oluşmuyor ise yazma yetkisi yok olabilir
+- e) Cookie path `/aof-sinav-v2/` doğru; farklı subdir dağıtım var mı? (Cookie okunamıyorsa 401 dönebilir)
+
+HIZLI TEŞHİS ADIMLARI
+1) `api/admin.php?action=admin_diag` çağrısı – pdo_ok ve admin_sessions_table sonuçları
+2) Kökte `aof_admin_error` var mı? İçeriğinde PDO/SQL hatası görünür
+3) `.env` anahtarları ile MySQL’e manuel bağlantı test (PhpMyAdmin veya CLI)
+4) PHP info/loaded extensions: pdo_mysql var mı? (Gerekirse geçici bir phpinfo uç yazılabilir)
+5) MySQL kullanıcıya GRANT ALL (en azından gerekli CRUD ve CREATE) tanımlı mı?
+
+YAPILANLARIN KISA LİSTESİ
+- Admin API MySQL’e geçirildi; SQLite’a özgü SQL’ler temizlendi
+- Auth session ekleme MySQL INSERT olarak düzeltildi
+- Sync upsert mantığı MySQL ON DUPLICATE KEY UPDATE ile yeniden yazıldı
+- Service Worker cache sürümü yükseltildi (v1.1.4)
+- Hata logu köke taşındı: aof_admin_error
+
+İLERİ ADIM
+- Eğer `aof_admin_error` hâlâ oluşmuyorsa, PHP’nin köke yazma iznini ve `open_basedir` kısıtlarını kontrol edin; izin verilmezse log yazımını `sys_temp_dir` veya belirli writable dizine yönlendirebiliriz.
+
+KOD LİSTESİ VE İÇERİĞİ
+
+DOSYA: api/db.php
+İÇERİK:
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$root = dirname(__DIR__);
+$ROOT_LOG = $root . DIRECTORY_SEPARATOR . 'aof_admin_error';
+$env = [];
+if (file_exists($root.'/vendor/autoload.php')) {
+    require $root.'/vendor/autoload.php';
+    if (class_exists('Dotenv\Dotenv')) {
+        $dotenv = Dotenv\Dotenv::createImmutable($root);
+        $dotenv->safeLoad();
+        $env = $_ENV;
+    }
+}
+if (empty($env)) {
+    $envPath = $root.'/.env';
+    if (file_exists($envPath)) {
+        $parsed = parse_ini_file($envPath, false, INI_SCANNER_RAW);
+        if (is_array($parsed)) { $env = $parsed; }
+    }
+}
+
+$host = $env['AOF_MY_HOST'] ?? 'localhost';
+$port = $env['AOF_MY_PORT'] ?? '3306';
+$db   = $env['AOF_MY_DB']   ?? 'ahmetcetin_aof';
+$user = $env['AOF_MY_USER'] ?? 'ahmetcetin_aof';
+$pass = $env['AOF_MY_PASS'] ?? '5211@Admin';
+$dsn  = "mysql:host=$host;port=$port;dbname=$db;charset=utf8mb4";
+$SECRET = $env['AOF_API_SECRET'] ?? 'change_this_secret';
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
+} catch (Exception $e) {
+    @file_put_contents($ROOT_LOG, '['.date('c').'] PDO error: '.$e->getMessage().' host='.$host.' db='.$db.' user='.$user."\n", FILE_APPEND);
+    header('Content-Type: application/json');
+    http_response_code(500);
+    die(json_encode(['error' => $e->getMessage()]));
+}
+
+$pdo->exec('CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255) UNIQUE, password_hash VARCHAR(255) NOT NULL, name VARCHAR(255), created_at BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS sessions (token VARCHAR(255) PRIMARY KEY, user_id INT NOT NULL, created_at BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS progress (id VARCHAR(255) PRIMARY KEY, user_id INT NOT NULL, lesson VARCHAR(255), unit INT, level INT, nextReview BIGINT, correct INT, wrong INT, updated_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS user_stats (user_id INT PRIMARY KEY, xp INT, streak INT, totalQuestions INT, updated_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS exam_history (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, date BIGINT NOT NULL, lesson VARCHAR(255), unit INT, isCorrect TINYINT(1)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token VARCHAR(255) PRIMARY KEY, created_at BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+
+function json(){ return json_decode(file_get_contents('php://input'), true) ?: []; }
+function ok($d){ header('Content-Type: application/json'); echo json_encode(['ok'=>true,'data'=>$d]); }
+function err($c,$m){ http_response_code($c); header('Content-Type: application/json'); echo json_encode(['ok'=>false,'error'=>$m]); $log = isset($GLOBALS['ROOT_LOG']) ? $GLOBALS['ROOT_LOG'] : (dirname(__DIR__).DIRECTORY_SEPARATOR.'aof_admin_error'); @file_put_contents($log, '['.date('c').'] HTTP '.$c.' '.(is_string($m)?$m:json_encode($m))."\n", FILE_APPEND); }
+function token_user($pdo,$SECRET){ $h = $_SERVER['HTTP_AUTHORIZATION'] ?? ''; if (strpos($h,'Bearer ')!==0) return 0; $t = substr($h,7); $st = $pdo->prepare('SELECT user_id FROM sessions WHERE token=?'); $st->execute([$t]); $r = $st->fetch(PDO::FETCH_ASSOC); return $r ? intval($r['user_id']) : 0; }
+
+DOSYA: api/admin.php
+İÇERİK:
+<?php
+require __DIR__ . '/db.php';
+require __DIR__ . '/admin_boot.php';
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+$LOG_FILE = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'aof_admin_error';
+
+function secure_token($len=24){
+    if (function_exists('random_bytes')) { return bin2hex(random_bytes($len)); }
+    if (function_exists('openssl_random_pseudo_bytes')) { return bin2hex(openssl_random_pseudo_bytes($len)); }
+    return bin2hex(substr(str_shuffle('abcdefghijklmnopqrstuvwxyz0123456789'),0,$len));
+}
+
+function adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH){
+    if (!empty($_COOKIE['admin_session'])) {
+        $tok = $_COOKIE['admin_session'];
+        $st = $pdo->prepare('SELECT token FROM admin_sessions WHERE token=?');
+        $st->execute([$tok]);
+        if ($st->fetch(PDO::FETCH_ASSOC)) return true;
+    }
+    $auth = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    if (stripos($auth, 'Basic ') === 0) {
+        $dec = base64_decode(substr($auth, 6));
+        if ($dec !== false) {
+            [$u, $p] = array_pad(explode(':', $dec, 2), 2, '');
+            if ($u === $ADMIN_USER && password_verify($p, $ADMIN_PASS_HASH)) return true;
+        }
+    }
+    return false;
+}
+
+header('Content-Type: application/json');
+$a = $_GET['action'] ?? '';
+
+if ($a === 'admin_diag') {
+    try {
+        $privateDir = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'private';
+        $cfgPath = $privateDir . DIRECTORY_SEPARATOR . 'admin.json';
+        $exists = is_dir($privateDir);
+        $writable = $exists ? is_writable($privateDir) : false;
+        $pdoOk = false; try { $pdo->query('SELECT 1'); $pdoOk = true; } catch(Exception $e) { $pdoOk = false; }
+        $sessTbl = false; try { $st = $pdo->query("SHOW TABLES LIKE 'admin_sessions'"); $sessTbl = !!($st && $st->fetchColumn()); } catch(Exception $e) { $sessTbl = false; }
+        $writeTest = false; $testFile = $privateDir . DIRECTORY_SEPARATOR . 'diag_test.txt';
+        try { @file_put_contents($testFile, 'ok'); $writeTest = file_exists($testFile); if ($writeTest) @unlink($testFile); } catch(Exception $e) { $writeTest = false; }
+        $adminJsonOk = file_exists($cfgPath);
+        ok([
+            'private_exists' => $exists,
+            'private_writable' => $writable,
+            'admin_json_exists' => $adminJsonOk,
+            'pdo_ok' => $pdoOk,
+            'admin_sessions_table' => $sessTbl,
+            'write_test' => $writeTest,
+        ]);
+    } catch(Exception $e) { err(500,'server_error'); }
+    exit;
+}
+
+if ($a === 'admin_login') {
+    $in = json(); $u = $in['username'] ?? ''; $p = $in['password'] ?? '';
+    try {
+        if ($u === $ADMIN_USER && password_verify($p, $ADMIN_PASS_HASH)) {
+            $token = secure_token(24);
+            $pdo->prepare('INSERT INTO admin_sessions(token,created_at) VALUES(?,?)')->execute([$token, time()]);
+            setcookie('admin_session', $token, time()+86400, '/aof-sinav-v2/', '', true, true);
+            ok(['login'=>true]);
+        } else { err(401,'unauth'); }
+    } catch(Exception $e) {
+        @file_put_contents($LOG_FILE, '['.date('c').'] '.$e->getMessage()."\n", FILE_APPEND);
+        err(500,'server_error');
+    }
+    exit;
+}
+
+if ($a === 'admin_logout') {
+    $tok = $_COOKIE['admin_session'] ?? '';
+    if ($tok) { $pdo->prepare('DELETE FROM admin_sessions WHERE token=?')->execute([$tok]); setcookie('admin_session','', time()-3600, '/aof-sinav-v2/'); }
+    ok(['logout'=>true]);
+    exit;
+}
+
+if (!adminAuthorized($pdo, $ADMIN_USER, $ADMIN_PASS_HASH)) { http_response_code(401); echo json_encode(['ok'=>false,'error'=>'unauth']); exit; }
+
+if ($a === 'list_users') {
+    $q = trim($_GET['q'] ?? '');
+    $limit = max(1, min(200, intval($_GET['limit'] ?? 50)));
+    $offset = max(0, intval($_GET['offset'] ?? 0));
+    if ($q !== '') {
+        $like = '%'.$q+'%';
+        $st = $pdo->prepare('SELECT id,email,name,created_at FROM users WHERE email LIKE ? OR name LIKE ? ORDER BY id DESC LIMIT ? OFFSET ?');
+        $st->execute([$like,$like,$limit,$offset]);
+    } else {
+        $st = $pdo->prepare('SELECT id,email,name,created_at FROM users ORDER BY id DESC LIMIT ? OFFSET ?');
+        $st->execute([$limit,$offset]);
+    }
+    $rows = $st->fetchAll(PDO::FETCH_ASSOC);
+    $count = $pdo->query('SELECT COUNT(*) AS c FROM users')->fetch(PDO::FETCH_ASSOC)['c'] ?? 0;
+    ok(['items'=>$rows,'total'=>intval($count)]);
+} elseif ($a === 'create_user') {
+    $in = json(); $email = trim(strtolower($in['email'] ?? '')); $pass = $in['password'] ?? ''; $name = trim($in['name'] ?? '');
+    if (!$email || !$pass) return err(400,'missing');
+    $hash = password_hash($pass, PASSWORD_DEFAULT);
+    try { $pdo->prepare('INSERT INTO users(email,password_hash,name,created_at) VALUES(?,?,?,?)')->execute([$email,$hash,$name,time()]); ok(['created'=>true]); }
+    catch(Exception $e){ return err(409,'exists'); }
+} elseif ($a === 'update_user') {
+    $in = json(); $id = intval($in['id'] ?? 0); if (!$id) return err(400,'missing');
+    $email = isset($in['email']) ? trim(strtolower($in['email'])) : null;
+    $name = isset($in['name']) ? trim($in['name']) : null;
+    $pass = $in['password'] ?? null;
+    $set = []; $args = [];
+    if ($email !== null) { $set[] = 'email=?'; $args[] = $email; }
+    if ($name !== null) { $set[] = 'name=?'; $args[] = $name; }
+    if ($pass !== null && $pass !== '') { $set[] = 'password_hash=?'; $args[] = password_hash($pass,PASSWORD_DEFAULT); }
+    if (!$set) return ok(['updated'=>false]);
+    $args[] = $id;
+    $sql = 'UPDATE users SET '.implode(',', $set).' WHERE id=?';
+    $pdo->prepare($sql)->execute($args); ok(['updated'=>true]);
+} elseif ($a === 'delete_user') {
+    $in = json(); $id = intval($in['id'] ?? 0); if (!$id) return err(400,'missing');
+    $pdo->beginTransaction();
+    try {
+        $pdo->prepare('DELETE FROM sessions WHERE user_id=?')->execute([$id]);
+        $pdo->prepare('DELETE FROM progress WHERE user_id=?')->execute([$id]);
+        $pdo->prepare('DELETE FROM user_stats WHERE user_id=?')->execute([$id]);
+        $pdo->prepare('DELETE FROM exam_history WHERE user_id=?')->execute([$id]);
+        $pdo->prepare('DELETE FROM users WHERE id=?')->execute([$id]);
+        $pdo->commit(); ok(['deleted'=>true]);
+    } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }
+} elseif ($a === 'db_info') {
+    try {
+        $tables = [];
+        try { $rs = $pdo->query('SHOW TABLES'); if ($rs) { foreach ($rs->fetchAll(PDO::FETCH_NUM) as $row) { $tables[] = $row[0]; } } } catch(Exception $e){}
+        $counts = [];
+        foreach(['users','sessions','progress','user_stats','exam_history'] as $t){
+            try { $counts[$t] = (int)$pdo->query("SELECT COUNT(*) FROM `$t`")->fetchColumn(); } catch(Exception $e){ $counts[$t] = 0; }
+        }
+        ok([
+            'path' => 'mysql',
+            'exists' => true,
+            'size' => 0,
+            'mtime' => 0,
+            'tables' => $tables,
+            'counts' => $counts,
+        ]);
+    } catch(Exception $e) { err(500,'server_error'); }
+} else { err(404,'notfound'); }
+
+DOSYA: api/auth.php
+İÇERİK:
+<?php
+require __DIR__ . '/db.php';
+$a = $_GET['action'] ?? '';
+if ($a === 'register') {
+    $in = json();
+    $email = trim(strtolower($in['email'] ?? ''));
+    $pass = $in['password'] ?? '';
+    if (!$email || !$pass) return err(400,'missing');
+    $hash = password_hash($pass, PASSWORD_DEFAULT);
+    try {
+        $st = $pdo->prepare('INSERT INTO users(email,password_hash,created_at) VALUES(?,?,?)');
+        $st->execute([$email,$hash,time()]);
+    } catch(Exception $e){ return err(409,'exists'); }
+    ok(['registered'=>true]);
+} elseif ($a === 'login') {
+    $in = json();
+    $email = trim(strtolower($in['email'] ?? ''));
+    $pass = $in['password'] ?? '';
+    if (!$email || !$pass) return err(400,'missing');
+    $st = $pdo->prepare('SELECT id,password_hash FROM users WHERE email=?');
+    $st->execute([$email]);
+    $u = $st->fetch(PDO::FETCH_ASSOC);
+    if (!$u || !password_verify($pass, $u['password_hash'])) return err(401,'invalid');
+    $token = bin2hex(random_bytes(32));
+    $pdo->prepare('INSERT INTO sessions(token,user_id,created_at) VALUES(?,?,?)')->execute([$token,$u['id'],time()]);
+    ok(['token'=>$token]);
+} elseif ($a === 'delete') {
+    $uid = token_user($pdo,$SECRET);
+    if (!$uid) return err(401,'unauth');
+    $pdo->beginTransaction();
+    try {
+        $pdo->prepare('DELETE FROM sessions WHERE user_id=?')->execute([$uid]);
+        $pdo->prepare('DELETE FROM progress WHERE user_id=?')->execute([$uid]);
+        $pdo->prepare('DELETE FROM user_stats WHERE user_id=?')->execute([$uid]);
+        $pdo->prepare('DELETE FROM exam_history WHERE user_id=?')->execute([$uid]);
+        $pdo->prepare('DELETE FROM users WHERE id=?')->execute([$uid]);
+        $pdo->commit();
+        ok(['deleted'=>true]);
+    } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }
+} else { err(404,'notfound'); }
+
+DOSYA: api/sync.php
+İÇERİK:
+<?php
+require __DIR__ . '/db.php';
+$user = token_user($pdo,$SECRET);
+if (!$user) return err(401,'unauth');
+$a = $_GET['action'] ?? '';
+if ($a === 'push') {
+    $in = json();
+    $progress = $in['progress'] ?? [];
+    foreach ($progress as $p) {
+        $pdo->prepare('INSERT INTO progress(id,user_id,lesson,unit,level,nextReview,correct,wrong,updated_at) VALUES(?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE user_id=VALUES(user_id), lesson=VALUES(lesson), unit=VALUES(unit), level=VALUES(level), nextReview=VALUES(nextReview), correct=VALUES(correct), wrong=VALUES(wrong), updated_at=VALUES(updated_at)')->execute([
+            $p['id']??'', $user, $p['lesson']??'', intval($p['unit']??0), intval($p['level']??0), intval($p['nextReview']??0), intval($p['correct']??0), intval($p['wrong']??0), time()
+        ]);
+    }
+    if (isset($in['stats'])) {
+        $s = $in['stats'];
+        $pdo->prepare('INSERT INTO user_stats(user_id,xp,streak,totalQuestions,updated_at) VALUES(?,?,?,?,?) ON DUPLICATE KEY UPDATE xp=VALUES(xp), streak=VALUES(streak), totalQuestions=VALUES(totalQuestions), updated_at=VALUES(updated_at)')->execute([$user, intval($s['xp']??0), intval($s['streak']??0), intval($s['totalQuestions']??0), time()]);
+    }
+    if (isset($in['history']) && is_array($in['history'])) {
+        $ins = $pdo->prepare('INSERT INTO exam_history(user_id,date,lesson,unit,isCorrect) VALUES(?,?,?,?,?)');
+        foreach ($in['history'] as $h) { $ins->execute([$user, intval($h['date']??time()), $h['lesson']??'', intval($h['unit']??0), intval(($h['isCorrect']??0)?1:0)]); }
+    }
+    ok(['pushed'=>true]);
+} elseif ($a === 'pull') {
+    $progress = $pdo->prepare('SELECT id,lesson,unit,level,nextReview,correct,wrong FROM progress WHERE user_id=?');
+    $progress->execute([$user]);
+    $stats = $pdo->prepare('SELECT xp,streak,totalQuestions FROM user_stats WHERE user_id=?');
+    $stats->execute([$user]);
+    $hist = $pdo->prepare('SELECT date,lesson,unit,isCorrect FROM exam_history WHERE user_id=? ORDER BY date DESC LIMIT 500');
+    $hist->execute([$user]);
+    ok(['progress'=>$progress->fetchAll(PDO::FETCH_ASSOC),'stats'=>$stats->fetch(PDO::FETCH_ASSOC)?:['xp'=>0,'streak'=>0,'totalQuestions'=>0],'history'=>$hist->fetchAll(PDO::FETCH_ASSOC)]);
+} elseif ($a === 'wipe') {
+    try {
+        $pdo->beginTransaction();
+        $pdo->prepare('DELETE FROM progress WHERE user_id=?')->execute([$user]);
+        $pdo->prepare('DELETE FROM user_stats WHERE user_id=?')->execute([$user]);
+        $pdo->prepare('DELETE FROM exam_history WHERE user_id=?')->execute([$user]);
+        $pdo->commit();
+        ok(['wiped'=>true]);
+    } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }
+} else { err(404,'notfound'); }
+
+DOSYA: admin/index.html
+İÇERİK:
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Giriş</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    body{background:#f8fafc; font-family:system-ui,-apple-system;}
+    .card{max-width:420px; margin:10vh auto; padding:20px; background:#fff; border:1px solid #e2e8f0; border-radius:12px;}
+    .title{margin-bottom:12px}
+    .row{display:flex; flex-direction:column; gap:10px}
+    input,button{padding:10px; border-radius:8px; border:1px solid #e2e8f0}
+    button.primary{background:#2563eb; color:#fff; border:none}
+  </style>
+  </head>
+<body>
+  <div class="card">
+    <h2 class="title">Admin Giriş</h2>
+    <div class="row" autocomplete="off">
+      <input id="user" placeholder="Kullanıcı adı" autocomplete="username" name="admin_user" />
+      <input id="pass" placeholder="Şifre" type="password" autocomplete="new-password" name="admin_pass" />
+      <input type="text" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" name="username" tabindex="-1" aria-hidden="true" />
+      <input type="password" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" name="password" tabindex="-1" aria-hidden="true" />
+      <button class="primary" onclick="doLogin()">Giriş Yap</button>
+    </div>
+  </div>
+  <script>
+    function doLogin(){
+      const u = document.getElementById('user').value
+      const p = document.getElementById('pass').value
+      fetch('../api/admin.php?action=admin_login', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ username: u, password: p }), credentials:'include' })
+        .then(r => { if(!r.ok) throw new Error('Giriş başarısız'); return r.json() })
+        .then(() => { localStorage.setItem('admin_user', u); location.href = './panel.html' })
+        .catch(err => alert(err.message))
+    }
+  </script>
+</body>
+</html>
+
+DOSYA: admin/panel.js
+İÇERİK:
+const base = '../api/admin.php'
+let state = { q:'', limit:50, offset:0, total:0 }
+function creds(){ return { user: localStorage.getItem('admin_user') || '' } }
+function ensureAuth(){ const c = creds(); if (!c.user) { location.href = './' } }
+function logout(){ localStorage.removeItem('admin_user'); location.href = './' }
+async function api(action, method='GET', body=null, params={}){
+  const headers = { 'Content-Type': 'application/json' }
+  const usp = new URLSearchParams(params)
+  const res = await fetch(`${base}?action=${action}&${usp.toString()}`, { method, headers, body: body?JSON.stringify(body):undefined, credentials:'include' })
+  if(!res.ok){ if (res.status === 401) { location.href = './'; return {}; } const txt = await res.text().catch(()=> ''); throw new Error(`API error ${res.status}: ${txt}`) }
+  const j = await res.json().catch(()=>({}))
+  return j.data
+}
+async function loadUsers(){
+  try{
+    const data = await api('list_users','GET',null,{ q: state.q, limit: state.limit, offset: state.offset })
+    const list = data.items || []
+    state.total = data.total || list.length
+    const tbody = document.getElementById('users-tbody')
+    if (list.length === 0) { tbody.innerHTML = `<tr><td colspan="5" class="muted">Kayıt bulunamadı</td></tr>`; }
+    else {
+      tbody.innerHTML = list.map(u => `
+        <tr>
+          <td>${u.id}</td>
+          <td><input value="${u.email}" onchange="updateUser(${u.id}, this.value, null, null)"/></td>
+          <td><input value="${u.name||''}" onchange="updateUser(${u.id}, null, this.value, null)"/></td>
+          <td class="muted">${new Date((u.created_at||0)*1000).toLocaleString()}</td>
+          <td>
+            <input type="password" placeholder="Yeni Şifre" onchange="updateUser(${u.id}, null, null, this.value)"/>
+            <button onclick="deleteUser(${u.id})">Sil</button>
+          </td>
+        </tr>
+      `).join('')
+    }
+    document.getElementById('meta').textContent = `Toplam: ${state.total}`
+    const page = Math.floor(state.offset / state.limit) + 1
+    const pages = Math.max(1, Math.ceil(state.total / state.limit))
+    document.getElementById('page-info').textContent = `Sayfa ${page} / ${pages}`
+  }catch(e){ alert(e.message) }
+}
+async function createUser(){
+  const name = document.getElementById('new-name').value
+  const email = document.getElementById('new-email').value
+  const pass = document.getElementById('new-pass').value
+  try{ await api('create_user','POST',{ name, email, password: pass }); refresh(); }
+  catch(e){ if (e.message.includes('409')) alert('E-posta zaten kayıtlı'); else alert(e.message) }
+}
+async function updateUser(id, email, name, password){
+  const payload = { id }
+  if (email !== null) payload.email = email
+  if (name !== null) payload.name = name
+  if (password !== null) payload.password = password
+  try{ await api('update_user','POST',payload) }catch(e){ alert(e.message) }
+}
+async function deleteUser(id){
+  if(!confirm('Bu kullanıcı ve tüm verileri silinecek. Emin misiniz?')) return
+  try{ await api('delete_user','POST',{ id }); refresh(); }catch(e){ alert(e.message) }
+}
+function refresh(){ state.offset = 0; loadUsers() }
+function prevPage(){ state.offset = Math.max(0, state.offset - state.limit); loadUsers() }
+function nextPage(){ const maxOffset = Math.max(0, (Math.ceil(state.total/state.limit)-1)*state.limit); state.offset = Math.min(maxOffset, state.offset + state.limit); loadUsers() }
+function debounce(fn, ms){ let h; return (...args)=>{ clearTimeout(h); h = setTimeout(()=>fn(...args), ms) } }
+const onSearch = debounce(v => { state.q = v; refresh() }, 300)
+window.addEventListener('DOMContentLoaded', () => {
+  ensureAuth()
+  const c = creds(); const ud = document.getElementById('admin-user-display'); if (ud) ud.textContent = c.user || ''
+  const lb = document.getElementById('logout-btn'); if (lb) lb.onclick = logout
+  const sizeSel = document.getElementById('page-size'); state.limit = parseInt(sizeSel.value); sizeSel.onchange = ()=>{ state.limit = parseInt(sizeSel.value); refresh() }
+  const search = document.getElementById('search'); search.oninput = ()=> onSearch(search.value)
+  loadUsers(); loadDbInfo()
+})
+async function loadDbInfo(){
+  try{
+    const info = await api('db_info')
+    const tbody = document.getElementById('db-info')
+    const sizeKB = ((info.size||0)/1024).toFixed(1)
+    const mtime = info.mtime ? new Date(info.mtime*1000).toLocaleString() : '-'
+    tbody.innerHTML = `
+      <tr><td class="muted">Yol</td><td>${info.path}</td></tr>
+      <tr><td class="muted">Var mı?</td><td>${info.exists ? 'Evet' : 'Hayır'}</td></tr>
+      <tr><td class="muted">Boyut</td><td>${sizeKB} KB</td></tr>
+      <tr><td class="muted">Değiştirme</td><td>${mtime}</td></tr>
+      <tr><td class="muted">Tablolar</td><td>${(info.tables||[]).join(', ')}</td></tr>
+      <tr><td class="muted">Kayıt Sayıları</td><td>
+        users=${info.counts?.users||0}, sessions=${info.counts?.sessions||0}, progress=${info.counts?.progress||0}, user_stats=${info.counts?.user_stats||0}, exam_history=${info.counts?.exam_history||0}
+      </td></tr>
+    `
+  }catch(e){ document.getElementById('db-info').innerHTML = `<tr><td colspan="2" class="muted">${e.message}</td></tr>` }
+}

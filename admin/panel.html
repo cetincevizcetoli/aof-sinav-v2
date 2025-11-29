@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    body{background:#f8fafc; font-family:system-ui, -apple-system;} .container{max-width:960px; margin:40px auto; padding:20px; background:#fff; border:1px solid #e2e8f0; border-radius:12px}
+    .row{display:flex; gap:12px; flex-wrap:wrap} .col{flex:1}
+    table{width:100%; border-collapse:collapse} th,td{padding:8px; border-bottom:1px solid #e5e7eb; font-size:14px}
+    .toolbar{display:flex; gap:8px; align-items:center; margin-bottom:12px}
+    input,button{padding:8px 10px; border-radius:8px; border:1px solid #e2e8f0}
+    button.primary{background:#2563eb; color:#fff; border:none}
+    .muted{color:#64748b}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Admin Panel</h2>
+    <div class="toolbar" style="justify-content:space-between;">
+      <div class="muted">Giriş: <span id="admin-user-display"></span></div>
+      <button id="logout-btn">Çıkış</button>
+    </div>
+    <div class="toolbar" style="gap:12px;">
+      <input id="search" placeholder="Ara: email veya ad" style="flex:2" autocomplete="off" />
+      <select id="page-size"><option>25</option><option selected>50</option><option>100</option></select>
+      <button onclick="refresh()">Yenile</button>
+    </div>
+
+    <div class="row" style="margin-bottom:16px">
+      <div class="col">
+        <h3>SQLite Bilgisi</h3>
+        <table>
+          <tbody id="db-info"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row" style="margin-bottom:16px">
+      <div class="col">
+        <h3>Kullanıcı Ekle</h3>
+        <input id="new-name" placeholder="Ad (opsiyonel)" />
+        <input id="new-email" placeholder="Email" autocomplete="off" />
+        <input id="new-pass" placeholder="Şifre" type="password" autocomplete="off" />
+        <button class="primary" onclick="createUser()">Ekle</button>
+      </div>
+    </div>
+
+    <div style="display:flex; align-items:center; justify-content:space-between; margin:8px 0;">
+      <h3 style="margin:0;">Kullanıcılar</h3>
+      <div class="muted" id="meta">Toplam: 0</div>
+    </div>
+    <table>
+      <thead><tr><th>ID</th><th>Email</th><th>Ad</th><th>Oluşturma</th><th>İşlem</th></tr></thead>
+      <tbody id="users-tbody"></tbody>
+    </table>
+    <div class="toolbar" style="justify-content:flex-end; margin-top:12px;">
+      <button onclick="prevPage()">Önceki</button>
+      <span class="muted" id="page-info" style="padding:0 8px;">Sayfa 1</span>
+      <button onclick="nextPage()">Sonraki</button>
+    </div>
+  </div>
+
+  <script src="panel.js"></script>
+</body>
+</html>

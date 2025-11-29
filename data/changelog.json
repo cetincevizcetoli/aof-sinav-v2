@@ -1,0 +1,301 @@
+[
+  {
+    "version": "1.1.33",
+    "date": "2025-11-29",
+    "items": [
+      "Genel iyileştirmeler ve hata düzeltmeleri."
+    ]
+  },
+  {
+    "version": "1.1.32",
+    "date": "2025-11-28",
+    "items": [
+      "PWA: In‑App Update Toast eklendi; görünür olduğunda sessiz sürüm kontrolü",
+      "UpdateManager semver karşılaştırma ve unregister+cache temizliği ile güncelle"
+    ]
+  },
+  {
+    "version": "1.1.31",
+    "date": "2025-11-28",
+    "items": [
+      "Welcome login formuna Ad (Cihaz) alanı eklendi",
+      "Login sonrası ad yerelde/sunucuda güncellenir ve push yapılır",
+      "Sürüm v1.1.31 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.30",
+    "date": "2025-11-28",
+    "items": [
+      "Welcome overlay giriş/kayıt alanları boş ve autocomplete kapalı",
+      "Account Info formunda e‑posta/şifre/ad alanları temiz başlar (autocomplete kapalı)",
+      "Sürüm v1.1.30 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.29",
+    "date": "2025-11-28",
+    "items": [
+      "Kayıt Ol ve Aktar akışında Ad (Cihaz) kullanımı ve sunucuya aktarımı",
+      "Verileri Sıfırla: auth_token ve kayıtlı hesaplar temizlenir (gerçek misafir modu)",
+      "Sürüm v1.1.29 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.28",
+    "date": "2025-11-28",
+    "items": [
+      "Mevcut Hesaba Giriş ve Aktarım formuna Ad (Cihaz) alanı eklendi",
+      "Login sonrası ad yerelde ve sunucuda senkronize edilir",
+      "Sürüm v1.1.28 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.27",
+    "date": "2025-11-28",
+    "items": [
+      "Admin: Hesap Temizleme servisi (listele/sil/toplu sil)",
+      "Dashboard: Admin Hesap Temizleme modali",
+      "Sürüm v1.1.27 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.26",
+    "date": "2025-11-28",
+    "items": [
+      "Auth fallback genişletildi: JSON body içindeki token okunur",
+      "Eski istemciler için push/pull me/profile çağrılarında 401 azaltıldı",
+      "Sürüm v1.1.26 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.25",
+    "date": "2025-11-28",
+    "items": [
+      "Auth fallback: token query param desteği (server+client)",
+      "me/profile/push/pull/delete/wipe çağrılarında token hem header hem query ile gönderilir",
+      "Sürüm v1.1.25 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.24",
+    "date": "2025-11-28",
+    "items": [
+      "Hesap Bilgilerini Güncelle bölümüne Ad (Sunucu) alanı eklendi",
+      "Kayıt/Giriş formu başlıkları ile akış ayrımı daha net",
+      "Sürüm v1.1.24 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.23",
+    "date": "2025-11-28",
+    "items": [
+      "Kayıt mı Giriş mi? Dinamik e‑posta kontrolü ve rehber metin",
+      "API: /auth.php?action=exists ile e‑posta var/yok kontrolü",
+      "Sürüm v1.1.23 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.22",
+    "date": "2025-11-28",
+    "items": [
+      "Hesap Bilgilerini Güncelle: e‑posta/şifre sunucuda değiştir ve lokali senkronize et",
+      "API: /auth.php?action=update (email uniq, 409 çakışma)",
+      "Sürüm v1.1.22 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.21",
+    "date": "2025-11-28",
+    "items": [
+      "Açılışta me() çağrısı kaldırıldı; gereksiz 401 logları temizlendi",
+      "Sürüm v1.1.21 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.20",
+    "date": "2025-11-28",
+    "items": [
+      "Sunucuya Aktar: token yoksa formdaki e‑posta/şifre ile otomatik giriş",
+      "Yetkisiz durumda uyarı ve aktarımı durdurma",
+      "Sürüm v1.1.20 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.19",
+    "date": "2025-11-28",
+    "items": [
+      "Sync kuyruğu TransactionInactiveError düzeltildi (await-safe işlem)",
+      "Oturum yoksa drainSyncQueue çalışmaz (401 logları kesildi)",
+      "Sürüm v1.1.19 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.18",
+    "date": "2025-11-28",
+    "items": [
+      "Auth header düzeltmesi: REDIRECT_HTTP_AUTHORIZATION ve getallheaders() desteği",
+      "401 Unauthorized sorunları giderildi (me/profile/push)",
+      "Sürüm v1.1.18 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.17",
+    "date": "2025-11-28",
+    "items": [
+      "Merkezi tooltip kontrolü: api/tooltips.php + data/tooltips.json",
+      "UI: data-tip anahtarları ile tooltıp uygulaması",
+      "Sürüm v1.1.17 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.16",
+    "date": "2025-11-28",
+    "items": [
+      "Eksik bilgiler kontrolü: Ad (Cihaz) için alan ve aktarımda güncelleme",
+      "Aktarımda sunucudan e‑posta alınır ve hesap listeye eklenir",
+      "Sürüm v1.1.16 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.15",
+    "date": "2025-11-28",
+    "items": [
+      "Oturum açıkken e‑posta otomatik alınır ve hesap listeye eklenir",
+      "Kayıtlı Hesaplar boşsa token ile me() çağrısı ile tohumlama",
+      "Sürüm v1.1.15 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.14",
+    "date": "2025-11-28",
+    "items": [
+      "Kullanıcı Bilgileri içinde Kayıt Ol/Giriş Yap ve Aktar formu",
+      "Aktarım öncesi oturum yoksa form ile oturum açma/oluşturma",
+      "Sürüm v1.1.14 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.13",
+    "date": "2025-11-28",
+    "items": [
+      "Kullanıcı Bilgileri: Sunucudan Çek butonu eklendi",
+      "Push/Pull sonrası modalde yeşil/kırmızı bilgilendirme bandı",
+      "Başlıktaki mini hesap etiketi tıklanabilir (Hesaplar açılır)",
+      "Sürüm v1.1.13 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.12",
+    "date": "2025-11-28",
+    "items": [
+      "Kullanıcı Bilgileri: Sunucuya Aktar butonu ve avantajlar kutusu",
+      "API: /auth.php?action=profile ile ad güncelleme",
+      "Sürüm v1.1.12 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.11",
+    "date": "2025-11-28",
+    "items": [
+      "Başlıkta mini hesap etiketi (Üye/Misafir • e‑posta)",
+      "Hesap geçişinde durum pili ve başlık etiketi anında tazelenir",
+      "Sürüm v1.1.11 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.10",
+    "date": "2025-11-28",
+    "items": [
+      "Girişliyken login/register gizlendi; bilgilendirme metni eklendi",
+      "Kayıtlı Hesaplar: Aktif rozet ve Hesap Ekle kısa yolu",
+      "Sürüm v1.1.10 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.9",
+    "date": "2025-11-28",
+    "items": [
+      "Kayıtlı Hesaplar listesi ve hesaplar arası geçiş",
+      "Ayarlar menüsü daha açıklayıcı gruplarla sadeleşti",
+      "Manuel Güncelle butonu menü altına taşındı ve yeniden adlandırıldı",
+      "Kullanıcı Bilgileri modali; hasToken runtime hesaplaması"
+    ]
+  },
+  {
+    "version": "1.1.8",
+    "date": "2025-11-28",
+    "items": [
+      "Ayarlar menüsü sadeleştirildi: Hesap/Veri/Sistem grupları",
+      "Kullanıcı Bilgileri modali: Durum, e‑posta, cihaz adı, son senkron",
+      "Giriş/Senkron penceresinde durum hesabı runtime hesaplanıyor",
+      "Sürüm v1.1.8 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.7",
+    "date": "2025-11-28",
+    "items": [
+      "ES module hatası düzeltildi (authManager import satırı temizlendi)",
+      "PWA meta etiketi eklendi: mobile-web-app-capable",
+      "Sürüm v1.1.7 ve SW cache adları güncellendi"
+    ]
+  },
+  {
+    "version": "1.1.6",
+    "date": "2025-11-28",
+    "items": [
+      "Hesap durumu göstergesi: Üye/Misafir • e‑posta • Son Senkron",
+      "Auth Sync modali: durum şeridi ve Çıkış Yap butonu",
+      "API: /auth.php?action=me ile kullanıcı bilgisi",
+      "Profil mağazasında last_sync ve hesap bilgisi saklama"
+    ]
+  },
+  {
+    "version": "1.1.5",
+    "date": "2025-11-28",
+    "items": [
+      "Login/Register sonrası otomatik senkron: yerelde veri varsa push, yoksa pull",
+      "Ayarlar > Giriş/Senkron penceresi AuthManager üzerinden çalışır (auto push/pull devrede)",
+      "Push hatalarında görev otomatik kuyruğa alınır ve çevrimiçi olduğunda gönderilir",
+      "Service Worker cache adları ve version.json v1.1.5 ile senkron"
+    ]
+  },
+  {
+    "version": "1.1.1",
+    "date": "2025-11-26",
+    "items": [
+      "Onboarding: Token yoksa full-screen karşılama (Login/Register/Local)",
+      "Kayıtlı e-posta için 409 uyarısı ve hesap silme",
+      "Verileri Sıfırla: Sunucu ve Lokal birlikte temizleniyor"
+    ]
+  },
+  {
+    "version": "1.0.4",
+    "date": "2025-11-26",
+    "items": [
+      "Sürüm notları bileşeni eklendi (Ayarlar > Sürüm Notları)",
+      "Sürüm ve Service Worker cache adlarının senkron güncellenmesi"
+    ]
+  },
+  {
+    "version": "1.0.3",
+    "date": "2025-11-26",
+    "items": [
+      "Sürüm v1.0.3 ve footer sürüm göstergesi",
+      "Service Worker cache bölümlendirmesi ve TTL",
+      "Dağıtım webhook testi için sürüm artışı"
+    ]
+  },
+  {
+    "version": "1.0.2",
+    "date": "2025-11-26",
+    "items": [
+      "QuizUI lazy-loading",
+      "IndexedDB indeksleri ve yeni sorgular",
+      "Güvenli render (escape) ile XSS azaltımı",
+      "UpdateManager ile sürüm kontrol ve temizlik",
+      "JSON isteklerinde Stale-While-Revalidate"
+    ]
+  }
+]

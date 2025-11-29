@@ -1,0 +1,87 @@
+Teknik Görev: AÖF Sınav Asistanı – Sync v3.0 (Timestamp Priority & De-Duplication)
+Mevcut Durum: Sistem şu anda max(level) ve max(xp) mantığı ile çalışıyor. Bu durum, veri sıfırlamayı engelliyor ve cihazlar arası tutarsızlık yaratıyor. Ayrıca exam_history tablosunda mükerrer kayıtlar oluşuyor.
+
+Hedef:
+
+Last Write Wins (Son Yazan Kazanır): Verinin büyüklüğüne değil, updated_at (güncellenme zamanı) değerine bakılacak.
+
+Anlık Senkronizasyon: Masaüstü ve Mobil arasında veri tutarlılığı maksimum 10-15 saniye gecikmeyle sağlanacak.
+
+History Tekilleştirme: Sınav geçmişi mükerrer kayıt yapmayacak.
+
+Lütfen aşağıdaki revizyonları sırasıyla uygula:
+
+1. Veritabanı Şema Güncellemeleri (SQL)
+exam_history tablosu şu an sadece AUTO_INCREMENT ID kullanıyor. Bu, senkronizasyonda aynı kaydın tekrar tekrar eklenmesine yol açıyor. İstemci tarafında üretilen bir uuid sütununa ihtiyacımız var.
+
+SQL
+
+-- exam_history tablosuna benzersizlik için uuid eklenmeli
+ALTER TABLE exam_history ADD COLUMN uuid VARCHAR(36) NOT NULL;
+ALTER TABLE exam_history ADD UNIQUE INDEX idx_uuid (uuid);
+-- progress ve user_stats zaten PRIMARY KEY üzerinden yönetiliyor, sorun yok.
+2. Backend Revizyonu (api/sync.php)
+Mevcut push mantığı körü körüne INSERT ... ON DUPLICATE KEY UPDATE yapıyor. Bunu akıllı hale getir.
+
+Logic (Push): İstemciden gelen verinin updated_at değeri, veritabanındaki updated_at değerinden eskiyse güncelleme yapma (Sunucudaki veri daha günceldir, koru).
+
+Logic (History): uuid kontrolü yap. Varsa atla (IGNORE), yoksa ekle.
+
+Yeni Endpoint (Version Check): Polling maliyetini düşürmek için sadece sunucudaki son güncelleme zamanını dönen hafif bir endpoint ekle.
+
+action=check_version -> return { last_server_update: 1732812345 }
+
+3. İstemci (Client) SyncManager.js Mantığı
+Mevcut "Maksimum değeri al" kodlarını sil. Yerine "Zaman Damgası" mantığını kur.
+
+A. Birleştirme Algoritması (Merge Strategy)
+Veri pull edildiğinde:
+
+Progress Karşılaştırması:
+
+Remote.updated_at > Local.updated_at -> Sunucudan geleni Local'e yaz (Overwrite Local).
+
+Local.updated_at > Remote.updated_at -> Local veriyi koru (bir sonraki push'ta sunucuya gidecek).
+
+Eşitse -> İşlem yapma.
+
+Stats Karşılaştırması: Aynı mantık (updated_at kıyaslaması).
+
+B. History Yönetimi
+Sınav bitiminde: uuid (v4) oluştur ve Local DB'ye kaydet.
+
+Sync sırasında: uuid ile gönder. Sunucu zaten benzersizliği kontrol edecek.
+
+C. "Yarı-Anlık" Güncelleme (Short Polling)
+Mevcut 60 saniyelik tam senkronizasyon yerine:
+
+Her 10 saniyede bir api/sync.php?action=check_version isteği at (Sadece header kontrolü kadar hafiftir).
+
+Eğer sunucudaki zaman damgası, localdeki son sync zamanından büyükse -> Hemen autoSync() (Tam Senkronizasyon) tetikle.
+
+Bu sayede mobilde çalışırken masaüstü 10 saniye içinde kendini günceller.
+
+4. Kod Uygulama Örneği (Sync Logic)
+js/core/sync.js içindeki mergeData fonksiyonunu şu mantığa çevir:
+
+JavaScript
+
+// Eski mantık (HATALI):
+// if (remote.level > local.level) ...
+
+// Yeni mantık (DOĞRU):
+if (remote.updated_at > local.updated_at) {
+    // Sunucu daha güncel, yereli ez
+    await this.db.progress.put(remote);
+} else if (local.updated_at > remote.updated_at) {
+    // Yerel daha güncel, sunucuya gönderilecek listeye (pushQueue) ekle
+    needsPush = true;
+}
+Özet Beklenti
+PHP tarafında exam_history için uuid desteği ve duplicate kontrolü.
+
+PHP tarafında action=check_version hafif kontrol ucu.
+
+JS tarafında Timestamp-based Merge algoritması.
+
+JS tarafında 10 saniyelik hafif polling (version check) ile tetiklenen sync.

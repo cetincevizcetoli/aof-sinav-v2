@@ -1,0 +1,2062 @@
+[
+  {
+    "unit": 1,
+    "topic": "Tanım ve Kavramlar",
+    "question": "Web sayfalarının iskeleti olarak adlandırılan, dokümanların internet üzerinde görüntülenebilmesini sağlayan, basit yapıya sahip işaretleme dili nedir?",
+    "correct_option": "HTML (Hyper Text Markup Language) - Hiper Metin İşaretleme Dili",
+    "options": [
+      "HTML (Hyper Text Markup Language) - Hiper Metin İşaretleme Dili",
+      "CSS (Cascade Style Sheets) - Basamaklı Stil Şablonu",
+      "JavaScript (JS) - Dinamik Programlama Dili",
+      "XML (Extensible Markup Language) - Genişletilebilir İşaretleme Dili"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 11-12, 2078-2085"
+  },
+  {
+    "unit": 1,
+    "topic": "Tanım ve Kavramlar",
+    "question": "HTML'in geliştirilmesi sürecini başlatan, Dünya Çapında Ağ anlamına gelen, belge ve diğer bilgilerin URL tarafından tanımlandığı sistemin kısaltması nedir?",
+    "correct_option": "WWW (World Wide Web)",
+    "options": [
+      "URL (Uniform Resource Locator)",
+      "HTTP (Hyper Text Transfer Protocol)",
+      "WWW (World Wide Web)",
+      "SEO (Search Engine Optimization)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 11, 2065"
+  },
+  {
+    "unit": 1,
+    "topic": "Tanım ve Kavramlar",
+    "question": "Web sayfalarının tarayıcılar tarafından kolaylıkla kullanılabilir hale gelmesini sağlayan ve 1991 yılında tüm dünyanın kullanımına sunulan dili kim tasarlamıştır?",
+    "correct_option": "Tim Berners-Lee",
+    "options": [
+      "Brendan Eich",
+      "Mark Otto",
+      "Tim Berners-Lee",
+      "Guido van Rossum"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 11, 2071"
+  },
+  {
+    "unit": 1,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "HTML ile ilgili aşağıdaki ifadelerden hangisi yanlıştır?",
+    "correct_option": "HTML bir programlama dilidir.",
+    "options": [
+      "HTML bir işaretleme (markup) dilidir.",
+      "HTML bir programlama dilidir.",
+      "HTML içeriği etiketler yardımıyla işaretlenir.",
+      "Etiketlenen veri herhangi bir derleme işlemine tabi tutulmaksızın tarayıcı tarafından işlenebilir."
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 12, 2086"
+  },
+  {
+    "unit": 1,
+    "topic": "Sınav Odaklı Sorular (Temel)",
+    "question": "Aşağıdakilerden hangisi HTML sayfalarındaki metinlere başlık eklemek için kullanılan bir etikettir?",
+    "correct_option": "<h1>",
+    "options": [
+      "<i>",
+      "<del>",
+      "<h1>",
+      "<p>"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Ara-A/1, 2024-2025 Ara-A/1, 2023-2024 Ara-A/2) / Sayfa 10, 2382, 11"
+  },
+  {
+    "unit": 1,
+    "topic": "Sınav Odaklı Sorular (Temel)",
+    "question": "Aşağıdakilerden hangisi HTML sayfalarında metni sağa yatık (italik) bir şekilde göstermek için kullanılan bir etikettir?",
+    "correct_option": "<i>",
+    "options": [
+      "<em>",
+      "<small>",
+      "<del>",
+      "<i>"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Ara-A/4, 2023-2024 Ara-A/4, 2022-2023 Ara-B/2) / Sayfa 12, 2426"
+  },
+  {
+    "unit": 1,
+    "topic": "Sınav Odaklı Sorular (Form)",
+    "question": "HTML sayfalarında kullanıcıdan bilgi almak için kullanılan etiketler/yapılar hangisidir?",
+    "correct_option": "Yalnız I (<form>)",
+    "options": [
+      "Yalnız I",
+      "I ve II",
+      "I ve III",
+      "II ve III"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Ara-A/3, 2023-2024 Ara-A/1, 2024-2025 Ara-A/3) / Sayfa 17, 2661"
+  },
+  {
+    "unit": 1,
+    "topic": "Sınav Odaklı Sorular (İmage)",
+    "question": "HTML'de <img> etiketinin aldığı özelliklerden hangisi resim yüklenemediği zaman resmin yerinde istenen açıklamanın yazılması için kullanılır?",
+    "correct_option": "alt",
+    "options": [
+      "src",
+      "width",
+      "height",
+      "alt"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Ara-A/5, 2022-2023 Ara-B/1, 2024-2025 Ara-A/4) / Sayfa 13, 2460"
+  },
+  {
+    "unit": 1,
+    "topic": "Sınav Odaklı Sorular (Listeler)",
+    "question": "Yukarıdaki HTML kodu tarayıcıda açıldığında aşağıdakilerden hangisi görüntülenir?\n```html\n<ol>\n<li>A</li>\n<li>B</li>\n<li>C</li>\n</ol>\n```",
+    "correct_option": "1.A, 2.B, 3.C",
+    "options": [
+      "A, B, C",
+      "i.A, ii.B, iii.C",
+      "1.A, 2.B, 3.C",
+      "I.A, II.B, III.C"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Ara-A/2, 2022-2023 Ara-B/5) / Sayfa 14, 2495"
+  },
+  {
+    "unit": 1,
+    "topic": "Sınav Odaklı Sorular (Genel)",
+    "question": "HTML elemanlarına doğrudan ulaşmak için kullanılan ve web sayfasında aynı isimle birden fazla tanımlanamayan özellik aşağıdakilerden hangisidir?",
+    "correct_option": "id",
+    "options": [
+      "class",
+      "title",
+      "id",
+      "name"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/1, 2022-2023 Final-B/1) / Sayfa 18, 2670"
+  },
+  {
+    "unit": 1,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Aşağıdaki HTML sürümlerinden hangisiyle birlikte Form kavramı geliştirilmeye başlanmış ve Tablo etiketi eklenmiştir?",
+    "correct_option": "HTML 2.0 (1995)",
+    "options": [
+      "HTML 1.0",
+      "HTML 2.0 (1995)",
+      "HTML 3.2 (1997)",
+      "HTML 4.01 (1999)"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 13, 2120-2122"
+  },
+  {
+    "unit": 1,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "HTML 4.01 sürümüyle gelen ve CSS'in her sayfada tekrar etme zorunluluğunu ortadan kaldıran özellik nedir?",
+    "correct_option": "Harici stil dosyasının HTML sayfaya dahil edilebilir olması",
+    "options": [
+      "Form kavramının standartlaştırılması",
+      "Semantik etiketlerin eklenmesi",
+      "Harici stil dosyasının HTML sayfaya dahil edilebilir olması",
+      "Tablo etiketinin desteklenmesi"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 13, 2127"
+  },
+  {
+    "unit": 1,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "HTML'de Block seviyesindeki elemanlara örnek olarak hangi etiketler verilebilir?",
+    "correct_option": "<div>, <h1>-<h6>, <p>, <form>",
+    "options": [
+      "<span>, <a>, <img>",
+      "<div>, <h1>-<h6>, <p>, <form>",
+      "<b>, <i>, <small>",
+      "<ol>, <ul>, <li>"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 23, 2550, 2553"
+  },
+  {
+    "unit": 1,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "HTML'de Inline seviyesindeki elemanlara örnek olarak hangi etiketler verilebilir?",
+    "correct_option": "<span>, <a>, <img>",
+    "options": [
+      "<div>, <h1>, <header>",
+      "<p>, <section>, <footer>",
+      "<span>, <a>, <img>",
+      "<table>, <tr>, <td>"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 23, 2550, 2554"
+  },
+  {
+    "unit": 1,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "HTML5 ile gelen, sayfa bölümlerini anlamlandırmak ve arama motorları tarafından daha iyi etiketlenmek için önerilen Semantik Etiketlerden hangileri temel sayfa yapısını oluşturur?",
+    "correct_option": "<header>, <nav>, <section>, <footer>",
+    "options": [
+      "<div>, <span>, <br/>",
+      "<article>, <abbr>, <blockquote>",
+      "<header>, <nav>, <section>, <footer>",
+      "<thead>, <tbody>, <tr>"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 16, 2587-2594"
+  },
+  {
+    "unit": 1,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "HTML5 ile birlikte gelen ve tarayıcılara sayfanın genişliğini ekran genişliğini takip edecek şekilde ayarlamasını, ilk yüklemede yakınlaştırma seviyesini 1.0 olarak ayarlamasını sağlayan <head> etiketi komutu nedir?",
+    "correct_option": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+    "options": [
+      "<meta name=\"author\" content=\"AU Dev\">",
+      "<meta charset=\"utf-8\">",
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "<meta name=\"keywords\" content=\"au\"/>"
+    ],
+    "source_type": "Teknik Detay / Sayfa 14, 2188, 2190"
+  },
+  {
+    "unit": 1,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "HTML'de sıralı liste (<ol>) etiketi içinde, listeyi büyük Roma rakamlarıyla (I, II, III...) başlatmak için hangi 'type' özelliği kullanılmalıdır?",
+    "correct_option": "type=\"I\"",
+    "options": [
+      "type=\"1\"",
+      "type=\"A\"",
+      "type=\"i\"",
+      "type=\"I\""
+    ],
+    "source_type": "Teknik Detay / Sayfa 14, 2497, 2507"
+  },
+  {
+    "unit": 1,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Tablolarda (<table>) hücreleri yatay olarak birleştirmeye ve dikey olarak birleştirmeye olanak sağlayan HTML özellikleri sırasıyla nelerdir?",
+    "correct_option": "colspan ve rowspan",
+    "options": [
+      "colspan ve rowspan",
+      "merge-horizontal ve merge-vertical",
+      "rowspan ve colspan",
+      "table-merge ve cell-merge"
+    ],
+    "source_type": "Teknik Detay / Sayfa 17, 2609"
+  },
+  {
+    "unit": 1,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "HTML'de bir linki (<a>) yeni bir sekmede açmak için 'target' özelliğine hangi değer atanmalıdır?",
+    "correct_option": "target=\"_blank\"",
+    "options": [
+      "target=\"_self\"",
+      "target=\"_parent\"",
+      "target=\"_top\"",
+      "target=\"_blank\""
+    ],
+    "source_type": "Teknik Detay / Sayfa 13, 2472"
+  },
+  {
+    "unit": 1,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "Google Chrome tarayıcısında, geliştirici araçlarını açmak için kullanılan klavye kısayolu aşağıdakilerden hangisidir?",
+    "correct_option": "F12 veya Sağ Tık > İncele",
+    "options": [
+      "CTRL + SHIFT + R",
+      "F4",
+      "F12 veya Sağ Tık > İncele",
+      "CTRL + SHIFT + E"
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 7, 2216, 1334"
+  },
+  {
+    "unit": 1,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "Tarayıcıda geliştirici araçlarında (Elements sekmesi) görünen HTML kodları ile ilgili aşağıdaki ifadelerden hangisi doğrudur?",
+    "correct_option": "Bu kodlar sayfanın kaynak kodları değil, DOM (Doküman Nesne Modeli) yapısının kodlarıdır.",
+    "options": [
+      "Bu kodlar sayfanın kaynak kodları değil, DOM (Doküman Nesne Modeli) yapısının kodlarıdır.",
+      "Bu kodlar HTML dosyasının birebir içeriğini yansıtır.",
+      "Bu kodlar sadece Chrome tarayıcısına özeldir.",
+      "Bu kodları görmek için klavyeden F11 tuşuna basılmalıdır."
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 7, 2223"
+  },
+  
+  {
+    "unit": 2,
+    "topic": "Tanım ve Kavramlar",
+    "question": "Web sayfalarındaki HTML elemanlarının font, renk, konum, boyut ve animasyon gibi görsel özelliklerini belirlemek için kullanılan, HTML'i zenginleştiren dil nedir?",
+    "correct_option": "CSS (Cascading Style Sheets) - Basamaklı Stil Şablonları",
+    "options": [
+      "JavaScript",
+      "SASS",
+      "HTML5",
+      "CSS (Cascading Style Sheets) - Basamaklı Stil Şablonları"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 35, 2731"
+  },
+  {
+    "unit": 2,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "CSS'in tasarım işlevini HTML'den ayırmasının temel amacı nedir?",
+    "correct_option": "İçerik ve sunumu (tasarımı) birbirinden ayırmak",
+    "options": [
+      "Sayfadaki JavaScript kodlarını optimize etmek",
+      "İçerik ve sunumu (tasarımı) birbirinden ayırmak",
+      "Sunucu performansını artırmak",
+      "CSS'e dinamik özellikler kazandırmak"
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 36, 2739"
+  },
+  {
+    "unit": 2,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "CSS yazım yöntemlerinden hangisi en yüksek önceliğe (priority) sahiptir?",
+    "correct_option": "Inline yazılan kural",
+    "options": [
+      "Harici stil dosyası",
+      "Etiket Seçicisi (Element Selector)",
+      "Id Seçicisi",
+      "Inline yazılan kural"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/2, 2022-2023 Final-B/2) / Sayfa 36, 2750"
+  },
+  {
+    "unit": 2,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "HTML belgesi içerisine, sadece o HTML sayfası için geçerli olacak şekilde, `<head>` etiketleri arasına tanımlanan CSS yazım yöntemi nedir?",
+    "correct_option": "Dahili (Internal) CSS",
+    "options": [
+      "Harici (External) CSS",
+      "Dahili (Internal) CSS",
+      "Inline (Satır İçi) CSS",
+      "İthal (Import) CSS"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 38, 2758-2759"
+  },
+  {
+    "unit": 2,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Birden fazla HTML sayfasının aynı tasarım kurallarını kullanabilmesini sağlayarak en esnek kullanımı sunan CSS yazım yöntemi nedir?",
+    "correct_option": "Harici (External) CSS",
+    "options": [
+      "Dahili (Internal) CSS",
+      "Inline (Satır İçi) CSS",
+      "Harici (External) CSS",
+      "Global CSS"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 38, 2760"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te 'class' özelliğine sahip elemanları hedeflemek için seçicinin başına hangi karakter konulur?",
+    "correct_option": ".",
+    "options": [
+      "#",
+      ".",
+      "@",
+      "&"
+    ],
+    "source_type": "Teknik Detay / Sayfa 39, 2768"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te 'id' özelliğine sahip elemanları hedeflemek için seçicinin başına hangi karakter konulur?",
+    "correct_option": "#",
+    "options": [
+      ".",
+      "*",
+      "#",
+      "!"
+    ],
+    "source_type": "Teknik Detay / Sayfa 39, 2769"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te tüm HTML elemanlarını seçmek için kullanılan evrensel seçici (Universal Selector) nedir?",
+    "correct_option": "*",
+    "options": [
+      "body",
+      "html",
+      "all",
+      "*"
+    ],
+    "source_type": "Teknik Detay / Sayfa 39, 2772"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te arka planda bir görüntünün tekrarını kontrol etmek için kullanılan özellik hangisidir?",
+    "correct_option": "background-repeat",
+    "options": [
+      "background-color",
+      "background-image",
+      "background-repeat",
+      "background-position"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Ara-A/7) / Sayfa 45, 2901"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te bir elemanın kenarlığı ile içeriği arasındaki boşluğu ayarlamak için kullanılan özellik nedir?",
+    "correct_option": "padding",
+    "options": [
+      "margin",
+      "border",
+      "padding",
+      "outline"
+    ],
+    "source_type": "Teknik Detay (Kutu Modeli) / Sayfa 47, 2928"
+  },
+  {
+    "unit": 2,
+    "topic": "Sınav Odaklı Sorular (Kutu Modeli)",
+    "question": "CSS kutu modelinde bir elemana alttan boşluk vermek için aşağıdakilerden hangisi kullanılır?",
+    "correct_option": "margin-bottom",
+    "options": [
+      "margin-all",
+      "margin-left",
+      "margin-top",
+      "margin-bottom"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/7) / Sayfa 47, 2928"
+  },
+  {
+    "unit": 2,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "CSS kutu modeli (Box Model) bileşenlerinin içten dışa doğru doğru sıralanışı nasıldır?",
+    "correct_option": "Content (İçerik) → Padding (İç Boşluk) → Border (Kenarlık) → Margin (Dış Boşluk)",
+    "options": [
+      "Content → Border → Padding → Margin",
+      "Margin → Border → Padding → Content",
+      "Content → Padding → Border → Margin",
+      "Padding → Content → Border → Margin"
+    ],
+    "source_type": "Kritik Bilgi (Kutu Modeli) / Sayfa 47, 2926, 2928"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bir HTML elemanının ekrandan kaybolmasını ve kutu modelinde yer kaplamamasını sağlayan CSS 'display' özelliği değeri nedir?",
+    "correct_option": "none",
+    "options": [
+      "inline",
+      "inline-block",
+      "none",
+      "block"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Ara-B/17) / Sayfa 50, 3014"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te bir elemanın arka plan resmini (background-image) sabitleyip, sayfa kaydırılsa bile resmin aynı konumda kalmasını sağlayan özellik nedir?",
+    "correct_option": "background-attachment: fixed;",
+    "options": [
+      "background-repeat: no-repeat;",
+      "background-position: center;",
+      "background-attachment: fixed;",
+      "background-size: cover;"
+    ],
+    "source_type": "Teknik Detay / Sayfa 45, 2901, 2905"
+  },
+  {
+    "unit": 2,
+    "topic": "Sınav Odaklı Sorular (Renk)",
+    "question": "CSS renk değeri formatlarından biri olan Hex Kod'un başına aşağıdaki işaretlerden hangisi yazılır?",
+    "correct_option": "#",
+    "options": [
+      "@",
+      "$",
+      "%",
+      "#"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/6) / Sayfa 42, 2854"
+  },
+  {
+    "unit": 2,
+    "topic": "Sınav Odaklı Sorular (Font)",
+    "question": "CSS'te metinlerin yazı tipi (font) ailesini belirlemek için kullanılan özellik nedir?",
+    "correct_option": "font-family",
+    "options": [
+      "font-size",
+      "font-weight",
+      "font-family",
+      "text-align"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Ara-B/15) / Sayfa 43, 2865"
+  },
+  {
+    "unit": 2,
+    "topic": "Sınav Odaklı Sorular (Font)",
+    "question": "CSS'te metnin kalınlık ayarını (normal, bold, bolder, lighter veya 100-900 arası değerler) yapmak için kullanılan özellik hangisidir?",
+    "correct_option": "font-weight",
+    "options": [
+      "font-style",
+      "font-variant",
+      "font-size",
+      "font-weight"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Ara-A/9) / Sayfa 43, 2873"
+  },
+  {
+    "unit": 2,
+    "topic": "Sınav Odaklı Sorular (Konumlandırma)",
+    "question": "CSS'te bir HTML elemanını sayfa üzerinde bulunduğu konumdan bağımsız olarak, tarayıcı penceresine göre sabitlemek için kullanılan 'position' değeri nedir?",
+    "correct_option": "fixed",
+    "options": [
+      "relative",
+      "absolute",
+      "static",
+      "fixed"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Final-A/12, 2023-2024 Final-B/12) / Sayfa 51, 3034"
+  },
+  {
+    "unit": 2,
+    "topic": "Sınav Odaklı Sorular (Konumlandırma)",
+    "question": "CSS'te bir elemanı, ana elemanının (parent) konumuna göre konumlandırmak için kullanılan 'position' değeri nedir?",
+    "correct_option": "absolute",
+    "options": [
+      "fixed",
+      "static",
+      "relative",
+      "absolute"
+    ],
+    "source_type": "Teknik Detay / Sayfa 51, 3033"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te metin hizalamasını (sağa, sola, ortalanmış veya iki yana yaslanmış) belirlemek için kullanılan özellik nedir?",
+    "correct_option": "text-align",
+    "options": [
+      "line-height",
+      "letter-spacing",
+      "text-align",
+      "word-spacing"
+    ],
+    "source_type": "Teknik Detay / Sayfa 44, 2883"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te bir elemanın kenarlık rengini belirlemek için kullanılan özellik nedir?",
+    "correct_option": "border-color",
+    "options": [
+      "border-width",
+      "border-style",
+      "border-radius",
+      "border-color"
+    ],
+    "source_type": "Teknik Detay / Sayfa 46, 2919"
+  },
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Aşağıdaki kod bloğu hangi CSS seçici türüne örnektir?",
+    "correct_option": "Attribute Seçicisi",
+    "options": [
+      "Etiket Seçicisi",
+      "Id Seçicisi",
+      "Class Seçicisi",
+      "Attribute Seçicisi"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Ara-B/17) / Sayfa 40"
+  },
+  {
+    "unit": 2,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "CSS'te renk tanımlamasında, üç temel renk olan Kırmızı (Red), Yeşil (Green) ve Mavi (Blue) renklerinin yoğunluğunu 0 ile 255 arasında bir sayı ile ifade eden format nedir?",
+    "correct_option": "RGB",
+    "options": [
+      "Hex Code",
+      "RGBA",
+      "HSL",
+      "RGB"
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 42, 2856"
+  },
+  
+  {
+    "unit": 3,
+    "topic": "Tanım ve Kavramlar",
+    "question": "Web sayfalarının, kullanıcıların cihazlarına (mobil, tablet, masaüstü) göre kolayca uyum sağlamasını, otomatik olarak çözünürlük ve görüntü boyutu değişiklikleri yapabilmesini sağlayan tasarım yaklaşımı nedir?",
+    "correct_option": "Duyarlı Web Tasarımı (Responsive Web Design)",
+    "options": [
+      "Tek Sayfa Uygulaması (SPA)",
+      "Adaptive Tasarım",
+      "Duyarlı Web Tasarımı (Responsive Web Design)",
+      "Grid Tasarımı"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 82, 4365"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te bir değişkenin tüm HTML dosyasında kullanılacak olması durumunda, değişkenin tanımlanması için hangi pseudo sınıfı (selector) kullanılmalıdır?",
+    "correct_option": ":root",
+    "options": [
+      ":global",
+      "html",
+      "body",
+      ":root"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Ara-A/12) / Sayfa 81, 4311"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te bir değişken tanımlanırken değişken adının hangi işaretler ile başlaması gerekir?",
+    "correct_option": "-- (İki tire işareti)",
+    "options": [
+      "$ (Dolar işareti)",
+      "@ (At işareti)",
+      "-- (İki tire işareti)",
+      ": (İki nokta üst üste)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 81, 4312"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te tanımlanan bir değişkene (Ör: --primary) erişim sağlamak için hangi fonksiyon kullanılır?",
+    "correct_option": "var(--primary)",
+    "options": [
+      "get(--primary)",
+      "var(--primary)",
+      "use(--primary)",
+      "call(--primary)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 81, 4312"
+  },
+  {
+    "unit": 3,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "Duyarlı tasarıma sahip olması istenen tüm web sayfalarının `<head>` kısmına aşağıdaki meta etiketlerinden hangisi eklenmelidir?",
+    "correct_option": "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+    "options": [
+      "<meta charset=\"utf-8\">",
+      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "<meta name=\"author\" content=\"AU Dev\">",
+      "<meta name=\"description\" content=\"AU\">"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Ara-B/14, 2024-2025 Ara-A/15) / Sayfa 83, 4387"
+  },
+  {
+    "unit": 3,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "Medya sorgularında, ekran boyutunu takip eden ve sayfanın genişliğini ekran genişliği kadar ayarlayan kural/değer çifti nedir?",
+    "correct_option": "width=device-width",
+    "options": [
+      "width=100%",
+      "width=auto",
+      "width=device-width",
+      "width=initial-scale"
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 83, 4389"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS Medya Sorguları (Media Queries) yazılırken ekran boyutu 768px'den büyük olduğunda stil kurallarının uygulanması için yazılması gereken komut aşağıdakilerden hangisidir?",
+    "correct_option": "`@media screen and (min-width: 768px)`",
+    "options": [
+      "`@media (max-width: 768px)`",
+      "`@media screen and (min-width: 768px)`",
+      "`@media (min-size: 768px)`",
+      "`@media (width: 768px)`"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/11) / Sayfa 85, 4424, 4441"
+  },
+  {
+    "unit": 3,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Tek boyutlu (yatay veya dikey) içerik yerleştirmek için tasarlanmış, esnek kutu modeli olarak da bilinen sayfa düzeni yapısı nedir?",
+    "correct_option": "Flexbox (Esnek Kutu Modeli)",
+    "options": [
+      "Grid Yapısı",
+      "Table (Tablo) Yapısı",
+      "Float Yapısı",
+      "Flexbox (Esnek Kutu Modeli)"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 90, 4603, 4608"
+  },
+  {
+    "unit": 3,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "W3C tarafından sayfa düzenlemesi amacıyla duyurulan ve sayfayı ızgara yapısıyla (satır ve sütunlar) bölerek iki boyutlu yerleşime imkan sunan yapı nedir?",
+    "correct_option": "Grid Yapısı",
+    "options": [
+      "Flexbox",
+      "Table (Tablo) Yapısı",
+      "Grid Yapısı",
+      "Position Yapısı"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 95, 4719"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Flexbox yapısında, kutuların kapsayıcıda **yatay yönde** hizalanma şeklini belirleyen özellik nedir?",
+    "correct_option": "justify-content",
+    "options": [
+      "flex-direction",
+      "flex-wrap",
+      "align-items",
+      "justify-content"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Ara-A/14) / Sayfa 92, 4687"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Flexbox yapısında, kutuların kapsayıcıda **dikey yönde** hizalanma şeklini belirleyen özellik nedir?",
+    "correct_option": "align-items",
+    "options": [
+      "flex-direction",
+      "flex-wrap",
+      "align-items",
+      "justify-content"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/12) / Sayfa 92, 4693"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS Flexbox yapısında, elemanların genişliği satıra sığmadığında alt satıra geçerken akışı **ters çeviren** özellik değeri hangisidir?",
+    "correct_option": "wrap-reverse",
+    "options": [
+      "wrap",
+      "nowrap",
+      "wrap-reverse",
+      "row-reverse"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Ara-A/11, 2022-2023 Ara-B/12) / Sayfa 92, 4686"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS Grid yapısında, yatay ve dikey hatlar arasında oluşturulan boşluğa ne ad verilir?",
+    "correct_option": "Grid gap (Boşluk)",
+    "options": [
+      "Grid hattı",
+      "Grid hücresi",
+      "Grid çizgileri",
+      "Grid gap (Boşluk)"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Ara-A/15, 2022-2023 Ara-B/15) / Sayfa 95, 4727"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS Grid yapısında satır ve sütunlar arasında boşluk oluşturmak için kullanılan özellik hangisidir?",
+    "correct_option": "gap",
+    "options": [
+      "display",
+      "grid-template-areas",
+      "grid-template-rows",
+      "gap"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/11) / Sayfa 98, 4747"
+  },
+  {
+    "unit": 3,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Grid yapısı içerisinde, satır ve sütunlar arasında oranla boyutlandırma sağlayan, sadece grid ile kullanılabilen ölçü birimi nedir?",
+    "correct_option": "fr (Fractional Unit)",
+    "options": [
+      "px",
+      "em",
+      "rem",
+      "fr (Fractional Unit)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 97, 4744"
+  },
+  {
+    "unit": 3,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Flexbox yapısında, elemanların akış yönündeki sıralamasının değiştirilebilmesini sağlayan özellik nedir?",
+    "correct_option": "order",
+    "options": [
+      "flex-direction",
+      "flex-flow",
+      "flex-wrap",
+      "order"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 101, 4700"
+  },
+  {
+    "unit": 3,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Flexbox yapısında, kutular satıra sığmadığında diğer kutulardan farklı oranda küçültülmesi istenilen kutular için kullanılan, varsayılan değeri 1 olan özellik nedir?",
+    "correct_option": "flex-shrink",
+    "options": [
+      "flex-grow",
+      "flex-basis",
+      "flex-shrink",
+      "flex-order"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 102, 4704"
+  },
+  {
+    "unit": 3,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "Flexbox'ın varsayılan akış yönü olan 'row' değeri kullanıldığında, elemanları dikey yönde hizalayan (ana eksenin tersi) özellik hangisidir?",
+    "correct_option": "align-items",
+    "options": [
+      "justify-content",
+      "flex-direction",
+      "align-items",
+      "flex-flow"
+    ],
+    "source_type": "Kritik Bilgi ve Uyarılar / Sayfa 101, 4698 (Dipnot)"
+  },
+  
+  {
+    "unit": 4,
+    "topic": "Tanım ve Kapsam",
+    "question": "Web geliştirmeyi daha hızlı ve kolay hale getirmek amacıyla HTML, CSS ve JavaScript ile yazılmış, ücretsiz ve açık kaynaklı ön uç geliştirme çerçevesi (framework) nedir?",
+    "correct_option": "Bootstrap",
+    "options": [
+      "React",
+      "Vue.js",
+      "Bootstrap",
+      "JQuery"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 121"
+  },
+  {
+    "unit": 4,
+    "topic": "Sınav Odaklı Sorular (Temel)",
+    "question": "Ücretsiz ve açık kaynaklı hizmet sunan Bootstrap'ın geliştirildiği yıl aşağıdakilerden hangisidir?",
+    "correct_option": "2011",
+    "options": [
+      "2010",
+      "2011",
+      "2012",
+      "2013"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/20) / Sayfa 121"
+  },
+  {
+    "unit": 4,
+    "topic": "Sınav Odaklı Sorular (Temel)",
+    "question": "Bootstrap aşağıdakilerden hangisi/hangileri ile yazılmıştır?",
+    "correct_option": "HTML-CSS-JavaScript",
+    "options": [
+      "Angular-HTML-CSS",
+      "HTML-CSS-JavaScript",
+      "HTML-CSS-React",
+      "Python-CSS-JavaScript"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/16, 2023-2024 Ara-A/20, 2022-2023 Ara-B/18) / Sayfa 121"
+  },
+  {
+    "unit": 4,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "Bootstrap'ın dezavantajlarından biri aşağıdakilerden hangisidir?",
+    "correct_option": "Çeşitli stilleri geçersiz kılar (Stil geçersiz kılma veya yeniden yazma ihtiyacı doğurur).",
+    "options": [
+      "Duyarlı Grid yapısını desteklemez.",
+      "Özelleştirilebilir nitelikte değildir.",
+      "Tüm modern tarayıcılarla uyumluluğu garanti etmez.",
+      "Çeşitli stilleri geçersiz kılar (Stil geçersiz kılma veya yeniden yazma ihtiyacı doğurur)."
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Ara-A/19, 2022-2023 Final-A/4, 2022-2023 Final-B/4) / Sayfa 122"
+  },
+  {
+    "unit": 4,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "Bootstrap'i bu kadar popüler yapan temel nedenlerden biri, mobil öncelikli uygulamalar geliştirmek için neyi desteklemesidir?",
+    "correct_option": "Duyarlı Grid (Responsive Grid) yapısını",
+    "options": [
+      "Sadece XML formatında çalışabilmesi",
+      "Zorunlu olarak `position: fixed` kullanması",
+      "Duyarlı Grid (Responsive Grid) yapısını",
+      "Yalnızca Etiket Seçicileri ile çalışması"
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 122"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Bootstrap'in düzen yapısını oluşturan kapsayıcı türleri (Containers) nelerdir?",
+    "correct_option": "Varsayılan Kapsayıcı, Full Kapsayıcı, Duyarlı Kapsayıcı",
+    "options": [
+      "Varsayılan Kapsayıcı, Container-SM, Container-LG",
+      "Varsayılan Kapsayıcı, Full Kapsayıcı, Duyarlı Kapsayıcı",
+      "Block Kapsayıcı, Inline Kapsayıcı, Flex Kapsayıcı",
+      "Header Kapsayıcı, Body Kapsayıcı, Footer Kapsayıcı"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 125"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Tüm ekran genişlikleri için içeriğin genişliğini %100 olarak atayan (Full Kapsayıcı) Bootstrap sınıfı aşağıdakilerden hangisidir?",
+    "correct_option": ".container-fluid",
+    "options": [
+      ".container",
+      ".container-fluid",
+      ".container-100",
+      ".container-full"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/19) / Sayfa 125"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bootstrap'ta `display` sınıfına hangi değer verildiğinde öğe ekrandan kaybolur ve yer kaplamaz?",
+    "correct_option": "none",
+    "options": [
+      "inline",
+      "inline-block",
+      "flex",
+      "none"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/18, 2023-2024 Ara-A/16, 2022-2023 Ara-B/17) / Sayfa 130"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bootstrap ile tablet ekranlarından (≥768px) büyük ekranlarda HTML öğelerini gizlemek için, öğeye atanması gereken sınıf aşağıdakilerden hangisidir?",
+    "correct_option": ".d-lg-none",
+    "options": [
+      ".d-none",
+      ".d-md-none",
+      ".d-lg-none",
+      ".d-xl-none"
+    ],
+    "source_type": "Teknik Detay / Sayfa 130"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bootstrap Flex yapısında, öğeleri yatay eksenin (row) tersi yönde yerleştirmek için kullanılması gereken sınıf aşağıdakilerden hangisidir?",
+    "correct_option": ".flex-row-reverse",
+    "options": [
+      ".flex-row",
+      ".flex-column",
+      ".flex-column-reverse",
+      ".flex-row-reverse"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Ara-A/17, 2023-2024 Ara-A/11, 2022-2023 Ara-B/19) / Sayfa 131"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bootstrap Flex yapısında, öğeleri HTML dosyasındaki akışa göre yukarıdan başlayarak **dikey** yerleştiren ve varsayılan değer olan sınıf aşağıdakilerden hangisidir?",
+    "correct_option": ".flex-column",
+    "options": [
+      ".flex-row",
+      ".flex-row-reverse",
+      ".flex-column-reverse",
+      ".flex-column"
+    ],
+    "source_type": "Teknik Detay / Sayfa 131"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bootstrap'ta kırmızı renk oluşturmak için kullanılan arka plan rengi sınıfı aşağıdakilerden hangisidir?",
+    "correct_option": ".bg-danger",
+    "options": [
+      ".bg-primary",
+      ".bg-success",
+      ".bg-warning",
+      ".bg-danger"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Ara-A/17) / Sayfa 139"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bootstrap'ta metin içindeki tüm karakterleri büyük harfe dönüştürmek için kullanılabilecek sınıf aşağıdakilerden hangisidir?",
+    "correct_option": ".text-uppercase",
+    "options": [
+      ".text-capitalize",
+      ".text-lowercase",
+      ".text-uppercase",
+      ".text-transform-upper"
+    ],
+    "source_type": "Teknik Detay / Sayfa 135"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "HTML öğesine üst taraftan 0,25 rem boyutunda margin değeri eklemek için kullanılabilecek Bootstrap sınıfı aşağıdakilerden hangisidir?",
+    "correct_option": ".mt-1",
+    "options": [
+      ".pt-1",
+      ".mt-0",
+      ".mt-1",
+      ".mx-auto"
+    ],
+    "source_type": "Teknik Detay / Sayfa 140"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Bootstrap'ta tablet ekranlarını (≥768px) temsil eden ve duyarlı tasarımda kullanılan kısaltma kodu nedir?",
+    "correct_option": "md",
+    "options": [
+      "xs",
+      "sm",
+      "md",
+      "lg"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 124"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Bootstrap'ta grid sistemi, sayfayı kaç eşit sütuna bölerek içerik yerleştirilmesine olanak sağlar?",
+    "correct_option": "12",
+    "options": [
+      "6",
+      "10",
+      "12",
+      "16"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 128"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bootstrap ile stillendirilmek istenen butona atanması gereken temel sınıf (temel sınıf) aşağıdakilerden hangisidir?",
+    "correct_option": ".btn",
+    "options": [
+      ".button",
+      ".btn-primary",
+      ".btn-lg",
+      ".btn"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-B/9) / Sayfa 151"
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bootstrap'ta navigasyon linklerinin (navbar) tablet ve daha büyük ekranlarda gösterilip, daha küçük ekranlarda menü butonunun altında toplanması için kapsayıcıya atanması gereken sınıf nedir?",
+    "correct_option": ".navbar-expand-md",
+    "options": [
+      ".navbar-md",
+      ".navbar-xl",
+      ".navbar-expand-md",
+      ".navbar-toggle-sm"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-B/8) / Sayfa 154"
+  },
+  {
+    "unit": 4,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Aşağıdakilerden hangisi Bootstrap'a ait kapsayıcılardan (Containers) biri olarak sunulmuştur?",
+    "correct_option": "Duyarlı Kapsayıcı (Responsive Container)",
+    "options": [
+      "Sınır Kapsayıcı",
+      "Özel Kapsayıcı",
+      "Duyarlı Kapsayıcı (Responsive Container)",
+      "Sabit Kapsayıcı"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Ara-A/19, 2022-2023 Ara-B/16) / Sayfa 125"
+  },
+  
+  {
+    "unit": 5,
+    "topic": "Tanım ve Kavramlar",
+    "question": "HTML ve CSS ile hazırlanan statik web sayfalarına içerik güncellemesi veya kullanıcı işlemleri gibi özellikler kazandırarak dinamik web sayfalarına dönüştüren programlama dili nedir?",
+    "correct_option": "JavaScript",
+    "options": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "XML"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 157, 4471"
+  },
+  {
+    "unit": 5,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "JavaScript'in Java'dan temel farkı nedir?",
+    "correct_option": "JavaScript betik (script) bir dildir; Java ise derlenen (compile) bir dildir.",
+    "options": [
+      "JavaScript bir programlama dili değildir, Java'dır.",
+      "Java daha hafiftir ve tarayıcıda çalışır, JavaScript sunucuda çalışır.",
+      "JavaScript betik (script) bir dildir; Java ise derlenen (compile) bir dildir.",
+      "JavaScript'te döngüler varken, Java'da yoktur."
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 157, 4474, 4475, 4477"
+  },
+  {
+    "unit": 5,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "Uzun JavaScript kodları harici bir dosyada (`.js`) tutuluyorsa, bu dosyanın HTML dökümanında nerede çağrılması (tanımlanması) önerilir?",
+    "correct_option": "<body> etiketinin kapanışından hemen önce",
+    "options": [
+      "<head> etiketlerinin hemen başında",
+      "<head> etiketlerinin hemen sonunda",
+      "<body> etiketlerinin hemen başında",
+      "<body> etiketinin kapanışından hemen önce"
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 161, 4542, 4553"
+  },
+  {
+    "unit": 5,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "JavaScript'te bir değişkene atanan değerin program akışında bir daha **değiştirilmeyeceğini** belirtmek için kullanılan anahtar kelime hangisidir?",
+    "correct_option": "const",
+    "options": [
+      "var",
+      "let",
+      "const",
+      "variable"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-B/9) / Sayfa 171, 4583"
+  },
+  {
+    "unit": 5,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "JavaScript'te bir değişkene atanan değerin program akışında **yeniden atanabileceğini** belirtmek için kullanılan anahtar kelime hangisidir?",
+    "correct_option": "let",
+    "options": [
+      "const",
+      "let",
+      "var",
+      "variable"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-B/9) / Sayfa 171, 4584"
+  },
+  {
+    "unit": 5,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Aşağıdaki değişken tanımlama anahtar kelimelerinden hangisi **yeniden atamayı engeller**?",
+    "correct_option": "const",
+    "options": [
+      "var",
+      "let",
+      "const",
+      "variable"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-B/2) / Sayfa 190, 4976"
+  },
+  {
+    "unit": 5,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "JavaScript'te değişkenlerin sadece tanımlandığı süslü parantezler ({ }) arasında kalan bölgelerde (kapsamda) geçerli olmasını sağlayan anahtar kelimeler hangileridir?",
+    "correct_option": "let ve const",
+    "options": [
+      "var ve const",
+      "var ve let",
+      "let ve const",
+      "yalnızca var"
+    ],
+    "source_type": "Liste ve Karşılaştırma / Sayfa 170, 4574, 4577"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te 'string' türündeki bir ifadeyi 'number' türüne dönüştürürken, ifadenin sadece tam sayı olan kısmını çeviren metot hangisidir?",
+    "correct_option": "parseInt()",
+    "options": [
+      "parseFloat()",
+      "toString()",
+      "toInteger()",
+      "parseInt()"
+    ],
+    "source_type": "Teknik Detay / Sayfa 164, 4606"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te dizinin sonuna bir eleman eklemek ve dizinin yeni uzunluğunu döndürmek için hangi metot kullanılır?",
+    "correct_option": "push()",
+    "options": [
+      "pop()",
+      "unshift()",
+      "push()",
+      "concat()"
+    ],
+    "source_type": "Teknik Detay / Sayfa 166, 4631"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te nesnelerin (objects) özelliklerine ulaşmak için kullanılan gösterimlerden (syntax) biri hangisidir?",
+    "correct_option": "ogrenci.ad",
+    "options": [
+      "ogrenci['ad']",
+      "ogrenci.ad",
+      "ogrenci->ad",
+      "get(ogrenci.ad)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 167, 4641"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te iki değerin hem **eşit** hem de **aynı veri tipine** sahip olup olmadığını kontrol eden karşılaştırma operatörü hangisidir?",
+    "correct_option": "===",
+    "options": [
+      "==",
+      "!==",
+      "===",
+      "!="
+    ],
+    "source_type": "Teknik Detay / Sayfa 170, 4676"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te koşulu sağlayan değerlerden biri seçilerek, altındaki kod bloğunun çalıştırıldığı ve çok sayıda koşul durumunda okunurluğu artıran yapı hangisidir?",
+    "correct_option": "switch",
+    "options": [
+      "if / else",
+      "for / in",
+      "while",
+      "switch"
+    ],
+    "source_type": "Teknik Detay / Sayfa 172, 4708"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te bir kod bloğunu belirli sayıda çalıştırmak için kullanılan ve bir değişkenin tanımlanıp her tekrarda arttırıldığı/azaltıldığı döngü yapısı hangisidir?",
+    "correct_option": "for",
+    "options": [
+      "while",
+      "do-while",
+      "for",
+      "loop"
+    ],
+    "source_type": "Teknik Detay / Sayfa 174, 4724"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te dizinin değerlerine (elemanlarına) indeks değerlerine göre ulaşmak için kullanılan döngü yapısı hangisidir?",
+    "correct_option": "for/of",
+    "options": [
+      "for/in",
+      "for/each",
+      "for/value",
+      "for/of"
+    ],
+    "source_type": "Teknik Detay / Sayfa 175, 4740"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te tanımlandıktan sonra hemen çalıştırılmak istenen, tekrar çağırma işlemine gerek kalmaksızın çalışan ve içinde tanımlanan değişkenleri global kapsamda görüntülemeyen fonksiyon yapısı nedir?",
+    "correct_option": "Anında Çağrılan Fonksiyonlar (IIFE)",
+    "options": [
+      "Anonim Fonksiyonlar",
+      "Callback Fonksiyonlar",
+      "Anında Çağrılan Fonksiyonlar (IIFE)",
+      "Arrow Fonksiyonlar"
+    ],
+    "source_type": "Teknik Detay / Sayfa 178, 4783, 4784, 4786"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te kullanıcıdan bilgi almak için kullanılan açılır kutu (pop-up) aşağıdakilerden hangisidir?",
+    "correct_option": "prompt()",
+    "options": [
+      "alert()",
+      "confirm()",
+      "prompt()",
+      "msgbox()"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-B/8) / Sayfa 180, 4804"
+  },
+  {
+    "unit": 5,
+    "topic": "Sınav Odaklı Sorular (Zamanlayıcı)",
+    "question": "JavaScript'te belirli bir süre geçtikten sonra bir kod parçasının çalıştırılmasına olanak tanıyan metot nedir?",
+    "correct_option": "setTimeout()",
+    "options": [
+      "setInterval()",
+      "setDelay()",
+      "startTimer()",
+      "setTimeout()"
+    ],
+    "source_type": "Teknik Detay / Sayfa 181, 4815"
+  },
+  {
+    "unit": 5,
+    "topic": "Sınav Odaklı Sorular (Zamanlayıcı)",
+    "question": "Konsol ekranında 20 saniye boyunca 2 saniyelik aralıklarla ekranda 'Merhaba Dünya' yazmak için gereken kod aşağıdakilerden hangisinde doğru verilmiştir?",
+    "correct_option": "D",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-B/9) / Sayfa 194, 5007",
+    "code_example": "let timeIdentifier=setInterval(function (){ console.log('Merhaba Dünya')},2000) \n\n setTimeout(function (){ clearInterval(timeIdentifier) },20000)"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te metin içerisinde tek satır yorum satırı eklemek için hangi işaret kullanılır?",
+    "correct_option": "// (İki eğik çizgi)",
+    "options": [
+      "/* ... */",
+      "#",
+      "--",
+      "// (İki eğik çizgi)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 159, 4517, 4518"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Fonksiyon içerisinde yapılan işlemlerin sonucunu, fonksiyonun çağrıldığı yere geri döndürmek için kullanılan anahtar kelime nedir?",
+    "correct_option": "return",
+    "options": [
+      "output",
+      "return",
+      "yield",
+      "function"
+    ],
+    "source_type": "Teknik Detay / Sayfa 177, 4769"
+  },
+  
+  {
+    "unit": 6,
+    "topic": "Tanım ve Kavramlar",
+    "question": "Web sayfalarını oluşturan HTML dokümanlarını düğüm ağacı (Node Tree) olarak modelleyen ve JavaScript'in HTML öğelerine erişip düzenlemesine olanak tanıyan yapı nedir?",
+    "correct_option": "DOM (Document Object Model) - Doküman Nesne Modeli",
+    "options": [
+      "VDOM (Virtual DOM)",
+      "HTML Tree",
+      "DOM (Document Object Model) - Doküman Nesne Modeli",
+      "Event Listener"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 211, 5305, 5306"
+  },
+  {
+    "unit": 6,
+    "topic": "Tanım ve Kavramlar",
+    "question": "JavaScript'in resmi standardı olarak kabul edilen ve tüm tarayıcı üreticilerinin uygulayabileceği standartlar organizasyonu tarafından oluşturulan standart nedir?",
+    "correct_option": "ECMAScript (ES)",
+    "options": [
+      "LiveScript",
+      "ECMAScript (ES)",
+      "JSON",
+      "W3C"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 201, 5163"
+  },
+  {
+    "unit": 6,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "JavaScript dilinde, 'let' ve 'const' anahtar kelimelerinin (block kapsam) duyurulduğu ve dilin modern yapıya kavuşmasında büyük başarı sağlayan ana sürüm hangisidir?",
+    "correct_option": "ES6 (ECMAScript 2015)",
+    "options": [
+      "ES5 (ECMAScript 2009)",
+      "ES7 (ECMAScript 2016)",
+      "ES6 (ECMAScript 2015)",
+      "ES3"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/9, 2022-2023 Final-B/9) / Sayfa 202, 5177, 5181"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Normal fonksiyon tanımlamalarına göre daha temiz kod yazılmasını sağlayan ve söz diziminde '=>' işareti kullanılan modern JavaScript özelliği nedir?",
+    "correct_option": "Arrow Fonksiyonlar",
+    "options": [
+      "Anonim Fonksiyonlar",
+      "IIFE",
+      "Callback Fonksiyonlar",
+      "Arrow Fonksiyonlar"
+    ],
+    "source_type": "Teknik Detay / Sayfa 204, 5211, 5212"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te bir diziyle çalışırken, orijinal dizi öğelerinin belirtilen koşula göre filtrelenmiş bir alt kümesini içeren yeni bir dizi oluşturan metot hangisidir?",
+    "correct_option": "filter()",
+    "options": [
+      "find()",
+      "findIndex()",
+      "filter()",
+      "forEach()"
+    ],
+    "source_type": "Teknik Detay / Sayfa 205, 5228, 5229"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te bir dizinin belirtilen koşulu sağlayan ilk öğesinin **değerini** geri döndüren metot hangisidir?",
+    "correct_option": "find()",
+    "options": [
+      "filter()",
+      "findIndex()",
+      "find()",
+      "map()"
+    ],
+    "source_type": "Sınav Odaklı Sorular (Metot) / Sayfa 205, 5237"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te bir dizinin belirtilen koşulu sağlayan ilk öğesinin **indeks numarasını** geri döndüren metot hangisidir?",
+    "correct_option": "findIndex()",
+    "options": [
+      "filter()",
+      "find()",
+      "findIndex()",
+      "indexOf()"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/3) / Sayfa 206, 5242"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Dizi gibi yinelenebilir nesneleri öğelerine ayırmak (yaymak) ve iki diziyi birleştirmek için kullanılan operatör hangisidir?",
+    "correct_option": "Spread Operatörü (...)",
+    "options": [
+      "Rest Operatörü",
+      "Spread Operatörü (...)",
+      "Destructuring Atamalar",
+      "Concat Metodu"
+    ],
+    "source_type": "Teknik Detay / Sayfa 207, 5252, 5257"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Dizilerin veya nesnelerin öğelerini, ayrı ayrı tanımlama yapmaya gerek kalmadan, doğrudan yeni değişkenlere aktarmayı sağlayan ES6 özelliği nedir?",
+    "correct_option": "Destructuring Atamalar",
+    "options": [
+      "Spread Operatörü",
+      "Modül Sistemi",
+      "Destructuring Atamalar",
+      "Promise"
+    ],
+    "source_type": "Teknik Detay / Sayfa 208, 5267"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "DOM yapısında, HTML dökümanındaki ID'si bilinen tek bir öğeye erişmek için kullanılan metot hangisidir?",
+    "correct_option": "document.getElementById(\"id_adı\")",
+    "options": [
+      "document.querySelector(\"#id_adı\")",
+      "document.querySelectorAll(\"#id_adı\")",
+      "document.getElementById(\"id_adı\")",
+      "document.getElementsByTagName(\"p\")"
+    ],
+    "source_type": "Teknik Detay / Sayfa 213, 5318, 5319"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "DOM yapısında, bir CSS seçicisinin (etiket, sınıf veya ID) kullanıldığı **bütün** öğelere ulaşmak için kullanılan metot hangisidir?",
+    "correct_option": "document.querySelectorAll(\"seçici_adı\")",
+    "options": [
+      "document.querySelector(\"seçici_adı\")",
+      "document.getElementById(\"seçici_adı\")",
+      "document.querySelectorAll(\"seçici_adı\")",
+      "document.getElementsByTagName(\"seçici_adı\")"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/11, 2022-2023 Final-B/11) / Sayfa 214, 5342, 5343"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "DOM yapısında, bir CSS seçicisinin kullanıldığı öğelerden (seçici birden fazla öğeyi işaret etse bile) **yalnızca ilkine** erişmek için kullanılan metot hangisidir?",
+    "correct_option": "document.querySelector(\"seçici_adı\")",
+    "options": [
+      "document.querySelector(\"seçici_adı\")",
+      "document.querySelectorAll(\"seçici_adı\")",
+      "document.getElementsByClassName(\"seçici_adı\")",
+      "document.getElementByTagName(\"seçici_adı\")"
+    ],
+    "source_type": "Teknik Detay / Sayfa 214, 5330, 5332"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Kullanıcı veya tarayıcı tarafından sayfada gerçekleşen eylemleri takip eden ve web sayfalarını dinamik yapıya dönüştürmede önemli rol oynayan JavaScript kavramı nedir?",
+    "correct_option": "Event (Olay)",
+    "options": [
+      "DOM",
+      "Callback",
+      "Promise",
+      "Event (Olay)"
+    ],
+    "source_type": "Teknik Detay / Sayfa 217, 5380, 5381"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "HTML sayfasını dinamik hale getirmek amacıyla yeni bir olay (event) eklemek için kullanılan JavaScript metodu nedir?",
+    "correct_option": "document.addEventListener(\"olay_tipi\", fonksiyon)",
+    "options": [
+      "document.addEventListener(\"olay_tipi\", fonksiyon)",
+      "document.createComment",
+      "document.lookupPrefix",
+      "document.normalize"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/10, 2022-2023 Final-B/12) / Sayfa 217, 5383"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "DOM yapısını kullanarak bir HTML öğesinin sadece metin içeriğini değiştirmek için kullanılan özellik nedir?",
+    "correct_option": "innerText",
+    "options": [
+      "innerHTML",
+      "outerHTML",
+      "textContent",
+      "innerText"
+    ],
+    "source_type": "Teknik Detay / Sayfa 215, 5351"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript modül sistemi ile, bir dosyadan (örneğin bir fonksiyon) başka bir dosyaya aktarılacak öğenin Named Export yerine **tek bir öğe** olarak aktarılması için kullanılan anahtar kelime nedir?",
+    "correct_option": "export default",
+    "options": [
+      "export named",
+      "export default",
+      "export global",
+      "export primary"
+    ],
+    "source_type": "Teknik Detay / Sayfa 210, 5293, 5294"
+  },
+  
+  {
+    "unit": 7,
+    "topic": "Tanım ve Kavramlar",
+    "question": "Uzun sürmesi beklenen görevler başlatıldıktan sonra, bitmesi beklenmeden başka komutların çalıştırılmaya devam ettiği programlama modeli nedir?",
+    "correct_option": "Asenkron Programlama",
+    "options": [
+      "Senkron Programlama",
+      "Multi-Threading",
+      "Asenkron Programlama",
+      "Blocking Programlama"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 229, 6152"
+  },
+  {
+    "unit": 7,
+    "topic": "Tanım ve Kavramlar",
+    "question": "JavaScript'te fonksiyonların yürütülme bağlantılarını (hangi fonksiyonun hangisini çağırdığını) LIFO (son giren ilk çıkar) ilkesine göre yöneten yapı nedir?",
+    "correct_option": "Call Stack (Çağrı Yığını)",
+    "options": [
+      "Promise",
+      "Event Loop",
+      "Call Stack (Çağrı Yığını)",
+      "Async/Await"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/1) / Sayfa 235, 6171, 6174"
+  },
+  {
+    "unit": 7,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Aşağıdaki asenkron işlem kontrol yöntemlerinden hangisi, çıktıyı üreten ve kullanan arasında bir anlaşma (söz) olup, işlem tamamlandığında başarılı (`resolve`) veya başarısız (`reject`) sonucu dönen nesnedir?",
+    "correct_option": "Promise",
+    "options": [
+      "Callback",
+      "Async/Await",
+      "Call Stack",
+      "Promise"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/2) / Sayfa 232, 6158"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te bir fonksiyonu Promise nesnesi dönen yapıya dönüştürmek için kullanılan anahtar kelime nedir?",
+    "correct_option": "async",
+    "options": [
+      "then",
+      "await",
+      "async",
+      "promise"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/14, 2022-2023 Final-B/14) / Sayfa 233, 6168"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Promise yapısının daha kolay kullanımını sağlayan ve asenkron komutun tamamlanmasını bekleyerek bir sonraki satıra geçilmesini engelleyen anahtar kelime nedir?",
+    "correct_option": "await",
+    "options": [
+      "then",
+      "async",
+      "wait",
+      "await"
+    ],
+    "source_type": "Teknik Detay / Sayfa 234, 6170"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Sunucudan veri talep etmek için kullanılan ve sorgu parametrelerini URL ile birlikte gönderen HTTP metodu hangisidir?",
+    "correct_option": "GET",
+    "options": [
+      "POST",
+      "CONNECT",
+      "TRACE",
+      "GET"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/16, 2022-2023 Final-B/16, 2022-2023 Final-A/5) / Sayfa 238, 6184"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Sunucuda yeni veri oluşturmak için kullanılan ve gönderilecek parametrelerin isteğin gövde (body) kısmına eklenebildiği HTTP metodu hangisidir?",
+    "correct_option": "POST",
+    "options": [
+      "GET",
+      "DELETE",
+      "TRACE",
+      "POST"
+    ],
+    "source_type": "Teknik Detay / Sayfa 238, 6187"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "İstemci tarafından yapılan bir isteğe sunucunun verdiği cevabın **başarılı** olduğunu gösteren HTTP Durum Kodu sınıfı hangisidir?",
+    "correct_option": "2xx",
+    "options": [
+      "1xx",
+      "2xx",
+      "3xx",
+      "4xx"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/3) / Sayfa 237, 6187"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "İstemci tarafından yapılan bir isteğe sunucunun verdiği cevabın **istemci hatası** olduğunu gösteren HTTP Durum Kodu sınıfı hangisidir? (Ör: 404 Not Found)",
+    "correct_option": "4xx",
+    "options": [
+      "1xx",
+      "3xx",
+      "4xx",
+      "5xx"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/4) / Sayfa 237, 6187"
+  },
+  {
+    "unit": 7,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Kullanıcının ihtiyaçlarına göre kendi etiketlerini tanımlayabildiği, verileri tanımlamak için kullanılan işaretleme dili aşağıdakilerden hangisidir?",
+    "correct_option": "XML (Extensible Markup Language)",
+    "options": [
+      "JSON",
+      "HTML5",
+      "XML (Extensible Markup Language)",
+      "AJAX"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/13, 2022-2023 Final-B/13) / Sayfa 239, 6191"
+  },
+  {
+    "unit": 7,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "Verileri yapılandırmak için kullanılan, minimal ve okunabilir bir format olup, anahtar:değer yapısıyla çalışan veri formatı nedir?",
+    "correct_option": "JSON (JavaScript Object Notation)",
+    "options": [
+      "XML",
+      "FETCH",
+      "JSON (JavaScript Object Notation)",
+      "API"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 239, 6193, 6195"
+  },
+  {
+    "unit": 7,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "HTML, XMLHttpRequest ve JavaScript gibi teknolojileri birleştirerek sayfanın tamamını yeniden yüklemeden sunucu ile arka planda haberleşmeyi sağlayan teknik nedir?",
+    "correct_option": "AJAX (Asynchronous JavaScript and XML)",
+    "options": [
+      "Fetch API",
+      "Node.js",
+      "AJAX (Asynchronous JavaScript and XML)",
+      "SPA"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 240, 6202, 6204"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te ağ istekleri yapmak için kullanılan, XMLHttpRequest'in yerini alan ve Promise tabanlı olmasıyla daha temiz bir söz dizimi sunan metot hangisidir?",
+    "correct_option": "fetch()",
+    "options": [
+      "XMLHttpRequest.send()",
+      "Fetch()",
+      "Ajax.request()",
+      "URLRequest()"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/15, 2022-2023 Final-B/15) / Sayfa 244, 6208, 6210"
+  },
+  {
+    "unit": 7,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "XMLHttpRequest (XHR) nesnesi ile ilgili aşağıdaki ifadelerden hangisi yanlıştır?",
+    "correct_option": "Sadece XML formatında çalışabilmektedir.",
+    "options": [
+      "HTTP istekleri yapılmasına izin veren tarayıcı nesnesidir.",
+      "Sadece XML formatında çalışabilmektedir.",
+      "Dosyalar yüklenebilir/indirilebilir.",
+      "Tüm modern tarayıcılar tarafından desteklenir."
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/15, 2022-2023 Final-B/15) / Sayfa 241, 6211"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "XMLHttpRequest nesnesinde, isteğin asenkron veya senkron yapılacağını belirten, `True` olması durumunda asenkron çalışmayı sağlayan, `open()` metodunun 3. parametresi nedir?",
+    "correct_option": "async",
+    "options": [
+      "method",
+      "url",
+      "async",
+      "user"
+    ],
+    "source_type": "Teknik Detay / Sayfa 242, 6217"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Web sayfalarında sunucu ile istemci arasındaki iletişimi sağlayan ve iki uygulamanın birbiriyle konuşmasını sağlayan yazılım aracı nedir?",
+    "correct_option": "API (Application Programming Interface - Uygulama Programlama Arayüzü)",
+    "options": [
+      "HTTP",
+      "JSON",
+      "XML",
+      "API (Application Programming Interface - Uygulama Programlama Arayüzü)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 239, 6190"
+  },
+  
+  {
+    "unit": 8,
+    "topic": "Tanım ve Kavramlar",
+    "question": "Web uygulamalarında tek sayfadan oluşan, birden çok görünüm (view) içeren ve kullanıcının ilk girişte tüm HTML, CSS ve JavaScript dosyalarını yüklediği yapı nedir?",
+    "correct_option": "Single Page Application (SPA) - Tek Sayfa Uygulaması",
+    "options": [
+      "Multi Page Application (MPA)",
+      "Progressive Web App (PWA)",
+      "Single Page Application (SPA) - Tek Sayfa Uygulaması",
+      "Headless CMS"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 259, 6459, 6460"
+  },
+  {
+    "unit": 8,
+    "topic": "Liste ve Karşılaştırmalar",
+    "question": "SPA (Single Page Application) yapısının geleneksel web uygulamalarına göre temel avantajı nedir?",
+    "correct_option": "Sayfalar arası gezinirken sadece ilgili alanlar güncellenir ve uygulamanın performansı artar.",
+    "options": [
+      "SEO algoritmaları tarafından daha iyi çözümlenir.",
+      "Tarayıcı geçmişini (history) kullanmak çok daha kolaydır.",
+      "Sayfalar arası gezinirken sadece ilgili alanlar güncellenir ve uygulamanın performansı artar.",
+      "Sistem yükü tamamen sunucuda tutulur."
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 260, 6469"
+  },
+  {
+    "unit": 8,
+    "topic": "Tanım ve Kavramlar",
+    "question": "Gerçek DOM yapısının bir temsilidir, geçici bellekte saklanır ve DOM API'leri kullanılmadan sık sık değiştirilip, optimize edilerek gerçek DOM'a yansıtılan yapı nedir?",
+    "correct_option": "Virtual DOM (VDOM) - Sanal DOM",
+    "options": [
+      "Real DOM",
+      "Sanal DOM (VDOM) - Virtual DOM",
+      "Shadow DOM",
+      "Document Tree"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 261, 6500, 6503"
+  },
+  {
+    "unit": 8,
+    "topic": "Tanım ve Kavramlar",
+    "question": "Facebook için geliştirilen, komponent tabanlı konsept kullanarak bildirimsel kullanıcı arayüzleri oluşturmaya odaklanan popüler JavaScript kütüphanesi nedir?",
+    "correct_option": "React",
+    "options": [
+      "Angular",
+      "Vue.js",
+      "JQuery",
+      "React"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 263, 6518, 6520"
+  },
+  {
+    "unit": 8,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "React tarafından kullanılan ve XML benzeri metinlerin JavaScript koduyla birlikte yazılabilmesini sağlayan, Babel gibi araçlar ile gerçek JavaScript koduna dönüştürülen söz dizimi nedir?",
+    "correct_option": "JSX (JavaScript XML)",
+    "options": [
+      "HTMLX",
+      "TypeScript",
+      "Babel",
+      "JSX (JavaScript XML)"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 268, 6599, 6603"
+  },
+  {
+    "unit": 8,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "JSX (JavaScript XML) kullanılırken, bir HTML etiketi içinde JavaScript kodu veya değişkeni kullanılması gerektiğinde hangi parantez içine yazılır?",
+    "correct_option": "Süslü parantez { }",
+    "options": [
+      "Köşeli parantez [ ]",
+      "Normal parantez ( )",
+      "Süslü parantez { }",
+      "Tırnak işaretleri \" \""
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 268, 6604"
+  },
+  {
+    "unit": 8,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "React'ta alt eleman olan komponentlere doğrudan veri aktarmak için kullanılan ve veri tipi olarak number, string, dizi gibi değerleri taşıyabilen yapı nedir?",
+    "correct_option": "Props",
+    "options": [
+      "State",
+      "Hooks",
+      "Context",
+      "Props"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-A/18, 2022-2023 Final-B/20) / Sayfa 270, 6634, 6635"
+  },
+  {
+    "unit": 8,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "React'ta komponentin ömrü boyunca değişebilecek bilgileri tutan ve komponentin davranışını kontrol eden özellikler kümesi nedir?",
+    "correct_option": "State (Durum)",
+    "options": [
+      "Props",
+      "Ref",
+      "State (Durum)",
+      "Context"
+    ],
+    "source_type": "Tanım ve Kavramlar / Sayfa 272, 6663, 6664"
+  },
+  {
+    "unit": 8,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "React'ın 16.8 sürümünden sonra duyurulan ve Fonksiyon Komponentlerde `state` yapısının kullanılmasına olanak tanıyan yapı nedir?",
+    "correct_option": "Hooks (Örn: useState())",
+    "options": [
+      "Class Components",
+      "Redux",
+      "Hooks (Örn: useState())",
+      "Router"
+    ],
+    "source_type": "Teknik Detay / Sayfa 273, 6665, 6666"
+  },
+  {
+    "unit": 8,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "React'ta bir dizi içerisindeki elemanları alıp her bir eleman için bir Komponent çağırmak (döngü oluşturmak) için hangi JavaScript dizin metodu kullanılır?",
+    "correct_option": "map()",
+    "options": [
+      "forEach()",
+      "filter()",
+      "map()",
+      "for/of"
+    ],
+    "source_type": "Teknik Detay / Sayfa 272, 6649"
+  },
+  {
+    "unit": 8,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "React'ta birden fazla çağrılan alt komponentlerde ağaç yapısını oluşturabilmek ve performansı optimize etmek için her komponent çağrımında **benzersiz** bir değer olarak girilmesi gereken zorunlu özellik nedir?",
+    "correct_option": "key",
+    "options": [
+      "id",
+      "class",
+      "key",
+      "index"
+    ],
+    "source_type": "Kritik Bilgi / Sayfa 272, 6651, 6652"
+  },
+  {
+    "unit": 8,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Yeni bir React uygulaması oluşturmak ve gerekli yapılandırma dosyalarını otomatik olarak kurmak için kullanılan komut nedir?",
+    "correct_option": "npx create-react-app uygulamanin_adi",
+    "options": [
+      "npm init react-app",
+      "npx create-react-app uygulamanin_adi",
+      "npm install react",
+      "react create-app"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-B/6) / Sayfa 277, 6729"
+  },
+  {
+    "unit": 8,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "React uygulamasının paket bağımlılıklarını ve sürümlerini yöneten NodeJs paket yöneticisi nedir?",
+    "correct_option": "NPM (Node Package Manager)",
+    "options": [
+      "Babel",
+      "NodeJs",
+      "NPM (Node Package Manager)",
+      "Yarn"
+    ],
+    "source_type": "Teknik Detay / Sayfa 276, 6729, 6735"
+  },
+  {
+    "unit": 8,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Aşağıdakilerden hangisi bir **Fonksiyon Komponent** yapısının doğru söz dizimidir?",
+    "correct_option": "A",
+    "options": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "source_type": "Sınav Sorusu (2022-2023 Final-B/7) / Sayfa 279, 6765"
+  },
+  
+  {
+    "unit": 2,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "CSS'te bir komponente, farklı ekran boyutlarında bileşeninin boyutunun değişmesini sağlayan ölçü birimi aşağıdakilerden hangisidir?",
+    "correct_option": "% (Yüzde)",
+    "options": [
+      "px (Piksel)",
+      "cm (Santimetre)",
+      "pt (Nokta)",
+      "% (Yüzde)"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Final-A/3, 2022-2023 Ara-A/14) / Sayfa 51",
+    "code_example": null
+  },
+  {
+    "unit": 4,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Bootstrap'ta `justify-content` sınıfı hangi değeri aldığında öğelerin tümü birbirine yapışık ve ortada görünür?",
+    "correct_option": "center",
+    "options": [
+      "start",
+      "between",
+      "around",
+      "center"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Final-A/4, 2023-2024 Final-A/4) / Sayfa 132",
+    "code_example": ".d-flex.justify-content-center { /* ... */ }"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript'te bir değişkene değer atamak için kullanılan temel atama operatörü aşağıdakilerden hangisidir?",
+    "correct_option": "=",
+    "options": [
+      "&",
+      "+",
+      "=",
+      "#"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Final-A/7) / Sayfa 169",
+    "code_example": "let x = 10; // Atama operatörü"
+  },
+  {
+    "unit": 5,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "Aşağıdakilerden hangisi JavaScript'te doğru bir dizi veri türü tanımlamasıdır?",
+    "correct_option": "const dizi = [1, 2]",
+    "options": [
+      "const dizi(1, 2)",
+      "const dizi{1, 2}",
+      "const dizi = [1, 2]",
+      "const dizi / 1, 2 /"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Final-A/10) / Sayfa 173",
+    "code_example": "const dizi = ['a', 'b'];"
+  },
+  {
+    "unit": 5,
+    "topic": "Sınav Odaklı Sorular (Liste)",
+    "question": "Aşağıdaki JavaScript Dizi Metotları ile ilgili bilgilerden hangisi doğrudur?",
+    "correct_option": "concat(): İki diziyi birleştirir.",
+    "options": [
+      "pop(): Dizinin sonuna bir eleman ekler ve dizinin uzunluğunu döndürür.",
+      "shift(): Dizinin elemanlarını alfabetik olarak sıralar.",
+      "slice(): Dizinin bir öğesini arar ve konumunu döndürür.",
+      "concat(): İki diziyi birleştirir."
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Final-A/6) / Sayfa 174",
+    "code_example": "dizi1.concat(dizi2);"
+  },
+  {
+    "unit": 5,
+    "topic": "Sınav Odaklı Sorular (Kod Çıktısı)",
+    "question": "Aşağıdaki JavaScript kod bloğunun çıktısı aşağıdakilerden hangisidir?\n```javascript\nlet sum = 0;\nconst arr = [5, 4, 3, 2];\narr.forEach((item) => {\n  sum += item;\n  sum = (sum % 5);\n});\nconsole.log(sum);\n```",
+    "correct_option": "4",
+    "options": [
+      "0",
+      "1",
+      "3",
+      "4"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Final-A/11) / Sayfa 194",
+    "code_example": "// Adım 1: sum = (0+5) % 5 = 0\n// Adım 2: sum = (0+4) % 5 = 4\n// Adım 3: sum = (4+3) % 5 = 2\n// Adım 4: sum = (2+2) % 5 = 4"
+  },
+  {
+    "unit": 6,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "JavaScript DOM ile bir HTML öğesinin stil kuralları arasında **geçiş (açma/kapama)** yapılabilmesi için kullanılan metot aşağıdakilerden hangisidir?",
+    "correct_option": "element.classList.toggle()",
+    "options": [
+      "element.classList.add()",
+      "element.classList.contains()",
+      "element.classList.remove()",
+      "element.classList.toggle()"
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Final-A/10) / Sayfa 216",
+    "code_example": "element.classList.toggle('bg-danger');"
+  },
+  {
+    "unit": 7,
+    "topic": "Teknik ve Fonksiyonel Detaylar",
+    "question": "XMLHttpRequest (XHR) objesinde, oluşturulan HTTP isteğini sunucuya göndermek için kullanılan metot aşağıdakilerden hangisidir?",
+    "correct_option": "send()",
+    "options": [
+      "abort()",
+      "getAllResponseHeaders()",
+      "getResponseHeader()",
+      "send()"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Final-A/13) / Sayfa 242",
+    "code_example": "xhttp.open(\"GET\", \"api.json\");\nxhttp.send();"
+  },
+  {
+    "unit": 8,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "React ile ilgili paket bağımlılıklarının ve sürümlerinin tutulduğu, paket yöneticisi (NPM) tarafından yönetilen dosya aşağıdakilerden hangisidir?",
+    "correct_option": "package.json",
+    "options": [
+      "public",
+      "src",
+      "index.js",
+      "package.json"
+    ],
+    "source_type": "Sınav Sorusu (2024-2025 Final-A/19) / Sayfa 275",
+    "code_example": null
+  },
+  {
+    "unit": 8,
+    "topic": "Kritik Bilgi ve Uyarılar",
+    "question": "JSX ile ilgili aşağıdaki ifadelerden hangisi yanlıştır?",
+    "correct_option": "CSS'i HTML'in içine koymamıza olanak sağlar.",
+    "options": [
+      "HTML ve JavaScript kodlarını birlikte yazmaya olanak sağlar.",
+      "JavaScript ve XML kelimelerinin kısaltması ile oluşturulmuştur.",
+      "HTML yazarken JavaScript kodu için { } içine kod yazılabilir.",
+      "CSS'i HTML'in içine koymamıza olanak sağlar."
+    ],
+    "source_type": "Sınav Sorusu (2023-2024 Final-A/19) / Sayfa 277",
+    "code_example": null
+  }
+]

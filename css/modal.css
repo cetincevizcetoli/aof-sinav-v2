@@ -1,0 +1,31 @@
+/* Modal Arka Plan */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; backdrop-filter: blur(5px); }
+/* Modal Kutusu */
+.modal-box { background: white; padding: 2rem; border-radius: 16px; width: 90%; max-width: 500px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); animation: modalSlideIn 0.3s ease-out; }
+@keyframes modalSlideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.modal-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: #1e293b; }
+/* Form */
+.form-group { margin-bottom: 1.2rem; }
+.form-label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #64748b; }
+.form-select { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 1rem; background: white; }
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 2rem; }
+.settings-panel .menu-item:hover { background:#f8fafc; }
+.settings-panel .group-title { font-weight:600; }
+.settings-panel .badge-member { background:#f1f5f9; padding:2px 8px; border-radius:999px; }
+.settings-panel .btn-text-danger:hover { text-decoration: underline; }
+.settings-panel .icon-box.blue { background:#dbeafe; color:#2563eb; }
+.settings-panel .icon-box.green { background:#dcfce7; color:#16a34a; }
+.settings-panel .icon-box.orange { background:#ffedd5; color:#f97316; }
+.settings-panel .icon-box.purple { background:#ede9fe; color:#7c3aed; }
+.settings-panel #menu-user-name { text-transform: capitalize; }
+.profile-edit-container { padding: 12px; }
+.modal-header-center { display:flex; flex-direction:column; align-items:center; gap:8px; padding-bottom:10px; }
+.profile-avatar-large { width:64px; height:64px; border-radius:999px; background:#eef2ff; color:#3730a3; display:flex; align-items:center; justify-content:center; font-size:1.4rem; }
+.modern-form { display:flex; flex-direction:column; gap:15px; margin-top:10px; }
+.modern-form .form-group label { font-weight:600; color:#334155; margin-bottom:6px; display:block; }
+.modern-form .input-wrapper { display:flex; align-items:center; gap:8px; border:1px solid #e2e8f0; border-radius:8px; padding:8px 10px; background:#fff; }
+.modern-form .input-wrapper i { color:#64748b; }
+.modern-form .input-wrapper input { border:none; outline:none; width:100%; font-size:0.95rem; }
+.btn-primary-block { width:100%; padding:10px 12px; border:2px solid #2563eb; border-radius:8px; background:#ffffff; color:#2563eb; font-weight:600; display:flex; align-items:center; justify-content:center; gap:8px; }
+.btn-primary-block:hover { background:#2563eb; color:#ffffff; }
+.form-footer-note { margin-top:10px; font-size:0.85rem; color:#64748b; display:flex; align-items:center; gap:6px; }

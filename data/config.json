@@ -1,0 +1,29 @@
+{
+  "lessons": [
+    {
+      "name": "Mobil Uygulama Geliştirme",
+      "code": "BIL209U",
+      "file": "mobil-uygulama-gelistirme-BIL209U.json"
+    },
+    {
+      "name": "Programlama II",
+      "code": "BIL203U",
+      "file": "programlama-2-BIL203U.json"
+    },
+    {
+      "name": "UNIX Sistem Yönetimi",
+      "code": "BIL211U",
+      "file": "UNIX-SISTEM-YONETIMI-BIL211U.json"
+    },
+    {
+      "name": "Veri Yapıları",
+      "code": "BIL207U",
+      "file": "veri-yapilari-BIL207U.json"
+    },
+    {
+      "name": "Web Arayüz Programlama",
+      "code": "BIL205U",
+      "file": "web-arayuz-programlama-BIL205U.json"
+    }
+  ]
+}
