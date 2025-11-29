@@ -51,6 +51,9 @@ try { $pdo->exec('CREATE INDEX idx_hist_user ON exam_history(user_id)'); } catch
 try { $pdo->exec('CREATE INDEX idx_hist_date ON exam_history(date)'); } catch (Throwable $e) {}
 try { $pdo->exec('CREATE INDEX idx_prog_user ON progress(user_id)'); } catch (Throwable $e) {}
 
+// User meta for hard reset timestamps
+try { $pdo->exec('CREATE TABLE IF NOT EXISTS user_meta (user_id INT PRIMARY KEY, reset_at BIGINT NOT NULL DEFAULT 0) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4'); } catch (Throwable $e) {}
+
 try {
     $st = $pdo->query("SHOW COLUMNS FROM exam_history LIKE 'uuid'");
     $has = ($st && $st->fetch(PDO::FETCH_ASSOC)) ? true : false;
