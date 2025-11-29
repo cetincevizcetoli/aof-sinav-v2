@@ -66,6 +66,26 @@ export class QuizUI {
         if (this.currentCards.length === 0) { alert("Bu ünitede soru bulunamadı."); this.onBack(); return; }
 
         this.currentIndex = 0;
+        if (typeof window !== 'undefined' && window.__sessionUUID && this.db && typeof this.db.getHistoryBySessionUUID === 'function') {
+            try {
+                const rows = await this.db.getHistoryBySessionUUID(window.__sessionUUID);
+                if (Array.isArray(rows) && rows.length > 0) {
+                    const byQid = new Map(rows.map(r => [r.qid, r.given_option]));
+                    for (let i = 0; i < this.currentCards.length; i++) {
+                        const c = this.currentCards[i];
+                        const ans = byQid.get(c.id);
+                        if (ans !== undefined) this.sessionHistory[i] = ans;
+                    }
+                    const firstUnanswered = this.currentCards.findIndex((_, idx) => this.sessionHistory[idx] === undefined);
+                    if (firstUnanswered >= 0) {
+                        this.currentIndex = firstUnanswered;
+                    } else {
+                        this.showFinishScreen();
+                        return;
+                    }
+                }
+            } catch(e){}
+        }
         this.renderCard();
     }
 

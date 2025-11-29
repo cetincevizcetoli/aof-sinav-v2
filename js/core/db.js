@@ -209,7 +209,7 @@ export class ExamDatabase {
             if (!this.db) return resolve(false);
             const tx = this.db.transaction(['exam_history'], 'readwrite');
             const store = tx.objectStore('exam_history');
-            const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){ const r = Math.random()*16|0, v = c=='x'?r:(r&0x3|0x8); return v.toString(16)});
+            const suuid = (typeof window !== 'undefined' && window.__sessionUUID) ? window.__sessionUUID : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){ const r = Math.random()*16|0, v = c=='x'?r:(r&0x3|0x8); return v.toString(16)});
             store.add({
                 date: Date.now(),
                 lesson: lessonCode,
@@ -218,7 +218,7 @@ export class ExamDatabase {
                 qid: qid || '',
                 given_option: givenOption || '',
                 cycle_no: parseInt(cycleNo)||0,
-                uuid
+                uuid: suuid
             });
             tx.oncomplete = () => resolve(true);
             tx.onerror = () => resolve(false);
@@ -470,6 +470,20 @@ export class ExamDatabase {
             req.onsuccess = () => {
                 const all = req.result || [];
                 const rows = all.filter(v => v.lesson === lesson && (parseInt(v.unit)||0) === (parseInt(unit)||0) && (parseInt(v.cycle_no)||0) === (parseInt(cycleNo)||0));
+                resolve(rows.sort((a,b)=> (a.date||0)-(b.date||0)));
+            };
+            req.onerror = ()=>resolve([]);
+        });
+    }
+
+    async getHistoryBySessionUUID(uuid){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve([]);
+            const tx = this.db.transaction(['exam_history'],'readonly');
+            const req = tx.objectStore('exam_history').getAll();
+            req.onsuccess = () => {
+                const all = req.result || [];
+                const rows = all.filter(v => v.uuid === uuid);
                 resolve(rows.sort((a,b)=> (a.date||0)-(b.date||0)));
             };
             req.onerror = ()=>resolve([]);
