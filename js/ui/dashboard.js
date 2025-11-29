@@ -299,15 +299,32 @@ export class Dashboard {
             const unitCards2 = data2.filter(c => parseInt(c.unit||0)===parseInt(unitNo||0));
             const totalQs2 = unitCards2.length;
             const groups=[]; {
-                // Basit: her tamamlama eşiğinde grubu kapat; sonraki kayıtlar yeni gruba eklenir
+                // Tamamlamada kapat, sonraki grup yeni session başladığında aç
                 const learned = new Set(); let cur=[]; let start=0; let end=0;
+                const sessions = (this.db.getSessionsByUnit ? await this.db.getSessionsByUnit(lessonCode, unitNo) : []) || [];
+                const sessSorted = sessions.filter(s => s && s.started_at).sort((a,b)=> (a.started_at||0)-(b.started_at||0));
+                let waitingBoundary = false; let boundaryStart = 0;
+                const findNextBoundary = (afterTs) => {
+                    const s = sessSorted.find(ss => (ss.started_at||0) > (afterTs||0));
+                    return s ? (s.started_at||0) : 0;
+                };
                 for (const h of unitHistory2){
-                    if (cur.length===0) start = h.date || Date.now();
-                    cur.push(h); end = h.date || start;
+                    const ts = h.date || Date.now();
+                    if (waitingBoundary){
+                        if (!boundaryStart) boundaryStart = ts; // fallback: ilk sonraki log
+                        if (ts < boundaryStart) { continue; }
+                        waitingBoundary = false;
+                        // yeni grup başlat
+                        start = ts; end = ts; cur = [h]; if (h.isCorrect && h.qid) learned.add(h.qid); continue;
+                    }
+                    if (cur.length===0) start = ts;
+                    cur.push(h); end = ts;
                     if (h.isCorrect && h.qid) learned.add(h.qid);
                     if (totalQs2>0 && learned.size>=totalQs2){
                         const c = cur.filter(x=>x.isCorrect).length; const w = cur.length - c;
                         groups.push({ started_at: start, ended_at: end, correct: c, wrong: w });
+                        // tamamlandı; sonraki grup yeni session başlama anında açılacak
+                        waitingBoundary = true; boundaryStart = findNextBoundary(end);
                         cur = []; start = 0; end = 0; learned.clear();
                     }
                 }
