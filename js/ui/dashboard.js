@@ -724,13 +724,11 @@ export class Dashboard {
                   </div>
                 </div>`;
                 document.body.insertAdjacentHTML('beforeend', html);
-        window.cloudLoginDo = async () => {
-            const e = (document.getElementById('cloud-email')||{}).value||'';
-            const p = (document.getElementById('cloud-pass')||{}).value||'';
-            let exists=false; try { exists = await sm.emailExists(e); } catch{}
-            if (!exists) { try { alert('Bu e‑posta ile kayıt bulunamadı'); } catch{} return; }
-            let ok=false; try { ok = await sm.login(e,p); } catch{}
-            if (!ok) { try { alert('Şifre hatalı'); } catch{} return; }
+                window.cloudLoginDo = async () => {
+                    const e = (document.getElementById('cloud-email')||{}).value||'';
+                    const p = (document.getElementById('cloud-pass')||{}).value||'';
+                    let res={ ok:false, code:0 }; try { res = await sm.login(e,p); } catch{}
+                    if (!res.ok) { try { alert(res.code===404 ? 'Bu e‑posta ile kayıt bulunamadı' : (res.code===401 ? 'Şifre hatalı' : 'Giriş başarısız')); } catch{} return; }
                     await this.db.setProfile('account_email', e);
                     const token = localStorage.getItem('auth_token')||'';
                     if (token) { await this.db.setProfile('account_token', token); }
@@ -771,10 +769,8 @@ export class Dashboard {
                 window.cloudLoginPull = async () => {
                     const e = (document.getElementById('cloud-email')||{}).value||'';
                     const p = (document.getElementById('cloud-pass')||{}).value||'';
-                    let exists=false; try { exists = await sm.emailExists(e); } catch{}
-                    if (!exists) { try { alert('Bu e‑posta ile kayıt bulunamadı'); } catch{} return; }
-                    let ok=false; try { ok = await sm.login(e,p); } catch{}
-                    if (!ok) { try { alert('Şifre hatalı'); } catch{} return; }
+                    let res={ ok:false, code:0 }; try { res = await sm.login(e,p); } catch{}
+                    if (!res.ok) { try { alert(res.code===404 ? 'Bu e‑posta ile kayıt bulunamadı' : (res.code===401 ? 'Şifre hatalı' : 'Giriş başarısız')); } catch{} return; }
                     await this.db.setProfile('account_email', e);
                     const token = localStorage.getItem('auth_token')||'';
                     if (token) { await this.db.setProfile('account_token', token); }
@@ -942,8 +938,8 @@ export class Dashboard {
             try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch{}
             this.render();
         };
-        window.handleCloudLogin = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let exists=false; try { exists = await sm.emailExists(e); } catch{} if (!exists) { try { alert('Bu e‑posta ile kayıt bulunamadı'); } catch{} return; } let ok=false; try { ok = await sm.login(e,p); } catch{} if (!ok) { try { alert('Şifre hatalı'); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
-        window.handleCloudLoginRestore = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let exists=false; try { exists = await sm.emailExists(e); } catch{} if (!exists) { try { alert('Bu e‑posta ile kayıt bulunamadı'); } catch{} return; } let ok=false; try { ok = await sm.login(e,p); } catch{} if (!ok) { try { alert('Şifre hatalı'); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } let pulled=false; try { pulled = await sm.pullAll(true); } catch{} try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{} await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
+        window.handleCloudLogin = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let res={ ok:false, code:0 }; try { res = await sm.login(e,p); } catch{} if (!res.ok) { try { alert(res.code===404 ? 'Bu e‑posta ile kayıt bulunamadı' : (res.code===401 ? 'Şifre hatalı' : 'Giriş başarısız')); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
+        window.handleCloudLoginRestore = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let res={ ok:false, code:0 }; try { res = await sm.login(e,p); } catch{} if (!res.ok) { try { alert(res.code===404 ? 'Bu e‑posta ile kayıt bulunamadı' : (res.code===401 ? 'Şifre hatalı' : 'Giriş başarısız')); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } let pulled=false; try { pulled = await sm.pullAll(true); } catch{} try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{} await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
     }
     
     async getAccountStatusText(){ const name = await this.db.getUserName(); return `Profil: ${name||'-'}`; }
