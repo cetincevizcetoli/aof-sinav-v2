@@ -5,6 +5,18 @@ import { UpdateManager } from './core/updateManager.js';
 import { SyncManager } from './core/sync.js';
 
 let db, loader, dashboard, quizUI;
+async function ensureTokenFromProfile() {
+    try {
+        const email = await db.getProfile('account_email');
+        const accounts = (await db.getProfile('accounts')) || [];
+        let acc = Array.isArray(accounts) ? accounts.find(a => a && a.email === email && a.token) : null;
+        if (!acc && Array.isArray(accounts)) acc = accounts.find(a => a && a.token);
+        if (acc && acc.token) {
+            localStorage.setItem('auth_token', acc.token);
+            if (acc.email && !email) await db.setProfile('account_email', acc.email);
+        }
+    } catch {}
+}
 
 async function initApp() {
     console.log("🚀 Uygulama Başlatılıyor (v3.2 Stable)...");
@@ -26,6 +38,7 @@ async function initApp() {
 
     // 3. Modülleri Yükle
     loader = new DataLoader(db);
+    await ensureTokenFromProfile();
     const sync = new SyncManager(db);
     window.db = db;
     
@@ -102,6 +115,7 @@ async function initApp() {
         });
         await sync.autoSync();
     };
+    await ensureTokenFromProfile();
     if (navigator.onLine) { await drain(); }
     window.addEventListener('online', drain);
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { updater.checkUpdates(true); if (navigator.onLine) { drain(); sync.pullAll(); } } });
