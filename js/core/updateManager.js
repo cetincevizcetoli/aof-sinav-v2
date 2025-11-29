@@ -11,9 +11,10 @@ export class UpdateManager {
             const remote = await response.json();
             const serverVersion = remote.version;
             const localVersion = localStorage.getItem(this.localVersionKey);
+            const swVer = await this.getServiceWorkerVersion().catch(()=>null);
             if (!localVersion) { localStorage.setItem(this.localVersionKey, serverVersion); return; }
             const cmp = this.compareVersions(serverVersion, localVersion);
-            if (cmp > 0) {
+            if (cmp > 0 || (swVer && this.compareVersions(serverVersion, swVer) !== 0)) {
                 this.showUpdateNotification(serverVersion);
             } else {
                 if (!silent) alert(`Sürümünüz güncel: ${localVersion}`);
@@ -73,5 +74,17 @@ export class UpdateManager {
                 window.location.reload();
             };
         }
+    }
+
+    async getServiceWorkerVersion(){
+        try {
+            const r = await fetch(`service-worker.js?t=${Date.now()}`, { cache:'no-store' });
+            if (!r.ok) return null;
+            const txt = await r.text();
+            const m = txt.match(/static-v(\d+\.\d+\.\d+)/);
+            if (m && m[1]) return m[1];
+            const m2 = txt.match(/data-v(\d+\.\d+\.\d+)/);
+            return m2 && m2[1] ? m2[1] : null;
+        } catch(e){ return null; }
     }
 }
