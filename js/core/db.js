@@ -204,7 +204,7 @@ export class ExamDatabase {
         });
     }
 
-    async logActivity(lessonCode, unit, isCorrect, qid, givenOption) {
+    async logActivity(lessonCode, unit, isCorrect, qid, givenOption, cycleNo) {
         return new Promise((resolve) => {
             if (!this.db) return resolve(false);
             const tx = this.db.transaction(['exam_history'], 'readwrite');
@@ -217,6 +217,7 @@ export class ExamDatabase {
                 isCorrect: isCorrect,
                 qid: qid || '',
                 given_option: givenOption || '',
+                cycle_no: parseInt(cycleNo)||0,
                 uuid
             });
             tx.oncomplete = () => resolve(true);
@@ -224,7 +225,7 @@ export class ExamDatabase {
         });
     }
 
-    async startSessionRecord(lesson, unit, mode, uuid){
+    async startSessionRecord(lesson, unit, mode, uuid, cycle_no){
         if (!this.db) return null;
         // Reuse active session if exists
         const active = await this.hasActiveSessionForUnit(lesson, unit);
@@ -235,7 +236,7 @@ export class ExamDatabase {
         }
         return new Promise((resolve) => {
             const tx = this.db.transaction(['sessions'], 'readwrite');
-            tx.objectStore('sessions').put({ uuid, lesson, unit: parseInt(unit)||0, mode: mode||'study', started_at: Date.now(), ended_at: 0 });
+            tx.objectStore('sessions').put({ uuid, lesson, unit: parseInt(unit)||0, mode: mode||'study', started_at: Date.now(), ended_at: 0, cycle_no: parseInt(cycle_no)||0 });
             tx.oncomplete = () => resolve(uuid);
             tx.onerror = () => resolve(null);
         });
@@ -272,7 +273,7 @@ export class ExamDatabase {
         return new Promise((resolve)=>{
             if (!this.db) return resolve(false);
             const tx = this.db.transaction(['sessions'],'readwrite');
-            tx.objectStore('sessions').put({ uuid: row.uuid, lesson: row.lesson, unit: parseInt(row.unit)||0, mode: row.mode||'study', started_at: parseInt(row.started_at)||Date.now(), ended_at: parseInt(row.ended_at)||0 });
+            tx.objectStore('sessions').put({ uuid: row.uuid, lesson: row.lesson, unit: parseInt(row.unit)||0, mode: row.mode||'study', started_at: parseInt(row.started_at)||Date.now(), ended_at: parseInt(row.ended_at)||0, cycle_no: parseInt(row.cycle_no)||0 });
             tx.oncomplete = () => resolve(true);
             tx.onerror = () => resolve(false);
         });
@@ -442,3 +443,22 @@ export class ExamDatabase {
         return true;
     }
 }
+    async getMaxCycleNo(lesson, unit){
+        const list = await this.getSessionsByUnit(lesson, unit);
+        if (!list || list.length===0) return 0;
+        return Math.max(...list.map(r => parseInt(r.cycle_no)||0));
+    }
+
+    async getHistoryByCycle(lesson, unit, cycleNo){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve([]);
+            const tx = this.db.transaction(['exam_history'],'readonly');
+            const req = tx.objectStore('exam_history').getAll();
+            req.onsuccess = () => {
+                const all = req.result || [];
+                const rows = all.filter(v => v.lesson === lesson && (parseInt(v.unit)||0) === (parseInt(unit)||0) && (parseInt(v.cycle_no)||0) === (parseInt(cycleNo)||0));
+                resolve(rows.sort((a,b)=> (a.date||0)-(b.date||0)));
+            };
+            req.onerror = ()=>resolve([]);
+        });
+    }

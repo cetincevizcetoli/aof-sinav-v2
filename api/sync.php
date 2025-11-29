@@ -48,12 +48,12 @@ if ($a === 'push') {
         }
     }
     if (isset($in['history']) && is_array($in['history'])) {
-        $ins = $pdo->prepare('INSERT IGNORE INTO exam_history(user_id,date,lesson,unit,isCorrect,uuid,qid,given_option) VALUES(?,?,?,?,?,?,?,?)');
-        foreach ($in['history'] as $h) { $ins->execute([$user, intval($h['date']??time()), $h['lesson']??'', intval($h['unit']??0), intval(($h['isCorrect']??0)?1:0), (string)($h['uuid']??''), (string)($h['qid']??''), (string)($h['given_option']??'')]); }
+        $ins = $pdo->prepare('INSERT IGNORE INTO exam_history(user_id,date,lesson,unit,isCorrect,uuid,qid,given_option,cycle_no) VALUES(?,?,?,?,?,?,?,?,?)');
+        foreach ($in['history'] as $h) { $ins->execute([$user, intval($h['date']??time()), $h['lesson']??'', intval($h['unit']??0), intval(($h['isCorrect']??0)?1:0), (string)($h['uuid']??''), (string)($h['qid']??''), (string)($h['given_option']??''), intval($h['cycle_no']??0)]); }
     }
     if (isset($in['sessions']) && is_array($in['sessions'])) {
-        $insS = $pdo->prepare('INSERT IGNORE INTO study_sessions(user_id,lesson,unit,mode,started_at,ended_at,uuid) VALUES(?,?,?,?,?,?,?)');
-        foreach ($in['sessions'] as $s) { $insS->execute([$user, $s['lesson']??'', intval($s['unit']??0), $s['mode']??'study', intval($s['started_at']??time()), intval($s['ended_at']??0), (string)($s['uuid']??'')]); }
+        $insS = $pdo->prepare('INSERT IGNORE INTO study_sessions(user_id,lesson,unit,mode,started_at,ended_at,uuid,cycle_no) VALUES(?,?,?,?,?,?,?,?)');
+        foreach ($in['sessions'] as $s) { $insS->execute([$user, $s['lesson']??'', intval($s['unit']??0), $s['mode']??'study', intval($s['started_at']??time()), intval($s['ended_at']??0), (string)($s['uuid']??''), intval($s['cycle_no']??0)]); }
     }
     ok(['pushed'=>true]);
 } elseif ($a === 'pull') {
@@ -61,9 +61,9 @@ if ($a === 'push') {
     $progress->execute([$user]);
     $stats = $pdo->prepare('SELECT xp,streak,totalQuestions,updated_at FROM user_stats WHERE user_id=?');
     $stats->execute([$user]);
-    $hist = $pdo->prepare('SELECT date,lesson,unit,isCorrect,uuid,qid,given_option FROM exam_history WHERE user_id=? ORDER BY date DESC LIMIT 500');
+    $hist = $pdo->prepare('SELECT date,lesson,unit,isCorrect,uuid,qid,given_option,cycle_no FROM exam_history WHERE user_id=? ORDER BY date DESC LIMIT 500');
     $hist->execute([$user]);
-    $sess = $pdo->prepare('SELECT lesson,unit,mode,started_at,ended_at,uuid FROM study_sessions WHERE user_id=? ORDER BY started_at DESC LIMIT 1000');
+    $sess = $pdo->prepare('SELECT lesson,unit,mode,started_at,ended_at,uuid,cycle_no FROM study_sessions WHERE user_id=? ORDER BY started_at DESC LIMIT 1000');
     $sess->execute([$user]);
     ok(['progress'=>$progress->fetchAll(PDO::FETCH_ASSOC),'stats'=>$stats->fetch(PDO::FETCH_ASSOC)?:['xp'=>0,'streak'=>0,'totalQuestions'=>0,'updated_at'=>0],'history'=>$hist->fetchAll(PDO::FETCH_ASSOC),'sessions'=>$sess->fetchAll(PDO::FETCH_ASSOC)]);
 } elseif ($a === 'wipe') {

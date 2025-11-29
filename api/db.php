@@ -43,6 +43,8 @@ $pdo->exec('CREATE TABLE IF NOT EXISTS user_stats (user_id INT PRIMARY KEY, xp I
 $pdo->exec('CREATE TABLE IF NOT EXISTS exam_history (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, date BIGINT NOT NULL, lesson VARCHAR(255), unit INT, isCorrect TINYINT(1)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
 $pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token VARCHAR(255) PRIMARY KEY, created_at BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
 $pdo->exec('CREATE TABLE IF NOT EXISTS study_sessions (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, lesson VARCHAR(255), unit INT, mode VARCHAR(32), started_at BIGINT NOT NULL, ended_at BIGINT, uuid VARCHAR(36) UNIQUE) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+try { $pdo->exec('ALTER TABLE study_sessions ADD COLUMN cycle_no INT DEFAULT 0'); } catch (Throwable $e) {}
+try { $pdo->exec('ALTER TABLE exam_history ADD COLUMN cycle_no INT DEFAULT 0'); } catch (Throwable $e) {}
 try { $pdo->exec('CREATE INDEX idx_ss_user_lesson ON study_sessions(user_id, lesson)'); } catch (Throwable $e) {}
 try { $pdo->exec('CREATE INDEX idx_ss_user_lesson_unit ON study_sessions(user_id, lesson, unit)'); } catch (Throwable $e) {}
 try { $pdo->exec('CREATE INDEX idx_hist_user ON exam_history(user_id)'); } catch (Throwable $e) {}

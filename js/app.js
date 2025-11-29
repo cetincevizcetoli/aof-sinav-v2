@@ -41,8 +41,19 @@ async function initApp() {
         window.__inSession = true;
         const sessUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){ const r = Math.random()*16|0, v = c=='x'?r:(r&0x3|0x8); return v.toString(16)});
         const unitNo = (safeConfig && safeConfig.specificUnit) ? safeConfig.specificUnit : 0;
+        let cycleNo = 0;
+        try {
+            // Determine cycle number based on completion state
+            const lessons = await loader.getLessonList();
+            const target = lessons.find(l => l.code === lessonCode);
+            const cards = await loader.loadLessonData(target.code, target.file);
+            const unitCards = unitNo ? cards.filter(c => c.unit === unitNo) : cards;
+            const allLearned = unitCards.length>0 && unitCards.every(c => (c.level||0) > 0);
+            const maxCycle = await db.getMaxCycleNo(lessonCode, unitNo);
+            cycleNo = allLearned ? (maxCycle+1) : maxCycle;
+        } catch(e){ cycleNo = 0; }
         if (db && typeof db.startSessionRecord === 'function') {
-            const assigned = await db.startSessionRecord(lessonCode, unitNo, safeConfig.mode || 'study', sessUUID);
+            const assigned = await db.startSessionRecord(lessonCode, unitNo, safeConfig.mode || 'study', sessUUID, cycleNo);
             window.__sessionUUID = assigned || sessUUID;
         } else {
             window.__sessionUUID = sessUUID;

@@ -314,40 +314,17 @@ export class Dashboard {
             this.showExamConfigModal(lessonCode); 
         };
         window.openUnitHistory = async (lessonCode, unitNo) => {
-            // Cycle grouping based on touching all questions once in a period
-            const data = await this.loader.loadLessonData(lessonCode, this.currentLessonFile);
-            const cards = data.filter(c => parseInt(c.unit)||0 === parseInt(unitNo)||0);
-            const qids = cards.map(c=>c.id);
-            const events = await this.db.getHistoryRange(lessonCode, unitNo, 0, Date.now());
-            let filtered = events.filter(e => qids.includes(e.qid||''))
-                                   .sort((a,b)=> (a.date||0)-(b.date||0));
-            if (filtered.length === 0) { filtered = events.slice().sort((a,b)=> (a.date||0)-(b.date||0)); }
-            const cycles = [];
-            if (filtered.length > 0){
-                let start = filtered[0].date || 0;
-                let seen = new Set();
-                let lastTouch = start;
-                for (const ev of filtered) {
-                    if (ev.date < start) continue;
-                    const q = ev.qid||'';
-                    if (!seen.has(q)) {
-                        seen.add(q);
-                        lastTouch = ev.date || lastTouch;
-                        if (seen.size === qids.length) {
-                            cycles.push({ start, end: lastTouch });
-                            start = lastTouch + 1;
-                            seen.clear();
-                        }
-                    }
-                }
-                if (seen.size > 0) cycles.push({ start, end: Date.now() });
-            }
+            // Cycle-based history using persisted cycle_no
+            const sessions = await this.db.getSessionsByUnit(lessonCode, unitNo);
+            const cycleNos = Array.from(new Set((sessions||[]).map(s => parseInt(s.cycle_no)||0))).sort((a,b)=> a-b);
+            const cycles = cycleNos.map(n => ({ cycle_no: n }));
             const rows = [];
             for (let idx=0; idx<cycles.length; idx++){
                 const cinfo = cycles[idx];
-                const list = (this.db.getHistoryRange ? await this.db.getHistoryRange(lessonCode, unitNo, cinfo.start, cinfo.end) : []);
+                const list = await this.db.getHistoryByCycle(lessonCode, unitNo, cinfo.cycle_no);
                 let c=0,w=0; list.forEach(x=>{ if (x.isCorrect) c++; else w++; });
-                rows.push({ started_at: cinfo.start, ended_at: cinfo.end, mode: 'study', correct:c, wrong:w, cycle: idx });
+                const first = list.length>0 ? list[0].date : 0; const last = list.length>0 ? list[list.length-1].date : 0;
+                rows.push({ started_at: first, ended_at: last, mode: 'study', correct:c, wrong:w, cycle: cinfo.cycle_no });
             }
             const id = 'unit-history-modal';
             const html = `
@@ -361,16 +338,16 @@ export class Dashboard {
                                     <div style="font-weight:600; color:#334155;">${idx+1}. ${new Date(r.started_at||Date.now()).toLocaleString()}${r.ended_at?` - ${new Date(r.ended_at).toLocaleString()}`:''}</div>
                                     <small style="color:#64748b;">${r.cycle===0?'İlk çalışma':`${r.cycle}. tekrar`} • Doğru: ${r.correct} • Yanlış: ${r.wrong}</small>
                                 </div>
-                                <button class="sm-btn" onclick="window.viewSessionMistakes('${lessonCode}', ${unitNo}, ${r.started_at||0}, ${r.ended_at||0})">Yanlışları Gör</button>
-                            </div>
-                        `).join('')}
+                                <button class="sm-btn" onclick="window.viewSessionMistakes('${lessonCode}', ${unitNo}, ${r.cycle})">Yanlışları Gör</button>
+            </div>
+        `).join('')}
                     </div>
                 </div>
             </div>`;
             document.body.insertAdjacentHTML('beforeend', html);
         };
-        window.viewSessionMistakes = async (lessonCode, unitNo, startTs, endTs) => {
-            const list = (this.db.getHistoryRange ? await this.db.getHistoryRange(lessonCode, unitNo, startTs, endTs) : []);
+        window.viewSessionMistakes = async (lessonCode, unitNo, cycleNo) => {
+            const list = await this.db.getHistoryByCycle(lessonCode, unitNo, cycleNo);
             const fileName = this.currentLessonFile;
             const data = (this.loader && this.loader.loadLessonData) ? await this.loader.loadLessonData(lessonCode, fileName) : [];
             const cards = data.filter(c => parseInt(c.unit)||0 === parseInt(unitNo)||0);
@@ -401,6 +378,10 @@ export class Dashboard {
                                 <small style=\"color:#64748b;\">Tarih: ${new Date(w.date).toLocaleString()}</small>
                             </div>`;
                         }).join('')}
+                        <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; border-top: 1px dashed #cbd5e1; padding-top: 15px;">
+                            <button class="nav-btn secondary" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-chevron-up"></i> Kapat</button>
+                            <button class="primary-btn" onclick="(function(){ document.getElementById('${id}').remove(); if(window.dashboard&&window.dashboard.render) window.dashboard.render(); })()"><i class="fa-solid fa-house"></i> Ana Ekran</button>
+                        </div>
                     </div>
                 </div>
             </div>`;
