@@ -259,6 +259,22 @@ export class ExamDatabase {
         });
     }
 
+    async upsertSession(row){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve(false);
+            const tx = this.db.transaction(['sessions'],'readwrite');
+            tx.objectStore('sessions').put({ uuid: row.uuid, lesson: row.lesson, unit: parseInt(row.unit)||0, mode: row.mode||'study', started_at: parseInt(row.started_at)||Date.now(), ended_at: parseInt(row.ended_at)||0 });
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    }
+
+    async importSessions(rows){
+        if (!Array.isArray(rows) || rows.length===0) return true;
+        for (const r of rows) { await this.upsertSession(r); }
+        return true;
+    }
+
     async countLessonRepeats(lesson){
         return new Promise((resolve)=>{
             if (!this.db) return resolve(0);

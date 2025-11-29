@@ -63,7 +63,9 @@ if ($a === 'push') {
     $stats->execute([$user]);
     $hist = $pdo->prepare('SELECT date,lesson,unit,isCorrect,uuid FROM exam_history WHERE user_id=? ORDER BY date DESC LIMIT 500');
     $hist->execute([$user]);
-    ok(['progress'=>$progress->fetchAll(PDO::FETCH_ASSOC),'stats'=>$stats->fetch(PDO::FETCH_ASSOC)?:['xp'=>0,'streak'=>0,'totalQuestions'=>0,'updated_at'=>0],'history'=>$hist->fetchAll(PDO::FETCH_ASSOC)]);
+    $sess = $pdo->prepare('SELECT lesson,unit,mode,started_at,ended_at,uuid FROM study_sessions WHERE user_id=? ORDER BY started_at DESC LIMIT 1000');
+    $sess->execute([$user]);
+    ok(['progress'=>$progress->fetchAll(PDO::FETCH_ASSOC),'stats'=>$stats->fetch(PDO::FETCH_ASSOC)?:['xp'=>0,'streak'=>0,'totalQuestions'=>0,'updated_at'=>0],'history'=>$hist->fetchAll(PDO::FETCH_ASSOC),'sessions'=>$sess->fetchAll(PDO::FETCH_ASSOC)]);
 } elseif ($a === 'wipe') {
     try {
         $pdo->beginTransaction();
