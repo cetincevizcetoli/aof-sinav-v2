@@ -314,16 +314,33 @@ export class Dashboard {
             this.showExamConfigModal(lessonCode); 
         };
         window.openUnitHistory = async (lessonCode, unitNo) => {
-            const sessions = (this.db.getSessionsByUnit ? await this.db.getSessionsByUnit(lessonCode, unitNo) : []);
-            // cycle cluster: baseline cycle 0 until first completed end, then cycles increment at each completion
-            const sorted = sessions.slice().sort((a,b)=> (a.started_at||0)-(b.started_at||0));
+            // Cycle grouping based on touching all questions once in a period
+            const data = await this.loader.loadLessonData(lessonCode, this.currentLessonFile);
+            const cards = data.filter(c => parseInt(c.unit)||0 === parseInt(unitNo)||0);
+            const qids = cards.map(c=>c.id);
+            const events = await this.db.getHistoryRange(lessonCode, unitNo, 0, Date.now());
+            const filtered = events.filter(e => qids.includes(e.qid||''))
+                                   .sort((a,b)=> (a.date||0)-(b.date||0));
             const cycles = [];
-            let cycleStart = 0; let cycleEnd = 0; let firstStarted = true;
-            for (const s of sorted) {
-                if (firstStarted) { cycleStart = s.started_at||0; firstStarted = false; }
-                if (s.ended_at && s.ended_at>0) { cycleEnd = s.ended_at; cycles.push({ start: cycleStart, end: cycleEnd }); cycleStart = 0; cycleEnd = 0; firstStarted = true; }
+            if (filtered.length > 0){
+                let start = filtered[0].date || 0;
+                let seen = new Set();
+                let lastTouch = start;
+                for (const ev of filtered) {
+                    if (ev.date < start) continue;
+                    const q = ev.qid||'';
+                    if (!seen.has(q)) {
+                        seen.add(q);
+                        lastTouch = ev.date || lastTouch;
+                        if (seen.size === qids.length) {
+                            cycles.push({ start, end: lastTouch });
+                            start = lastTouch + 1;
+                            seen.clear();
+                        }
+                    }
+                }
+                if (seen.size > 0) cycles.push({ start, end: Date.now() });
             }
-            if (!firstStarted) { cycles.push({ start: cycleStart, end: Date.now() }); }
             const rows = [];
             for (let idx=0; idx<cycles.length; idx++){
                 const cinfo = cycles[idx];
