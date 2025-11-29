@@ -204,7 +204,7 @@ export class ExamDatabase {
         });
     }
 
-    async logActivity(lessonCode, unit, isCorrect, qid) {
+    async logActivity(lessonCode, unit, isCorrect, qid, givenOption) {
         return new Promise((resolve) => {
             if (!this.db) return resolve(false);
             const tx = this.db.transaction(['exam_history'], 'readwrite');
@@ -216,6 +216,7 @@ export class ExamDatabase {
                 unit: parseInt(unit) || 0,
                 isCorrect: isCorrect,
                 qid: qid || '',
+                given_option: givenOption || '',
                 uuid
             });
             tx.oncomplete = () => resolve(true);

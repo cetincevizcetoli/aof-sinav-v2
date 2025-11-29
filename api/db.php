@@ -68,6 +68,15 @@ try {
     }
 } catch (Throwable $e) {}
 
+// Ensure exam_history has given_option (user's answer)
+try {
+    $st3 = $pdo->query("SHOW COLUMNS FROM exam_history LIKE 'given_option'");
+    $has3 = ($st3 && $st3->fetch(PDO::FETCH_ASSOC)) ? true : false;
+    if (!$has3) {
+        try { $pdo->exec('ALTER TABLE exam_history ADD COLUMN given_option TEXT'); } catch (Throwable $e) {}
+    }
+} catch (Throwable $e) {}
+
 function json(){ return json_decode(file_get_contents('php://input'), true) ?: []; }
 function ok($d){ echo json_encode(['ok'=>true,'data'=>$d]); }
 function err($c,$m){ http_response_code($c); echo json_encode(['ok'=>false,'error'=>$m]); }

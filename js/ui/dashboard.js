@@ -333,10 +333,10 @@ export class Dashboard {
         window.viewSessionMistakes = async (lessonCode, unitNo, startTs, endTs) => {
             const list = (this.db.getHistoryRange ? await this.db.getHistoryRange(lessonCode, unitNo, startTs, endTs) : []);
             const fileName = this.currentLessonFile;
-            const data = (this.loader && this.loader.loadLessonData) ? await this.loader.loadLessonData(lessonCode, fileName) : { cards: [] };
-            const cards = (data.cards||[]).filter(c => parseInt(c.unit)||0 === parseInt(unitNo)||0);
+            const data = (this.loader && this.loader.loadLessonData) ? await this.loader.loadLessonData(lessonCode, fileName) : [];
+            const cards = data.filter(c => parseInt(c.unit)||0 === parseInt(unitNo)||0);
             const map = new Map(cards.map(c => [c.id, c]));
-            const wrongs = list.filter(x=>!x.isCorrect).map(w => ({ date: w.date, qid: w.qid||'', card: map.get(w.qid||'') }));
+            const wrongs = list.filter(x=>!x.isCorrect).map(w => ({ date: w.date, qid: w.qid||'', given: w.given_option||'', card: map.get(w.qid||'') }));
             const id = 'session-mistakes-modal';
             const html = `
             <div class="modal-overlay" id="${id}">
@@ -348,6 +348,7 @@ export class Dashboard {
                             const expl = q && q.code_example ? `<div style=\"margin-top:6px; font-size:0.85rem; background:#f1f5f9; padding:6px; border-radius:4px; color:#475569;\"><strong>📝 Açıklama:</strong> ${escapeHTML(q.code_example)}</div>` : '';
                             return `<div class=\"lesson-card\" style=\"padding:12px; border-left:4px solid #ef4444;\">
                                 <div style=\"font-weight:600; color:#334155; margin-bottom:6px;\">${idx+1}. ${q ? escapeHTML(q.question) : 'Soru bulunamadı'}</div>
+                                <div style=\"font-size:0.9rem; color:#ef4444;\"><strong>Senin Cevabın:</strong> ${w.given ? escapeHTML(w.given) : '-'}</div>
                                 <div style=\"font-size:0.9rem; color:#10b981;\"><strong>Doğru Cevap:</strong> ${q ? escapeHTML(q.correct_option) : '-'}</div>
                                 ${expl}
                                 <small style=\"color:#64748b;\">Tarih: ${new Date(w.date).toLocaleString()}</small>
