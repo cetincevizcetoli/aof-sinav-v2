@@ -1,5 +1,12 @@
 [
   {
+    "version": "1.1.33",
+    "date": "2025-11-29",
+    "items": [
+      "Genel iyileştirmeler ve hata düzeltmeleri."
+    ]
+  },
+  {
     "version": "1.1.32",
     "date": "2025-11-28",
     "items": [
