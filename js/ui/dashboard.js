@@ -874,6 +874,8 @@ export class Dashboard {
     showWelcomeOverlay(){
         const existing = document.getElementById('welcome-overlay');
         if (existing) return;
+        const pendingEmail = await this.db.getProfile('account_email_pending')||'';
+        const pendingPass = await this.db.getProfile('account_pass_pending')||'';
         const html = `
         <div id="welcome-overlay" style="position:fixed; inset:0; background:rgba(17,24,39,0.6); backdrop-filter:blur(6px); display:flex; align-items:center; justify-content:center; z-index:9999;">
             <div class="modal-box" style="max-width:560px; width:90%;">
@@ -882,22 +884,40 @@ export class Dashboard {
                         <img src="assets/logo.png" alt="logo" style="width:32px; height:32px;"> Sınav Asistanı
                     </h2>
                 </div>
-                <p style="color:#64748b; margin-top:-6px;">Yerel modda çalışır. Lütfen adınızı girin.</p>
-                <div style="margin-top:12px; display:flex; flex-direction:column; gap:8px;">
-                    <input type="text" id="welcome-name" class="form-select" placeholder="Adınız" autocomplete="off">
-                    <div style="background:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
-                        <div style="font-size:0.9rem; color:#334155; font-weight:600; margin-bottom:6px;">Opsiyonel: Bulut Yedekleme</div>
-                        <div style="font-size:0.85rem; color:#64748b; margin-bottom:8px;">Bu bilgileri doldurursanız verileriniz buluta yedeklenir ve başka cihazdan erişebilirsiniz. Doldurmazsanız verileriniz bu cihazda güvenle saklanır.</div>
-                        <input type="email" id="welcome-cloud-email" class="form-select" placeholder="E-posta (opsiyonel)" autocomplete="off" autocapitalize="none">
-                        <input type="password" id="welcome-cloud-pass" class="form-select" placeholder="Şifre (opsiyonel)" style="margin-top:8px;" autocomplete="new-password">
+                <div style="display:flex; gap:8px; padding:6px 0;">
+                    <button class="nav-btn primary" id="tab-local" onclick="window.switchOnboarding('local')">Yerel Başla</button>
+                    <button class="nav-btn" id="tab-cloud" onclick="window.switchOnboarding('cloud')">Bulut Giriş</button>
+                </div>
+                <div id="onb-local" style="margin-top:8px; display:block;">
+                    <p style="color:#64748b; margin-top:-2px;">Yerel modda çalışır. Lütfen adınızı girin.</p>
+                    <div style="margin-top:8px; display:flex; flex-direction:column; gap:8px;">
+                        <input type="text" id="welcome-name" class="form-select" placeholder="Adınız" autocomplete="off">
+                        <div style="background:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; padding:10px;">
+                            <div style="font-size:0.9rem; color:#334155; font-weight:600; margin-bottom:6px;">Opsiyonel: Bulut Yedekleme</div>
+                            <div style="font-size:0.85rem; color:#64748b; margin-bottom:8px;">Bu bilgileri doldurursanız verileriniz buluta yedeklenir ve başka cihazdan erişebilirsiniz. Doldurmazsanız verileriniz bu cihazda güvenle saklanır.</div>
+                            <input type="email" id="welcome-cloud-email" class="form-select" placeholder="E-posta (opsiyonel)" autocomplete="off" autocapitalize="none" value="${pendingEmail}">
+                            <input type="password" id="welcome-cloud-pass" class="form-select" placeholder="Şifre (opsiyonel)" style="margin-top:8px;" autocomplete="new-password" value="${pendingPass}">
+                        </div>
+                        <div class="modal-actions" style="margin-top:6px;">
+                            <button class="primary-btn" onclick="window.handleSetName()">Başla</button>
+                        </div>
                     </div>
-                    <div class="modal-actions" style="margin-top:6px;">
-                        <button class="primary-btn" onclick="window.handleSetName()">Başla</button>
+                </div>
+                <div id="onb-cloud" style="margin-top:8px; display:none;">
+                    <p style="color:#64748b; margin-top:-2px;">Mevcut bulut hesabınızla giriş yapın.</p>
+                    <div style="margin-top:8px; display:flex; flex-direction:column; gap:8px;">
+                        <input type="email" id="onb-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none" value="${pendingEmail}">
+                        <input type="password" id="onb-pass" class="form-select" placeholder="Şifre" autocomplete="new-password" value="${pendingPass}">
+                        <div class="modal-actions" style="margin-top:6px; display:flex; gap:8px;">
+                            <button class="nav-btn" onclick="window.handleCloudLogin()">Giriş Yap</button>
+                            <button class="primary-btn" onclick="window.handleCloudLoginRestore()">Giriş Yap ve Geri Yükle</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
+        window.switchOnboarding = (tab) => { const l = document.getElementById('onb-local'); const c = document.getElementById('onb-cloud'); const tl = document.getElementById('tab-local'); const tc = document.getElementById('tab-cloud'); if (tab==='cloud'){ l.style.display='none'; c.style.display='block'; tl.classList.remove('primary'); tc.classList.add('primary'); } else { l.style.display='block'; c.style.display='none'; tl.classList.add('primary'); tc.classList.remove('primary'); } };
         window.handleSetName = async () => {
             const n = (document.getElementById('welcome-name').value||'').trim();
             if (n.length>0) { await this.db.setUserName(n); }
@@ -910,6 +930,8 @@ export class Dashboard {
             try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch{}
             this.render();
         };
+        window.handleCloudLogin = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let ok=false; try { ok = await sm.login(e,p); } catch{} if (!ok) { try { alert('Giriş başarısız'); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
+        window.handleCloudLoginRestore = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let ok=false; try { ok = await sm.login(e,p); } catch{} if (!ok) { try { alert('Giriş başarısız'); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } let pulled=false; try { pulled = await sm.pullAll(true); } catch{} try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{} await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
     }
     
     async getAccountStatusText(){ const name = await this.db.getUserName(); return `Profil: ${name||'-'}`; }
