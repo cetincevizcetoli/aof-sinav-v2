@@ -239,10 +239,47 @@ export class QuizUI {
         const score = total > 0 ? Math.round((correct / total) * 100) : 0;
         const earnedXP = correct * 10;
 
+        const wrongAnswers = [];
+        for (let i = 0; i < this.currentCards.length; i++) {
+            const ans = this.sessionHistory[i];
+            const card = this.currentCards[i];
+            if (ans && ans !== 'SKIPPED' && ans !== card.correct_option) {
+                wrongAnswers.push({ question: card.question, given: ans, correct: card.correct_option, explanation: card.code_example });
+            }
+        }
+
         if (this._keyHandler) {
             document.removeEventListener('keydown', this._keyHandler);
             this._keyHandler = null;
         }
+        const reviewHtml = wrongAnswers.length > 0 ? `
+            <div style="margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                <button class="nav-btn warning full-width" onclick="window.toggleMistakes()">
+                    <i class="fa-solid fa-eye"></i> Yanlış Cevapları İncele (${wrongAnswers.length})
+                </button>
+                <div id="mistakes-container" style="display:none; margin-top: 15px; text-align: left;">
+                    ${wrongAnswers.map((item, idx) => `
+                        <div class="mistake-card" style="background:white; padding:15px; border-radius:8px; border:1px solid #fecaca; margin-bottom:10px;">
+                            <div style="font-weight:600; color:#1e293b; margin-bottom:8px;">${idx + 1}. ${escapeHTML(item.question)}</div>
+                            <div style="font-size:0.9rem; margin-bottom:4px;">
+                                <span style="color:#ef4444; font-weight:bold;"><i class="fa-solid fa-xmark"></i> Senin Cevabın:</span>
+                                <span style="color:#ef4444;">${escapeHTML(item.given)}</span>
+                            </div>
+                            <div style="font-size:0.9rem;">
+                                <span style="color:#10b981; font-weight:bold;"><i class="fa-solid fa-check"></i> Doğru Cevap:</span>
+                                <span style="color:#10b981;">${escapeHTML(item.correct)}</span>
+                            </div>
+                            ${item.explanation ? `
+                                <div style="margin-top:8px; font-size:0.85rem; background:#f1f5f9; padding:8px; border-radius:4px; color:#475569;">
+                                    <strong>📝 Açıklama:</strong> ${escapeHTML(item.explanation)}
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        ` : '';
+
         this.container.innerHTML = `
             <div class="loading-state">
                 <i class="fa-solid fa-flag-checkered" style="font-size: 3rem; color: #2563eb; margin-bottom: 20px;"></i>
@@ -256,7 +293,11 @@ export class QuizUI {
                     <div class="stat-box skipped"><span class="stat-value">${skipped}</span><span class="stat-label">Boş</span></div>
                     <div class="stat-box score"><span class="stat-value">%${score}</span><span class="stat-label">Başarı</span></div>
                 </div>
-                <button class="primary-btn" onclick="location.reload()">Ana Ekrana Dön</button>
+                <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
+                    <button class="primary-btn" onclick="location.reload()">Ana Ekrana Dön</button>
+                    <button class="nav-btn" onclick="window.startSession('${this.currentCards[0].id.split('_')[0]}', {mode:'study'})">Tekrar Başla</button>
+                </div>
+                ${reviewHtml}
             </div>
         `;
 
@@ -271,5 +312,6 @@ export class QuizUI {
             </div>`;
             document.body.insertAdjacentHTML('beforeend', html);
         }
+        window.toggleMistakes = () => { const div = document.getElementById('mistakes-container'); if (!div) return; div.style.display = (div.style.display === 'none' || !div.style.display) ? 'block' : 'none'; if (div.style.display === 'block') { div.scrollIntoView({ behavior: 'smooth' }); } };
     }
 }
