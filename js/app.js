@@ -37,6 +37,10 @@ async function initApp() {
     window.startSession = async (lessonCode, config) => {
         const safeConfig = config || { mode: 'study' };
         window.__inSession = true;
+        const sessUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){ const r = Math.random()*16|0, v = c=='x'?r:(r&0x3|0x8); return v.toString(16)});
+        window.__sessionUUID = sessUUID;
+        const unitNo = (safeConfig && safeConfig.specificUnit) ? safeConfig.specificUnit : 0;
+        if (db && typeof db.startSessionRecord === 'function') { await db.startSessionRecord(lessonCode, unitNo, safeConfig.mode || 'study', sessUUID); }
         if (loader && typeof loader.resetCache === 'function') { loader.resetCache(); }
         if (!quizUI) {
             const module = await import('./ui/quizUI.js');

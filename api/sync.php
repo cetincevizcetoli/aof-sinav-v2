@@ -51,6 +51,10 @@ if ($a === 'push') {
         $ins = $pdo->prepare('INSERT IGNORE INTO exam_history(user_id,date,lesson,unit,isCorrect,uuid) VALUES(?,?,?,?,?,?)');
         foreach ($in['history'] as $h) { $ins->execute([$user, intval($h['date']??time()), $h['lesson']??'', intval($h['unit']??0), intval(($h['isCorrect']??0)?1:0), (string)($h['uuid']??'')]); }
     }
+    if (isset($in['sessions']) && is_array($in['sessions'])) {
+        $insS = $pdo->prepare('INSERT IGNORE INTO study_sessions(user_id,lesson,unit,mode,started_at,ended_at,uuid) VALUES(?,?,?,?,?,?,?)');
+        foreach ($in['sessions'] as $s) { $insS->execute([$user, $s['lesson']??'', intval($s['unit']??0), $s['mode']??'study', intval($s['started_at']??time()), intval($s['ended_at']??0), (string)($s['uuid']??'')]); }
+    }
     ok(['pushed'=>true]);
 } elseif ($a === 'pull') {
     $progress = $pdo->prepare('SELECT id,lesson,unit,level,nextReview,correct,wrong,updated_at FROM progress WHERE user_id=?');

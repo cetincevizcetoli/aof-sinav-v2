@@ -213,7 +213,7 @@ export class QuizUI {
                     ${listHtml}
                     <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
                         <button class="nav-btn secondary" onclick="document.getElementById('${id}').remove()">Devam Et</button>
-                        <button class="nav-btn warning" onclick="document.getElementById('${id}').remove(); window.__inSession=false; ${this.onBack ? 'window._doBack=1;' : ''} ">${escapeHTML('Ana Ekrana Dön')}</button>
+                        <button class="nav-btn warning" onclick="document.getElementById('${id}').remove(); (function(){ const endUUID = window.__sessionUUID; if (endUUID && window.db && typeof window.db.endSessionRecord==='function'){ window.db.endSessionRecord(endUUID); } window.__inSession=false; ${this.onBack ? 'window.__goBack=1;' : ''} })(); ${this.onBack ? 'window.setTimeout(()=>{ try{ (' + this.onBack.toString() + ')(); }catch(e){ if (window.dashboard && window.dashboard.render) window.dashboard.render(); } }, 0);' : ''}">${escapeHTML('Ana Ekrana Dön')}</button>
                     </div>
                 </div>
             </div>`;
@@ -349,5 +349,6 @@ export class QuizUI {
             document.body.insertAdjacentHTML('beforeend', html);
         }
         window.toggleMistakes = () => { const div = document.getElementById('mistakes-container'); if (!div) return; div.style.display = (div.style.display === 'none' || !div.style.display) ? 'block' : 'none'; if (div.style.display === 'block') { div.scrollIntoView({ behavior: 'smooth' }); } };
+        const endUUID = window.__sessionUUID; if (endUUID && this.db && typeof this.db.endSessionRecord === 'function') { this.db.endSessionRecord(endUUID); }
     }
 }

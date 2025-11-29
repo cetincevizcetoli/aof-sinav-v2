@@ -99,14 +99,14 @@ export class Dashboard {
         `;
 
         lessons.forEach(lesson => {
-            const stat = lessonStats[lesson.code] || { total: 0, learned: 0, due: 0 };
+            const stat = lessonStats[lesson.code] || { total: 0, learned: 0, repeats: 0 };
             const percent = stat.total > 0 ? Math.round((stat.learned / stat.total) * 100) : 0;
 
             html += `
                 <div class="lesson-card" onclick="window.openLessonDetail('${lesson.code}', '${lesson.file}')">
                     <div class="card-header">
                         <span class="course-code">${lesson.code}</span>
-                        ${stat.due > 0 ? `<span class="badge due">${stat.due} Tekrar</span>` : ''}
+                        ${stat.repeats > 0 ? `<span class="badge due">${stat.repeats} Tekrar</span>` : ''}
                     </div>
                     <h3>${lesson.name}</h3>
                     <div class="progress-container">
@@ -304,7 +304,7 @@ export class Dashboard {
             const lessonProgress = await this.db.getProgressByLesson(lesson.code);
             const estimatedTotal = 150;
             const learnedCount = lessonProgress.filter(p => p.level > 0).length;
-            const dueCount = lessonProgress.filter(p => p.nextReview <= Date.now()).length;
+            const repeatCount = (this.db.countLessonRepeats ? await this.db.countLessonRepeats(lesson.code) : 0);
             const unitCounts = {};
             lessonProgress.forEach(p => {
                 const u = `U${p.unit || 0}`;
@@ -320,7 +320,7 @@ export class Dashboard {
             stats[lesson.code] = {
                 total: estimatedTotal,
                 learned: learnedCount,
-                due: dueCount,
+                repeats: repeatCount,
                 percent: Math.min(100, Math.round((learnedCount / estimatedTotal) * 100)),
                 weakestUnit: weakest
             };

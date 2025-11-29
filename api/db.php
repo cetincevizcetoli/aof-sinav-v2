@@ -42,6 +42,7 @@ $pdo->exec('CREATE TABLE IF NOT EXISTS progress (id VARCHAR(255) PRIMARY KEY, us
 $pdo->exec('CREATE TABLE IF NOT EXISTS user_stats (user_id INT PRIMARY KEY, xp INT, streak INT, totalQuestions INT, updated_at BIGINT) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
 $pdo->exec('CREATE TABLE IF NOT EXISTS exam_history (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, date BIGINT NOT NULL, lesson VARCHAR(255), unit INT, isCorrect TINYINT(1)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
 $pdo->exec('CREATE TABLE IF NOT EXISTS admin_sessions (token VARCHAR(255) PRIMARY KEY, created_at BIGINT NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
+$pdo->exec('CREATE TABLE IF NOT EXISTS study_sessions (id INT AUTO_INCREMENT PRIMARY KEY, user_id INT NOT NULL, lesson VARCHAR(255), unit INT, mode VARCHAR(32), started_at BIGINT NOT NULL, ended_at BIGINT, uuid VARCHAR(36) UNIQUE) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
 
 try {
     $st = $pdo->query("SHOW COLUMNS FROM exam_history LIKE 'uuid'");

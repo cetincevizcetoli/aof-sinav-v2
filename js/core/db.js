@@ -1,7 +1,7 @@
 export class ExamDatabase {
     constructor() {
         this.dbName = 'AofSinavDB_v2';
-        this.dbVersion = 6;
+        this.dbVersion = 7;
         this.db = null;
     }
 
@@ -51,6 +51,12 @@ export class ExamDatabase {
                     historyStore.createIndex('by_unit', 'unit', { unique: false });
                 }
                 if (!db.objectStoreNames.contains('sync_queue')) db.createObjectStore('sync_queue', { keyPath: 'id', autoIncrement: true });
+
+                if (!db.objectStoreNames.contains('sessions')) {
+                    const sess = db.createObjectStore('sessions', { keyPath: 'uuid' });
+                    sess.createIndex('by_lesson', 'lesson', { unique: false });
+                    sess.createIndex('by_lesson_unit', ['lesson','unit'], { unique: false });
+                }
             };
 
             request.onsuccess = (event) => {
@@ -213,6 +219,69 @@ export class ExamDatabase {
             });
             tx.oncomplete = () => resolve(true);
             tx.onerror = () => resolve(false);
+        });
+    }
+
+    async startSessionRecord(lesson, unit, mode, uuid){
+        return new Promise((resolve) => {
+            if (!this.db) return resolve(false);
+            const tx = this.db.transaction(['sessions'], 'readwrite');
+            tx.objectStore('sessions').put({ uuid, lesson, unit: parseInt(unit)||0, mode: mode||'study', started_at: Date.now(), ended_at: 0 });
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    }
+
+    async endSessionRecord(uuid){
+        return new Promise(async (resolve) => {
+            if (!this.db) return resolve(false);
+            const tx = this.db.transaction(['sessions'], 'readwrite');
+            const store = tx.objectStore('sessions');
+            const req = store.get(uuid);
+            req.onsuccess = (e) => {
+                const row = e.target.result;
+                if (!row) { resolve(false); return; }
+                row.ended_at = Date.now();
+                store.put(row);
+            };
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    }
+
+    async getAllSessions(){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve([]);
+            const tx = this.db.transaction(['sessions'],'readonly');
+            const req = tx.objectStore('sessions').getAll();
+            req.onsuccess = () => resolve(req.result || []);
+            req.onerror = () => resolve([]);
+        });
+    }
+
+    async countLessonRepeats(lesson){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve(0);
+            const tx = this.db.transaction(['sessions'],'readonly');
+            const idx = tx.objectStore('sessions').index('by_lesson');
+            const range = IDBKeyRange.only(lesson);
+            let cnt = 0;
+            const req = idx.openCursor(range);
+            req.onsuccess = (e)=>{ const c = e.target.result; if (c){ cnt++; c.continue(); } else resolve(cnt); };
+            req.onerror = ()=>resolve(0);
+        });
+    }
+
+    async countUnitRepeats(lesson, unit){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve(0);
+            const tx = this.db.transaction(['sessions'],'readonly');
+            const idx = tx.objectStore('sessions').index('by_lesson_unit');
+            const range = IDBKeyRange.only([lesson, parseInt(unit)||0]);
+            let cnt = 0;
+            const req = idx.openCursor(range);
+            req.onsuccess = (e)=>{ const c = e.target.result; if (c){ cnt++; c.continue(); } else resolve(cnt); };
+            req.onerror = ()=>resolve(0);
         });
     }
 
