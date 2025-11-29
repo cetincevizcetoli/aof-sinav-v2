@@ -699,7 +699,36 @@ export class Dashboard {
         document.getElementById('btn-sync-now').onclick = async () => {
             const sm = new SyncManager(this.db);
             const t = sm.getToken();
-            if (!t) { try { alert('Yedekleme için giriş gerekli'); } catch{} return; }
+            if (!t) {
+                const id = 'cloud-login-modal';
+                const html = `
+                <div class="modal-overlay" id="${id}">
+                  <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Bulut Yedekleme</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <div class="form-group"><input type="email" id="cloud-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none"></div>
+                    <div class="form-group"><input type="password" id="cloud-pass" class="form-select" placeholder="Şifre" autocomplete="new-password"></div>
+                    <div class="modal-actions" style="display:flex; gap:8px;">
+                      <button class="nav-btn secondary" onclick="document.getElementById('${id}').remove()">İptal</button>
+                      <button class="primary-btn" onclick="window.cloudLoginDo()">Giriş Yap ve Yedekle</button>
+                    </div>
+                  </div>
+                </div>`;
+                document.body.insertAdjacentHTML('beforeend', html);
+                window.cloudLoginDo = async () => {
+                    const e = (document.getElementById('cloud-email')||{}).value||'';
+                    const p = (document.getElementById('cloud-pass')||{}).value||'';
+                    let ok=false; try { ok = await sm.login(e,p); } catch{}
+                    if (!ok) { try { alert('Giriş başarısız'); } catch{} return; }
+                    await this.db.setProfile('account_email', e);
+                    const token = localStorage.getItem('auth_token')||'';
+                    if (token) { await this.db.setProfile('account_token', token); }
+                    let pushed=false; try { pushed = await sm.pushAll(); } catch{}
+                    try { alert(pushed ? 'Yedekleme tamam' : 'Yedekleme başarısız'); } catch{}
+                    const m = document.getElementById(id); if (m) m.remove();
+                    const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove();
+                };
+                return;
+            }
             let okPush = false;
             try { okPush = await sm.pushAll(); } catch {}
             try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch {}
