@@ -346,8 +346,16 @@ export class Dashboard {
                         ${wrongs.length===0?'<div style="color:#64748b; padding:12px;">Yanlış yok</div>':wrongs.map((w,idx)=>{
                             const q = w.card;
                             const expl = q && q.code_example ? `<div style=\"margin-top:6px; font-size:0.85rem; background:#f1f5f9; padding:6px; border-radius:4px; color:#475569;\"><strong>📝 Açıklama:</strong> ${escapeHTML(q.code_example)}</div>` : '';
+                            const opts = Array.isArray(q && q.options) ? q.options.map(o => {
+                                const isGiven = w.given && String(w.given) === String(o);
+                                const isCorrect = q && String(q.correct_option) === String(o);
+                                const color = isCorrect ? '#10b981' : (isGiven ? '#ef4444' : '#334155');
+                                const icon = isCorrect ? 'fa-check' : (isGiven ? 'fa-xmark' : 'fa-circle');
+                                return `<div style=\"font-size:0.9rem; color:${color}; display:flex; align-items:center; gap:6px;\"><i class=\"fa-solid ${icon}\"></i> ${escapeHTML(o)}</div>`;
+                            }).join('') : '';
                             return `<div class=\"lesson-card\" style=\"padding:12px; border-left:4px solid #ef4444;\">
                                 <div style=\"font-weight:600; color:#334155; margin-bottom:6px;\">${idx+1}. ${q ? escapeHTML(q.question) : 'Soru bulunamadı'}</div>
+                                <div style=\"display:flex; flex-direction:column; gap:4px;\">${opts}</div>
                                 <div style=\"font-size:0.9rem; color:#ef4444;\"><strong>Senin Cevabın:</strong> ${w.given ? escapeHTML(w.given) : '-'}</div>
                                 <div style=\"font-size:0.9rem; color:#10b981;\"><strong>Doğru Cevap:</strong> ${q ? escapeHTML(q.correct_option) : '-'}</div>
                                 ${expl}
