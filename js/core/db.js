@@ -301,6 +301,37 @@ export class ExamDatabase {
         });
     }
 
+    async getSessionsByUnit(lesson, unit){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve([]);
+            const tx = this.db.transaction(['sessions'],'readonly');
+            const idx = tx.objectStore('sessions').index('by_lesson_unit');
+            const range = IDBKeyRange.only([lesson, parseInt(unit)||0]);
+            const rows = [];
+            const req = idx.openCursor(range);
+            req.onsuccess = (e)=>{ const c = e.target.result; if (c){ rows.push(c.value); c.continue(); } else resolve(rows.sort((a,b)=> (b.started_at||0)-(a.started_at||0))); };
+            req.onerror = ()=>resolve([]);
+        });
+    }
+
+    async hasActiveSessionForUnit(lesson, unit){
+        const list = await this.getSessionsByUnit(lesson, unit);
+        return list.some(r => !r.ended_at || r.ended_at === 0);
+    }
+
+    async getHistoryRange(lesson, unit, startTs, endTs){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve([]);
+            const tx = this.db.transaction(['exam_history'],'readonly');
+            const idx = tx.objectStore('exam_history').index('by_date');
+            const range = IDBKeyRange.lowerBound(startTs||0);
+            const rows = [];
+            const req = idx.openCursor(range);
+            req.onsuccess = (e)=>{ const c = e.target.result; if (c){ const v = c.value; if ((!endTs || v.date <= endTs) && v.lesson === lesson && (parseInt(v.unit)||0) === (parseInt(unit)||0)) { rows.push(v); } c.continue(); } else resolve(rows); };
+            req.onerror = ()=>resolve([]);
+        });
+    }
+
     async getHistory() {
         return new Promise((resolve) => {
             if (!this.db) return resolve([]);

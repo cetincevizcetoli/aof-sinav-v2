@@ -106,7 +106,6 @@ export class Dashboard {
                 <div class="lesson-card" onclick="window.openLessonDetail('${lesson.code}', '${lesson.file}')">
                     <div class="card-header">
                         <span class="course-code">${lesson.code}</span>
-                        ${stat.repeats > 0 ? `<span class="badge due">${stat.repeats} Tekrar</span>` : ''}
                     </div>
                     <h3>${lesson.name}</h3>
                     <div class="progress-container">
@@ -248,6 +247,9 @@ export class Dashboard {
             if(u.total === 0) continue;
 
             const percent = Math.round((u.learned / u.total) * 100);
+            const rCount = (this.db.countUnitRepeats ? await this.db.countUnitRepeats(code, i) : 0);
+            const activeRep = (this.db.hasActiveSessionForUnit ? await this.db.hasActiveSessionForUnit(code, i) : false);
+            const repLabel = rCount > 0 ? `${rCount}. tekrar${activeRep ? ' • devam ediyor' : ''}` : '';
             
             let statusBadge = '';
             let statusClass = '';
@@ -275,9 +277,13 @@ export class Dashboard {
                         </div>
                         <small style="color:#64748b; font-size:0.75rem; margin-top:2px;">${u.learned} / ${u.total} Soru Öğrenildi</small>
                     </div>
-                    <button class="ghost-btn" onclick="window.startUnitStudy('${code}', ${i})" aria-label="Ünite ${i} çalış">
-                        <i class="fa-solid fa-play"></i> Çalış
-                    </button>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <button class="ghost-btn" onclick="window.startUnitStudy('${code}', ${i})" aria-label="Ünite ${i} çalış">
+                            <i class="fa-solid fa-play"></i> Çalış
+                        </button>
+                        ${repLabel ? `<span style="font-size:0.85rem; color:#334155;">${repLabel}</span>` : ''}
+                        <button class="sm-btn" onclick="window.openUnitHistory('${code}', ${i})">Geçmiş</button>
+                    </div>
                 </div>
             `;
         }
@@ -294,6 +300,49 @@ export class Dashboard {
         window.openExamConfig = (lessonCode) => {
             document.getElementById('detail-modal').remove();
             this.showExamConfigModal(lessonCode); 
+        };
+        window.openUnitHistory = async (lessonCode, unitNo) => {
+            const sessions = (this.db.getSessionsByUnit ? await this.db.getSessionsByUnit(lessonCode, unitNo) : []);
+            const rows = [];
+            for (const s of sessions) {
+                const list = (this.db.getHistoryRange ? await this.db.getHistoryRange(lessonCode, unitNo, s.started_at||0, s.ended_at||Date.now()) : []);
+                let c=0,w=0; list.forEach(x=>{ if (x.isCorrect) c++; else w++; });
+                rows.push({ started_at: s.started_at, ended_at: s.ended_at, mode: s.mode||'study', correct:c, wrong:w, uuid:s.uuid });
+            }
+            const id = 'unit-history-modal';
+            const html = `
+            <div class="modal-overlay" id="${id}">
+                <div class="modal-box large">
+                    <div class="modal-header"><h2 class="modal-title">Ünite ${unitNo} Geçmişi</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <div style="max-height:60vh; overflow:auto;">
+                        ${rows.length===0 ? '<div style="color:#64748b; padding:12px;">Kayıt yok</div>' : rows.map((r,idx)=>`
+                            <div class="lesson-card" style="display:flex; align-items:center; justify-content:space-between;">
+                                <div>
+                                    <div style="font-weight:600; color:#334155;">${idx+1}. ${new Date(r.started_at||Date.now()).toLocaleString()}${r.ended_at?` - ${new Date(r.ended_at).toLocaleString()}`:''}</div>
+                                    <small style="color:#64748b;">Mod: ${r.mode} • Doğru: ${r.correct} • Yanlış: ${r.wrong}</small>
+                                </div>
+                                <button class="sm-btn" onclick="window.viewSessionMistakes('${lessonCode}', ${unitNo}, ${r.started_at||0}, ${r.ended_at||0})">Yanlışları Gör</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+        };
+        window.viewSessionMistakes = async (lessonCode, unitNo, startTs, endTs) => {
+            const list = (this.db.getHistoryRange ? await this.db.getHistoryRange(lessonCode, unitNo, startTs, endTs) : []);
+            const wrongs = list.filter(x=>!x.isCorrect);
+            const id = 'session-mistakes-modal';
+            const html = `
+            <div class="modal-overlay" id="${id}">
+                <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Yanlışlar</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <div style="max-height:50vh; overflow:auto;">
+                        ${wrongs.length===0?'<div style="color:#64748b; padding:12px;">Yanlış yok</div>':wrongs.map((w,idx)=>`<div class=\"lesson-card\" style=\"padding:10px;\"><div style=\"font-weight:600; color:#334155;\">${idx+1}. Ünite ${unitNo}</div><small style=\"color:#64748b;\">Tarih: ${new Date(w.date).toLocaleString()}</small></div>`).join('')}
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
         };
     }
 
