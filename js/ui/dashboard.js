@@ -61,7 +61,8 @@ export class Dashboard {
 
         await this.ensureActiveAccountToken();
         const authGate = new AuthManager(this.db);
-        if (!authGate.hasToken() && !localStorage.getItem('guest_mode')) {
+        const inSession = !!window.__inSession;
+        if (!authGate.hasToken() && !localStorage.getItem('guest_mode') && !inSession) {
             this.showWelcomeOverlay();
             return;
         }
@@ -202,7 +203,8 @@ export class Dashboard {
             }
         };
         const auth = new AuthManager(this.db);
-        if (!auth.hasToken() && !localStorage.getItem('guest_mode')) {
+        const inSession2 = !!window.__inSession;
+        if (!auth.hasToken() && !localStorage.getItem('guest_mode') && !inSession2) {
             this.showWelcomeOverlay();
         }
     }

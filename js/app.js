@@ -36,11 +36,12 @@ async function initApp() {
     // 4. Global Başlatıcı Fonksiyonu (Dashboard'dan çağrılır)
     window.startSession = async (lessonCode, config) => {
         const safeConfig = config || { mode: 'study' };
+        window.__inSession = true;
         if (loader && typeof loader.resetCache === 'function') { loader.resetCache(); }
         if (!quizUI) {
             const module = await import('./ui/quizUI.js');
             const QuizUI = module.QuizUI;
-            quizUI = new QuizUI(loader, db, () => { if (dashboard.refreshAndRender) { dashboard.refreshAndRender(); } else { dashboard.render(); } });
+            quizUI = new QuizUI(loader, db, () => { window.__inSession = false; if (dashboard.refreshAndRender) { dashboard.refreshAndRender(); } else { dashboard.render(); } });
         }
         await quizUI.start(lessonCode, safeConfig);
     };
