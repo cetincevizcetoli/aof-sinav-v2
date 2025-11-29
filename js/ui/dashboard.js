@@ -871,7 +871,7 @@ export class Dashboard {
         window.logoutNow = async () => { localStorage.removeItem('auth_token'); await this.db.setProfile('account_email',''); await this.db.setProfile('account_token',''); await this.db.setProfile('server_reset_at', 0); await this.db.setProfile('last_reset_ack', 0); await this.db.setProfile('last_sync', 0); await this.refreshAccountStatus(); const s=document.getElementById('settings-menu-overlay'); if (s) s.remove(); this.render(); };
     }
 
-    showWelcomeOverlay(){
+    async showWelcomeOverlay(){
         const existing = document.getElementById('welcome-overlay');
         if (existing) return;
         const pendingEmail = await this.db.getProfile('account_email_pending')||'';
@@ -938,19 +938,3 @@ export class Dashboard {
 
     async refreshAccountStatus(){ const txt = await this.getAccountStatusText(); const pill = document.querySelector('.account-pill'); if (pill) { pill.textContent = txt; } }
 }
-        window.confirmDeleteCloud = () => {
-            const html = `
-            <div class="modal-overlay" id="confirm-delcloud-modal">
-                <div class="modal-box">
-                    <div class="modal-header"><h2 class="modal-title">Bulut Hesabını Sil</h2><button class="icon-btn" onclick="document.getElementById('confirm-delcloud-modal').remove()"><i class="fa-solid fa-xmark"></i></button></div>
-                    <p style="color:#64748b;">Bulut hesabın sunucudan silinecek. Yerel veriler korunur. Emin misin?</p>
-                    <div class="modal-actions">
-                        <button class="nav-btn secondary" onclick="document.getElementById('confirm-delcloud-modal').remove()">İptal</button>
-                        <button class="primary-btn" style="background-color:#ef4444;" onclick="window.doDeleteCloudConfirmed()">Evet, Sil</button>
-                    </div>
-                </div>
-            </div>`;
-            document.body.insertAdjacentHTML('beforeend', html);
-        };
-
-        window.doDeleteCloudConfirmed = async () => { const auth = new AuthManager(this.db); const ok = await auth.deleteAccount(); if (ok) { try { localStorage.removeItem('auth_token'); } catch{} await this.db.setProfile('account_email',''); await this.db.setProfile('account_token',''); await this.db.setProfile('accounts', []); await this.db.setProfile('server_reset_at', 0); await this.db.setProfile('last_reset_ack', 0); await this.db.setProfile('last_sync', 0); const cm = document.getElementById('confirm-delcloud-modal'); if (cm) cm.remove(); const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove(); window.location.reload(); } else { alert('Silme başarısız veya oturum yok. Lütfen önce giriş yapın.'); } };
