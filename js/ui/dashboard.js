@@ -11,6 +11,20 @@ export class Dashboard {
         this.container = document.getElementById('app-container');
     }
 
+    async ensureActiveAccountToken(){
+        const hasToken = !!localStorage.getItem('auth_token');
+        if (hasToken) return;
+        const list = (await this.db.getProfile('accounts')) || [];
+        const items = Array.isArray(list) ? list : [];
+        const activeEmail = await this.db.getProfile('account_email');
+        let acc = items.find(a => a && a.email === activeEmail && a.token);
+        if (!acc) acc = items.find(a => a && a.token);
+        if (acc && acc.token) {
+            localStorage.setItem('auth_token', acc.token);
+            if (acc.email && !activeEmail) { await this.db.setProfile('account_email', acc.email); }
+        }
+    }
+
     async refreshAndRender(){
         const wrap = document.getElementById('dashboard-container');
         if (!wrap || !wrap.children || wrap.children.length === 0) {
@@ -45,6 +59,7 @@ export class Dashboard {
     async render() {
         this.container.innerHTML = '<div class="loading-state"><div class="spinner"></div><p>Veriler Yükleniyor...</p></div>';
 
+        await this.ensureActiveAccountToken();
         const authGate = new AuthManager(this.db);
         if (!authGate.hasToken() && !localStorage.getItem('guest_mode')) {
             this.showWelcomeOverlay();
@@ -603,6 +618,7 @@ export class Dashboard {
 
         // Etkileşimler
         (async () => {
+            await this.ensureActiveAccountToken();
             const hasToken = !!localStorage.getItem('auth_token');
             const nameLocal = await this.db.getUserName();
             const badgeEl = document.getElementById('menu-user-badge');
@@ -616,6 +632,7 @@ export class Dashboard {
             if (badgeEl) { badgeEl.textContent = hasToken ? 'Üye' : 'Misafir'; badgeEl.style.color = hasToken ? '#166534' : '#334155'; }
         })();
         (async () => {
+            await this.ensureActiveAccountToken();
             const hasToken = !!localStorage.getItem('auth_token');
             const btnUpd = document.getElementById('btn-update-cred'); if (btnUpd) btnUpd.style.display = hasToken ? 'flex' : 'none';
             const btnLogout = document.getElementById('btn-logout'); if (btnLogout) btnLogout.style.display = hasToken ? 'flex' : 'none';
@@ -899,6 +916,7 @@ export class Dashboard {
     }
 
     async refreshAccountStatus(){
+        await this.ensureActiveAccountToken();
         const txt = await this.getAccountStatusText();
         const pill = document.querySelector('.account-pill');
         if (pill) { pill.textContent = txt; }
