@@ -313,10 +313,10 @@ export class Dashboard {
                     cur.push(h); end=h.date||start;
                     if (h.isCorrect && h.qid) learned.add(h.qid);
                     if (!completedOnce && totalQs2>0 && learned.size>=totalQs2){
-                        const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at=end, correct:c, wrong:w }); cur=[]; start=0; end=0; learned.clear(); completedOnce = true;
+                        const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at: end, correct:c, wrong:w }); cur=[]; start=0; end=0; learned.clear(); completedOnce = true;
                     }
                 }
-                if (cur.length>0){ const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at:end, correct:c, wrong:w }); }
+                if (cur.length>0){ const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at: end, correct:c, wrong:w }); }
             }
             const id = 'unit-history-modal';
             const html = `
