@@ -318,7 +318,7 @@ export class Dashboard {
                                     <div style="font-weight:600; color:#334155;">${idx+1}. ${new Date(r.started_at||Date.now()).toLocaleString()}${r.ended_at?` - ${new Date(r.ended_at).toLocaleString()}`:''}</div>
                                     <small style="color:#64748b;">${r.cycle===0?'İlk çalışma':`${r.cycle}. tekrar`} • Doğru: ${r.correct} • Yanlış: ${r.wrong}</small>
                                 </div>
-                                <button class="sm-btn" onclick="window.viewSessionMistakes('${lessonCode}', ${unitNo}, ${r.cycle})">Yanlışları Gör</button>
+                                <button class="sm-btn" onclick="window.viewGroupMistakes('${lessonCode}', ${unitNo}, ${idx})">Yanlışları Gör</button>
             </div>
         `).join('')}
                     </div>
@@ -326,13 +326,19 @@ export class Dashboard {
             </div>`;
             document.body.insertAdjacentHTML('beforeend', html);
         };
-        window.viewSessionMistakes = async (lessonCode, unitNo, cycleNo) => {
-            const list = await this.db.getHistoryByCycle(lessonCode, unitNo, cycleNo);
+        window.viewGroupMistakes = async (lessonCode, unitNo, groupIndex) => {
+            const allHistory = await this.db.getHistory();
+            const unitHistory = (allHistory||[]).filter(h => String(h.lesson||'')===String(lessonCode) && parseInt(h.unit||0)===parseInt(unitNo||0)).sort((a,b)=> (a.date||0)-(b.date||0));
             const fileName = this.currentLessonFile;
             const data = (this.loader && this.loader.loadLessonData) ? await this.loader.loadLessonData(lessonCode, fileName) : [];
-            const cards = data.filter(c => parseInt(c.unit)||0 === parseInt(unitNo)||0);
+            const cards = data.filter(c => parseInt(c.unit||0) === parseInt(unitNo||0));
             const map = new Map(cards.map(c => [c.id, c]));
-            const wrongs = list.filter(x=>!x.isCorrect).map(w => ({ date: w.date, qid: w.qid||'', given: w.given_option||'', card: map.get(w.qid||'') }));
+            const totalQs = cards.length; const learnedSet=new Set(); const lastResult=new Map(); const groups=[]; let cur=[]; let start=0; let end=0;
+            for (const h of unitHistory){ if (cur.length===0) start=h.date||Date.now(); cur.push(h); end=h.date||start; const qid=h.qid||''; if (qid){ lastResult.set(qid, !!h.isCorrect); if (h.isCorrect) learnedSet.add(qid); } if (totalQs>0 && learnedSet.size>=totalQs){ groups.push({ items:cur.slice(), start,end,lastResult:new Map(lastResult) }); cur=[]; start=0; end=0; learnedSet.clear(); lastResult.clear(); } }
+            if (cur.length>0) groups.push({ items:cur.slice(), start,end,lastResult:new Map(lastResult) });
+            const g = groups[groupIndex] || { items:[], lastResult:new Map() };
+            const wrongQIDs = Array.from(g.lastResult.entries()).filter(([qid,res]) => res!==true).map(([qid])=>qid);
+            const wrongs = g.items.filter(x=> wrongQIDs.includes(x.qid||''));
             const id = 'session-mistakes-modal';
             const html = `
             <div class="modal-overlay" id="${id}">
