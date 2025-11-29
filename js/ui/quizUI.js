@@ -344,7 +344,7 @@ export class QuizUI {
                 </div>
                 <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
                     <button id="btn-finish-home" class="primary-btn">Ana Ekrana Dön</button>
-                    <button class="nav-btn" onclick="window.startSession('${this.currentCards[0].id.split('_')[0]}', {mode:'study'})">Tekrar Başla</button>
+                    <button id="btn-restart" class="nav-btn">Tekrar Başla</button>
                 </div>
                 ${reviewHtml}
             </div>
@@ -355,6 +355,8 @@ export class QuizUI {
         const endUUID = window.__sessionUUID; if (endUUID && this.db && typeof this.db.endSessionRecord === 'function') { this.db.endSessionRecord(endUUID); }
         const btnHome = document.getElementById('btn-finish-home');
         if (btnHome) btnHome.onclick = async () => { const u = window.__sessionUUID; if (u && this.db && typeof this.db.endSessionRecord==='function') { await this.db.endSessionRecord(u); } window.__inSession=false; if (this.onBack) this.onBack(); else if (window.dashboard && window.dashboard.render) window.dashboard.render(); };
+        const btnRestart = document.getElementById('btn-restart');
+        if (btnRestart) btnRestart.onclick = async () => { const u = window.__sessionUUID; if (u && this.db && typeof this.db.endSessionRecord==='function') { await this.db.endSessionRecord(u); } const lesson = this.currentCards[0].id.split('_')[0]; const unit = this.currentCards[0].unit; window.__inSession=false; window.startSession(lesson, { mode:'study', specificUnit: unit }); };
         const escFinish = (e) => { if (e.key === 'Escape') { const u = window.__sessionUUID; if (u && this.db && typeof this.db.endSessionRecord==='function') { this.db.endSessionRecord(u); } window.__inSession=false; if (this.onBack) this.onBack(); else if (window.dashboard && window.dashboard.render) window.dashboard.render(); document.removeEventListener('keydown', escFinish); } };
         document.addEventListener('keydown', escFinish);
     }

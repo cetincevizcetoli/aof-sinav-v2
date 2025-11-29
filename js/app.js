@@ -45,14 +45,13 @@ async function initApp() {
         const unitNo = (safeConfig && safeConfig.specificUnit) ? safeConfig.specificUnit : 0;
         let cycleNo = 0;
         try {
-            // Determine cycle number based on completion state
-            const lessons = await loader.getLessonList();
-            const target = lessons.find(l => l.code === lessonCode);
-            const cards = await loader.loadLessonData(target.code, target.file);
-            const unitCards = unitNo ? cards.filter(c => c.unit === unitNo) : cards;
-            const allLearned = unitCards.length>0 && unitCards.every(c => (c.level||0) > 0);
-            const maxCycle = await db.getMaxCycleNo(lessonCode, unitNo);
-            cycleNo = allLearned ? (maxCycle+1) : maxCycle;
+            const sessions = await db.getSessionsByUnit(lessonCode, unitNo);
+            const lastSession = (Array.isArray(sessions) ? sessions.slice().sort((a,b)=> (b.started_at||0)-(a.started_at||0)) : [])[0];
+            const currentMax = lastSession ? (parseInt(lastSession.cycle_no)||0) : 0;
+            cycleNo = currentMax;
+            if (lastSession && lastSession.ended_at && lastSession.ended_at > 0) {
+                cycleNo = currentMax + 1;
+            }
         } catch(e){ cycleNo = 0; }
         if (db && typeof db.startSessionRecord === 'function') {
             const assigned = await db.startSessionRecord(lessonCode, unitNo, safeConfig.mode || 'study', sessUUID, cycleNo);
