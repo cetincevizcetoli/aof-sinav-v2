@@ -243,8 +243,8 @@ export class QuizUI {
         for (let i = 0; i < this.currentCards.length; i++) {
             const ans = this.sessionHistory[i];
             const card = this.currentCards[i];
-            if (ans && ans !== 'SKIPPED' && ans !== card.correct_option) {
-                wrongAnswers.push({ question: card.question, given: ans, correct: card.correct_option, explanation: card.code_example });
+            if ((ans && ans !== card.correct_option) || ans === 'SKIPPED') {
+                wrongAnswers.push({ question: card.question, given: ans === 'SKIPPED' ? 'Boş/Atlandı' : ans, correct: card.correct_option, explanation: card.code_example });
             }
         }
 
