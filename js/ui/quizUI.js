@@ -172,17 +172,53 @@ export class QuizUI {
                 const nextBtn = document.getElementById('btn-next');
                 if (nextBtn && nextBtn.style.display !== 'none') this.nextQuestion();
             } else if (key === 'escape') {
-                this.onBack();
+                window.confirmExit();
             }
         };
         document.addEventListener('keydown', this._keyHandler);
-
-        document.getElementById('btn-exit').onclick = () => this.onBack();
+        document.getElementById('btn-exit').onclick = () => window.confirmExit();
         document.getElementById('btn-prev').onclick = () => { if(this.currentIndex > 0) { this.currentIndex--; this.renderCard(); } };
         if(document.getElementById('btn-next')) document.getElementById('btn-next').onclick = () => this.nextQuestion();
 
         window.handleAnswer = (btn, opt) => this.checkAnswer(opt, card);
         window.skipQuestion = () => this.skipCurrentQuestion(card);
+
+        window.confirmExit = () => {
+            const wrongs = [];
+            for (let i = 0; i < this.currentCards.length; i++) {
+                const ans = this.sessionHistory[i];
+                const c = this.currentCards[i];
+                if ((ans && ans !== c.correct_option) || ans === 'SKIPPED') {
+                    wrongs.push({ q: c.question, given: ans === 'SKIPPED' ? 'Boş/Atlandı' : ans, correct: c.correct_option, exp: c.code_example });
+                }
+            }
+            const id = 'confirm-exit-modal';
+            const listHtml = wrongs.length > 0 ? `
+                <div style="margin-top:12px; max-height:40vh; overflow:auto; text-align:left;">
+                    ${wrongs.map((it,idx)=>`
+                        <div class="mistake-card" style="background:white; padding:12px; border-radius:8px; border:1px solid #fecaca; margin-bottom:10px;">
+                            <div style="font-weight:600; color:#1e293b; margin-bottom:6px;">${idx+1}. ${escapeHTML(it.q)}</div>
+                            <div style="font-size:0.9rem; margin-bottom:4px; color:#ef4444;"><strong>Senin Cevabın:</strong> ${escapeHTML(it.given)}</div>
+                            <div style="font-size:0.9rem; color:#10b981;"><strong>Doğru Cevap:</strong> ${escapeHTML(it.correct)}</div>
+                            ${it.exp ? `<div style=\"margin-top:6px; font-size:0.85rem; background:#f1f5f9; padding:6px; border-radius:4px; color:#475569;\"><strong>📝 Açıklama:</strong> ${escapeHTML(it.exp)}</div>` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            ` : '<div style="margin-top:8px; color:#64748b;">Bu oturumda yanlış veya boş cevap yok.</div>';
+            const html = `
+            <div class="modal-overlay" id="${id}">
+                <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Oturumu Kapat</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <p style="color:#64748b;">Aşağıda bu oturumdaki yanlış/boş sorularını görebilirsin.</p>
+                    ${listHtml}
+                    <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
+                        <button class="nav-btn secondary" onclick="document.getElementById('${id}').remove()">Devam Et</button>
+                        <button class="nav-btn warning" onclick="document.getElementById('${id}').remove(); window.__inSession=false; ${this.onBack ? 'window._doBack=1;' : ''} ">${escapeHTML('Ana Ekrana Dön')}</button>
+                    </div>
+                </div>
+            </div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+        };
     }
 
     async skipCurrentQuestion(card) {
