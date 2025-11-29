@@ -646,6 +646,14 @@ export class Dashboard {
                             </div>
                         </button>
 
+                        <button class="menu-item" id="btn-pull-now" style="width:100%; display:flex; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
+                            <div class="icon-box green" style="width:32px; height:32px; border-radius:8px; background:#dcfce7; color:#16a34a; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                            <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
+                                <span class="menu-label" style="font-weight:600; color:#0f172a;">Sunucudan Geri Yükle</span>
+                                <span class="menu-sub" style="font-size:0.8rem; color:#64748b;">Buluttaki yedeği bu cihaza al</span>
+                            </div>
+                        </button>
+
                         <button class="menu-item" id="btn-check-update" style="width:100%; display:flex; align-items:center; gap:10px; padding:10px 12px; border:none; background:transparent;">
                             <div class="icon-box green" style="width:32px; height:32px; border-radius:8px; background:#dcfce7; color:#16a34a; display:flex; align-items:center; justify-content:center;"><i class="fa-solid fa-cloud-arrow-down"></i></div>
                             <div class="text-box" style="display:flex; flex-direction:column; align-items:flex-start;">
@@ -738,6 +746,45 @@ export class Dashboard {
             const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove();
         };
         document.getElementById('btn-check-update').onclick = () => { window.checkUpdatesNow(); };
+        document.getElementById('btn-pull-now').onclick = async () => {
+            const sm = new SyncManager(this.db);
+            const t = sm.getToken();
+            if (!t) {
+                const id = 'cloud-login-modal';
+                const pendingEmail = await this.db.getProfile('account_email_pending')||'';
+                const pendingPass = await this.db.getProfile('account_pass_pending')||'';
+                const html = `
+                <div class="modal-overlay" id="${id}">
+                  <div class="modal-box">
+                    <div class="modal-header"><h2 class="modal-title">Buluttan Geri Yükle</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
+                    <div class="form-group"><input type="email" id="cloud-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none" value="${pendingEmail}"></div>
+                    <div class="form-group"><input type="password" id="cloud-pass" class="form-select" placeholder="Şifre" autocomplete="new-password" value="${pendingPass}"></div>
+                    <div class="modal-actions" style="display:flex; gap:8px;">
+                      <button class="nav-btn secondary" onclick="document.getElementById('${id}').remove()">İptal</button>
+                      <button class="primary-btn" onclick="window.cloudLoginPull()">Giriş Yap ve Yükle</button>
+                    </div>
+                  </div>
+                </div>`;
+                document.body.insertAdjacentHTML('beforeend', html);
+                window.cloudLoginPull = async () => {
+                    const e = (document.getElementById('cloud-email')||{}).value||'';
+                    const p = (document.getElementById('cloud-pass')||{}).value||'';
+                    let ok=false; try { ok = await sm.login(e,p); } catch{}
+                    if (!ok) { try { alert('Giriş başarısız'); } catch{} return; }
+                    await this.db.setProfile('account_email', e);
+                    const token = localStorage.getItem('auth_token')||'';
+                    if (token) { await this.db.setProfile('account_token', token); }
+                    let pulled=false; try { pulled = await sm.pullAll(true); } catch{}
+                    try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{}
+                    const m = document.getElementById(id); if (m) m.remove();
+                    const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove();
+                };
+                return;
+            }
+            let okPull=false; try { okPull = await sm.pullAll(true); } catch{}
+            try { alert(okPull ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{}
+            const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove();
+        };
         
         document.getElementById('btn-reset-data').onclick = () => { window.confirmReset(); };
         const uninstallBtn = document.getElementById('btn-uninstall'); if (uninstallBtn) uninstallBtn.onclick = () => { window.confirmUninstall(); };
