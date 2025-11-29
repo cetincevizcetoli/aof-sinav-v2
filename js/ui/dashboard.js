@@ -55,12 +55,9 @@ export class Dashboard {
     async render() {
         this.container.innerHTML = '<div class="loading-state"><div class="spinner"></div><p>Veriler Yükleniyor...</p></div>';
 
-        const authGate = new AuthManager(this.db);
-        const hasLocal = await authGate.hasLocalData();
-        if (!hasLocal) { this.showWelcomeOverlay(); return; }
-
+        const done = await this.db.getProfile('onboarding_done');
         const userName = await this.db.getUserName();
-        // Artık kullanıcı adı zorunlu değil; onboarding ile yönlendirilecek
+        if (!done && (!userName || String(userName).trim().length === 0)) { this.showWelcomeOverlay(); return; }
 
         const lessons = await this.loader.getLessonList();
         
@@ -808,7 +805,7 @@ export class Dashboard {
             </div>
         </div>`;
         document.body.insertAdjacentHTML('beforeend', html);
-        window.handleSetName = async () => { const n = (document.getElementById('welcome-name').value||'').trim(); if (n.length>0) { await this.db.setUserName(n); } const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
+        window.handleSetName = async () => { const n = (document.getElementById('welcome-name').value||'').trim(); if (n.length>0) { await this.db.setUserName(n); } await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch{} this.render(); };
     }
     
     async getAccountStatusText(){ const name = await this.db.getUserName(); return `Profil: ${name||'-'}`; }
