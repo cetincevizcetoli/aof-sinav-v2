@@ -22,33 +22,35 @@ if ($a === 'push') {
     $updP = $pdo->prepare('UPDATE progress SET user_id=?, lesson=?, unit=?, level=?, nextReview=?, correct=?, wrong=?, updated_at=? WHERE id=? AND user_id=?');
     foreach ($progress as $p) {
         $pid = $p['id']??''; if(!$pid) continue;
-        $inc = intval($p['updated_at']??0); if(!$inc) $inc = time(); if ($resetAt && $inc < $resetAt) continue;
+        $inc = intval($p['updated_at']??0);
+        if ($resetAt && ($inc === 0 || $inc < $resetAt)) continue;
         $selP->execute([$pid, $user]);
         $row = $selP->fetch(PDO::FETCH_ASSOC);
         if (!$row) {
-            $insP->execute([$pid, $user, $p['lesson']??'', intval($p['unit']??0), intval($p['level']??0), intval($p['nextReview']??0), intval($p['correct']??0), intval($p['wrong']??0), $inc]);
+            $insP->execute([$pid, $user, $p['lesson']??'', intval($p['unit']??0), intval($p['level']??0), intval($p['nextReview']??0), intval($p['correct']??0), intval($p['wrong']??0), ($inc ?: time())]);
         } else {
             $cur = intval($row['updated_at']??0);
             if ($inc > $cur) {
-                $updP->execute([$user, $p['lesson']??'', intval($p['unit']??0), intval($p['level']??0), intval($p['nextReview']??0), intval($p['correct']??0), intval($p['wrong']??0), $inc, $pid, $user]);
+                $updP->execute([$user, $p['lesson']??'', intval($p['unit']??0), intval($p['level']??0), intval($p['nextReview']??0), intval($p['correct']??0), intval($p['wrong']??0), ($inc ?: time()), $pid, $user]);
             }
         }
     }
     if (isset($in['stats'])) {
         $s = $in['stats'];
-        $incS = intval($s['updated_at']??0); if(!$incS) $incS = time(); if ($resetAt && $incS < $resetAt) { /* ignore stale */ } else {
+        $incS = intval($s['updated_at']??0);
+        if ($resetAt && ($incS === 0 || $incS < $resetAt)) { /* ignore stale */ } else {
         $selS = $pdo->prepare('SELECT updated_at FROM user_stats WHERE user_id=?');
         $selS->execute([$user]);
         $rowS = $selS->fetch(PDO::FETCH_ASSOC);
         if (!$rowS) {
-            $pdo->prepare('INSERT INTO user_stats(user_id,xp,streak,totalQuestions,updated_at) VALUES(?,?,?,?,?)')->execute([$user, intval($s['xp']??0), intval($s['streak']??0), intval($s['totalQuestions']??0), $incS]);
+            $pdo->prepare('INSERT INTO user_stats(user_id,xp,streak,totalQuestions,updated_at) VALUES(?,?,?,?,?)')->execute([$user, intval($s['xp']??0), intval($s['streak']??0), intval($s['totalQuestions']??0), ($incS ?: time())]);
         } else {
             $curS = intval($rowS['updated_at']??0);
             if ($incS > $curS) {
-                $pdo->prepare('UPDATE user_stats SET xp=?, streak=?, totalQuestions=?, updated_at=? WHERE user_id=?')->execute([intval($s['xp']??0), intval($s['streak']??0), intval($s['totalQuestions']??0), $incS, $user]);
-            }
+                 $pdo->prepare('UPDATE user_stats SET xp=?, streak=?, totalQuestions=?, updated_at=? WHERE user_id=?')->execute([intval($s['xp']??0), intval($s['streak']??0), intval($s['totalQuestions']??0), ($incS ?: time()), $user]);
         }
         }
+    }
     }
     if (isset($in['history']) && is_array($in['history'])) {
         $ins = $pdo->prepare('INSERT IGNORE INTO exam_history(user_id,date,lesson,unit,isCorrect,uuid,qid,given_option,cycle_no) VALUES(?,?,?,?,?,?,?,?,?)');
@@ -56,7 +58,7 @@ if ($a === 'push') {
     }
     if (isset($in['sessions']) && is_array($in['sessions'])) {
         $insS = $pdo->prepare('INSERT IGNORE INTO study_sessions(user_id,lesson,unit,mode,started_at,ended_at,uuid,cycle_no) VALUES(?,?,?,?,?,?,?,?)');
-        foreach ($in['sessions'] as $s) { $st = intval($s['started_at']??time()); if ($resetAt && $st < $resetAt) continue; $insS->execute([$user, $s['lesson']??'', intval($s['unit']??0), $s['mode']??'study', $st, intval($s['ended_at']??0), (string)($s['uuid']??''), intval($s['cycle_no']??0)]); }
+        foreach ($in['sessions'] as $s) { $st = intval($s['started_at']??0); if ($resetAt && ($st === 0 || $st < $resetAt)) continue; $insS->execute([$user, $s['lesson']??'', intval($s['unit']??0), $s['mode']??'study', ($st ?: time()), intval($s['ended_at']??0), (string)($s['uuid']??''), intval($s['cycle_no']??0)]); }
     }
     ok(['pushed'=>true]);
 } elseif ($a === 'pull') {
