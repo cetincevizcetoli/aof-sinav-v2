@@ -70,19 +70,20 @@ export class QuizUI {
             try {
                 const rows = await this.db.getHistoryBySessionUUID(window.__sessionUUID);
                 if (Array.isArray(rows) && rows.length > 0) {
-                    const byQid = new Map(rows.map(r => [r.qid, r.given_option]));
-                    for (let i = 0; i < this.currentCards.length; i++) {
-                        const c = this.currentCards[i];
-                        const ans = byQid.get(c.id);
-                        if (ans !== undefined) this.sessionHistory[i] = ans;
+                    const answerMap = new Map(rows.map(r => [r.qid, r.given_option]));
+                    const answeredCards = [];
+                    const unansweredCards = [];
+                    for (const card of this.currentCards) {
+                        if (answerMap.has(card.id)) { answeredCards.push(card); } else { unansweredCards.push(card); }
                     }
-                    const firstUnanswered = this.currentCards.findIndex((_, idx) => this.sessionHistory[idx] === undefined);
-                    if (firstUnanswered >= 0) {
-                        this.currentIndex = firstUnanswered;
-                    } else {
-                        this.showFinishScreen();
-                        return;
+                    this.currentCards = [...answeredCards, ...unansweredCards];
+                    this.sessionHistory = {};
+                    for (let i = 0; i < answeredCards.length; i++) {
+                        const card = answeredCards[i];
+                        this.sessionHistory[i] = answerMap.get(card.id);
                     }
+                    this.currentIndex = answeredCards.length;
+                    if (this.currentIndex >= this.currentCards.length) { this.showFinishScreen(); return; }
                 }
             } catch(e){}
         }
