@@ -47,9 +47,15 @@ export class QuizUI {
             this.isExamMode = true;
         } else {
             this.currentCards = allCards.sort((a, b) => {
-                // Eğer spesifik üniteyse sadece karıştır, SRS'e bakma (çünkü zaten çalışmak istiyorsun)
-                if (config.specificUnit) return 0.5 - Math.random();
-
+                if (config.specificUnit) {
+                    if (a.level === 0 && b.level !== 0) return -1;
+                    if (a.level !== 0 && b.level === 0) return 1;
+                    if (a.isDue && !b.isDue) return -1;
+                    if (!a.isDue && b.isDue) return 1;
+                    return 0.5 - Math.random();
+                }
+                if (a.level === 0 && b.level !== 0) return -1;
+                if (a.level !== 0 && b.level === 0) return 1;
                 if (a.isDue && !b.isDue) return -1;
                 if (!a.isDue && b.isDue) return 1;
                 return 0;
@@ -314,6 +320,10 @@ export class QuizUI {
                             ` : ''}
                         </div>
                     `).join('')}
+                    <div style="margin-top: 20px; display: flex; gap: 10px; justify-content: center; border-top: 1px dashed #cbd5e1; padding-top: 15px;">
+                        <button class="nav-btn secondary" onclick="window.toggleMistakes()"><i class="fa-solid fa-chevron-up"></i> Listeyi Gizle</button>
+                        <button class="primary-btn" onclick="(function(){ const b=document.getElementById('btn-finish-home'); if(b) b.click(); })()"><i class="fa-solid fa-house"></i> Ana Ekran</button>
+                    </div>
                 </div>
             </div>
         ` : '';
