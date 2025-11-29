@@ -256,7 +256,7 @@ export class QuizUI {
 
         const parts = card.id.split('_');
         const lessonCode = parts[0];
-        const sess = window.__sessionUUID; let cycle = 0; try { const sessions = await this.db.getSessionsByUnit(lessonCode, card.unit); const cur = sessions.find(s => s && s.uuid === sess); cycle = (cur && parseInt(cur.cycle_no))||0; } catch(e){}
+        const cycle = (window.__sessionCycleNo!=null) ? (parseInt(window.__sessionCycleNo)||0) : 0;
         await this.db.logActivity(lessonCode, card.unit, isCorrect, card.id, selectedOption, cycle);
 
         this.renderCard();

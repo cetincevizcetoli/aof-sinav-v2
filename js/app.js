@@ -41,23 +41,25 @@ async function initApp() {
     window.startSession = async (lessonCode, config) => {
         const safeConfig = config || { mode: 'study' };
         window.__inSession = true;
-        const sessUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){ const r = Math.random()*16|0, v = c=='x'?r:(r&0x3|0x8); return v.toString(16)});
         const unitNo = (safeConfig && safeConfig.specificUnit) ? safeConfig.specificUnit : 0;
-        let cycleNo = 0;
-        try {
-            const sessions = await db.getSessionsByUnit(lessonCode, unitNo);
+        let sessions = [];
+        try { sessions = await db.getSessionsByUnit(lessonCode, unitNo); } catch {}
+        const active = Array.isArray(sessions) ? sessions.find(r => !r.ended_at || r.ended_at === 0) : null;
+        if (active) {
+            window.__sessionUUID = active.uuid;
+            window.__sessionCycleNo = parseInt(active.cycle_no)||0;
+        } else {
             const lastSession = (Array.isArray(sessions) ? sessions.slice().sort((a,b)=> (b.started_at||0)-(a.started_at||0)) : [])[0];
             const currentMax = lastSession ? (parseInt(lastSession.cycle_no)||0) : 0;
-            cycleNo = currentMax;
-            if (lastSession && lastSession.ended_at && lastSession.ended_at > 0) {
-                cycleNo = currentMax + 1;
+            const cycleNo = (lastSession && lastSession.ended_at && lastSession.ended_at > 0) ? (currentMax + 1) : currentMax;
+            const sessUUID = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){ const r = Math.random()*16|0, v = c=='x'?r:(r&0x3|0x8); return v.toString(16)});
+            if (db && typeof db.startSessionRecord === 'function') {
+                const assigned = await db.startSessionRecord(lessonCode, unitNo, safeConfig.mode || 'study', sessUUID, cycleNo);
+                window.__sessionUUID = assigned || sessUUID;
+            } else {
+                window.__sessionUUID = sessUUID;
             }
-        } catch(e){ cycleNo = 0; }
-        if (db && typeof db.startSessionRecord === 'function') {
-            const assigned = await db.startSessionRecord(lessonCode, unitNo, safeConfig.mode || 'study', sessUUID, cycleNo);
-            window.__sessionUUID = assigned || sessUUID;
-        } else {
-            window.__sessionUUID = sessUUID;
+            window.__sessionCycleNo = cycleNo;
         }
         if (loader && typeof loader.resetCache === 'function') { loader.resetCache(); }
         if (!quizUI) {

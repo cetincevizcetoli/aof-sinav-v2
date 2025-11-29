@@ -227,16 +227,16 @@ export class ExamDatabase {
 
     async startSessionRecord(lesson, unit, mode, uuid, cycle_no){
         if (!this.db) return null;
-        // Reuse active session if exists
-        const active = await this.hasActiveSessionForUnit(lesson, unit);
-        if (active) {
-            const list = await this.getSessionsByUnit(lesson, unit);
-            const current = list.find(r => !r.ended_at || r.ended_at === 0);
-            return current ? current.uuid : uuid;
-        }
         return new Promise((resolve) => {
             const tx = this.db.transaction(['sessions'], 'readwrite');
-            tx.objectStore('sessions').put({ uuid, lesson, unit: parseInt(unit)||0, mode: mode||'study', started_at: Date.now(), ended_at: 0, cycle_no: parseInt(cycle_no)||0 });
+            const store = tx.objectStore('sessions');
+            const req = store.get(uuid);
+            req.onsuccess = (e) => {
+                const row = e.target.result;
+                if (row) { resolve(uuid); return; }
+                store.add({ uuid, lesson, unit: parseInt(unit)||0, mode: mode||'study', started_at: Date.now(), ended_at: 0, cycle_no: parseInt(cycle_no)||0 });
+            };
+            req.onerror = () => resolve(null);
             tx.oncomplete = () => resolve(uuid);
             tx.onerror = () => resolve(null);
         });
