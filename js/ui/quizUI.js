@@ -250,7 +250,7 @@ export class QuizUI {
 
         const parts = card.id.split('_');
         const lessonCode = parts[0];
-        await this.db.logActivity(lessonCode, card.unit, isCorrect);
+        await this.db.logActivity(lessonCode, card.unit, isCorrect, card.id);
 
         this.renderCard();
     }

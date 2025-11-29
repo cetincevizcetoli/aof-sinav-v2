@@ -204,7 +204,7 @@ export class ExamDatabase {
         });
     }
 
-    async logActivity(lessonCode, unit, isCorrect) {
+    async logActivity(lessonCode, unit, isCorrect, qid) {
         return new Promise((resolve) => {
             if (!this.db) return resolve(false);
             const tx = this.db.transaction(['exam_history'], 'readwrite');
@@ -215,6 +215,7 @@ export class ExamDatabase {
                 lesson: lessonCode,
                 unit: parseInt(unit) || 0,
                 isCorrect: isCorrect,
+                qid: qid || '',
                 uuid
             });
             tx.oncomplete = () => resolve(true);
@@ -223,12 +224,19 @@ export class ExamDatabase {
     }
 
     async startSessionRecord(lesson, unit, mode, uuid){
+        if (!this.db) return null;
+        // Reuse active session if exists
+        const active = await this.hasActiveSessionForUnit(lesson, unit);
+        if (active) {
+            const list = await this.getSessionsByUnit(lesson, unit);
+            const current = list.find(r => !r.ended_at || r.ended_at === 0);
+            return current ? current.uuid : uuid;
+        }
         return new Promise((resolve) => {
-            if (!this.db) return resolve(false);
             const tx = this.db.transaction(['sessions'], 'readwrite');
             tx.objectStore('sessions').put({ uuid, lesson, unit: parseInt(unit)||0, mode: mode||'study', started_at: Date.now(), ended_at: 0 });
-            tx.oncomplete = () => resolve(true);
-            tx.onerror = () => resolve(false);
+            tx.oncomplete = () => resolve(uuid);
+            tx.onerror = () => resolve(null);
         });
     }
 

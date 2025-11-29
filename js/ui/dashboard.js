@@ -331,14 +331,24 @@ export class Dashboard {
         };
         window.viewSessionMistakes = async (lessonCode, unitNo, startTs, endTs) => {
             const list = (this.db.getHistoryRange ? await this.db.getHistoryRange(lessonCode, unitNo, startTs, endTs) : []);
-            const wrongs = list.filter(x=>!x.isCorrect);
+            const data = (this.loader && this.loader.loadLessonData) ? await this.loader.loadLessonData(lessonCode) : { cards: [] };
+            const cards = (data.cards||[]).filter(c => parseInt(c.unit)||0 === parseInt(unitNo)||0);
+            const map = new Map(cards.map(c => [c.id, c]));
+            const wrongs = list.filter(x=>!x.isCorrect).map(w => ({ date: w.date, qid: w.qid||'', card: map.get(w.qid||'') }));
             const id = 'session-mistakes-modal';
             const html = `
             <div class="modal-overlay" id="${id}">
                 <div class="modal-box">
                     <div class="modal-header"><h2 class="modal-title">Yanlışlar</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
                     <div style="max-height:50vh; overflow:auto;">
-                        ${wrongs.length===0?'<div style="color:#64748b; padding:12px;">Yanlış yok</div>':wrongs.map((w,idx)=>`<div class=\"lesson-card\" style=\"padding:10px;\"><div style=\"font-weight:600; color:#334155;\">${idx+1}. Ünite ${unitNo}</div><small style=\"color:#64748b;\">Tarih: ${new Date(w.date).toLocaleString()}</small></div>`).join('')}
+                        ${wrongs.length===0?'<div style="color:#64748b; padding:12px;">Yanlış yok</div>':wrongs.map((w,idx)=>{
+                            const q = w.card;
+                            return `<div class=\"lesson-card\" style=\"padding:12px; border-left:4px solid #ef4444;\">
+                                <div style=\"font-weight:600; color:#334155; margin-bottom:6px;\">${idx+1}. ${q ? escapeHTML(q.question) : 'Soru bulunamadı'}</div>
+                                <div style=\"font-size:0.9rem; color:#10b981;\"><strong>Doğru Cevap:</strong> ${q ? escapeHTML(q.correct_option) : '-'}</div>
+                                <small style=\"color:#64748b;\">Tarih: ${new Date(w.date).toLocaleString()}</small>
+                            </div>`;
+                        }).join('')}
                     </div>
                 </div>
             </div>`;

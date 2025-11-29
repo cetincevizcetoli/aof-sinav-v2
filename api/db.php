@@ -58,6 +58,16 @@ try {
     }
 } catch (Throwable $e) {}
 
+// Ensure exam_history has question id (qid) for detailed review
+try {
+    $st2 = $pdo->query("SHOW COLUMNS FROM exam_history LIKE 'qid'");
+    $has2 = ($st2 && $st2->fetch(PDO::FETCH_ASSOC)) ? true : false;
+    if (!$has2) {
+        try { $pdo->exec('ALTER TABLE exam_history ADD COLUMN qid VARCHAR(255)'); } catch (Throwable $e) {}
+        try { $pdo->exec('ALTER TABLE exam_history ADD INDEX idx_qid (qid)'); } catch (Throwable $e) {}
+    }
+} catch (Throwable $e) {}
+
 function json(){ return json_decode(file_get_contents('php://input'), true) ?: []; }
 function ok($d){ echo json_encode(['ok'=>true,'data'=>$d]); }
 function err($c,$m){ http_response_code($c); echo json_encode(['ok'=>false,'error'=>$m]); }

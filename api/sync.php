@@ -48,8 +48,8 @@ if ($a === 'push') {
         }
     }
     if (isset($in['history']) && is_array($in['history'])) {
-        $ins = $pdo->prepare('INSERT IGNORE INTO exam_history(user_id,date,lesson,unit,isCorrect,uuid) VALUES(?,?,?,?,?,?)');
-        foreach ($in['history'] as $h) { $ins->execute([$user, intval($h['date']??time()), $h['lesson']??'', intval($h['unit']??0), intval(($h['isCorrect']??0)?1:0), (string)($h['uuid']??'')]); }
+        $ins = $pdo->prepare('INSERT IGNORE INTO exam_history(user_id,date,lesson,unit,isCorrect,uuid,qid) VALUES(?,?,?,?,?,?,?)');
+        foreach ($in['history'] as $h) { $ins->execute([$user, intval($h['date']??time()), $h['lesson']??'', intval($h['unit']??0), intval(($h['isCorrect']??0)?1:0), (string)($h['uuid']??''), (string)($h['qid']??'')]); }
     }
     if (isset($in['sessions']) && is_array($in['sessions'])) {
         $insS = $pdo->prepare('INSERT IGNORE INTO study_sessions(user_id,lesson,unit,mode,started_at,ended_at,uuid) VALUES(?,?,?,?,?,?,?)');
@@ -61,7 +61,7 @@ if ($a === 'push') {
     $progress->execute([$user]);
     $stats = $pdo->prepare('SELECT xp,streak,totalQuestions,updated_at FROM user_stats WHERE user_id=?');
     $stats->execute([$user]);
-    $hist = $pdo->prepare('SELECT date,lesson,unit,isCorrect,uuid FROM exam_history WHERE user_id=? ORDER BY date DESC LIMIT 500');
+    $hist = $pdo->prepare('SELECT date,lesson,unit,isCorrect,uuid,qid FROM exam_history WHERE user_id=? ORDER BY date DESC LIMIT 500');
     $hist->execute([$user]);
     $sess = $pdo->prepare('SELECT lesson,unit,mode,started_at,ended_at,uuid FROM study_sessions WHERE user_id=? ORDER BY started_at DESC LIMIT 1000');
     $sess->execute([$user]);
