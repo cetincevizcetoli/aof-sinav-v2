@@ -225,7 +225,7 @@ export class QuizUI {
             </div>`;
             document.body.insertAdjacentHTML('beforeend', html);
             const btn = document.getElementById('btn-exit-home');
-            if (btn) btn.onclick = async () => { document.getElementById(id).remove(); const u = window.__sessionUUID; if (u && this.db && typeof this.db.endSessionRecord==='function'){ await this.db.endSessionRecord(u); } window.__inSession=false; if (this.onBack) this.onBack(); else if (window.dashboard && window.dashboard.render) window.dashboard.render(); };
+            if (btn) btn.onclick = async () => { document.getElementById(id).remove(); window.__inSession=false; if (this.onBack) this.onBack(); else if (window.dashboard && window.dashboard.render) window.dashboard.render(); };
         };
     }
 
