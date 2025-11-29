@@ -332,11 +332,14 @@ export class ExamDatabase {
         return new Promise((resolve)=>{
             if (!this.db) return resolve([]);
             const tx = this.db.transaction(['exam_history'],'readonly');
-            const idx = tx.objectStore('exam_history').index('by_date');
-            const range = IDBKeyRange.lowerBound(startTs||0);
+            const store = tx.objectStore('exam_history');
             const rows = [];
-            const req = idx.openCursor(range);
-            req.onsuccess = (e)=>{ const c = e.target.result; if (c){ const v = c.value; if ((!endTs || v.date <= endTs) && v.lesson === lesson && (parseInt(v.unit)||0) === (parseInt(unit)||0)) { rows.push(v); } c.continue(); } else resolve(rows); };
+            const req = store.getAll();
+            req.onsuccess = () => {
+                const all = req.result || [];
+                const filtered = all.filter(v => v.lesson === lesson && (parseInt(v.unit)||0) === (parseInt(unit)||0) && (v.date||0) >= (startTs||0) && (!endTs || (v.date||0) <= endTs));
+                resolve(filtered.sort((a,b)=> (a.date||0)-(b.date||0)));
+            };
             req.onerror = ()=>resolve([]);
         });
     }

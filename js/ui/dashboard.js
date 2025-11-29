@@ -253,13 +253,13 @@ export class Dashboard {
             const rCount = (this.db.countUnitRepeats ? await this.db.countUnitRepeats(code, i) : 0);
             const activeRep = (this.db.hasActiveSessionForUnit ? await this.db.hasActiveSessionForUnit(code, i) : false);
             let repLabel = '';
-            if (activeRep && rCount > 0) {
+            if (activeRep) {
                 // yalnızca bir tamamlanma sonrası başlayan aktif oturumda göster
                 const sessions = (this.db.getSessionsByUnit ? await this.db.getSessionsByUnit(code, i) : []);
                 const active = sessions.find(s => !s.ended_at || s.ended_at === 0);
                 const lastEnd = (this.db.getLastCompletedEnd ? await this.db.getLastCompletedEnd(code, i) : 0);
                 if (active && active.started_at && active.started_at > lastEnd) {
-                    repLabel = `${rCount}. tekrar • devam ediyor`;
+                    repLabel = `${(rCount||0)+1}. tekrar • devam ediyor`;
                 }
             }
             
@@ -319,8 +319,9 @@ export class Dashboard {
             const cards = data.filter(c => parseInt(c.unit)||0 === parseInt(unitNo)||0);
             const qids = cards.map(c=>c.id);
             const events = await this.db.getHistoryRange(lessonCode, unitNo, 0, Date.now());
-            const filtered = events.filter(e => qids.includes(e.qid||''))
+            let filtered = events.filter(e => qids.includes(e.qid||''))
                                    .sort((a,b)=> (a.date||0)-(b.date||0));
+            if (filtered.length === 0) { filtered = events.slice().sort((a,b)=> (a.date||0)-(b.date||0)); }
             const cycles = [];
             if (filtered.length > 0){
                 let start = filtered[0].date || 0;
