@@ -72,6 +72,7 @@ if ($a === 'push') {
         $pdo->prepare('DELETE FROM progress WHERE user_id=?')->execute([$user]);
         $pdo->prepare('DELETE FROM user_stats WHERE user_id=?')->execute([$user]);
         $pdo->prepare('DELETE FROM exam_history WHERE user_id=?')->execute([$user]);
+        try { $pdo->prepare('DELETE FROM study_sessions WHERE user_id=?')->execute([$user]); } catch (Throwable $e) {}
         $pdo->commit();
         ok(['wiped'=>true]);
     } catch(Exception $e){ $pdo->rollBack(); return err(500,'server_error'); }

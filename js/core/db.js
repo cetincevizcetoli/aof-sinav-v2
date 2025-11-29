@@ -372,6 +372,22 @@ export class ExamDatabase {
         });
     }
 
+    async resetProgressOnly(){
+        return new Promise((resolve)=>{
+            if (!this.db) return resolve(false);
+            const stores = ['progress','user_stats','exam_history'];
+            // sessions store eklenmişse onu da temizle
+            const hasSessions = this.db.objectStoreNames && this.db.objectStoreNames.contains('sessions');
+            const tx = this.db.transaction(hasSessions ? [...stores,'sessions'] : stores, 'readwrite');
+            tx.objectStore('progress').clear();
+            tx.objectStore('user_stats').clear();
+            tx.objectStore('exam_history').clear();
+            if (hasSessions) { tx.objectStore('sessions').clear(); }
+            tx.oncomplete = () => resolve(true);
+            tx.onerror = () => resolve(false);
+        });
+    }
+
     async enqueueSync(payload) {
         return new Promise((resolve) => {
             if (!this.db) return resolve(false);

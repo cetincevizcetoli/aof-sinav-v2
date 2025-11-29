@@ -771,12 +771,10 @@ export class Dashboard {
         window.resetApp = async () => {
             const auth = new AuthManager(this.db);
             if (auth.hasToken()) { await auth.wipeRemote().catch(()=>{}); }
-            await this.db.resetAllData();
-            localStorage.removeItem('auth_token');
-            await this.db.setProfile('account_email','');
-            await this.db.setProfile('accounts', []);
-            localStorage.removeItem('guest_mode');
-            location.reload();
+            if (this.db.resetProgressOnly) { await this.db.resetProgressOnly(); } else { await this.db.resetAllData(); }
+            await this.refreshAccountStatus();
+            document.dispatchEvent(new CustomEvent('app:data-updated'));
+            const overlay = document.getElementById('settings-menu-overlay'); if (overlay) overlay.remove();
         };
 
         window.openChangelog = async () => {
