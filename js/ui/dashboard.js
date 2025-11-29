@@ -291,14 +291,33 @@ export class Dashboard {
             this.showExamConfigModal(lessonCode); 
         };
         window.openUnitHistory = async (lessonCode, unitNo) => {
-            // Tamamlama bazlı sanal gruplama
+            // Tamamlama bazlı + tamamlama sonrası yeni oturum başladığında yeni grup
             const allHistory2 = await this.db.getHistory();
             const unitHistory2 = (allHistory2||[]).filter(h => String(h.lesson||'')===String(lessonCode) && parseInt(h.unit||0)===parseInt(unitNo||0)).sort((a,b)=> (a.date||0)-(b.date||0));
             const fileName2 = this.currentLessonFile;
             const data2 = (this.loader && this.loader.loadLessonData) ? await this.loader.loadLessonData(lessonCode, fileName2) : [];
             const unitCards2 = data2.filter(c => parseInt(c.unit||0)===parseInt(unitNo||0));
             const totalQs2 = unitCards2.length;
-            const groups=[]; { const learned = new Set(); let cur=[]; let start=0; let end=0; for (const h of unitHistory2){ if (cur.length===0) start=h.date||Date.now(); cur.push(h); end=h.date||start; if (h.isCorrect && h.qid) learned.add(h.qid); if (totalQs2>0 && learned.size>=totalQs2){ const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at:end, correct:c, wrong:w }); cur=[]; start=0; end=0; learned.clear(); } } if (cur.length>0){ const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at:end, correct:c, wrong:w }); } }
+            const sessions = (this.db.getSessionsByUnit ? await this.db.getSessionsByUnit(lessonCode, unitNo) : []) || [];
+            const sessSorted = sessions.filter(s => s && s.started_at).sort((a,b)=> (a.started_at||0)-(b.started_at||0));
+            let si = 0; let completedOnce = false;
+            const groups=[]; {
+                const learned = new Set(); let cur=[]; let start=0; let end=0;
+                for (const h of unitHistory2){
+                    // yeni oturum başlama sınırı: bir tamamlamadan sonra gelen ilk oturum başlangıcında grubu kapat
+                    const nextStart = (si < sessSorted.length) ? (sessSorted[si].started_at||0) : 0;
+                    if (completedOnce && nextStart && h.date && h.date >= nextStart && cur.length>0){
+                        const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at:end, correct:c, wrong:w }); cur=[]; start=0; end=0; learned.clear(); si++;
+                    }
+                    if (cur.length===0) start=h.date||Date.now();
+                    cur.push(h); end=h.date||start;
+                    if (h.isCorrect && h.qid) learned.add(h.qid);
+                    if (!completedOnce && totalQs2>0 && learned.size>=totalQs2){
+                        const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at=end, correct:c, wrong:w }); cur=[]; start=0; end=0; learned.clear(); completedOnce = true;
+                    }
+                }
+                if (cur.length>0){ const c=cur.filter(x=>x.isCorrect).length; const w=cur.length-c; groups.push({ started_at:start, ended_at:end, correct:c, wrong:w }); }
+            }
             const id = 'unit-history-modal';
             const html = `
             <div class="modal-overlay" id="${id}">
