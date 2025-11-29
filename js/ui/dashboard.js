@@ -701,12 +701,14 @@ export class Dashboard {
             const t = sm.getToken();
             if (!t) {
                 const id = 'cloud-login-modal';
+                const pendingEmail = await this.db.getProfile('account_email_pending')||'';
+                const pendingPass = await this.db.getProfile('account_pass_pending')||'';
                 const html = `
                 <div class="modal-overlay" id="${id}">
                   <div class="modal-box">
                     <div class="modal-header"><h2 class="modal-title">Bulut Yedekleme</h2><button class="icon-btn" onclick="document.getElementById('${id}').remove()"><i class="fa-solid fa-xmark"></i></button></div>
-                    <div class="form-group"><input type="email" id="cloud-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none"></div>
-                    <div class="form-group"><input type="password" id="cloud-pass" class="form-select" placeholder="Şifre" autocomplete="new-password"></div>
+                    <div class="form-group"><input type="email" id="cloud-email" class="form-select" placeholder="E-posta" autocomplete="off" autocapitalize="none" value="${pendingEmail}"></div>
+                    <div class="form-group"><input type="password" id="cloud-pass" class="form-select" placeholder="Şifre" autocomplete="new-password" value="${pendingPass}"></div>
                     <div class="modal-actions" style="display:flex; gap:8px;">
                       <button class="nav-btn secondary" onclick="document.getElementById('${id}').remove()">İptal</button>
                       <button class="primary-btn" onclick="window.cloudLoginDo()">Giriş Yap ve Yedekle</button>
@@ -854,17 +856,8 @@ export class Dashboard {
             if (n.length>0) { await this.db.setUserName(n); }
             const e = (document.getElementById('welcome-cloud-email')||{}).value||'';
             const p = (document.getElementById('welcome-cloud-pass')||{}).value||'';
-            if (e && p) {
-                const sm = new SyncManager(this.db);
-                let ok=false; try { ok = await sm.login(e,p); } catch{}
-                if (!ok) { try { const reg = await sm.register(e,p); if (reg && reg.ok) { ok = await sm.login(e,p); } } catch{} }
-                if (ok) {
-                    await this.db.setProfile('account_email', e);
-                    const token = localStorage.getItem('auth_token')||'';
-                    if (token) { await this.db.setProfile('account_token', token); }
-                    try { await sm.pushAll(); } catch{}
-                }
-            }
+            if (e) { await this.db.setProfile('account_email_pending', e); }
+            if (p) { await this.db.setProfile('account_pass_pending', p); }
             await this.db.setProfile('onboarding_done', 1);
             const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove();
             try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch{}
