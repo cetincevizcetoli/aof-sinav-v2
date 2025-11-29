@@ -732,18 +732,21 @@ export class Dashboard {
                     await this.db.setProfile('account_email', e);
                     const token = localStorage.getItem('auth_token')||'';
                     if (token) { await this.db.setProfile('account_token', token); }
+                    const info = await sm.me().catch(()=>null); if (info && info.name) { await this.db.setUserName(info.name); }
                     let pushed=false; try { pushed = await sm.pushAll(); } catch{}
-                    try { alert(pushed ? 'Yedekleme tamam' : 'Yedekleme başarısız'); } catch{}
                     const m = document.getElementById(id); if (m) m.remove();
                     const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove();
+                    this.render();
+                    try { alert(pushed ? 'Yedekleme tamam' : 'Yedekleme başarısız'); } catch{}
                 };
                 return;
             }
             let okPush = false;
             try { okPush = await sm.pushAll(); } catch {}
             try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch {}
-            try { alert(okPush ? 'Yedekleme tamam' : 'Yedekleme başarısız'); } catch{}
             const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove();
+            this.render();
+            try { alert(okPush ? 'Yedekleme tamam' : 'Yedekleme başarısız'); } catch{}
         };
         document.getElementById('btn-check-update').onclick = () => { window.checkUpdatesNow(); };
         document.getElementById('btn-pull-now').onclick = async () => {
@@ -774,16 +777,20 @@ export class Dashboard {
                     await this.db.setProfile('account_email', e);
                     const token = localStorage.getItem('auth_token')||'';
                     if (token) { await this.db.setProfile('account_token', token); }
+                    const info = await sm.me().catch(()=>null); if (info && info.name) { await this.db.setUserName(info.name); }
                     let pulled=false; try { pulled = await sm.pullAll(true); } catch{}
-                    try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{}
                     const m = document.getElementById(id); if (m) m.remove();
                     const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove();
+                    this.render();
+                    try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{}
                 };
                 return;
             }
+            const info = await sm.me().catch(()=>null); if (info && info.name) { await this.db.setUserName(info.name); }
             let okPull=false; try { okPull = await sm.pullAll(true); } catch{}
-            try { alert(okPull ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{}
             const ov = document.getElementById('settings-menu-overlay'); if (ov) ov.remove();
+            this.render();
+            try { alert(okPull ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{}
         };
         
         document.getElementById('btn-reset-data').onclick = () => { window.confirmReset(); };
@@ -938,8 +945,8 @@ export class Dashboard {
             try { document.dispatchEvent(new CustomEvent('app:data-updated')); } catch{}
             this.render();
         };
-        window.handleCloudLogin = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let res={ ok:false, code:0 }; try { res = await sm.login(e,p); } catch{} if (!res.ok) { try { alert(res.code===404 ? 'Bu e‑posta ile kayıt bulunamadı' : (res.code===401 ? 'Şifre hatalı' : 'Giriş başarısız')); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
-        window.handleCloudLoginRestore = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let res={ ok:false, code:0 }; try { res = await sm.login(e,p); } catch{} if (!res.ok) { try { alert(res.code===404 ? 'Bu e‑posta ile kayıt bulunamadı' : (res.code===401 ? 'Şifre hatalı' : 'Giriş başarısız')); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } let pulled=false; try { pulled = await sm.pullAll(true); } catch{} try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{} await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
+        window.handleCloudLogin = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let res={ ok:false, code:0 }; try { res = await sm.login(e,p); } catch{} if (!res.ok) { try { alert(res.code===404 ? 'Bu e‑posta ile kayıt bulunamadı' : (res.code===401 ? 'Şifre hatalı' : 'Giriş başarısız')); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } const info = await sm.me().catch(()=>null); if (info && info.name) { await this.db.setUserName(info.name); } await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); };
+        window.handleCloudLoginRestore = async () => { const e = (document.getElementById('onb-email')||{}).value||''; const p = (document.getElementById('onb-pass')||{}).value||''; const sm = new SyncManager(this.db); let res={ ok:false, code:0 }; try { res = await sm.login(e,p); } catch{} if (!res.ok) { try { alert(res.code===404 ? 'Bu e‑posta ile kayıt bulunamadı' : (res.code===401 ? 'Şifre hatalı' : 'Giriş başarısız')); } catch{} return; } await this.db.setProfile('account_email', e); const token = localStorage.getItem('auth_token')||''; if (token) { await this.db.setProfile('account_token', token); } const info = await sm.me().catch(()=>null); if (info && info.name) { await this.db.setUserName(info.name); } let pulled=false; try { pulled = await sm.pullAll(true); } catch{} await this.db.setProfile('onboarding_done', 1); const ov = document.getElementById('welcome-overlay'); if (ov) ov.remove(); this.render(); try { alert(pulled ? 'Geri yükleme tamam' : 'Geri yükleme başarısız'); } catch{} };
     }
     
     async getAccountStatusText(){ const name = await this.db.getUserName(); return `Profil: ${name||'-'}`; }
