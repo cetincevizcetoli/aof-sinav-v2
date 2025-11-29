@@ -213,11 +213,13 @@ export class QuizUI {
                     ${listHtml}
                     <div class="modal-actions" style="margin-top:12px; display:flex; gap:8px;">
                         <button class="nav-btn secondary" onclick="document.getElementById('${id}').remove()">Devam Et</button>
-                        <button class="nav-btn warning" onclick="document.getElementById('${id}').remove(); (function(){ const endUUID = window.__sessionUUID; if (endUUID && window.db && typeof window.db.endSessionRecord==='function'){ window.db.endSessionRecord(endUUID); } window.__inSession=false; ${this.onBack ? 'window.__goBack=1;' : ''} })(); ${this.onBack ? 'window.setTimeout(()=>{ try{ (' + this.onBack.toString() + ')(); }catch(e){ if (window.dashboard && window.dashboard.render) window.dashboard.render(); } }, 0);' : ''}">${escapeHTML('Ana Ekrana Dön')}</button>
+                        <button id="btn-exit-home" class="nav-btn warning">${escapeHTML('Ana Ekrana Dön')}</button>
                     </div>
                 </div>
             </div>`;
             document.body.insertAdjacentHTML('beforeend', html);
+            const btn = document.getElementById('btn-exit-home');
+            if (btn) btn.onclick = async () => { document.getElementById(id).remove(); const u = window.__sessionUUID; if (u && this.db && typeof this.db.endSessionRecord==='function'){ await this.db.endSessionRecord(u); } window.__inSession=false; if (this.onBack) this.onBack(); else if (window.dashboard && window.dashboard.render) window.dashboard.render(); };
         };
     }
 
@@ -330,7 +332,7 @@ export class QuizUI {
                     <div class="stat-box score"><span class="stat-value">%${score}</span><span class="stat-label">Başarı</span></div>
                 </div>
                 <div style="display:flex; gap:10px; justify-content:center; margin-top:20px;">
-                    <button class="primary-btn" onclick="location.reload()">Ana Ekrana Dön</button>
+                    <button id="btn-finish-home" class="primary-btn">Ana Ekrana Dön</button>
                     <button class="nav-btn" onclick="window.startSession('${this.currentCards[0].id.split('_')[0]}', {mode:'study'})">Tekrar Başla</button>
                 </div>
                 ${reviewHtml}
@@ -350,5 +352,7 @@ export class QuizUI {
         }
         window.toggleMistakes = () => { const div = document.getElementById('mistakes-container'); if (!div) return; div.style.display = (div.style.display === 'none' || !div.style.display) ? 'block' : 'none'; if (div.style.display === 'block') { div.scrollIntoView({ behavior: 'smooth' }); } };
         const endUUID = window.__sessionUUID; if (endUUID && this.db && typeof this.db.endSessionRecord === 'function') { this.db.endSessionRecord(endUUID); }
+        const btnHome = document.getElementById('btn-finish-home');
+        if (btnHome) btnHome.onclick = async () => { const u = window.__sessionUUID; if (u && this.db && typeof this.db.endSessionRecord==='function') { await this.db.endSessionRecord(u); } window.__inSession=false; if (this.onBack) this.onBack(); else if (window.dashboard && window.dashboard.render) window.dashboard.render(); };
     }
 }

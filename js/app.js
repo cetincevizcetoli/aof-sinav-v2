@@ -27,9 +27,11 @@ async function initApp() {
     // 3. Modülleri Yükle
     loader = new DataLoader(db);
     const sync = new SyncManager(db);
+    window.db = db;
     
     // Dashboard'u başlat
     dashboard = new Dashboard(loader, db);
+    window.dashboard = dashboard;
     
     
 
