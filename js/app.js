@@ -104,7 +104,7 @@ async function initApp() {
     };
     if (navigator.onLine) { await drain(); }
     window.addEventListener('online', drain);
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { updater.checkUpdates(true); if (navigator.onLine) drain(); } });
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') { updater.checkUpdates(true); if (navigator.onLine) { drain(); const sync = new (await import('./core/sync.js')).SyncManager(db); sync.pullAll(); } } });
     setInterval(() => { if (navigator.onLine) drain(); }, 60000);
     const shortPoll = async () => {
         const token = sync.getToken(); if(!token) return;
