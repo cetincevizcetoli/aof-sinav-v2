@@ -383,7 +383,7 @@ export class Dashboard {
                     <div style="max-height:50vh; overflow:auto;">
                         ${wrongs.length===0?'<div style="color:#64748b; padding:12px;">Yanlış yok</div>':wrongs.map((w,idx)=>{
                             const q = w.card;
-                            const expl = q && q.code_example ? `<div style=\"margin-top:6px; font-size:0.85rem; background:#f1f5f9; padding:6px; border-radius:4px; color:#475569;\"><strong>📝 Açıklama:</strong> ${escapeHTML(q.code_example)}</div>` : '';
+                            const expl = q && q.code_example ? `<div style=\"margin-top:6px; font-size:0.85rem; background:#f1f5f9; padding:6px; border-radius:4px; color:#475569;\"><strong>📝 Açıklama:</strong> ${this.escapeHTML(q.code_example)}</div>` : '';
                             const opts = Array.isArray(q && q.options) ? q.options.map(o => {
                                 const isGiven = w.given && String(w.given) === String(o);
                                 const isCorrect = q && String(q.correct_option) === String(o);
