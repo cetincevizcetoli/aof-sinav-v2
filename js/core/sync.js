@@ -13,5 +13,5 @@ export class SyncManager {
     async wipeRemote(){ const token = this.getToken(); if(!token) return false; const r = await fetch(`${this.base}/sync.php?action=wipe&token=${encodeURIComponent(token)}`,{ method:'POST', headers:{ 'Authorization': `Bearer ${token}` } }); return r.ok; }
     async deleteAccount(){ const token = this.getToken(); if(!token) return false; const r = await fetch(`${this.base}/auth.php?action=delete&token=${encodeURIComponent(token)}`,{ method:'POST', headers:{ 'Authorization': `Bearer ${token}` } }); if (r.ok){ localStorage.removeItem('auth_token'); return true; } if (r.status === 401){ try { localStorage.removeItem('auth_token'); } catch{} return false; } return false; }
 
-    async autoSync(){ const token = this.getToken(); if(!token) return false; const ok = await this.pushAll(); return ok; }
+    async autoSync(){ const token = this.getToken(); if(!token) return false; const ok = await this.pushAll(); if (ok) { try { await this.pullAll(true); } catch{} } return ok; }
 }
