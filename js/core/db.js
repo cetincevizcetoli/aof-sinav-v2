@@ -489,4 +489,34 @@ export class ExamDatabase {
             req.onerror = ()=>resolve([]);
         });
     }
+
+    async replaceLocalWithServer(progressRows, statsRow, historyRows, sessionRows){
+        if (!this.db) return false;
+        try {
+            // Clear stores
+            await new Promise((resolve)=>{ const tx = this.db.transaction(['progress','user_stats','exam_history','sessions'],'readwrite'); tx.objectStore('progress').clear(); tx.objectStore('user_stats').clear(); tx.objectStore('exam_history').clear(); tx.objectStore('sessions').clear(); tx.oncomplete = ()=>resolve(true); tx.onerror = ()=>resolve(false); });
+            // Progress
+            const pList = Array.isArray(progressRows) ? progressRows : [];
+            for (const p of pList) { await this.saveProgress(p.id, { id:p.id, level:p.level, nextReview:p.nextReview, correct:p.correct, wrong:p.wrong, updated_at:p.updated_at||0 }); }
+            // Stats
+            if (statsRow && typeof statsRow === 'object') { await this.updateUserStats({ xp:statsRow.xp||0, streak:statsRow.streak||0, totalQuestions:statsRow.totalQuestions||0, updated_at:statsRow.updated_at||0 }); }
+            // History
+            const hList = Array.isArray(historyRows) ? historyRows : [];
+            if (hList.length>0) {
+                await new Promise((resolve)=>{
+                    const tx = this.db.transaction(['exam_history'],'readwrite');
+                    const store = tx.objectStore('exam_history');
+                    for (const hi of hList) {
+                        store.add({ date: hi.date||Date.now(), lesson: hi.lesson, unit: parseInt(hi.unit)||0, isCorrect: !!hi.isCorrect, qid: hi.qid||'', given_option: hi.given_option||'', cycle_no: parseInt(hi.cycle_no)||0, uuid: hi.uuid||'' });
+                    }
+                    tx.oncomplete = ()=>resolve(true);
+                    tx.onerror = ()=>resolve(false);
+                });
+            }
+            // Sessions
+            const sList = Array.isArray(sessionRows) ? sessionRows : [];
+            if (sList.length>0) { await this.importSessions(sList); }
+            return true;
+        } catch { return false; }
+    }
 }
